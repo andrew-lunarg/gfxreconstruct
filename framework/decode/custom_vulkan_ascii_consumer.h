@@ -85,13 +85,46 @@ inline std::string DataPointerDecoderToString(const T& pObj)
     return "\"" + util::PtrToString(pObj) + "\"";
 }
 
+/// Template which unwraps the decoder type for a Vulkan Struct to the
+/// underlying Vulkan version before dispatching to a generated to-string
+/// function for that type.
+/// @note This is broken: any handle in a struct will be VK_NULL_HANDLE in the
+/// string generated.
+/// @fixme: either:
+/// 1. dispatch to a new set of to-string functions which handle the
+/// wrapper type directly, or
+/// 2. generate specialisations of this dispatcher which
+/// stuff our handle IDs into the handles as shown in the manually-written example,
+/// below, or
+/// 3. generate to-strings for the decoded types which do the stuffing and then call the existing
+///    ToString()s.
+
 template <typename PointerDecoderType>
 inline std::string PointerDecoderToString(PointerDecoderType* pObj,
                                           util::ToStringFlags toStringFlags = util::kToString_Default,
                                           uint32_t            tabCount      = 0,
                                           uint32_t            tabSize       = 4)
 {
+    // Get a pointer to the raw vulkan type:
     auto pDecodedObj = pObj ? pObj->GetPointer() : nullptr;
+    // metastruct: auto pDecodedObj = pObj ? pObj->GetMetaStructPointer() : nullptr;
+    const char* tname = typeid(pObj).name();
+    fprintf(stderr, "\n[gfxr] PointerDecoderToString() dispatching ToString() on type: %s\n", tname);
+    // Call a function for the raw Vulkan type, ignoring the fact that handles in it are null:
+    return pDecodedObj ? util::ToString(*pDecodedObj, toStringFlags, tabCount, tabSize) : "null";
+    // The generated functions we want to call do not yet exist:
+    //return pObj ? util::ToString(*pObj, toStringFlags, tabCount, tabSize) : "null";
+}
+
+/// Template specialisation which stuff's the decoded image handle into the raw Vulkan struct for which we have a generated ToString function.
+template <>
+inline std::string PointerDecoderToString<StructPointerDecoder<Decoded_VkImageViewCreateInfo>>(StructPointerDecoder<Decoded_VkImageViewCreateInfo>* pObj,
+                                          util::ToStringFlags toStringFlags,
+                                          uint32_t            tabCount,
+                                          uint32_t            tabSize)
+{
+    auto pDecodedObj = pObj ? pObj->GetPointer() : nullptr;
+    pDecodedObj->image = reinterpret_cast<VkImage>(pObj->GetMetaStructPointer()->image);
     return pDecodedObj ? util::ToString(*pDecodedObj, toStringFlags, tabCount, tabSize) : "null";
 }
 
