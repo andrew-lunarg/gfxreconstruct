@@ -105,19 +105,34 @@ inline std::string PointerDecoderToString(PointerDecoderType* pObj,
                                           uint32_t            tabCount      = 0,
                                           uint32_t            tabSize       = 4)
 {
-    // Get a pointer to the raw vulkan type:
+    // The generated functions we would ideally want to call do not yet exist:
+    //return pObj ? util::ToString(*pObj, toStringFlags, tabCount, tabSize) : "null";
+
+    // Get a pointer to the raw vulkan type which has a ToString() function:
     auto pDecodedObj = pObj ? pObj->GetPointer() : nullptr;
     // metastruct: auto pDecodedObj = pObj ? pObj->GetMetaStructPointer() : nullptr;
-    const char* tname = typeid(pObj).name();
-    fprintf(stderr, "\n[gfxr] PointerDecoderToString() dispatching ToString() on type: %s\n", tname);
+    const char* tname = typeid(pObj).name(); (void*) tname;
+    //fprintf(stdout, "\n[gfxr] PointerDecoderToString() dispatching ToString() on type: %s\n", tname);
     // Call a function for the raw Vulkan type, ignoring the fact that handles in it are null:
     return pDecodedObj ? util::ToString(*pDecodedObj, toStringFlags, tabCount, tabSize) : "null";
-    // The generated functions we want to call do not yet exist:
-    //return pObj ? util::ToString(*pObj, toStringFlags, tabCount, tabSize) : "null";
 }
 
 /// Template specialisation which stuff's the decoded image handle into the raw Vulkan struct for which we have a generated ToString function.
-template <>
+#define POINTER_DECODER_TO_STRING_IMAGE_FIXUP(STRUCT_TYPE) \
+template <> inline std::string PointerDecoderToString<StructPointerDecoder<Decoded_##STRUCT_TYPE>>(StructPointerDecoder<Decoded_##STRUCT_TYPE>* pObj, util::ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize) \
+{ \
+    auto pDecodedObj = pObj ? pObj->GetPointer() : nullptr; \
+    pDecodedObj->image = reinterpret_cast<VkImage>(pObj->GetMetaStructPointer()->image); \
+    return pDecodedObj ? util::ToString(*pDecodedObj, toStringFlags, tabCount, tabSize) : "null"; \
+}
+
+POINTER_DECODER_TO_STRING_IMAGE_FIXUP(VkImageMemoryBarrier)
+POINTER_DECODER_TO_STRING_IMAGE_FIXUP(VkSparseImageOpaqueMemoryBindInfo)
+POINTER_DECODER_TO_STRING_IMAGE_FIXUP(VkSparseImageMemoryBindInfo)
+POINTER_DECODER_TO_STRING_IMAGE_FIXUP(VkImageViewCreateInfo)
+
+
+/*template <>
 inline std::string PointerDecoderToString<StructPointerDecoder<Decoded_VkImageViewCreateInfo>>(StructPointerDecoder<Decoded_VkImageViewCreateInfo>* pObj,
                                           util::ToStringFlags toStringFlags,
                                           uint32_t            tabCount,
@@ -126,7 +141,7 @@ inline std::string PointerDecoderToString<StructPointerDecoder<Decoded_VkImageVi
     auto pDecodedObj = pObj ? pObj->GetPointer() : nullptr;
     pDecodedObj->image = reinterpret_cast<VkImage>(pObj->GetMetaStructPointer()->image);
     return pDecodedObj ? util::ToString(*pDecodedObj, toStringFlags, tabCount, tabSize) : "null";
-}
+}*/
 
 inline std::string DescriptorUpdateTemplateDecoderToString(const DescriptorUpdateTemplateDecoder* pObj,
                                                            util::ToStringFlags toStringFlags = util::kToString_Default,
