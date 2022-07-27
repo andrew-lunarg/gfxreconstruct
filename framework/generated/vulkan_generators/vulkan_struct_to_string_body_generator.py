@@ -145,6 +145,9 @@ class VulkanStructToStringBodyGenerator(BaseGenerator):
     # yapf: disable
     def makeStructBody(self, name, values):
         body = ''
+        hasHandle = False
+        hasSingleHandle = False
+        hasArrayPtrHandle = False
         for value in values:
 
             # Start with a static_assert() so that if any values make it through the logic
@@ -172,7 +175,9 @@ class VulkanStructToStringBodyGenerator(BaseGenerator):
             elif value.is_pointer:
                 if value.is_array:
                     if self.is_handle(value.base_type):
-                        toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /* Andy Handle Pointer to Array */'
+                        hasHandle = True
+                        hasArrayPtrHandle = True
                     elif self.is_struct(value.base_type):
                         toString = 'ArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                     elif self.is_enum(value.base_type):
@@ -182,6 +187,7 @@ class VulkanStructToStringBodyGenerator(BaseGenerator):
                 else:
                     if self.is_handle(value.base_type):
                         toString = 'static_assert(false, "Unhandled pointer to VkHandle in `vulkan_struct_to_string_body_generator.py`")'
+                        hasHandle = True
                     elif self.is_struct(value.base_type):
                         toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "null")'
                     elif self.is_enum(value.base_type):
@@ -191,7 +197,8 @@ class VulkanStructToStringBodyGenerator(BaseGenerator):
             else:
                 if value.is_array:
                     if self.is_handle(value.base_type):
-                        toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /* Andy Handle Array */'
+                        hasHandle = True
                     elif self.is_struct(value.base_type):
                         toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                     elif self.is_enum(value.base_type):
@@ -204,7 +211,9 @@ class VulkanStructToStringBodyGenerator(BaseGenerator):
                         toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                 else:
                     if self.is_handle(value.base_type):
-                        toString = '\'"\' + VkHandleToString(obj.{0}) + \'"\''
+                        toString = '\'"\' + VkHandleToString(obj.{0}) + \'"\' /* Andy Handle */'
+                        hasHandle = True
+                        hasSingleHandle = True
                     elif self.is_struct(value.base_type):
                         toString = 'ToString(obj.{0}, toStringFlags, tabCount, tabSize)'
                     elif self.is_enum(value.base_type):
@@ -215,5 +224,12 @@ class VulkanStructToStringBodyGenerator(BaseGenerator):
             firstField = 'true' if not body else 'false'
             toString = toString.format(value.name, value.array_length)
             body += '            FieldToString(strStrm, {0}, "{1}", toStringFlags, tabCount, tabSize, {2});\n'.format(firstField, value.name, toString)
+        if(hasHandle == True):
+                body += '            /* Struct has at least one handle - Andy */\n'
+        if(hasSingleHandle == True):
+                body += '            /* Struct has at least one single handle - Andy */\n'
+        if(hasArrayPtrHandle == True):
+                body += '            /* Struct has at least one pointer to an array of handles - Andy */\n'
+
         return body
     # yapf: enable
