@@ -42,6 +42,10 @@
 #include <sstream>
 #include <string>
 
+/// @note Will be generated
+template <> std::string gfxrecon::util::ToString<gfxrecon::decode::Decoded_VkFramebufferCreateInfo>(const gfxrecon::decode::Decoded_VkFramebufferCreateInfo& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize);
+// <---------------------------------------------------------------------------------------------------------------------------------------------------[BOOKMARK]
+
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(decode)
 
@@ -99,23 +103,74 @@ inline std::string DataPointerDecoderToString(const T& pObj)
 /// 3. generate to-strings for the decoded types which do the stuffing and then call the existing
 ///    ToString()s.
 
+/// Pointers to primitive types like integers and to arrays will come through here:
 template <typename PointerDecoderType>
 inline std::string PointerDecoderToString(PointerDecoderType* pObj,
                                           util::ToStringFlags toStringFlags = util::kToString_Default,
                                           uint32_t            tabCount      = 0,
                                           uint32_t            tabSize       = 4)
 {
+    fprintf(stderr, "\n[gfxr] Generic PointerDecoderToString() used.\n");
     // Get a pointer to the raw vulkan type:
     auto pDecodedObj = pObj ? pObj->GetPointer() : nullptr;
-    // metastruct: auto pDecodedObj = pObj ? pObj->GetMetaStructPointer() : nullptr;
+    //auto pMetaObj = pObj ? pObj->GetMetaStructPointer() : nullptr;
+    //pObj->GetMetaStructPointer();
     const char* tname = typeid(pObj).name();
-    fprintf(stderr, "\n[gfxr] PointerDecoderToString() dispatching ToString() on type: %s\n", tname);
+    //fprintf(stderr, "\n[gfxr] PointerDecoderToString() dispatching ToString() on type: %s\n", tname);
     // Call a function for the raw Vulkan type, ignoring the fact that handles in it are null:
     return pDecodedObj ? util::ToString(*pDecodedObj, toStringFlags, tabCount, tabSize) : "null";
     // The generated functions we want to call do not yet exist:
     //return pObj ? util::ToString(*pObj, toStringFlags, tabCount, tabSize) : "null";
+    // <---------------------------------------------------------------------------------------------------------------------------------------------------[BOOKMARK]
 }
 
+/// Overloaded function specialising dispatch for structs.
+template <typename StructType>
+inline std::string PointerDecoderToString(StructPointerDecoder<StructType>* pObj,
+                                          util::ToStringFlags toStringFlags,
+                                          uint32_t            tabCount,
+                                          uint32_t            tabSize)
+{
+    fprintf(stderr, "\n[gfxr] PointerDecoderToString() specialised for Structs used.\n");
+    if(nullptr == pObj)
+    {
+        return "null";
+    }
+    auto pMetaObj = pObj->GetMetaStructPointer();
+    // If there was no struct pointer provided by the app, e.g. for allocation
+    // callbacks, we'll have a null pointer here too:
+    if(nullptr == pMetaObj){
+        return "null";
+    }
+    assert(pMetaObj->decoded_value);
+    if(nullptr == pMetaObj->decoded_value){
+        return "null";
+    }
+    return pMetaObj ? util::ToString(*pMetaObj->decoded_value, toStringFlags, tabCount, tabSize) : "null";
+}
+
+/// @note Temporary overload to dispatch to the hand-crafted ToString for the decoded struct.
+/// [BOOKMARK]
+inline std::string PointerDecoderToString(StructPointerDecoder<Decoded_VkFramebufferCreateInfo>* pObj,
+                                          util::ToStringFlags toStringFlags,
+                                          uint32_t            tabCount,
+                                          uint32_t            tabSize)
+{
+    fprintf(stderr, "\n[gfxr] PointerDecoderToString() specialised for StructPointerDecoder<Decoded_VkFramebufferCreateInfo> used.\n");
+    if(nullptr == pObj)
+    {
+        return "null";
+    }
+    auto pMetaObj = pObj->GetMetaStructPointer();
+    // If there was no struct pointer provided by the app, e.g. for allocation
+    // callbacks, we'll have a null pointer here too:
+    if(nullptr == pMetaObj){
+        return "null";
+    }
+    return pMetaObj ? util::ToString(*pMetaObj, toStringFlags, tabCount, tabSize) : "null";
+}
+
+/// Look-see for Option 1 above:
 /// Template specialisation which stuff's the decoded image handle into the raw Vulkan struct for which we have a generated ToString function.
 template <>
 inline std::string PointerDecoderToString<StructPointerDecoder<Decoded_VkImageViewCreateInfo>>(StructPointerDecoder<Decoded_VkImageViewCreateInfo>* pObj,
@@ -123,6 +178,7 @@ inline std::string PointerDecoderToString<StructPointerDecoder<Decoded_VkImageVi
                                           uint32_t            tabCount,
                                           uint32_t            tabSize)
 {
+    fprintf(stderr, "\n[gfxr] PointerDecoderToString() specialised for Decoded_VkImageViewCreateInfo used.\n");
     auto pDecodedObj = pObj ? pObj->GetPointer() : nullptr;
     pDecodedObj->image = reinterpret_cast<VkImage>(pObj->GetMetaStructPointer()->image);
     return pDecodedObj ? util::ToString(*pDecodedObj, toStringFlags, tabCount, tabSize) : "null";
