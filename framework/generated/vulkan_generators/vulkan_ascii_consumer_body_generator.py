@@ -209,7 +209,6 @@ class VulkanAsciiConsumerBodyGenerator(BaseGenerator):
                         print(value)
                         print(value.base_type)
                         print(value.__dict__)
-                        print(value.base_type.__dict__)
                         toString = 'PointerDecoderToString({0}, toStringFlags, tabCount, tabSize) /* Pointer to struct. If struct has handles in it, no beuno. [Andy]*/'
                         constains_struct_ptr = True
                     elif self.is_enum(value.base_type):
