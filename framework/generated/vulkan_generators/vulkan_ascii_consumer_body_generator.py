@@ -92,6 +92,7 @@ class VulkanAsciiConsumerBodyGenerator(BaseGenerator):
             #include "decode/custom_vulkan_to_string.h"
             #include "generated/generated_vulkan_enum_to_string.h"
             #include "generated/generated_vulkan_struct_to_string.h"
+            #include "generated/generated_vulkan_struct_decoders_to_string.h"
             #include "util/defines.h"
             '''
         )
@@ -205,11 +206,11 @@ class VulkanAsciiConsumerBodyGenerator(BaseGenerator):
                     if self.is_handle(value.base_type):
                         toString = 'HandlePointerDecoderToString({0})'
                     elif self.is_struct(value.base_type):
-                        print("\nPointer to Struct:")
-                        print(value)
-                        print(value.base_type)
-                        print(value.__dict__)
-                        toString = 'PointerDecoderToString({0}, toStringFlags, tabCount, tabSize) /* Pointer to struct. If struct has handles in it, no beuno. [Andy]*/'
+                        #print("\nPointer to Struct:")
+                        #print(value)
+                        #print(value.base_type)
+                        #print(value.__dict__)
+                        toString = 'PointerDecoderToString({0}, toStringFlags, tabCount, tabSize)'
                         constains_struct_ptr = True
                     elif self.is_enum(value.base_type):
                         toString = 'EnumPointerDecoderToString({0})'
@@ -229,7 +230,7 @@ class VulkanAsciiConsumerBodyGenerator(BaseGenerator):
                     if self.is_handle(value.base_type):
                         toString = 'HandleIdToString({0})'
                     elif self.is_struct(value.base_type):
-                        toString = 'ToString({0}, toStringFlags, tabCount, tabSize) /* Non-pointer struct. [Andy]*/'
+                        toString = 'ToString({0}, toStringFlags, tabCount, tabSize)'
                     elif self.is_enum(value.base_type):
                         toString = '\'"\' + ToString({0}, toStringFlags, tabCount, tabSize) + \'"\''
                     else:

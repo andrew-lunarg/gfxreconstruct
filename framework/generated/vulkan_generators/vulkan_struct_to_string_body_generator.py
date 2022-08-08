@@ -175,7 +175,7 @@ class VulkanStructToStringBodyGenerator(BaseGenerator):
             elif value.is_pointer:
                 if value.is_array:
                     if self.is_handle(value.base_type):
-                        toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /* Andy Handle Pointer to Array */'
+                        toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                         hasHandle = True
                         hasArrayPtrHandle = True
                     elif self.is_struct(value.base_type):
@@ -197,7 +197,7 @@ class VulkanStructToStringBodyGenerator(BaseGenerator):
             else:
                 if value.is_array:
                     if self.is_handle(value.base_type):
-                        toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /* Andy Handle Array */'
+                        toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                         hasHandle = True
                     elif self.is_struct(value.base_type):
                         toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
@@ -211,7 +211,7 @@ class VulkanStructToStringBodyGenerator(BaseGenerator):
                         toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                 else:
                     if self.is_handle(value.base_type):
-                        toString = '\'"\' + VkHandleToString(obj.{0}) + \'"\' /* Andy Handle */'
+                        toString = '\'"\' + VkHandleToString(obj.{0}) + \'"\''
                         hasHandle = True
                         hasSingleHandle = True
                     elif self.is_struct(value.base_type):
