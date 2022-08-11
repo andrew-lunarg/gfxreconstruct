@@ -28,6 +28,7 @@
 
 #include "decode/custom_vulkan_to_string.h"
 #include "generated_vulkan_struct_to_string.h"
+#include "generated_vulkan_struct_decoders_to_string.h"
 
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(util)
