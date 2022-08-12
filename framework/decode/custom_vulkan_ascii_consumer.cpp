@@ -23,8 +23,8 @@
 #include "decode/custom_vulkan_ascii_consumer.h"
 #include "generated/generated_vulkan_ascii_consumer.h"
 
-/// @note Will be generated
-template <> std::string gfxrecon::util::ToString<gfxrecon::decode::Decoded_VkFramebufferCreateInfo>(const gfxrecon::decode::Decoded_VkFramebufferCreateInfo& metaObj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
+/// @note A manual template for the code to be generated:
+/*template <> std::string gfxrecon::util::ToString<gfxrecon::decode::Decoded_VkFramebufferCreateInfo>(const gfxrecon::decode::Decoded_VkFramebufferCreateInfo& metaObj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 // <---------------------------------------------------------------------------------------------------------------------------------------------------[BOOKMARK]
 {
     //return "gfxrecon::decode::Decoded_VkFramebufferCreateInfo";
@@ -47,7 +47,7 @@ template <> std::string gfxrecon::util::ToString<gfxrecon::decode::Decoded_VkFra
             FieldToString(strStrm, false, "layers", toStringFlags, tabCount, tabSize, ToString(obj.layers, toStringFlags, tabCount, tabSize));
         }
     );
-}
+}*/
 
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(decode)

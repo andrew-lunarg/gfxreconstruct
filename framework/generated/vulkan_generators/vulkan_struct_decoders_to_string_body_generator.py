@@ -124,8 +124,14 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
         for struct in self.get_filtered_struct_names():
             if not struct in self.customImplementationRequired:
                 body = inspect.cleandoc('''
-                    template <> std::string ToString<{0}>(const {0}& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
+                    template <> std::string ToString<decode::Decoded_{0}>(const decode::Decoded_{0}& decoded_obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
                     {{
+                        assert(decoded_obj.decoded_value != nullptr);
+                        if(decoded_obj.decoded_value == nullptr)
+                        {{
+                            return "";
+                        }}
+                        const {0}& obj = *decoded_obj.decoded_value;
                         return ObjectToString(toStringFlags, tabCount, tabSize,
                             [&](std::stringstream& strStrm)
                             {{
@@ -176,6 +182,7 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
             elif value.is_pointer:
                 if value.is_array:
                     if self.is_handle(value.base_type):
+                        # BOOKMARK <-------------------------------------------------------------------------------------- Keep working through these making good choices.
                         toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                         hasHandle = True
                         hasArrayPtrHandle = True
@@ -198,6 +205,7 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
             else:
                 if value.is_array:
                     if self.is_handle(value.base_type):
+                        #toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                         toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                         hasHandle = True
                     elif self.is_struct(value.base_type):
@@ -212,15 +220,20 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                 else:
                     if self.is_handle(value.base_type):
-                        toString = '\'"\' + VkHandleToString(obj.{0}) + \'"\''
+                        # Version accessing the null handle in the raw vulkan struct: toString = '\'"\' + VkHandleToString(obj.{0}) + \'"\''
+                        # Outputs a hex value:
+                        toString = '\'"\' + VkHandleToString(decoded_obj.{0}) + \'"\' /* < ------------ handle clause*/'
+                        # Outputs decimal value, not hex: toString = '\'"\' + ToString(decoded_obj.{0}) + \'"\''
                         hasHandle = True
                         hasSingleHandle = True
                     elif self.is_struct(value.base_type):
-                        toString = 'ToString(obj.{0}, toStringFlags, tabCount, tabSize)'
+                        # Raw struct: toString = 'ToString(obj.{0}, toStringFlags, tabCount, tabSize)'
+                        # Fails: toString = 'ToString(decoded_obj.{0}, toStringFlags, tabCount, tabSize) /* < ------------ struct clause*/'
+                        toString = 'ToString(*(decoded_obj.{0}), toStringFlags, tabCount, tabSize) /* < ------------ struct clause*/'
                     elif self.is_enum(value.base_type):
-                        toString = '\'"\' + ToString(obj.{0}, toStringFlags, tabCount, tabSize) + \'"\''
+                        toString = '\'"\' + ToString(obj.{0}, toStringFlags, tabCount, tabSize) + \'"\' /* < ------------ enum clause*/'
                     else:
-                        toString = 'ToString(obj.{0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'ToString(obj.{0}, toStringFlags, tabCount, tabSize) /* < ------------ else clause*/'
 
             firstField = 'true' if not body else 'false'
             toString = toString.format(value.name, value.array_length)
