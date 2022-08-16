@@ -41,6 +41,8 @@ target_sources(gfxrecon_decode
                     ${CMAKE_CURRENT_LIST_DIR}/custom_vulkan_struct_handle_mappers.h
                     ${CMAKE_CURRENT_LIST_DIR}/custom_vulkan_struct_handle_mappers.cpp
                     ${CMAKE_CURRENT_LIST_DIR}/custom_vulkan_to_string.h
+                    ${CMAKE_CURRENT_LIST_DIR}/custom_vulkan_struct_decoders_to_string.cpp
+                    ${CMAKE_CURRENT_LIST_DIR}/custom_vulkan_struct_decoders_to_string.h
                     ${CMAKE_CURRENT_LIST_DIR}/custom_vulkan_to_string.cpp
                     ${CMAKE_CURRENT_LIST_DIR}/descriptor_update_template_decoder.h
                     ${CMAKE_CURRENT_LIST_DIR}/descriptor_update_template_decoder.cpp
@@ -132,7 +134,6 @@ target_sources(gfxrecon_decode
                     ${CMAKE_SOURCE_DIR}/framework/generated/generated_vulkan_struct_decoders_to_string.cpp
                     ${CMAKE_SOURCE_DIR}/framework/generated/generated_vulkan_object_info_table_base2.h
 )
-                  # ${CMAKE_SOURCE_DIR}/framework/generated/generated_vulkan_struct_decoders_to_string.cpp # @todo <-----------------------------------
 
 if (MSVC)
     # These files may fail to compile with VS2017 and older, requiring the default section limit of 2^16 to be increased.
