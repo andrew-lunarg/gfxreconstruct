@@ -167,7 +167,7 @@ class VulkanStructToStringBodyGenerator(BaseGenerator):
                 if 'const char* const*' in value.full_type:
                     toString = 'CStrArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                 else:
-                    toString = '(obj.{0} ? ("\\"" + std::string(obj.{0}) + "\\"") : "null")'
+                    toString = '(obj.{0} ? ("\\"" + std::string(obj.{0}) + "\\"") : "\\"null\\"")'
 
             # There's some repeated code in this if/else block...for instance, arrays of
             #   structs, enums, and primitives all route through ArrayToString()...It's
@@ -189,11 +189,11 @@ class VulkanStructToStringBodyGenerator(BaseGenerator):
                         toString = 'static_assert(false, "Unhandled pointer to VkHandle in `vulkan_struct_to_string_body_generator.py`")'
                         hasHandle = True
                     elif self.is_struct(value.base_type):
-                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "null")'
+                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "\\"null\\"")'
                     elif self.is_enum(value.base_type):
                         toString = 'static_assert(false, "Unhandled pointer to VkEnum in `vulkan_struct_to_string_body_generator.py`")'
                     else:
-                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "null")'
+                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "\\"null\\"")'
             else:
                 if value.is_array:
                     if self.is_handle(value.base_type):

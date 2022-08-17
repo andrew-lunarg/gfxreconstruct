@@ -76,7 +76,7 @@ template <typename VkEnumType>
 inline std::string EnumPointerDecoderToString(PointerDecoder<VkEnumType>* pObj)
 {
     auto pDecodedObj = pObj ? pObj->GetPointer() : nullptr;
-    return pDecodedObj ? ('"' + util::ToString(*pDecodedObj) + '"') : "null";
+    return pDecodedObj ? ('"' + util::ToString(*pDecodedObj) + '"') : "\"null\"";
 }
 
 template <typename T>
@@ -120,7 +120,7 @@ inline std::string PointerDecoderToString(PointerDecoderType* pObj,
     const char* tname = typeid(pObj).name();
     //fprintf(stderr, "\n[gfxr] PointerDecoderToString() dispatching ToString() on type: %s\n", tname);
     // Call a function for the raw Vulkan type, ignoring the fact that handles in it are null:
-    return pDecodedObj ? util::ToString(*pDecodedObj, toStringFlags, tabCount, tabSize) : "null";
+    return pDecodedObj ? util::ToString(*pDecodedObj, toStringFlags, tabCount, tabSize) : "\"null\"";
     // The generated functions we want to call do not yet exist:
     //return pObj ? util::ToString(*pObj, toStringFlags, tabCount, tabSize) : "null";
     // <---------------------------------------------------------------------------------------------------------------------------------------------------[BOOKMARK]
@@ -134,7 +134,7 @@ inline std::string PointerDecoderToString(StructPointerDecoder<StructType>* pObj
                                           uint32_t            tabSize)
 {
     //fprintf(stderr, "\n[gfxr] PointerDecoderToString() specialised for Structs used.\n");
-    std::string str = "null";
+    std::string str = "\"null\"";
     if(nullptr != pObj)
     {
         auto pMetaObj = pObj->GetMetaStructPointer();
@@ -235,7 +235,7 @@ inline std::string DescriptorUpdateTemplateDecoderToString(const DescriptorUpdat
 inline std::string StringDecoderToString(const StringDecoder* pObj)
 {
     auto pDecodedString = pObj ? pObj->GetPointer() : nullptr;
-    return pDecodedString ? ('"' + std::string(pDecodedString) + '"') : "null";
+    return pDecodedString ? ('"' + std::string(pDecodedString) + '"') : "\"null\"";
 }
 
 template <typename CountType>
