@@ -95,10 +95,11 @@ class VulkanPNextToStringBodyGenerator(BaseGenerator):
             body += '        case {0}:\n'.format(self.sTypeValues[struct])
             body += '            return ToString(*reinterpret_cast<const {0}*>(pNext), toStringFlags, tabCount, tabSize);\n'.format(struct)
         body += inspect.cleandoc('''
-                default: break;
+                default:
+                    return std::string("\\"Unknown Struct in pNext chain. sType: ") + std::to_string(uint32_t(reinterpret_cast<const VkBaseInStructure*>(pNext)->sType)) + "\\"";
                 }
             }
-            return "null";
+            return "\\"null\\"";
         }
 
         GFXRECON_END_NAMESPACE(util)

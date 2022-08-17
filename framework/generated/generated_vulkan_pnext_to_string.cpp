@@ -729,10 +729,11 @@ std::string PNextToString(const void* pNext, ToStringFlags toStringFlags, uint32
             return ToString(*reinterpret_cast<const VkPhysicalDeviceRayTracingPipelinePropertiesKHR*>(pNext), toStringFlags, tabCount, tabSize);
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR:
             return ToString(*reinterpret_cast<const VkPhysicalDeviceRayQueryFeaturesKHR*>(pNext), toStringFlags, tabCount, tabSize);
-        default: break;
+        default:
+            return std::string("\"Unknown Struct in pNext chain. sType: ") + std::to_string(uint32_t(reinterpret_cast<const VkBaseInStructure*>(pNext)->sType)) + "\"";
         }
     }
-    return "null";
+    return "\"null\"";
 }
 
 GFXRECON_END_NAMESPACE(util)
