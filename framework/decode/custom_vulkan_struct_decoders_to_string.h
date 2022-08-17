@@ -137,30 +137,31 @@ std::string ToString<decode::Decoded_VkWriteDescriptorSet>(const decode::Decoded
                                            ToStringFlags               toStringFlags,
                                            uint32_t                    tabCount,
                                            uint32_t                    tabSize);
-
+/// @todo Our handles are small ints, not pointers.
 /*template <typename VkHandleType>
+format::HandleId is the type
 inline std::string VkHandleToString(VkHandleType vkHandle)
 {
     return vkHandle ? PtrToString(vkHandle) : "VK_NULL_HANDLE";
 }
+*/
 
 template <typename VkHandleType>
-inline std::string VkHandleArrayToString(uint32_t            count,
-                                         const VkHandleType* pVkHandles,
+inline std::string VkHandleArrayToString(const decode::HandlePointerDecoder<VkHandleType>& pHandles,
                                          ToStringFlags       toStringFlags = kToString_Default,
                                          uint32_t            tabCount      = 0,
                                          uint32_t            tabSize       = 4)
 {
     return ArrayToString(
-        count,
-        pVkHandles,
+        pHandles.GetLength(),
+        pHandles.GetPointer(),
         toStringFlags,
         tabCount,
         tabSize,
-        [&]() { return pVkHandles != nullptr; },
-        [&](uint32_t i) { return VkHandleToString(pVkHandles[i]); });
+        [&]() { return pHandles.GetPointer() != nullptr; },
+        [&](uint32_t i) { return VkHandleToString(pHandles.GetPointer()[i]); });
 }
-*/
+
 
 GFXRECON_END_NAMESPACE(util)
 GFXRECON_END_NAMESPACE(gfxrecon)

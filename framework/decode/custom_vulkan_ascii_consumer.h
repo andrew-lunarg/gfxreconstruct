@@ -112,7 +112,7 @@ inline std::string PointerDecoderToString(PointerDecoderType* pObj,
                                           uint32_t            tabCount      = 0,
                                           uint32_t            tabSize       = 4)
 {
-    fprintf(stderr, "\n[gfxr] Generic PointerDecoderToString() used.\n");
+    // fprintf(stderr, "\n[gfxr] Generic PointerDecoderToString() used.\n");
     // Get a pointer to the raw vulkan type:
     auto pDecodedObj = pObj ? pObj->GetPointer() : nullptr;
     //auto pMetaObj = pObj ? pObj->GetMetaStructPointer() : nullptr;

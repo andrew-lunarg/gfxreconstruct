@@ -161,6 +161,9 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
             #   below without being handled the generated code will fail to compile
             toString = 'static_assert(false, "Unhandled value in `vulkan_struct_decoders_to_string_body_generator.py`")'
 
+            if 'pAttachments' in value.name:
+                print("Set breakpoint here.")
+
             # pNext requires custom handling
             if 'pNext' in value.name:
                 # Original: toString = 'PNextToString(obj.pNext, toStringFlags, tabCount, tabSize)'
@@ -198,7 +201,8 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                 if value.is_array:
                     if self.is_handle(value.base_type):
                         # BOOKMARK <-------------------------------------------------------------------------------------- Keep working through these making good choices.
-                        toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        # Original: toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'VkHandleArrayToString(decoded_obj.{0}, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ '
                         hasHandle = True
                         hasArrayPtrHandle = True
                     elif self.is_struct(value.base_type):
