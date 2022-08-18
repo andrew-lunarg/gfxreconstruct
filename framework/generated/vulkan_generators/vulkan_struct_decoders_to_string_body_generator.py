@@ -161,9 +161,6 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
             #   below without being handled the generated code will fail to compile
             toString = 'static_assert(false, "Unhandled value in `vulkan_struct_decoders_to_string_body_generator.py`")'
 
-            if 'pAttachments' in value.name:
-                print("Set breakpoint here.")
-
             # pNext requires custom handling
             if 'pNext' in value.name:
                 # Original: toString = 'PNextToString(obj.pNext, toStringFlags, tabCount, tabSize)'
