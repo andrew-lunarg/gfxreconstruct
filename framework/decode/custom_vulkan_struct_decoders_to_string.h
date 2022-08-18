@@ -37,10 +37,8 @@
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(util)
 
-/*
-/// @todo expand the pnext function to dispatch on decoded types. <------------------------------------------------------[!!!!]
-std::string PNextToString(const void* pNext, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize);
-*/
+//std::string PNextDecodedToString(const void* pNext, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize);
+std::string PNextDecodedToString(const decode::PNextNode* pNext, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize);
 
 template <>
 std::string ToString<decode::Decoded_SECURITY_ATTRIBUTES>(const decode::Decoded_SECURITY_ATTRIBUTES& obj,

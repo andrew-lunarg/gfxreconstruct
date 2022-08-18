@@ -132,6 +132,7 @@ target_sources(gfxrecon_decode
                     ${CMAKE_SOURCE_DIR}/framework/generated/generated_vulkan_struct_to_string.cpp
                     ${CMAKE_SOURCE_DIR}/framework/generated/generated_vulkan_struct_decoders_to_string.h
                     ${CMAKE_SOURCE_DIR}/framework/generated/generated_vulkan_struct_decoders_to_string.cpp
+                    ${CMAKE_SOURCE_DIR}/framework/generated/generated_vulkan_pnext_decoders_to_string.cpp
                     ${CMAKE_SOURCE_DIR}/framework/generated/generated_vulkan_object_info_table_base2.h
 )
 

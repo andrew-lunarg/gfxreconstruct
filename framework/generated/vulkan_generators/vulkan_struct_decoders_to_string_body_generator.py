@@ -167,9 +167,7 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
             # pNext requires custom handling
             if 'pNext' in value.name:
                 # Original: toString = 'PNextToString(obj.pNext, toStringFlags, tabCount, tabSize)'
-                # FixMe: Need a new version of this generated function.
-                toString = 'PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/'
-
+                toString = 'PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/'
 
             # Function pointers and void data pointers simply write the address
             elif 'pfn' in value.name:

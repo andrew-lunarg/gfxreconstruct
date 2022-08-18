@@ -132,7 +132,7 @@ template <> std::string ToString<decode::Decoded_VkBufferMemoryBarrier>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcAccessMask", toStringFlags, tabCount, tabSize, ToString(obj.srcAccessMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "dstAccessMask", toStringFlags, tabCount, tabSize, ToString(obj.dstAccessMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "srcQueueFamilyIndex", toStringFlags, tabCount, tabSize, ToString(obj.srcQueueFamilyIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -235,7 +235,7 @@ template <> std::string ToString<decode::Decoded_VkImageMemoryBarrier>(const dec
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcAccessMask", toStringFlags, tabCount, tabSize, ToString(obj.srcAccessMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "dstAccessMask", toStringFlags, tabCount, tabSize, ToString(obj.dstAccessMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "oldLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.oldLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -262,7 +262,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryBarrier>(const decode::
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcAccessMask", toStringFlags, tabCount, tabSize, ToString(obj.srcAccessMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "dstAccessMask", toStringFlags, tabCount, tabSize, ToString(obj.dstAccessMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -322,7 +322,7 @@ template <> std::string ToString<decode::Decoded_VkApplicationInfo>(const decode
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pApplicationName", toStringFlags, tabCount, tabSize, (obj.pApplicationName ? ("\"" + std::string(obj.pApplicationName) + "\"") : "null") /* <--------- C string case */);
             FieldToString(strStrm, false, "applicationVersion", toStringFlags, tabCount, tabSize, ToString(obj.applicationVersion, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pEngineName", toStringFlags, tabCount, tabSize, (obj.pEngineName ? ("\"" + std::string(obj.pEngineName) + "\"") : "null") /* <--------- C string case */);
@@ -382,7 +382,7 @@ template <> std::string ToString<decode::Decoded_VkInstanceCreateInfo>(const dec
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pApplicationInfo", toStringFlags, tabCount, tabSize, (obj.pApplicationInfo ? ToString(*obj.pApplicationInfo, toStringFlags, tabCount, tabSize) : "\"null\""));
             FieldToString(strStrm, false, "enabledLayerCount", toStringFlags, tabCount, tabSize, ToString(obj.enabledLayerCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -693,7 +693,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceQueueCreateInfo>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "queueFamilyIndex", toStringFlags, tabCount, tabSize, ToString(obj.queueFamilyIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "queueCount", toStringFlags, tabCount, tabSize, ToString(obj.queueCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -714,7 +714,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceCreateInfo>(const decod
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "queueCreateInfoCount", toStringFlags, tabCount, tabSize, ToString(obj.queueCreateInfoCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pQueueCreateInfos", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueCreateInfoCount, obj.pQueueCreateInfos, toStringFlags, tabCount, tabSize));
@@ -775,7 +775,7 @@ template <> std::string ToString<decode::Decoded_VkSubmitInfo>(const decode::Dec
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "waitSemaphoreCount", toStringFlags, tabCount, tabSize, ToString(obj.waitSemaphoreCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pWaitSemaphores", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pWaitSemaphores, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             FieldToString(strStrm, false, "pWaitDstStageMask", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreCount, obj.pWaitDstStageMask, toStringFlags, tabCount, tabSize));
@@ -801,7 +801,7 @@ template <> std::string ToString<decode::Decoded_VkMappedMemoryRange>(const deco
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memory", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.memory) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "offset", toStringFlags, tabCount, tabSize, ToString(obj.offset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "size", toStringFlags, tabCount, tabSize, ToString(obj.size, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -823,7 +823,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryAllocateInfo>(const dec
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "allocationSize", toStringFlags, tabCount, tabSize, ToString(obj.allocationSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "memoryTypeIndex", toStringFlags, tabCount, tabSize, ToString(obj.memoryTypeIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -983,7 +983,7 @@ template <> std::string ToString<decode::Decoded_VkBindSparseInfo>(const decode:
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "waitSemaphoreCount", toStringFlags, tabCount, tabSize, ToString(obj.waitSemaphoreCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pWaitSemaphores", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pWaitSemaphores, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             FieldToString(strStrm, false, "bufferBindCount", toStringFlags, tabCount, tabSize, ToString(obj.bufferBindCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -1050,7 +1050,7 @@ template <> std::string ToString<decode::Decoded_VkFenceCreateInfo>(const decode
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -1068,7 +1068,7 @@ template <> std::string ToString<decode::Decoded_VkSemaphoreCreateInfo>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -1086,7 +1086,7 @@ template <> std::string ToString<decode::Decoded_VkEventCreateInfo>(const decode
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -1104,7 +1104,7 @@ template <> std::string ToString<decode::Decoded_VkQueryPoolCreateInfo>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "queryType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.queryType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "queryCount", toStringFlags, tabCount, tabSize, ToString(obj.queryCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -1125,7 +1125,7 @@ template <> std::string ToString<decode::Decoded_VkBufferCreateInfo>(const decod
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "size", toStringFlags, tabCount, tabSize, ToString(obj.size, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "usage", toStringFlags, tabCount, tabSize, ToString(obj.usage, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -1148,7 +1148,7 @@ template <> std::string ToString<decode::Decoded_VkBufferViewCreateInfo>(const d
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "buffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.buffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.format, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -1172,7 +1172,7 @@ template <> std::string ToString<decode::Decoded_VkImageCreateInfo>(const decode
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "imageType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.imageType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.format, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -1241,7 +1241,7 @@ template <> std::string ToString<decode::Decoded_VkImageViewCreateInfo>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "image", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.image) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "viewType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.viewType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -1266,7 +1266,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineCacheCreateInfo>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "initialDataSize", toStringFlags, tabCount, tabSize, ToString(obj.initialDataSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pInitialData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pInitialData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
@@ -1323,7 +1323,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineShaderStageCreateInfo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "stage", toStringFlags, tabCount, tabSize, '"' + ToString(obj.stage, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "module", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.module) + '"' /* < ------------ handle case*/);
@@ -1347,7 +1347,7 @@ template <> std::string ToString<decode::Decoded_VkComputePipelineCreateInfo>(co
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "stage", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.stage), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "layout", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.layout) + '"' /* < ------------ handle case*/);
@@ -1408,7 +1408,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineVertexInputStateCreat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "vertexBindingDescriptionCount", toStringFlags, tabCount, tabSize, ToString(obj.vertexBindingDescriptionCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pVertexBindingDescriptions", toStringFlags, tabCount, tabSize, ArrayToString(obj.vertexBindingDescriptionCount, obj.pVertexBindingDescriptions, toStringFlags, tabCount, tabSize));
@@ -1430,7 +1430,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineInputAssemblyStateCre
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "topology", toStringFlags, tabCount, tabSize, '"' + ToString(obj.topology, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "primitiveRestartEnable", toStringFlags, tabCount, tabSize, ToString(obj.primitiveRestartEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -1450,7 +1450,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineTessellationStateCrea
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "patchControlPoints", toStringFlags, tabCount, tabSize, ToString(obj.patchControlPoints, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -1490,7 +1490,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineViewportStateCreateIn
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "viewportCount", toStringFlags, tabCount, tabSize, ToString(obj.viewportCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pViewports", toStringFlags, tabCount, tabSize, ArrayToString(obj.viewportCount, obj.pViewports, toStringFlags, tabCount, tabSize));
@@ -1512,7 +1512,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineRasterizationStateCre
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "depthClampEnable", toStringFlags, tabCount, tabSize, ToString(obj.depthClampEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "rasterizerDiscardEnable", toStringFlags, tabCount, tabSize, ToString(obj.rasterizerDiscardEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -1562,7 +1562,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineDepthStencilStateCrea
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "depthTestEnable", toStringFlags, tabCount, tabSize, ToString(obj.depthTestEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "depthWriteEnable", toStringFlags, tabCount, tabSize, ToString(obj.depthWriteEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -1612,7 +1612,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineColorBlendStateCreate
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "logicOpEnable", toStringFlags, tabCount, tabSize, ToString(obj.logicOpEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "logicOp", toStringFlags, tabCount, tabSize, '"' + ToString(obj.logicOp, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -1635,7 +1635,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineDynamicStateCreateInf
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "dynamicStateCount", toStringFlags, tabCount, tabSize, ToString(obj.dynamicStateCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pDynamicStates", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.dynamicStateCount, obj.pDynamicStates, toStringFlags, tabCount, tabSize));
@@ -1655,7 +1655,7 @@ template <> std::string ToString<decode::Decoded_VkGraphicsPipelineCreateInfo>(c
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "stageCount", toStringFlags, tabCount, tabSize, ToString(obj.stageCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pStages", toStringFlags, tabCount, tabSize, ArrayToString(obj.stageCount, obj.pStages, toStringFlags, tabCount, tabSize));
@@ -1709,7 +1709,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineLayoutCreateInfo>(con
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "setLayoutCount", toStringFlags, tabCount, tabSize, ToString(obj.setLayoutCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pSetLayouts", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pSetLayouts, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
@@ -1733,7 +1733,7 @@ template <> std::string ToString<decode::Decoded_VkSamplerCreateInfo>(const deco
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "magFilter", toStringFlags, tabCount, tabSize, '"' + ToString(obj.magFilter, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "minFilter", toStringFlags, tabCount, tabSize, '"' + ToString(obj.minFilter, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -1766,7 +1766,7 @@ template <> std::string ToString<decode::Decoded_VkCopyDescriptorSet>(const deco
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcSet", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.srcSet) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "srcBinding", toStringFlags, tabCount, tabSize, ToString(obj.srcBinding, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "srcArrayElement", toStringFlags, tabCount, tabSize, ToString(obj.srcArrayElement, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -1829,7 +1829,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorPoolCreateInfo>(con
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxSets", toStringFlags, tabCount, tabSize, ToString(obj.maxSets, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "poolSizeCount", toStringFlags, tabCount, tabSize, ToString(obj.poolSizeCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -1850,7 +1850,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorSetAllocateInfo>(co
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "descriptorPool", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.descriptorPool) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "descriptorSetCount", toStringFlags, tabCount, tabSize, ToString(obj.descriptorSetCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pSetLayouts", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pSetLayouts, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
@@ -1895,7 +1895,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorSetLayoutCreateInfo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "bindingCount", toStringFlags, tabCount, tabSize, ToString(obj.bindingCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pBindings", toStringFlags, tabCount, tabSize, ArrayToString(obj.bindingCount, obj.pBindings, toStringFlags, tabCount, tabSize));
@@ -1956,7 +1956,7 @@ template <> std::string ToString<decode::Decoded_VkFramebufferCreateInfo>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "renderPass", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.renderPass) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "attachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.attachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -2030,7 +2030,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassCreateInfo>(const d
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "attachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.attachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentCount, obj.pAttachments, toStringFlags, tabCount, tabSize));
@@ -2054,7 +2054,7 @@ template <> std::string ToString<decode::Decoded_VkCommandPoolCreateInfo>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "queueFamilyIndex", toStringFlags, tabCount, tabSize, ToString(obj.queueFamilyIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -2073,7 +2073,7 @@ template <> std::string ToString<decode::Decoded_VkCommandBufferAllocateInfo>(co
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "commandPool", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.commandPool) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "level", toStringFlags, tabCount, tabSize, '"' + ToString(obj.level, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "commandBufferCount", toStringFlags, tabCount, tabSize, ToString(obj.commandBufferCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -2095,7 +2095,7 @@ template <> std::string ToString<decode::Decoded_VkCommandBufferInheritanceInfo>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "renderPass", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.renderPass) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "subpass", toStringFlags, tabCount, tabSize, ToString(obj.subpass, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "framebuffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.framebuffer) + '"' /* < ------------ handle case*/);
@@ -2120,7 +2120,7 @@ template <> std::string ToString<decode::Decoded_VkCommandBufferBeginInfo>(const
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pInheritanceInfo", toStringFlags, tabCount, tabSize, (obj.pInheritanceInfo ? ToString(*obj.pInheritanceInfo, toStringFlags, tabCount, tabSize) : "\"null\""));
         }
@@ -2309,7 +2309,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassBeginInfo>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "renderPass", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.renderPass) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "framebuffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.framebuffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "renderArea", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.renderArea), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
@@ -2333,7 +2333,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceSubgroupPropert
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "subgroupSize", toStringFlags, tabCount, tabSize, ToString(obj.subgroupSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "supportedStages", toStringFlags, tabCount, tabSize, ToString(obj.supportedStages, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "supportedOperations", toStringFlags, tabCount, tabSize, ToString(obj.supportedOperations, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -2354,7 +2354,7 @@ template <> std::string ToString<decode::Decoded_VkBindBufferMemoryInfo>(const d
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "buffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.buffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "memory", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.memory) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "memoryOffset", toStringFlags, tabCount, tabSize, ToString(obj.memoryOffset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -2376,7 +2376,7 @@ template <> std::string ToString<decode::Decoded_VkBindImageMemoryInfo>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "image", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.image) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "memory", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.memory) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "memoryOffset", toStringFlags, tabCount, tabSize, ToString(obj.memoryOffset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -2398,7 +2398,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevice16BitStorageFea
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "storageBuffer16BitAccess", toStringFlags, tabCount, tabSize, ToString(obj.storageBuffer16BitAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "uniformAndStorageBuffer16BitAccess", toStringFlags, tabCount, tabSize, ToString(obj.uniformAndStorageBuffer16BitAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "storagePushConstant16", toStringFlags, tabCount, tabSize, ToString(obj.storagePushConstant16, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -2419,7 +2419,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryDedicatedRequirements>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "prefersDedicatedAllocation", toStringFlags, tabCount, tabSize, ToString(obj.prefersDedicatedAllocation, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "requiresDedicatedAllocation", toStringFlags, tabCount, tabSize, ToString(obj.requiresDedicatedAllocation, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -2438,7 +2438,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryDedicatedAllocateInfo>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "image", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.image) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "buffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.buffer) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
@@ -2459,7 +2459,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryAllocateFlagsInfo>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "deviceMask", toStringFlags, tabCount, tabSize, ToString(obj.deviceMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -2478,7 +2478,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceGroupRenderPassBeginInf
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceMask", toStringFlags, tabCount, tabSize, ToString(obj.deviceMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "deviceRenderAreaCount", toStringFlags, tabCount, tabSize, ToString(obj.deviceRenderAreaCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pDeviceRenderAreas", toStringFlags, tabCount, tabSize, ArrayToString(obj.deviceRenderAreaCount, obj.pDeviceRenderAreas, toStringFlags, tabCount, tabSize));
@@ -2498,7 +2498,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceGroupCommandBufferBegin
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceMask", toStringFlags, tabCount, tabSize, ToString(obj.deviceMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -2516,7 +2516,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceGroupSubmitInfo>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "waitSemaphoreCount", toStringFlags, tabCount, tabSize, ToString(obj.waitSemaphoreCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pWaitSemaphoreDeviceIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreCount, obj.pWaitSemaphoreDeviceIndices, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "commandBufferCount", toStringFlags, tabCount, tabSize, ToString(obj.commandBufferCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -2539,7 +2539,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceGroupBindSparseInfo>(co
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "resourceDeviceIndex", toStringFlags, tabCount, tabSize, ToString(obj.resourceDeviceIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "memoryDeviceIndex", toStringFlags, tabCount, tabSize, ToString(obj.memoryDeviceIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -2558,7 +2558,7 @@ template <> std::string ToString<decode::Decoded_VkBindBufferMemoryDeviceGroupIn
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceIndexCount", toStringFlags, tabCount, tabSize, ToString(obj.deviceIndexCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pDeviceIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.deviceIndexCount, obj.pDeviceIndices, toStringFlags, tabCount, tabSize));
         }
@@ -2577,7 +2577,7 @@ template <> std::string ToString<decode::Decoded_VkBindImageMemoryDeviceGroupInf
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceIndexCount", toStringFlags, tabCount, tabSize, ToString(obj.deviceIndexCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pDeviceIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.deviceIndexCount, obj.pDeviceIndices, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "splitInstanceBindRegionCount", toStringFlags, tabCount, tabSize, ToString(obj.splitInstanceBindRegionCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -2598,7 +2598,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceGroupProperties
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "physicalDeviceCount", toStringFlags, tabCount, tabSize, ToString(obj.physicalDeviceCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "physicalDevices", toStringFlags, tabCount, tabSize, VkHandleArrayToString(obj.physicalDeviceCount, obj.physicalDevices, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "subsetAllocation", toStringFlags, tabCount, tabSize, ToString(obj.subsetAllocation, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -2619,7 +2619,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceGroupDeviceCreateInfo>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "physicalDeviceCount", toStringFlags, tabCount, tabSize, ToString(obj.physicalDeviceCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pPhysicalDevices", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pPhysicalDevices, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             /* Struct has at least one handle - Andy */
@@ -2640,7 +2640,7 @@ template <> std::string ToString<decode::Decoded_VkBufferMemoryRequirementsInfo2
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "buffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.buffer) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
@@ -2660,7 +2660,7 @@ template <> std::string ToString<decode::Decoded_VkImageMemoryRequirementsInfo2>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "image", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.image) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
@@ -2680,7 +2680,7 @@ template <> std::string ToString<decode::Decoded_VkImageSparseMemoryRequirements
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "image", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.image) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
@@ -2700,7 +2700,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryRequirements2>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memoryRequirements", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.memoryRequirements), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -2718,7 +2718,7 @@ template <> std::string ToString<decode::Decoded_VkSparseImageMemoryRequirements
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memoryRequirements", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.memoryRequirements), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -2736,7 +2736,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFeatures2>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "features", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.features), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -2754,7 +2754,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceProperties2>(co
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "properties", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.properties), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -2772,7 +2772,7 @@ template <> std::string ToString<decode::Decoded_VkFormatProperties2>(const deco
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "formatProperties", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.formatProperties), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -2790,7 +2790,7 @@ template <> std::string ToString<decode::Decoded_VkImageFormatProperties2>(const
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "imageFormatProperties", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.imageFormatProperties), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -2808,7 +2808,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceImageFormatInfo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.format, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.type, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "tiling", toStringFlags, tabCount, tabSize, '"' + ToString(obj.tiling, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -2830,7 +2830,7 @@ template <> std::string ToString<decode::Decoded_VkQueueFamilyProperties2>(const
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "queueFamilyProperties", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.queueFamilyProperties), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -2848,7 +2848,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMemoryPropertie
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memoryProperties", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.memoryProperties), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -2866,7 +2866,7 @@ template <> std::string ToString<decode::Decoded_VkSparseImageFormatProperties2>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "properties", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.properties), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -2884,7 +2884,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceSparseImageForm
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.format, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.type, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "samples", toStringFlags, tabCount, tabSize, '"' + ToString(obj.samples, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -2906,7 +2906,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePointClippingPr
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pointClippingBehavior", toStringFlags, tabCount, tabSize, '"' + ToString(obj.pointClippingBehavior, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -2942,7 +2942,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassInputAttachmentAspe
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "aspectReferenceCount", toStringFlags, tabCount, tabSize, ToString(obj.aspectReferenceCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pAspectReferences", toStringFlags, tabCount, tabSize, ArrayToString(obj.aspectReferenceCount, obj.pAspectReferences, toStringFlags, tabCount, tabSize));
         }
@@ -2961,7 +2961,7 @@ template <> std::string ToString<decode::Decoded_VkImageViewUsageCreateInfo>(con
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "usage", toStringFlags, tabCount, tabSize, ToString(obj.usage, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -2979,7 +2979,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineTessellationDomainOri
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "domainOrigin", toStringFlags, tabCount, tabSize, '"' + ToString(obj.domainOrigin, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -2997,7 +2997,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassMultiviewCreateInfo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "subpassCount", toStringFlags, tabCount, tabSize, ToString(obj.subpassCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pViewMasks", toStringFlags, tabCount, tabSize, ArrayToString(obj.subpassCount, obj.pViewMasks, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "dependencyCount", toStringFlags, tabCount, tabSize, ToString(obj.dependencyCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -3020,7 +3020,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMultiviewFeatur
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "multiview", toStringFlags, tabCount, tabSize, ToString(obj.multiview, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "multiviewGeometryShader", toStringFlags, tabCount, tabSize, ToString(obj.multiviewGeometryShader, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "multiviewTessellationShader", toStringFlags, tabCount, tabSize, ToString(obj.multiviewTessellationShader, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -3040,7 +3040,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMultiviewProper
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxMultiviewViewCount", toStringFlags, tabCount, tabSize, ToString(obj.maxMultiviewViewCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxMultiviewInstanceIndex", toStringFlags, tabCount, tabSize, ToString(obj.maxMultiviewInstanceIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -3059,7 +3059,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceVariablePointer
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "variablePointersStorageBuffer", toStringFlags, tabCount, tabSize, ToString(obj.variablePointersStorageBuffer, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "variablePointers", toStringFlags, tabCount, tabSize, ToString(obj.variablePointers, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -3078,7 +3078,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceProtectedMemory
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "protectedMemory", toStringFlags, tabCount, tabSize, ToString(obj.protectedMemory, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -3096,7 +3096,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceProtectedMemory
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "protectedNoFault", toStringFlags, tabCount, tabSize, ToString(obj.protectedNoFault, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -3114,7 +3114,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceQueueInfo2>(const decod
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "queueFamilyIndex", toStringFlags, tabCount, tabSize, ToString(obj.queueFamilyIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "queueIndex", toStringFlags, tabCount, tabSize, ToString(obj.queueIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -3134,7 +3134,7 @@ template <> std::string ToString<decode::Decoded_VkProtectedSubmitInfo>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "protectedSubmit", toStringFlags, tabCount, tabSize, ToString(obj.protectedSubmit, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -3152,7 +3152,7 @@ template <> std::string ToString<decode::Decoded_VkSamplerYcbcrConversionCreateI
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.format, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "ycbcrModel", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ycbcrModel, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "ycbcrRange", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ycbcrRange, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -3177,7 +3177,7 @@ template <> std::string ToString<decode::Decoded_VkSamplerYcbcrConversionInfo>(c
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "conversion", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.conversion) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
@@ -3197,7 +3197,7 @@ template <> std::string ToString<decode::Decoded_VkBindImagePlaneMemoryInfo>(con
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "planeAspect", toStringFlags, tabCount, tabSize, '"' + ToString(obj.planeAspect, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -3215,7 +3215,7 @@ template <> std::string ToString<decode::Decoded_VkImagePlaneMemoryRequirementsI
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "planeAspect", toStringFlags, tabCount, tabSize, '"' + ToString(obj.planeAspect, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -3233,7 +3233,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceSamplerYcbcrCon
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "samplerYcbcrConversion", toStringFlags, tabCount, tabSize, ToString(obj.samplerYcbcrConversion, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -3251,7 +3251,7 @@ template <> std::string ToString<decode::Decoded_VkSamplerYcbcrConversionImageFo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "combinedImageSamplerDescriptorCount", toStringFlags, tabCount, tabSize, ToString(obj.combinedImageSamplerDescriptorCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -3290,7 +3290,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorUpdateTemplateCreat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "descriptorUpdateEntryCount", toStringFlags, tabCount, tabSize, ToString(obj.descriptorUpdateEntryCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pDescriptorUpdateEntries", toStringFlags, tabCount, tabSize, ArrayToString(obj.descriptorUpdateEntryCount, obj.pDescriptorUpdateEntries, toStringFlags, tabCount, tabSize));
@@ -3335,7 +3335,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceExternalImageFo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -3353,7 +3353,7 @@ template <> std::string ToString<decode::Decoded_VkExternalImageFormatProperties
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "externalMemoryProperties", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.externalMemoryProperties), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -3371,7 +3371,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceExternalBufferI
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "usage", toStringFlags, tabCount, tabSize, ToString(obj.usage, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -3391,7 +3391,7 @@ template <> std::string ToString<decode::Decoded_VkExternalBufferProperties>(con
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "externalMemoryProperties", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.externalMemoryProperties), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -3409,7 +3409,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceIDProperties>(c
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.deviceUUID) + '"');
             FieldToString(strStrm, false, "driverUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.driverUUID) + '"');
             FieldToString(strStrm, false, "deviceLUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_LUID_SIZE, obj.deviceLUID) + '"');
@@ -3431,7 +3431,7 @@ template <> std::string ToString<decode::Decoded_VkExternalMemoryImageCreateInfo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleTypes", toStringFlags, tabCount, tabSize, ToString(obj.handleTypes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -3449,7 +3449,7 @@ template <> std::string ToString<decode::Decoded_VkExternalMemoryBufferCreateInf
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleTypes", toStringFlags, tabCount, tabSize, ToString(obj.handleTypes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -3467,7 +3467,7 @@ template <> std::string ToString<decode::Decoded_VkExportMemoryAllocateInfo>(con
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleTypes", toStringFlags, tabCount, tabSize, ToString(obj.handleTypes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -3485,7 +3485,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceExternalFenceIn
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -3503,7 +3503,7 @@ template <> std::string ToString<decode::Decoded_VkExternalFenceProperties>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "exportFromImportedHandleTypes", toStringFlags, tabCount, tabSize, ToString(obj.exportFromImportedHandleTypes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "compatibleHandleTypes", toStringFlags, tabCount, tabSize, ToString(obj.compatibleHandleTypes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "externalFenceFeatures", toStringFlags, tabCount, tabSize, ToString(obj.externalFenceFeatures, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -3523,7 +3523,7 @@ template <> std::string ToString<decode::Decoded_VkExportFenceCreateInfo>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleTypes", toStringFlags, tabCount, tabSize, ToString(obj.handleTypes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -3541,7 +3541,7 @@ template <> std::string ToString<decode::Decoded_VkExportSemaphoreCreateInfo>(co
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleTypes", toStringFlags, tabCount, tabSize, ToString(obj.handleTypes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -3559,7 +3559,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceExternalSemapho
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -3577,7 +3577,7 @@ template <> std::string ToString<decode::Decoded_VkExternalSemaphoreProperties>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "exportFromImportedHandleTypes", toStringFlags, tabCount, tabSize, ToString(obj.exportFromImportedHandleTypes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "compatibleHandleTypes", toStringFlags, tabCount, tabSize, ToString(obj.compatibleHandleTypes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "externalSemaphoreFeatures", toStringFlags, tabCount, tabSize, ToString(obj.externalSemaphoreFeatures, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -3597,7 +3597,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMaintenance3Pro
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxPerSetDescriptors", toStringFlags, tabCount, tabSize, ToString(obj.maxPerSetDescriptors, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxMemoryAllocationSize", toStringFlags, tabCount, tabSize, ToString(obj.maxMemoryAllocationSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -3616,7 +3616,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorSetLayoutSupport>(c
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "supported", toStringFlags, tabCount, tabSize, ToString(obj.supported, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -3634,7 +3634,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderDrawParam
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderDrawParameters", toStringFlags, tabCount, tabSize, ToString(obj.shaderDrawParameters, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -3652,7 +3652,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceVulkan11Feature
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "storageBuffer16BitAccess", toStringFlags, tabCount, tabSize, ToString(obj.storageBuffer16BitAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "uniformAndStorageBuffer16BitAccess", toStringFlags, tabCount, tabSize, ToString(obj.uniformAndStorageBuffer16BitAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "storagePushConstant16", toStringFlags, tabCount, tabSize, ToString(obj.storagePushConstant16, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -3681,7 +3681,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceVulkan11Propert
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.deviceUUID) + '"');
             FieldToString(strStrm, false, "driverUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.driverUUID) + '"');
             FieldToString(strStrm, false, "deviceLUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_LUID_SIZE, obj.deviceLUID) + '"');
@@ -3713,7 +3713,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceVulkan12Feature
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "samplerMirrorClampToEdge", toStringFlags, tabCount, tabSize, ToString(obj.samplerMirrorClampToEdge, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "drawIndirectCount", toStringFlags, tabCount, tabSize, ToString(obj.drawIndirectCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "storageBuffer8BitAccess", toStringFlags, tabCount, tabSize, ToString(obj.storageBuffer8BitAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -3796,7 +3796,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceVulkan12Propert
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "driverID", toStringFlags, tabCount, tabSize, '"' + ToString(obj.driverID, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "driverName", toStringFlags, tabCount, tabSize, '"' + std::string(obj.driverName) + '"');
             FieldToString(strStrm, false, "driverInfo", toStringFlags, tabCount, tabSize, '"' + std::string(obj.driverInfo) + '"');
@@ -3865,7 +3865,7 @@ template <> std::string ToString<decode::Decoded_VkImageFormatListCreateInfo>(co
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "viewFormatCount", toStringFlags, tabCount, tabSize, ToString(obj.viewFormatCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pViewFormats", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.viewFormatCount, obj.pViewFormats, toStringFlags, tabCount, tabSize));
         }
@@ -3884,7 +3884,7 @@ template <> std::string ToString<decode::Decoded_VkAttachmentDescription2>(const
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.format, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "samples", toStringFlags, tabCount, tabSize, '"' + ToString(obj.samples, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -3910,7 +3910,7 @@ template <> std::string ToString<decode::Decoded_VkAttachmentReference2>(const d
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "attachment", toStringFlags, tabCount, tabSize, ToString(obj.attachment, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "layout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.layout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "aspectMask", toStringFlags, tabCount, tabSize, ToString(obj.aspectMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -3930,7 +3930,7 @@ template <> std::string ToString<decode::Decoded_VkSubpassDescription2>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pipelineBindPoint", toStringFlags, tabCount, tabSize, '"' + ToString(obj.pipelineBindPoint, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "viewMask", toStringFlags, tabCount, tabSize, ToString(obj.viewMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -3958,7 +3958,7 @@ template <> std::string ToString<decode::Decoded_VkSubpassDependency2>(const dec
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcSubpass", toStringFlags, tabCount, tabSize, ToString(obj.srcSubpass, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "dstSubpass", toStringFlags, tabCount, tabSize, ToString(obj.dstSubpass, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "srcStageMask", toStringFlags, tabCount, tabSize, ToString(obj.srcStageMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -3983,7 +3983,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassCreateInfo2>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "attachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.attachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentCount, obj.pAttachments, toStringFlags, tabCount, tabSize));
@@ -4009,7 +4009,7 @@ template <> std::string ToString<decode::Decoded_VkSubpassBeginInfo>(const decod
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "contents", toStringFlags, tabCount, tabSize, '"' + ToString(obj.contents, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -4027,7 +4027,7 @@ template <> std::string ToString<decode::Decoded_VkSubpassEndInfo>(const decode:
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
         }
     );
 }
@@ -4044,7 +4044,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevice8BitStorageFeat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "storageBuffer8BitAccess", toStringFlags, tabCount, tabSize, ToString(obj.storageBuffer8BitAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "uniformAndStorageBuffer8BitAccess", toStringFlags, tabCount, tabSize, ToString(obj.uniformAndStorageBuffer8BitAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "storagePushConstant8", toStringFlags, tabCount, tabSize, ToString(obj.storagePushConstant8, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -4064,7 +4064,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDriverPropertie
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "driverID", toStringFlags, tabCount, tabSize, '"' + ToString(obj.driverID, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "driverName", toStringFlags, tabCount, tabSize, '"' + std::string(obj.driverName) + '"');
             FieldToString(strStrm, false, "driverInfo", toStringFlags, tabCount, tabSize, '"' + std::string(obj.driverInfo) + '"');
@@ -4085,7 +4085,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderAtomicInt
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderBufferInt64Atomics", toStringFlags, tabCount, tabSize, ToString(obj.shaderBufferInt64Atomics, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shaderSharedInt64Atomics", toStringFlags, tabCount, tabSize, ToString(obj.shaderSharedInt64Atomics, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -4104,7 +4104,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderFloat16In
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderFloat16", toStringFlags, tabCount, tabSize, ToString(obj.shaderFloat16, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shaderInt8", toStringFlags, tabCount, tabSize, ToString(obj.shaderInt8, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -4123,7 +4123,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFloatControlsPr
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "denormBehaviorIndependence", toStringFlags, tabCount, tabSize, '"' + ToString(obj.denormBehaviorIndependence, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "roundingModeIndependence", toStringFlags, tabCount, tabSize, '"' + ToString(obj.roundingModeIndependence, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "shaderSignedZeroInfNanPreserveFloat16", toStringFlags, tabCount, tabSize, ToString(obj.shaderSignedZeroInfNanPreserveFloat16, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -4157,7 +4157,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorSetLayoutBindingFla
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "bindingCount", toStringFlags, tabCount, tabSize, ToString(obj.bindingCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pBindingFlags", toStringFlags, tabCount, tabSize, ArrayToString(obj.bindingCount, obj.pBindingFlags, toStringFlags, tabCount, tabSize));
         }
@@ -4176,7 +4176,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDescriptorIndex
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderInputAttachmentArrayDynamicIndexing", toStringFlags, tabCount, tabSize, ToString(obj.shaderInputAttachmentArrayDynamicIndexing, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shaderUniformTexelBufferArrayDynamicIndexing", toStringFlags, tabCount, tabSize, ToString(obj.shaderUniformTexelBufferArrayDynamicIndexing, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shaderStorageTexelBufferArrayDynamicIndexing", toStringFlags, tabCount, tabSize, ToString(obj.shaderStorageTexelBufferArrayDynamicIndexing, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -4213,7 +4213,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDescriptorIndex
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxUpdateAfterBindDescriptorsInAllPools", toStringFlags, tabCount, tabSize, ToString(obj.maxUpdateAfterBindDescriptorsInAllPools, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shaderUniformBufferArrayNonUniformIndexingNative", toStringFlags, tabCount, tabSize, ToString(obj.shaderUniformBufferArrayNonUniformIndexingNative, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shaderSampledImageArrayNonUniformIndexingNative", toStringFlags, tabCount, tabSize, ToString(obj.shaderSampledImageArrayNonUniformIndexingNative, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -4253,7 +4253,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorSetVariableDescript
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "descriptorSetCount", toStringFlags, tabCount, tabSize, ToString(obj.descriptorSetCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pDescriptorCounts", toStringFlags, tabCount, tabSize, ArrayToString(obj.descriptorSetCount, obj.pDescriptorCounts, toStringFlags, tabCount, tabSize));
         }
@@ -4272,7 +4272,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorSetVariableDescript
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxVariableDescriptorCount", toStringFlags, tabCount, tabSize, ToString(obj.maxVariableDescriptorCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -4290,7 +4290,7 @@ template <> std::string ToString<decode::Decoded_VkSubpassDescriptionDepthStenci
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "depthResolveMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.depthResolveMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "stencilResolveMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.stencilResolveMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pDepthStencilResolveAttachment", toStringFlags, tabCount, tabSize, (obj.pDepthStencilResolveAttachment ? ToString(*obj.pDepthStencilResolveAttachment, toStringFlags, tabCount, tabSize) : "\"null\""));
@@ -4310,7 +4310,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDepthStencilRes
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "supportedDepthResolveModes", toStringFlags, tabCount, tabSize, ToString(obj.supportedDepthResolveModes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "supportedStencilResolveModes", toStringFlags, tabCount, tabSize, ToString(obj.supportedStencilResolveModes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "independentResolveNone", toStringFlags, tabCount, tabSize, ToString(obj.independentResolveNone, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -4331,7 +4331,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceScalarBlockLayo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "scalarBlockLayout", toStringFlags, tabCount, tabSize, ToString(obj.scalarBlockLayout, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -4349,7 +4349,7 @@ template <> std::string ToString<decode::Decoded_VkImageStencilUsageCreateInfo>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "stencilUsage", toStringFlags, tabCount, tabSize, ToString(obj.stencilUsage, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -4367,7 +4367,7 @@ template <> std::string ToString<decode::Decoded_VkSamplerReductionModeCreateInf
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "reductionMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.reductionMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -4385,7 +4385,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceSamplerFilterMi
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "filterMinmaxSingleComponentFormats", toStringFlags, tabCount, tabSize, ToString(obj.filterMinmaxSingleComponentFormats, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "filterMinmaxImageComponentMapping", toStringFlags, tabCount, tabSize, ToString(obj.filterMinmaxImageComponentMapping, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -4404,7 +4404,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceVulkanMemoryMod
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "vulkanMemoryModel", toStringFlags, tabCount, tabSize, ToString(obj.vulkanMemoryModel, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "vulkanMemoryModelDeviceScope", toStringFlags, tabCount, tabSize, ToString(obj.vulkanMemoryModelDeviceScope, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "vulkanMemoryModelAvailabilityVisibilityChains", toStringFlags, tabCount, tabSize, ToString(obj.vulkanMemoryModelAvailabilityVisibilityChains, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -4424,7 +4424,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceImagelessFrameb
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "imagelessFramebuffer", toStringFlags, tabCount, tabSize, ToString(obj.imagelessFramebuffer, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -4442,7 +4442,7 @@ template <> std::string ToString<decode::Decoded_VkFramebufferAttachmentImageInf
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "usage", toStringFlags, tabCount, tabSize, ToString(obj.usage, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "width", toStringFlags, tabCount, tabSize, ToString(obj.width, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -4466,7 +4466,7 @@ template <> std::string ToString<decode::Decoded_VkFramebufferAttachmentsCreateI
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "attachmentImageInfoCount", toStringFlags, tabCount, tabSize, ToString(obj.attachmentImageInfoCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pAttachmentImageInfos", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentImageInfoCount, obj.pAttachmentImageInfos, toStringFlags, tabCount, tabSize));
         }
@@ -4485,7 +4485,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassAttachmentBeginInfo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "attachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.attachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pAttachments", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pAttachments, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             /* Struct has at least one handle - Andy */
@@ -4506,7 +4506,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceUniformBufferSt
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "uniformBufferStandardLayout", toStringFlags, tabCount, tabSize, ToString(obj.uniformBufferStandardLayout, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -4524,7 +4524,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderSubgroupE
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderSubgroupExtendedTypes", toStringFlags, tabCount, tabSize, ToString(obj.shaderSubgroupExtendedTypes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -4542,7 +4542,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceSeparateDepthSt
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "separateDepthStencilLayouts", toStringFlags, tabCount, tabSize, ToString(obj.separateDepthStencilLayouts, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -4560,7 +4560,7 @@ template <> std::string ToString<decode::Decoded_VkAttachmentReferenceStencilLay
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "stencilLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.stencilLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -4578,7 +4578,7 @@ template <> std::string ToString<decode::Decoded_VkAttachmentDescriptionStencilL
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "stencilInitialLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.stencilInitialLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "stencilFinalLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.stencilFinalLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
@@ -4597,7 +4597,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceHostQueryResetF
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "hostQueryReset", toStringFlags, tabCount, tabSize, ToString(obj.hostQueryReset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -4615,7 +4615,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceTimelineSemapho
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "timelineSemaphore", toStringFlags, tabCount, tabSize, ToString(obj.timelineSemaphore, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -4633,7 +4633,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceTimelineSemapho
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxTimelineSemaphoreValueDifference", toStringFlags, tabCount, tabSize, ToString(obj.maxTimelineSemaphoreValueDifference, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -4651,7 +4651,7 @@ template <> std::string ToString<decode::Decoded_VkSemaphoreTypeCreateInfo>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "semaphoreType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.semaphoreType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "initialValue", toStringFlags, tabCount, tabSize, ToString(obj.initialValue, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -4670,7 +4670,7 @@ template <> std::string ToString<decode::Decoded_VkTimelineSemaphoreSubmitInfo>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "waitSemaphoreValueCount", toStringFlags, tabCount, tabSize, ToString(obj.waitSemaphoreValueCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pWaitSemaphoreValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreValueCount, obj.pWaitSemaphoreValues, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "signalSemaphoreValueCount", toStringFlags, tabCount, tabSize, ToString(obj.signalSemaphoreValueCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -4691,7 +4691,7 @@ template <> std::string ToString<decode::Decoded_VkSemaphoreWaitInfo>(const deco
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "semaphoreCount", toStringFlags, tabCount, tabSize, ToString(obj.semaphoreCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pSemaphores", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pSemaphores, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
@@ -4714,7 +4714,7 @@ template <> std::string ToString<decode::Decoded_VkSemaphoreSignalInfo>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "semaphore", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.semaphore) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "value", toStringFlags, tabCount, tabSize, ToString(obj.value, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             /* Struct has at least one handle - Andy */
@@ -4735,7 +4735,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceBufferDeviceAdd
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "bufferDeviceAddress", toStringFlags, tabCount, tabSize, ToString(obj.bufferDeviceAddress, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "bufferDeviceAddressCaptureReplay", toStringFlags, tabCount, tabSize, ToString(obj.bufferDeviceAddressCaptureReplay, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "bufferDeviceAddressMultiDevice", toStringFlags, tabCount, tabSize, ToString(obj.bufferDeviceAddressMultiDevice, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -4755,7 +4755,7 @@ template <> std::string ToString<decode::Decoded_VkBufferDeviceAddressInfo>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "buffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.buffer) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
@@ -4775,7 +4775,7 @@ template <> std::string ToString<decode::Decoded_VkBufferOpaqueCaptureAddressCre
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "opaqueCaptureAddress", toStringFlags, tabCount, tabSize, ToString(obj.opaqueCaptureAddress, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -4793,7 +4793,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryOpaqueCaptureAddressAll
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "opaqueCaptureAddress", toStringFlags, tabCount, tabSize, ToString(obj.opaqueCaptureAddress, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -4811,7 +4811,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceMemoryOpaqueCaptureAddr
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memory", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.memory) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
@@ -4831,7 +4831,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceVulkan13Feature
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "robustImageAccess", toStringFlags, tabCount, tabSize, ToString(obj.robustImageAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "inlineUniformBlock", toStringFlags, tabCount, tabSize, ToString(obj.inlineUniformBlock, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "descriptorBindingInlineUniformBlockUpdateAfterBind", toStringFlags, tabCount, tabSize, ToString(obj.descriptorBindingInlineUniformBlockUpdateAfterBind, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -4863,7 +4863,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceVulkan13Propert
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "minSubgroupSize", toStringFlags, tabCount, tabSize, ToString(obj.minSubgroupSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxSubgroupSize", toStringFlags, tabCount, tabSize, ToString(obj.maxSubgroupSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxComputeWorkgroupSubgroups", toStringFlags, tabCount, tabSize, ToString(obj.maxComputeWorkgroupSubgroups, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -4942,7 +4942,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineCreationFeedbackCreat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pPipelineCreationFeedback", toStringFlags, tabCount, tabSize, (obj.pPipelineCreationFeedback ? ToString(*obj.pPipelineCreationFeedback, toStringFlags, tabCount, tabSize) : "\"null\""));
             FieldToString(strStrm, false, "pipelineStageCreationFeedbackCount", toStringFlags, tabCount, tabSize, ToString(obj.pipelineStageCreationFeedbackCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pPipelineStageCreationFeedbacks", toStringFlags, tabCount, tabSize, ArrayToString(obj.pipelineStageCreationFeedbackCount, obj.pPipelineStageCreationFeedbacks, toStringFlags, tabCount, tabSize));
@@ -4962,7 +4962,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderTerminate
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderTerminateInvocation", toStringFlags, tabCount, tabSize, ToString(obj.shaderTerminateInvocation, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -4980,7 +4980,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceToolProperties>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, '"' + std::string(obj.name) + '"');
             FieldToString(strStrm, false, "version", toStringFlags, tabCount, tabSize, '"' + std::string(obj.version) + '"');
             FieldToString(strStrm, false, "purposes", toStringFlags, tabCount, tabSize, ToString(obj.purposes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5002,7 +5002,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderDemoteToH
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderDemoteToHelperInvocation", toStringFlags, tabCount, tabSize, ToString(obj.shaderDemoteToHelperInvocation, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5020,7 +5020,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePrivateDataFeat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "privateData", toStringFlags, tabCount, tabSize, ToString(obj.privateData, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5038,7 +5038,7 @@ template <> std::string ToString<decode::Decoded_VkDevicePrivateDataCreateInfo>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "privateDataSlotRequestCount", toStringFlags, tabCount, tabSize, ToString(obj.privateDataSlotRequestCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5056,7 +5056,7 @@ template <> std::string ToString<decode::Decoded_VkPrivateDataSlotCreateInfo>(co
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5074,7 +5074,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePipelineCreatio
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pipelineCreationCacheControl", toStringFlags, tabCount, tabSize, ToString(obj.pipelineCreationCacheControl, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5092,7 +5092,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryBarrier2>(const decode:
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcStageMask", toStringFlags, tabCount, tabSize, ToString(obj.srcStageMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "srcAccessMask", toStringFlags, tabCount, tabSize, ToString(obj.srcAccessMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "dstStageMask", toStringFlags, tabCount, tabSize, ToString(obj.dstStageMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5113,7 +5113,7 @@ template <> std::string ToString<decode::Decoded_VkBufferMemoryBarrier2>(const d
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcStageMask", toStringFlags, tabCount, tabSize, ToString(obj.srcStageMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "srcAccessMask", toStringFlags, tabCount, tabSize, ToString(obj.srcAccessMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "dstStageMask", toStringFlags, tabCount, tabSize, ToString(obj.dstStageMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5141,7 +5141,7 @@ template <> std::string ToString<decode::Decoded_VkImageMemoryBarrier2>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcStageMask", toStringFlags, tabCount, tabSize, ToString(obj.srcStageMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "srcAccessMask", toStringFlags, tabCount, tabSize, ToString(obj.srcAccessMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "dstStageMask", toStringFlags, tabCount, tabSize, ToString(obj.dstStageMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5170,7 +5170,7 @@ template <> std::string ToString<decode::Decoded_VkDependencyInfo>(const decode:
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "dependencyFlags", toStringFlags, tabCount, tabSize, ToString(obj.dependencyFlags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "memoryBarrierCount", toStringFlags, tabCount, tabSize, ToString(obj.memoryBarrierCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pMemoryBarriers", toStringFlags, tabCount, tabSize, ArrayToString(obj.memoryBarrierCount, obj.pMemoryBarriers, toStringFlags, tabCount, tabSize));
@@ -5194,7 +5194,7 @@ template <> std::string ToString<decode::Decoded_VkSemaphoreSubmitInfo>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "semaphore", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.semaphore) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "value", toStringFlags, tabCount, tabSize, ToString(obj.value, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "stageMask", toStringFlags, tabCount, tabSize, ToString(obj.stageMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5217,7 +5217,7 @@ template <> std::string ToString<decode::Decoded_VkCommandBufferSubmitInfo>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "commandBuffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.commandBuffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "deviceMask", toStringFlags, tabCount, tabSize, ToString(obj.deviceMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             /* Struct has at least one handle - Andy */
@@ -5238,7 +5238,7 @@ template <> std::string ToString<decode::Decoded_VkSubmitInfo2>(const decode::De
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "waitSemaphoreInfoCount", toStringFlags, tabCount, tabSize, ToString(obj.waitSemaphoreInfoCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pWaitSemaphoreInfos", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreInfoCount, obj.pWaitSemaphoreInfos, toStringFlags, tabCount, tabSize));
@@ -5262,7 +5262,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceSynchronization
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "synchronization2", toStringFlags, tabCount, tabSize, ToString(obj.synchronization2, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5280,7 +5280,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceZeroInitializeW
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderZeroInitializeWorkgroupMemory", toStringFlags, tabCount, tabSize, ToString(obj.shaderZeroInitializeWorkgroupMemory, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5298,7 +5298,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceImageRobustness
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "robustImageAccess", toStringFlags, tabCount, tabSize, ToString(obj.robustImageAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5316,7 +5316,7 @@ template <> std::string ToString<decode::Decoded_VkBufferCopy2>(const decode::De
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcOffset", toStringFlags, tabCount, tabSize, ToString(obj.srcOffset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "dstOffset", toStringFlags, tabCount, tabSize, ToString(obj.dstOffset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "size", toStringFlags, tabCount, tabSize, ToString(obj.size, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5336,7 +5336,7 @@ template <> std::string ToString<decode::Decoded_VkCopyBufferInfo2>(const decode
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcBuffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.srcBuffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "dstBuffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.dstBuffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "regionCount", toStringFlags, tabCount, tabSize, ToString(obj.regionCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5359,7 +5359,7 @@ template <> std::string ToString<decode::Decoded_VkImageCopy2>(const decode::Dec
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcSubresource", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.srcSubresource), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "srcOffset", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.srcOffset), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "dstSubresource", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.dstSubresource), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
@@ -5381,7 +5381,7 @@ template <> std::string ToString<decode::Decoded_VkCopyImageInfo2>(const decode:
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcImage", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.srcImage) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "srcImageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.srcImageLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "dstImage", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.dstImage) + '"' /* < ------------ handle case*/);
@@ -5406,7 +5406,7 @@ template <> std::string ToString<decode::Decoded_VkBufferImageCopy2>(const decod
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "bufferOffset", toStringFlags, tabCount, tabSize, ToString(obj.bufferOffset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "bufferRowLength", toStringFlags, tabCount, tabSize, ToString(obj.bufferRowLength, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "bufferImageHeight", toStringFlags, tabCount, tabSize, ToString(obj.bufferImageHeight, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5429,7 +5429,7 @@ template <> std::string ToString<decode::Decoded_VkCopyBufferToImageInfo2>(const
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcBuffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.srcBuffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "dstImage", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.dstImage) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "dstImageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.dstImageLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -5453,7 +5453,7 @@ template <> std::string ToString<decode::Decoded_VkCopyImageToBufferInfo2>(const
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcImage", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.srcImage) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "srcImageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.srcImageLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "dstBuffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.dstBuffer) + '"' /* < ------------ handle case*/);
@@ -5477,7 +5477,7 @@ template <> std::string ToString<decode::Decoded_VkImageBlit2>(const decode::Dec
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcSubresource", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.srcSubresource), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "srcOffsets", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.srcOffsets, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "dstSubresource", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.dstSubresource), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
@@ -5498,7 +5498,7 @@ template <> std::string ToString<decode::Decoded_VkBlitImageInfo2>(const decode:
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcImage", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.srcImage) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "srcImageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.srcImageLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "dstImage", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.dstImage) + '"' /* < ------------ handle case*/);
@@ -5524,7 +5524,7 @@ template <> std::string ToString<decode::Decoded_VkImageResolve2>(const decode::
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcSubresource", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.srcSubresource), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "srcOffset", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.srcOffset), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "dstSubresource", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.dstSubresource), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
@@ -5546,7 +5546,7 @@ template <> std::string ToString<decode::Decoded_VkResolveImageInfo2>(const deco
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcImage", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.srcImage) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "srcImageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.srcImageLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "dstImage", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.dstImage) + '"' /* < ------------ handle case*/);
@@ -5571,7 +5571,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceSubgroupSizeCon
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "subgroupSizeControl", toStringFlags, tabCount, tabSize, ToString(obj.subgroupSizeControl, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "computeFullSubgroups", toStringFlags, tabCount, tabSize, ToString(obj.computeFullSubgroups, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -5590,7 +5590,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceSubgroupSizeCon
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "minSubgroupSize", toStringFlags, tabCount, tabSize, ToString(obj.minSubgroupSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxSubgroupSize", toStringFlags, tabCount, tabSize, ToString(obj.maxSubgroupSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxComputeWorkgroupSubgroups", toStringFlags, tabCount, tabSize, ToString(obj.maxComputeWorkgroupSubgroups, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5611,7 +5611,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineShaderStageRequiredSu
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "requiredSubgroupSize", toStringFlags, tabCount, tabSize, ToString(obj.requiredSubgroupSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5629,7 +5629,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceInlineUniformBl
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "inlineUniformBlock", toStringFlags, tabCount, tabSize, ToString(obj.inlineUniformBlock, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "descriptorBindingInlineUniformBlockUpdateAfterBind", toStringFlags, tabCount, tabSize, ToString(obj.descriptorBindingInlineUniformBlockUpdateAfterBind, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -5648,7 +5648,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceInlineUniformBl
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxInlineUniformBlockSize", toStringFlags, tabCount, tabSize, ToString(obj.maxInlineUniformBlockSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxPerStageDescriptorInlineUniformBlocks", toStringFlags, tabCount, tabSize, ToString(obj.maxPerStageDescriptorInlineUniformBlocks, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxPerStageDescriptorUpdateAfterBindInlineUniformBlocks", toStringFlags, tabCount, tabSize, ToString(obj.maxPerStageDescriptorUpdateAfterBindInlineUniformBlocks, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5670,7 +5670,7 @@ template <> std::string ToString<decode::Decoded_VkWriteDescriptorSetInlineUnifo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "dataSize", toStringFlags, tabCount, tabSize, ToString(obj.dataSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
         }
@@ -5689,7 +5689,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorPoolInlineUniformBl
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxInlineUniformBlockBindings", toStringFlags, tabCount, tabSize, ToString(obj.maxInlineUniformBlockBindings, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5707,7 +5707,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceTextureCompress
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "textureCompressionASTC_HDR", toStringFlags, tabCount, tabSize, ToString(obj.textureCompressionASTC_HDR, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5725,7 +5725,7 @@ template <> std::string ToString<decode::Decoded_VkRenderingAttachmentInfo>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "imageView", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.imageView) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "imageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.imageLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "resolveMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.resolveMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -5752,7 +5752,7 @@ template <> std::string ToString<decode::Decoded_VkRenderingInfo>(const decode::
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "renderArea", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.renderArea), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "layerCount", toStringFlags, tabCount, tabSize, ToString(obj.layerCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5777,7 +5777,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineRenderingCreateInfo>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "viewMask", toStringFlags, tabCount, tabSize, ToString(obj.viewMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "colorAttachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.colorAttachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pColorAttachmentFormats", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.colorAttachmentCount, obj.pColorAttachmentFormats, toStringFlags, tabCount, tabSize));
@@ -5799,7 +5799,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDynamicRenderin
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "dynamicRendering", toStringFlags, tabCount, tabSize, ToString(obj.dynamicRendering, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5817,7 +5817,7 @@ template <> std::string ToString<decode::Decoded_VkCommandBufferInheritanceRende
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "viewMask", toStringFlags, tabCount, tabSize, ToString(obj.viewMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "colorAttachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.colorAttachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5841,7 +5841,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderIntegerDo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderIntegerDotProduct", toStringFlags, tabCount, tabSize, ToString(obj.shaderIntegerDotProduct, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5859,7 +5859,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderIntegerDo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "integerDotProduct8BitUnsignedAccelerated", toStringFlags, tabCount, tabSize, ToString(obj.integerDotProduct8BitUnsignedAccelerated, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "integerDotProduct8BitSignedAccelerated", toStringFlags, tabCount, tabSize, ToString(obj.integerDotProduct8BitSignedAccelerated, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "integerDotProduct8BitMixedSignednessAccelerated", toStringFlags, tabCount, tabSize, ToString(obj.integerDotProduct8BitMixedSignednessAccelerated, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5906,7 +5906,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceTexelBufferAlig
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "storageTexelBufferOffsetAlignmentBytes", toStringFlags, tabCount, tabSize, ToString(obj.storageTexelBufferOffsetAlignmentBytes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "storageTexelBufferOffsetSingleTexelAlignment", toStringFlags, tabCount, tabSize, ToString(obj.storageTexelBufferOffsetSingleTexelAlignment, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "uniformTexelBufferOffsetAlignmentBytes", toStringFlags, tabCount, tabSize, ToString(obj.uniformTexelBufferOffsetAlignmentBytes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5927,7 +5927,7 @@ template <> std::string ToString<decode::Decoded_VkFormatProperties3>(const deco
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "linearTilingFeatures", toStringFlags, tabCount, tabSize, ToString(obj.linearTilingFeatures, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "optimalTilingFeatures", toStringFlags, tabCount, tabSize, ToString(obj.optimalTilingFeatures, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "bufferFeatures", toStringFlags, tabCount, tabSize, ToString(obj.bufferFeatures, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -5947,7 +5947,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMaintenance4Fea
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maintenance4", toStringFlags, tabCount, tabSize, ToString(obj.maintenance4, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5965,7 +5965,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMaintenance4Pro
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxBufferSize", toStringFlags, tabCount, tabSize, ToString(obj.maxBufferSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -5983,7 +5983,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceBufferMemoryRequirement
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pCreateInfo", toStringFlags, tabCount, tabSize, (obj.pCreateInfo ? ToString(*obj.pCreateInfo, toStringFlags, tabCount, tabSize) : "\"null\""));
         }
     );
@@ -6001,7 +6001,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceImageMemoryRequirements
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pCreateInfo", toStringFlags, tabCount, tabSize, (obj.pCreateInfo ? ToString(*obj.pCreateInfo, toStringFlags, tabCount, tabSize) : "\"null\""));
             FieldToString(strStrm, false, "planeAspect", toStringFlags, tabCount, tabSize, '"' + ToString(obj.planeAspect, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
@@ -6062,7 +6062,7 @@ template <> std::string ToString<decode::Decoded_VkSwapchainCreateInfoKHR>(const
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "surface", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.surface) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "minImageCount", toStringFlags, tabCount, tabSize, ToString(obj.minImageCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -6097,7 +6097,7 @@ template <> std::string ToString<decode::Decoded_VkPresentInfoKHR>(const decode:
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "waitSemaphoreCount", toStringFlags, tabCount, tabSize, ToString(obj.waitSemaphoreCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pWaitSemaphores", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pWaitSemaphores, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             FieldToString(strStrm, false, "swapchainCount", toStringFlags, tabCount, tabSize, ToString(obj.swapchainCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -6122,7 +6122,7 @@ template <> std::string ToString<decode::Decoded_VkImageSwapchainCreateInfoKHR>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "swapchain", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.swapchain) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
@@ -6142,7 +6142,7 @@ template <> std::string ToString<decode::Decoded_VkBindImageMemorySwapchainInfoK
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "swapchain", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.swapchain) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "imageIndex", toStringFlags, tabCount, tabSize, ToString(obj.imageIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             /* Struct has at least one handle - Andy */
@@ -6163,7 +6163,7 @@ template <> std::string ToString<decode::Decoded_VkAcquireNextImageInfoKHR>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "swapchain", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.swapchain) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "timeout", toStringFlags, tabCount, tabSize, ToString(obj.timeout, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "semaphore", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.semaphore) + '"' /* < ------------ handle case*/);
@@ -6187,7 +6187,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceGroupPresentCapabilitie
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "presentMask", toStringFlags, tabCount, tabSize, ArrayToString(VK_MAX_DEVICE_GROUP_SIZE, obj.presentMask, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "modes", toStringFlags, tabCount, tabSize, ToString(obj.modes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -6206,7 +6206,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceGroupPresentInfoKHR>(co
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "swapchainCount", toStringFlags, tabCount, tabSize, ToString(obj.swapchainCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pDeviceMasks", toStringFlags, tabCount, tabSize, ArrayToString(obj.swapchainCount, obj.pDeviceMasks, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "mode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.mode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -6226,7 +6226,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceGroupSwapchainCreateInf
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "modes", toStringFlags, tabCount, tabSize, ToString(obj.modes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -6261,7 +6261,7 @@ template <> std::string ToString<decode::Decoded_VkDisplayModeCreateInfoKHR>(con
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "parameters", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.parameters), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
@@ -6366,7 +6366,7 @@ template <> std::string ToString<decode::Decoded_VkDisplaySurfaceCreateInfoKHR>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "displayMode", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.displayMode) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "planeIndex", toStringFlags, tabCount, tabSize, ToString(obj.planeIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -6393,7 +6393,7 @@ template <> std::string ToString<decode::Decoded_VkDisplayPresentInfoKHR>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcRect", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.srcRect), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "dstRect", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.dstRect), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "persistent", toStringFlags, tabCount, tabSize, ToString(obj.persistent, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -6413,7 +6413,7 @@ template <> std::string ToString<decode::Decoded_VkXlibSurfaceCreateInfoKHR>(con
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "dpy", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.dpy) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
             FieldToString(strStrm, false, "window", toStringFlags, tabCount, tabSize, ToString(obj.window, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -6433,7 +6433,7 @@ template <> std::string ToString<decode::Decoded_VkXcbSurfaceCreateInfoKHR>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "connection", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.connection) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
             FieldToString(strStrm, false, "window", toStringFlags, tabCount, tabSize, ToString(obj.window, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -6453,7 +6453,7 @@ template <> std::string ToString<decode::Decoded_VkWaylandSurfaceCreateInfoKHR>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "display", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.display) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
             FieldToString(strStrm, false, "surface", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.surface) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
@@ -6473,7 +6473,7 @@ template <> std::string ToString<decode::Decoded_VkAndroidSurfaceCreateInfoKHR>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "window", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.window) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
         }
@@ -6492,7 +6492,7 @@ template <> std::string ToString<decode::Decoded_VkWin32SurfaceCreateInfoKHR>(co
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "hinstance", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.hinstance) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
             FieldToString(strStrm, false, "hwnd", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.hwnd) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
@@ -6512,7 +6512,7 @@ template <> std::string ToString<decode::Decoded_VkRenderingFragmentShadingRateA
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "imageView", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.imageView) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "imageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.imageLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "shadingRateAttachmentTexelSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.shadingRateAttachmentTexelSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
@@ -6534,7 +6534,7 @@ template <> std::string ToString<decode::Decoded_VkRenderingFragmentDensityMapAt
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "imageView", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.imageView) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "imageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.imageLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             /* Struct has at least one handle - Andy */
@@ -6555,7 +6555,7 @@ template <> std::string ToString<decode::Decoded_VkAttachmentSampleCountInfoAMD>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "colorAttachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.colorAttachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pColorAttachmentSamples", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.colorAttachmentCount, obj.pColorAttachmentSamples, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "depthStencilAttachmentSamples", toStringFlags, tabCount, tabSize, '"' + ToString(obj.depthStencilAttachmentSamples, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -6575,7 +6575,7 @@ template <> std::string ToString<decode::Decoded_VkMultiviewPerViewAttributesInf
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "perViewAttributes", toStringFlags, tabCount, tabSize, ToString(obj.perViewAttributes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "perViewAttributesPositionXOnly", toStringFlags, tabCount, tabSize, ToString(obj.perViewAttributesPositionXOnly, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -6594,7 +6594,7 @@ template <> std::string ToString<decode::Decoded_VkImportMemoryWin32HandleInfoKH
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "handle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.handle) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
             FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\""));
@@ -6614,7 +6614,7 @@ template <> std::string ToString<decode::Decoded_VkExportMemoryWin32HandleInfoKH
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pAttributes", toStringFlags, tabCount, tabSize, (obj.pAttributes ? ToString(*obj.pAttributes, toStringFlags, tabCount, tabSize) : "\"null\""));
             FieldToString(strStrm, false, "dwAccess", toStringFlags, tabCount, tabSize, ToString(obj.dwAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\""));
@@ -6634,7 +6634,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryWin32HandlePropertiesKH
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memoryTypeBits", toStringFlags, tabCount, tabSize, ToString(obj.memoryTypeBits, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -6652,7 +6652,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryGetWin32HandleInfoKHR>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memory", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.memory) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             /* Struct has at least one handle - Andy */
@@ -6673,7 +6673,7 @@ template <> std::string ToString<decode::Decoded_VkImportMemoryFdInfoKHR>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "fd", toStringFlags, tabCount, tabSize, ToString(obj.fd, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -6692,7 +6692,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryFdPropertiesKHR>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memoryTypeBits", toStringFlags, tabCount, tabSize, ToString(obj.memoryTypeBits, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -6710,7 +6710,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryGetFdInfoKHR>(const dec
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memory", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.memory) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             /* Struct has at least one handle - Andy */
@@ -6731,7 +6731,7 @@ template <> std::string ToString<decode::Decoded_VkWin32KeyedMutexAcquireRelease
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "acquireCount", toStringFlags, tabCount, tabSize, ToString(obj.acquireCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pAcquireSyncs", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pAcquireSyncs, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             FieldToString(strStrm, false, "pAcquireKeys", toStringFlags, tabCount, tabSize, ArrayToString(obj.acquireCount, obj.pAcquireKeys, toStringFlags, tabCount, tabSize));
@@ -6757,7 +6757,7 @@ template <> std::string ToString<decode::Decoded_VkImportSemaphoreWin32HandleInf
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "semaphore", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.semaphore) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -6781,7 +6781,7 @@ template <> std::string ToString<decode::Decoded_VkExportSemaphoreWin32HandleInf
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pAttributes", toStringFlags, tabCount, tabSize, (obj.pAttributes ? ToString(*obj.pAttributes, toStringFlags, tabCount, tabSize) : "\"null\""));
             FieldToString(strStrm, false, "dwAccess", toStringFlags, tabCount, tabSize, ToString(obj.dwAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\""));
@@ -6801,7 +6801,7 @@ template <> std::string ToString<decode::Decoded_VkD3D12FenceSubmitInfoKHR>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "waitSemaphoreValuesCount", toStringFlags, tabCount, tabSize, ToString(obj.waitSemaphoreValuesCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pWaitSemaphoreValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreValuesCount, obj.pWaitSemaphoreValues, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "signalSemaphoreValuesCount", toStringFlags, tabCount, tabSize, ToString(obj.signalSemaphoreValuesCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -6822,7 +6822,7 @@ template <> std::string ToString<decode::Decoded_VkSemaphoreGetWin32HandleInfoKH
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "semaphore", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.semaphore) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             /* Struct has at least one handle - Andy */
@@ -6843,7 +6843,7 @@ template <> std::string ToString<decode::Decoded_VkImportSemaphoreFdInfoKHR>(con
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "semaphore", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.semaphore) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -6866,7 +6866,7 @@ template <> std::string ToString<decode::Decoded_VkSemaphoreGetFdInfoKHR>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "semaphore", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.semaphore) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             /* Struct has at least one handle - Andy */
@@ -6887,7 +6887,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePushDescriptorP
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxPushDescriptors", toStringFlags, tabCount, tabSize, ToString(obj.maxPushDescriptors, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -6940,7 +6940,7 @@ template <> std::string ToString<decode::Decoded_VkPresentRegionsKHR>(const deco
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "swapchainCount", toStringFlags, tabCount, tabSize, ToString(obj.swapchainCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.swapchainCount, obj.pRegions, toStringFlags, tabCount, tabSize));
         }
@@ -6959,7 +6959,7 @@ template <> std::string ToString<decode::Decoded_VkSharedPresentSurfaceCapabilit
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "sharedPresentSupportedUsageFlags", toStringFlags, tabCount, tabSize, ToString(obj.sharedPresentSupportedUsageFlags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -6977,7 +6977,7 @@ template <> std::string ToString<decode::Decoded_VkImportFenceWin32HandleInfoKHR
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fence", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.fence) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -7001,7 +7001,7 @@ template <> std::string ToString<decode::Decoded_VkExportFenceWin32HandleInfoKHR
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pAttributes", toStringFlags, tabCount, tabSize, (obj.pAttributes ? ToString(*obj.pAttributes, toStringFlags, tabCount, tabSize) : "\"null\""));
             FieldToString(strStrm, false, "dwAccess", toStringFlags, tabCount, tabSize, ToString(obj.dwAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\""));
@@ -7021,7 +7021,7 @@ template <> std::string ToString<decode::Decoded_VkFenceGetWin32HandleInfoKHR>(c
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fence", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.fence) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             /* Struct has at least one handle - Andy */
@@ -7042,7 +7042,7 @@ template <> std::string ToString<decode::Decoded_VkImportFenceFdInfoKHR>(const d
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fence", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.fence) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -7065,7 +7065,7 @@ template <> std::string ToString<decode::Decoded_VkFenceGetFdInfoKHR>(const deco
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fence", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.fence) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             /* Struct has at least one handle - Andy */
@@ -7086,7 +7086,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePerformanceQuer
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "performanceCounterQueryPools", toStringFlags, tabCount, tabSize, ToString(obj.performanceCounterQueryPools, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "performanceCounterMultipleQueryPools", toStringFlags, tabCount, tabSize, ToString(obj.performanceCounterMultipleQueryPools, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -7105,7 +7105,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePerformanceQuer
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "allowCommandBufferQueryCopies", toStringFlags, tabCount, tabSize, ToString(obj.allowCommandBufferQueryCopies, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -7123,7 +7123,7 @@ template <> std::string ToString<decode::Decoded_VkPerformanceCounterKHR>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "unit", toStringFlags, tabCount, tabSize, '"' + ToString(obj.unit, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "scope", toStringFlags, tabCount, tabSize, '"' + ToString(obj.scope, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "storage", toStringFlags, tabCount, tabSize, '"' + ToString(obj.storage, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -7144,7 +7144,7 @@ template <> std::string ToString<decode::Decoded_VkPerformanceCounterDescription
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, '"' + std::string(obj.name) + '"');
             FieldToString(strStrm, false, "category", toStringFlags, tabCount, tabSize, '"' + std::string(obj.category) + '"');
@@ -7165,7 +7165,7 @@ template <> std::string ToString<decode::Decoded_VkQueryPoolPerformanceCreateInf
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "queueFamilyIndex", toStringFlags, tabCount, tabSize, ToString(obj.queueFamilyIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "counterIndexCount", toStringFlags, tabCount, tabSize, ToString(obj.counterIndexCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pCounterIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.counterIndexCount, obj.pCounterIndices, toStringFlags, tabCount, tabSize));
@@ -7185,7 +7185,7 @@ template <> std::string ToString<decode::Decoded_VkAcquireProfilingLockInfoKHR>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "timeout", toStringFlags, tabCount, tabSize, ToString(obj.timeout, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -7204,7 +7204,7 @@ template <> std::string ToString<decode::Decoded_VkPerformanceQuerySubmitInfoKHR
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "counterPassIndex", toStringFlags, tabCount, tabSize, ToString(obj.counterPassIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -7222,7 +7222,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceSurfaceInfo2KHR
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "surface", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.surface) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
@@ -7242,7 +7242,7 @@ template <> std::string ToString<decode::Decoded_VkSurfaceCapabilities2KHR>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "surfaceCapabilities", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.surfaceCapabilities), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -7260,7 +7260,7 @@ template <> std::string ToString<decode::Decoded_VkSurfaceFormat2KHR>(const deco
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "surfaceFormat", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.surfaceFormat), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -7278,7 +7278,7 @@ template <> std::string ToString<decode::Decoded_VkDisplayProperties2KHR>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "displayProperties", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.displayProperties), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -7296,7 +7296,7 @@ template <> std::string ToString<decode::Decoded_VkDisplayPlaneProperties2KHR>(c
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "displayPlaneProperties", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.displayPlaneProperties), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -7314,7 +7314,7 @@ template <> std::string ToString<decode::Decoded_VkDisplayModeProperties2KHR>(co
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "displayModeProperties", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.displayModeProperties), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -7332,7 +7332,7 @@ template <> std::string ToString<decode::Decoded_VkDisplayPlaneInfo2KHR>(const d
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "mode", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.mode) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "planeIndex", toStringFlags, tabCount, tabSize, ToString(obj.planeIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             /* Struct has at least one handle - Andy */
@@ -7353,7 +7353,7 @@ template <> std::string ToString<decode::Decoded_VkDisplayPlaneCapabilities2KHR>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "capabilities", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.capabilities), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -7371,7 +7371,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePortabilitySubs
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "constantAlphaColorBlendFactors", toStringFlags, tabCount, tabSize, ToString(obj.constantAlphaColorBlendFactors, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "events", toStringFlags, tabCount, tabSize, ToString(obj.events, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "imageViewFormatReinterpretation", toStringFlags, tabCount, tabSize, ToString(obj.imageViewFormatReinterpretation, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -7403,7 +7403,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePortabilitySubs
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "minVertexInputBindingStrideAlignment", toStringFlags, tabCount, tabSize, ToString(obj.minVertexInputBindingStrideAlignment, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -7421,7 +7421,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderClockFeat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderSubgroupClock", toStringFlags, tabCount, tabSize, ToString(obj.shaderSubgroupClock, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shaderDeviceClock", toStringFlags, tabCount, tabSize, ToString(obj.shaderDeviceClock, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -7440,7 +7440,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceQueueGlobalPriorityCrea
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "globalPriority", toStringFlags, tabCount, tabSize, '"' + ToString(obj.globalPriority, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -7458,7 +7458,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceGlobalPriorityQ
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "globalPriorityQuery", toStringFlags, tabCount, tabSize, ToString(obj.globalPriorityQuery, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -7476,7 +7476,7 @@ template <> std::string ToString<decode::Decoded_VkQueueFamilyGlobalPriorityProp
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "priorityCount", toStringFlags, tabCount, tabSize, ToString(obj.priorityCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "priorities", toStringFlags, tabCount, tabSize, ArrayToString(VK_MAX_GLOBAL_PRIORITY_SIZE_KHR, obj.priorities, toStringFlags, tabCount, tabSize));
         }
@@ -7495,7 +7495,7 @@ template <> std::string ToString<decode::Decoded_VkFragmentShadingRateAttachment
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pFragmentShadingRateAttachment", toStringFlags, tabCount, tabSize, (obj.pFragmentShadingRateAttachment ? ToString(*obj.pFragmentShadingRateAttachment, toStringFlags, tabCount, tabSize) : "\"null\""));
             FieldToString(strStrm, false, "shadingRateAttachmentTexelSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.shadingRateAttachmentTexelSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
@@ -7514,7 +7514,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineFragmentShadingRateSt
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fragmentSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.fragmentSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "combinerOps", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.combinerOps, toStringFlags, tabCount, tabSize));
         }
@@ -7533,7 +7533,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFragmentShading
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pipelineFragmentShadingRate", toStringFlags, tabCount, tabSize, ToString(obj.pipelineFragmentShadingRate, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "primitiveFragmentShadingRate", toStringFlags, tabCount, tabSize, ToString(obj.primitiveFragmentShadingRate, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "attachmentFragmentShadingRate", toStringFlags, tabCount, tabSize, ToString(obj.attachmentFragmentShadingRate, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -7553,7 +7553,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFragmentShading
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "minFragmentShadingRateAttachmentTexelSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.minFragmentShadingRateAttachmentTexelSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "maxFragmentShadingRateAttachmentTexelSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.maxFragmentShadingRateAttachmentTexelSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "maxFragmentShadingRateAttachmentTexelSizeAspectRatio", toStringFlags, tabCount, tabSize, ToString(obj.maxFragmentShadingRateAttachmentTexelSizeAspectRatio, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -7587,7 +7587,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFragmentShading
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "sampleCounts", toStringFlags, tabCount, tabSize, ToString(obj.sampleCounts, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "fragmentSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.fragmentSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
@@ -7606,7 +7606,7 @@ template <> std::string ToString<decode::Decoded_VkSurfaceProtectedCapabilitiesK
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "supportsProtected", toStringFlags, tabCount, tabSize, ToString(obj.supportsProtected, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -7624,7 +7624,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePresentWaitFeat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "presentWait", toStringFlags, tabCount, tabSize, ToString(obj.presentWait, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -7642,7 +7642,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePipelineExecuta
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pipelineExecutableInfo", toStringFlags, tabCount, tabSize, ToString(obj.pipelineExecutableInfo, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -7660,7 +7660,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineInfoKHR>(const decode
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pipeline", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.pipeline) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
@@ -7680,7 +7680,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineExecutablePropertiesK
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "stages", toStringFlags, tabCount, tabSize, ToString(obj.stages, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, '"' + std::string(obj.name) + '"');
             FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"');
@@ -7701,7 +7701,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineExecutableInfoKHR>(co
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pipeline", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.pipeline) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "executableIndex", toStringFlags, tabCount, tabSize, ToString(obj.executableIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             /* Struct has at least one handle - Andy */
@@ -7722,7 +7722,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineExecutableInternalRep
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, '"' + std::string(obj.name) + '"');
             FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"');
             FieldToString(strStrm, false, "isText", toStringFlags, tabCount, tabSize, ToString(obj.isText, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -7744,7 +7744,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineLibraryCreateInfoKHR>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "libraryCount", toStringFlags, tabCount, tabSize, ToString(obj.libraryCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pLibraries", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pLibraries, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             /* Struct has at least one handle - Andy */
@@ -7765,7 +7765,7 @@ template <> std::string ToString<decode::Decoded_VkPresentIdKHR>(const decode::D
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "swapchainCount", toStringFlags, tabCount, tabSize, ToString(obj.swapchainCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pPresentIds", toStringFlags, tabCount, tabSize, ArrayToString(obj.swapchainCount, obj.pPresentIds, toStringFlags, tabCount, tabSize));
         }
@@ -7784,7 +7784,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePresentIdFeatur
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "presentId", toStringFlags, tabCount, tabSize, ToString(obj.presentId, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -7802,7 +7802,7 @@ template <> std::string ToString<decode::Decoded_VkQueueFamilyCheckpointProperti
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "checkpointExecutionStageMask", toStringFlags, tabCount, tabSize, ToString(obj.checkpointExecutionStageMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -7820,7 +7820,7 @@ template <> std::string ToString<decode::Decoded_VkCheckpointData2NV>(const deco
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "stage", toStringFlags, tabCount, tabSize, ToString(obj.stage, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pCheckpointMarker", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pCheckpointMarker) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
         }
@@ -7839,7 +7839,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFragmentShaderB
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fragmentShaderBarycentric", toStringFlags, tabCount, tabSize, ToString(obj.fragmentShaderBarycentric, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -7857,7 +7857,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFragmentShaderB
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "triStripVertexOrderIndependentOfProvokingVertex", toStringFlags, tabCount, tabSize, ToString(obj.triStripVertexOrderIndependentOfProvokingVertex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -7875,7 +7875,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderSubgroupU
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderSubgroupUniformControlFlow", toStringFlags, tabCount, tabSize, ToString(obj.shaderSubgroupUniformControlFlow, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -7893,7 +7893,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceWorkgroupMemory
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "workgroupMemoryExplicitLayout", toStringFlags, tabCount, tabSize, ToString(obj.workgroupMemoryExplicitLayout, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "workgroupMemoryExplicitLayoutScalarBlockLayout", toStringFlags, tabCount, tabSize, ToString(obj.workgroupMemoryExplicitLayoutScalarBlockLayout, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "workgroupMemoryExplicitLayout8BitAccess", toStringFlags, tabCount, tabSize, ToString(obj.workgroupMemoryExplicitLayout8BitAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -7914,7 +7914,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceRayTracingMaint
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "rayTracingMaintenance1", toStringFlags, tabCount, tabSize, ToString(obj.rayTracingMaintenance1, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "rayTracingPipelineTraceRaysIndirect2", toStringFlags, tabCount, tabSize, ToString(obj.rayTracingPipelineTraceRaysIndirect2, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -7962,7 +7962,7 @@ template <> std::string ToString<decode::Decoded_VkDebugReportCallbackCreateInfo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pfnCallback", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnCallback) + "\"" /* <--------- function pointer case. */);
             FieldToString(strStrm, false, "pUserData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pUserData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
@@ -7982,7 +7982,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineRasterizationStateRas
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "rasterizationOrder", toStringFlags, tabCount, tabSize, '"' + ToString(obj.rasterizationOrder, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -8000,7 +8000,7 @@ template <> std::string ToString<decode::Decoded_VkDebugMarkerObjectNameInfoEXT>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "objectType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.objectType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "object", toStringFlags, tabCount, tabSize, ToString(obj.object, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pObjectName", toStringFlags, tabCount, tabSize, (obj.pObjectName ? ("\"" + std::string(obj.pObjectName) + "\"") : "null") /* <--------- C string case */);
@@ -8020,7 +8020,7 @@ template <> std::string ToString<decode::Decoded_VkDebugMarkerObjectTagInfoEXT>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "objectType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.objectType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "object", toStringFlags, tabCount, tabSize, ToString(obj.object, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "tagName", toStringFlags, tabCount, tabSize, ToString(obj.tagName, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -8042,7 +8042,7 @@ template <> std::string ToString<decode::Decoded_VkDebugMarkerMarkerInfoEXT>(con
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pMarkerName", toStringFlags, tabCount, tabSize, (obj.pMarkerName ? ("\"" + std::string(obj.pMarkerName) + "\"") : "null") /* <--------- C string case */);
             FieldToString(strStrm, false, "color", toStringFlags, tabCount, tabSize, ArrayToString(4, obj.color, toStringFlags, tabCount, tabSize));
         }
@@ -8061,7 +8061,7 @@ template <> std::string ToString<decode::Decoded_VkDedicatedAllocationImageCreat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "dedicatedAllocation", toStringFlags, tabCount, tabSize, ToString(obj.dedicatedAllocation, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -8079,7 +8079,7 @@ template <> std::string ToString<decode::Decoded_VkDedicatedAllocationBufferCrea
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "dedicatedAllocation", toStringFlags, tabCount, tabSize, ToString(obj.dedicatedAllocation, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -8097,7 +8097,7 @@ template <> std::string ToString<decode::Decoded_VkDedicatedAllocationMemoryAllo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "image", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.image) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "buffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.buffer) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
@@ -8118,7 +8118,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceTransformFeedba
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "transformFeedback", toStringFlags, tabCount, tabSize, ToString(obj.transformFeedback, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "geometryStreams", toStringFlags, tabCount, tabSize, ToString(obj.geometryStreams, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -8137,7 +8137,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceTransformFeedba
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxTransformFeedbackStreams", toStringFlags, tabCount, tabSize, ToString(obj.maxTransformFeedbackStreams, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxTransformFeedbackBuffers", toStringFlags, tabCount, tabSize, ToString(obj.maxTransformFeedbackBuffers, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxTransformFeedbackBufferSize", toStringFlags, tabCount, tabSize, ToString(obj.maxTransformFeedbackBufferSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -8164,7 +8164,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineRasterizationStateStr
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "rasterizationStream", toStringFlags, tabCount, tabSize, ToString(obj.rasterizationStream, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -8183,7 +8183,7 @@ template <> std::string ToString<decode::Decoded_VkImageViewHandleInfoNVX>(const
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "imageView", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.imageView) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "descriptorType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.descriptorType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "sampler", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.sampler) + '"' /* < ------------ handle case*/);
@@ -8205,7 +8205,7 @@ template <> std::string ToString<decode::Decoded_VkImageViewAddressPropertiesNVX
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceAddress", toStringFlags, tabCount, tabSize, ToString(obj.deviceAddress, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "size", toStringFlags, tabCount, tabSize, ToString(obj.size, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -8224,7 +8224,7 @@ template <> std::string ToString<decode::Decoded_VkTextureLODGatherFormatPropert
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "supportsTextureGatherLODBiasAMD", toStringFlags, tabCount, tabSize, ToString(obj.supportsTextureGatherLODBiasAMD, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -8284,7 +8284,7 @@ template <> std::string ToString<decode::Decoded_VkStreamDescriptorSurfaceCreate
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "streamDescriptor", toStringFlags, tabCount, tabSize, ToString(obj.streamDescriptor, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -8303,7 +8303,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceCornerSampledIm
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "cornerSampledImage", toStringFlags, tabCount, tabSize, ToString(obj.cornerSampledImage, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -8340,7 +8340,7 @@ template <> std::string ToString<decode::Decoded_VkExternalMemoryImageCreateInfo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleTypes", toStringFlags, tabCount, tabSize, ToString(obj.handleTypes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -8358,7 +8358,7 @@ template <> std::string ToString<decode::Decoded_VkExportMemoryAllocateInfoNV>(c
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleTypes", toStringFlags, tabCount, tabSize, ToString(obj.handleTypes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -8376,7 +8376,7 @@ template <> std::string ToString<decode::Decoded_VkImportMemoryWin32HandleInfoNV
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, ToString(obj.handleType, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "handle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.handle) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
         }
@@ -8395,7 +8395,7 @@ template <> std::string ToString<decode::Decoded_VkExportMemoryWin32HandleInfoNV
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pAttributes", toStringFlags, tabCount, tabSize, (obj.pAttributes ? ToString(*obj.pAttributes, toStringFlags, tabCount, tabSize) : "\"null\""));
             FieldToString(strStrm, false, "dwAccess", toStringFlags, tabCount, tabSize, ToString(obj.dwAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -8414,7 +8414,7 @@ template <> std::string ToString<decode::Decoded_VkWin32KeyedMutexAcquireRelease
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "acquireCount", toStringFlags, tabCount, tabSize, ToString(obj.acquireCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pAcquireSyncs", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pAcquireSyncs, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             FieldToString(strStrm, false, "pAcquireKeys", toStringFlags, tabCount, tabSize, ArrayToString(obj.acquireCount, obj.pAcquireKeys, toStringFlags, tabCount, tabSize));
@@ -8440,7 +8440,7 @@ template <> std::string ToString<decode::Decoded_VkValidationFlagsEXT>(const dec
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "disabledValidationCheckCount", toStringFlags, tabCount, tabSize, ToString(obj.disabledValidationCheckCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pDisabledValidationChecks", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.disabledValidationCheckCount, obj.pDisabledValidationChecks, toStringFlags, tabCount, tabSize));
         }
@@ -8459,7 +8459,7 @@ template <> std::string ToString<decode::Decoded_VkViSurfaceCreateInfoNN>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "window", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.window) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
         }
@@ -8478,7 +8478,7 @@ template <> std::string ToString<decode::Decoded_VkImageViewASTCDecodeModeEXT>(c
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "decodeMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.decodeMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -8496,7 +8496,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceASTCDecodeFeatu
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "decodeModeSharedExponent", toStringFlags, tabCount, tabSize, ToString(obj.decodeModeSharedExponent, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -8514,7 +8514,7 @@ template <> std::string ToString<decode::Decoded_VkConditionalRenderingBeginInfo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "buffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.buffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "offset", toStringFlags, tabCount, tabSize, ToString(obj.offset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -8536,7 +8536,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceConditionalRend
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "conditionalRendering", toStringFlags, tabCount, tabSize, ToString(obj.conditionalRendering, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "inheritedConditionalRendering", toStringFlags, tabCount, tabSize, ToString(obj.inheritedConditionalRendering, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -8555,7 +8555,7 @@ template <> std::string ToString<decode::Decoded_VkCommandBufferInheritanceCondi
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "conditionalRenderingEnable", toStringFlags, tabCount, tabSize, ToString(obj.conditionalRenderingEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -8590,7 +8590,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineViewportWScalingState
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "viewportWScalingEnable", toStringFlags, tabCount, tabSize, ToString(obj.viewportWScalingEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "viewportCount", toStringFlags, tabCount, tabSize, ToString(obj.viewportCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pViewportWScalings", toStringFlags, tabCount, tabSize, ArrayToString(obj.viewportCount, obj.pViewportWScalings, toStringFlags, tabCount, tabSize));
@@ -8610,7 +8610,7 @@ template <> std::string ToString<decode::Decoded_VkSurfaceCapabilities2EXT>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "minImageCount", toStringFlags, tabCount, tabSize, ToString(obj.minImageCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxImageCount", toStringFlags, tabCount, tabSize, ToString(obj.maxImageCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "currentExtent", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.currentExtent), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
@@ -8638,7 +8638,7 @@ template <> std::string ToString<decode::Decoded_VkDisplayPowerInfoEXT>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "powerState", toStringFlags, tabCount, tabSize, '"' + ToString(obj.powerState, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -8656,7 +8656,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceEventInfoEXT>(const dec
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceEvent", toStringFlags, tabCount, tabSize, '"' + ToString(obj.deviceEvent, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -8674,7 +8674,7 @@ template <> std::string ToString<decode::Decoded_VkDisplayEventInfoEXT>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "displayEvent", toStringFlags, tabCount, tabSize, '"' + ToString(obj.displayEvent, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -8692,7 +8692,7 @@ template <> std::string ToString<decode::Decoded_VkSwapchainCounterCreateInfoEXT
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "surfaceCounters", toStringFlags, tabCount, tabSize, ToString(obj.surfaceCounters, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -8763,7 +8763,7 @@ template <> std::string ToString<decode::Decoded_VkPresentTimesInfoGOOGLE>(const
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "swapchainCount", toStringFlags, tabCount, tabSize, ToString(obj.swapchainCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pTimes", toStringFlags, tabCount, tabSize, ArrayToString(obj.swapchainCount, obj.pTimes, toStringFlags, tabCount, tabSize));
         }
@@ -8782,7 +8782,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMultiviewPerVie
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "perViewPositionAllComponents", toStringFlags, tabCount, tabSize, ToString(obj.perViewPositionAllComponents, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -8819,7 +8819,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineViewportSwizzleStateC
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "viewportCount", toStringFlags, tabCount, tabSize, ToString(obj.viewportCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pViewportSwizzles", toStringFlags, tabCount, tabSize, ArrayToString(obj.viewportCount, obj.pViewportSwizzles, toStringFlags, tabCount, tabSize));
@@ -8839,7 +8839,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDiscardRectangl
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxDiscardRectangles", toStringFlags, tabCount, tabSize, ToString(obj.maxDiscardRectangles, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -8857,7 +8857,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineDiscardRectangleState
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "discardRectangleMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.discardRectangleMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "discardRectangleCount", toStringFlags, tabCount, tabSize, ToString(obj.discardRectangleCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -8878,7 +8878,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceConservativeRas
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "primitiveOverestimationSize", toStringFlags, tabCount, tabSize, ToString(obj.primitiveOverestimationSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxExtraPrimitiveOverestimationSize", toStringFlags, tabCount, tabSize, ToString(obj.maxExtraPrimitiveOverestimationSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "extraPrimitiveOverestimationSizeGranularity", toStringFlags, tabCount, tabSize, ToString(obj.extraPrimitiveOverestimationSizeGranularity, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -8904,7 +8904,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineRasterizationConserva
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "conservativeRasterizationMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.conservativeRasterizationMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "extraPrimitiveOverestimationSize", toStringFlags, tabCount, tabSize, ToString(obj.extraPrimitiveOverestimationSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -8924,7 +8924,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDepthClipEnable
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "depthClipEnable", toStringFlags, tabCount, tabSize, ToString(obj.depthClipEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -8942,7 +8942,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineRasterizationDepthCli
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "depthClipEnable", toStringFlags, tabCount, tabSize, ToString(obj.depthClipEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -8978,7 +8978,7 @@ template <> std::string ToString<decode::Decoded_VkHdrMetadataEXT>(const decode:
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "displayPrimaryRed", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.displayPrimaryRed), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "displayPrimaryGreen", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.displayPrimaryGreen), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "displayPrimaryBlue", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.displayPrimaryBlue), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
@@ -9003,7 +9003,7 @@ template <> std::string ToString<decode::Decoded_VkIOSSurfaceCreateInfoMVK>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pView", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pView) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
         }
@@ -9022,7 +9022,7 @@ template <> std::string ToString<decode::Decoded_VkMacOSSurfaceCreateInfoMVK>(co
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pView", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pView) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
         }
@@ -9041,7 +9041,7 @@ template <> std::string ToString<decode::Decoded_VkDebugUtilsLabelEXT>(const dec
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pLabelName", toStringFlags, tabCount, tabSize, (obj.pLabelName ? ("\"" + std::string(obj.pLabelName) + "\"") : "null") /* <--------- C string case */);
             FieldToString(strStrm, false, "color", toStringFlags, tabCount, tabSize, ArrayToString(4, obj.color, toStringFlags, tabCount, tabSize));
         }
@@ -9060,7 +9060,7 @@ template <> std::string ToString<decode::Decoded_VkDebugUtilsObjectNameInfoEXT>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "objectType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.objectType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "objectHandle", toStringFlags, tabCount, tabSize, ToString(obj.objectHandle, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pObjectName", toStringFlags, tabCount, tabSize, (obj.pObjectName ? ("\"" + std::string(obj.pObjectName) + "\"") : "null") /* <--------- C string case */);
@@ -9080,7 +9080,7 @@ template <> std::string ToString<decode::Decoded_VkDebugUtilsMessengerCallbackDa
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pMessageIdName", toStringFlags, tabCount, tabSize, (obj.pMessageIdName ? ("\"" + std::string(obj.pMessageIdName) + "\"") : "null") /* <--------- C string case */);
             FieldToString(strStrm, false, "messageIdNumber", toStringFlags, tabCount, tabSize, ToString(obj.messageIdNumber, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -9107,7 +9107,7 @@ template <> std::string ToString<decode::Decoded_VkDebugUtilsMessengerCreateInfo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "messageSeverity", toStringFlags, tabCount, tabSize, ToString(obj.messageSeverity, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "messageType", toStringFlags, tabCount, tabSize, ToString(obj.messageType, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -9129,7 +9129,7 @@ template <> std::string ToString<decode::Decoded_VkDebugUtilsObjectTagInfoEXT>(c
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "objectType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.objectType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "objectHandle", toStringFlags, tabCount, tabSize, ToString(obj.objectHandle, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "tagName", toStringFlags, tabCount, tabSize, ToString(obj.tagName, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -9151,7 +9151,7 @@ template <> std::string ToString<decode::Decoded_VkAndroidHardwareBufferUsageAND
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "androidHardwareBufferUsage", toStringFlags, tabCount, tabSize, ToString(obj.androidHardwareBufferUsage, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -9169,7 +9169,7 @@ template <> std::string ToString<decode::Decoded_VkAndroidHardwareBufferProperti
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "allocationSize", toStringFlags, tabCount, tabSize, ToString(obj.allocationSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "memoryTypeBits", toStringFlags, tabCount, tabSize, ToString(obj.memoryTypeBits, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -9188,7 +9188,7 @@ template <> std::string ToString<decode::Decoded_VkAndroidHardwareBufferFormatPr
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.format, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "externalFormat", toStringFlags, tabCount, tabSize, ToString(obj.externalFormat, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "formatFeatures", toStringFlags, tabCount, tabSize, ToString(obj.formatFeatures, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -9213,7 +9213,7 @@ template <> std::string ToString<decode::Decoded_VkImportAndroidHardwareBufferIn
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "buffer", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.buffer) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
         }
     );
@@ -9231,7 +9231,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryGetAndroidHardwareBuffe
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memory", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.memory) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
@@ -9251,7 +9251,7 @@ template <> std::string ToString<decode::Decoded_VkExternalFormatANDROID>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "externalFormat", toStringFlags, tabCount, tabSize, ToString(obj.externalFormat, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -9269,7 +9269,7 @@ template <> std::string ToString<decode::Decoded_VkAndroidHardwareBufferFormatPr
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.format, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "externalFormat", toStringFlags, tabCount, tabSize, ToString(obj.externalFormat, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "formatFeatures", toStringFlags, tabCount, tabSize, ToString(obj.formatFeatures, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -9311,7 +9311,7 @@ template <> std::string ToString<decode::Decoded_VkSampleLocationsInfoEXT>(const
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "sampleLocationsPerPixel", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sampleLocationsPerPixel, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "sampleLocationGridSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.sampleLocationGridSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "sampleLocationsCount", toStringFlags, tabCount, tabSize, ToString(obj.sampleLocationsCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -9366,7 +9366,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassSampleLocationsBegi
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "attachmentInitialSampleLocationsCount", toStringFlags, tabCount, tabSize, ToString(obj.attachmentInitialSampleLocationsCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pAttachmentInitialSampleLocations", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentInitialSampleLocationsCount, obj.pAttachmentInitialSampleLocations, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "postSubpassSampleLocationsCount", toStringFlags, tabCount, tabSize, ToString(obj.postSubpassSampleLocationsCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -9387,7 +9387,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineSampleLocationsStateC
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "sampleLocationsEnable", toStringFlags, tabCount, tabSize, ToString(obj.sampleLocationsEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "sampleLocationsInfo", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.sampleLocationsInfo), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
@@ -9406,7 +9406,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceSampleLocations
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "sampleLocationSampleCounts", toStringFlags, tabCount, tabSize, ToString(obj.sampleLocationSampleCounts, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxSampleLocationGridSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.maxSampleLocationGridSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "sampleLocationCoordinateRange", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.sampleLocationCoordinateRange, toStringFlags, tabCount, tabSize));
@@ -9428,7 +9428,7 @@ template <> std::string ToString<decode::Decoded_VkMultisamplePropertiesEXT>(con
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxSampleLocationGridSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.maxSampleLocationGridSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -9446,7 +9446,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceBlendOperationA
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "advancedBlendCoherentOperations", toStringFlags, tabCount, tabSize, ToString(obj.advancedBlendCoherentOperations, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -9464,7 +9464,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceBlendOperationA
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "advancedBlendMaxColorAttachments", toStringFlags, tabCount, tabSize, ToString(obj.advancedBlendMaxColorAttachments, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "advancedBlendIndependentBlend", toStringFlags, tabCount, tabSize, ToString(obj.advancedBlendIndependentBlend, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "advancedBlendNonPremultipliedSrcColor", toStringFlags, tabCount, tabSize, ToString(obj.advancedBlendNonPremultipliedSrcColor, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -9487,7 +9487,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineColorBlendAdvancedSta
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcPremultiplied", toStringFlags, tabCount, tabSize, ToString(obj.srcPremultiplied, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "dstPremultiplied", toStringFlags, tabCount, tabSize, ToString(obj.dstPremultiplied, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "blendOverlap", toStringFlags, tabCount, tabSize, '"' + ToString(obj.blendOverlap, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -9507,7 +9507,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineCoverageToColorStateC
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "coverageToColorEnable", toStringFlags, tabCount, tabSize, ToString(obj.coverageToColorEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "coverageToColorLocation", toStringFlags, tabCount, tabSize, ToString(obj.coverageToColorLocation, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -9527,7 +9527,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineCoverageModulationSta
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "coverageModulationMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.coverageModulationMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "coverageModulationTableEnable", toStringFlags, tabCount, tabSize, ToString(obj.coverageModulationTableEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -9549,7 +9549,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderSMBuiltin
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderSMCount", toStringFlags, tabCount, tabSize, ToString(obj.shaderSMCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shaderWarpsPerSM", toStringFlags, tabCount, tabSize, ToString(obj.shaderWarpsPerSM, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -9568,7 +9568,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderSMBuiltin
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderSMBuiltins", toStringFlags, tabCount, tabSize, ToString(obj.shaderSMBuiltins, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -9604,7 +9604,7 @@ template <> std::string ToString<decode::Decoded_VkDrmFormatModifierPropertiesLi
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "drmFormatModifierCount", toStringFlags, tabCount, tabSize, ToString(obj.drmFormatModifierCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pDrmFormatModifierProperties", toStringFlags, tabCount, tabSize, ArrayToString(obj.drmFormatModifierCount, obj.pDrmFormatModifierProperties, toStringFlags, tabCount, tabSize));
         }
@@ -9623,7 +9623,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceImageDrmFormatM
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "drmFormatModifier", toStringFlags, tabCount, tabSize, ToString(obj.drmFormatModifier, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "sharingMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sharingMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "queueFamilyIndexCount", toStringFlags, tabCount, tabSize, ToString(obj.queueFamilyIndexCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -9644,7 +9644,7 @@ template <> std::string ToString<decode::Decoded_VkImageDrmFormatModifierListCre
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "drmFormatModifierCount", toStringFlags, tabCount, tabSize, ToString(obj.drmFormatModifierCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pDrmFormatModifiers", toStringFlags, tabCount, tabSize, ArrayToString(obj.drmFormatModifierCount, obj.pDrmFormatModifiers, toStringFlags, tabCount, tabSize));
         }
@@ -9663,7 +9663,7 @@ template <> std::string ToString<decode::Decoded_VkImageDrmFormatModifierExplici
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "drmFormatModifier", toStringFlags, tabCount, tabSize, ToString(obj.drmFormatModifier, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "drmFormatModifierPlaneCount", toStringFlags, tabCount, tabSize, ToString(obj.drmFormatModifierPlaneCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pPlaneLayouts", toStringFlags, tabCount, tabSize, ArrayToString(obj.drmFormatModifierPlaneCount, obj.pPlaneLayouts, toStringFlags, tabCount, tabSize));
@@ -9683,7 +9683,7 @@ template <> std::string ToString<decode::Decoded_VkImageDrmFormatModifierPropert
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "drmFormatModifier", toStringFlags, tabCount, tabSize, ToString(obj.drmFormatModifier, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -9719,7 +9719,7 @@ template <> std::string ToString<decode::Decoded_VkDrmFormatModifierPropertiesLi
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "drmFormatModifierCount", toStringFlags, tabCount, tabSize, ToString(obj.drmFormatModifierCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pDrmFormatModifierProperties", toStringFlags, tabCount, tabSize, ArrayToString(obj.drmFormatModifierCount, obj.pDrmFormatModifierProperties, toStringFlags, tabCount, tabSize));
         }
@@ -9738,7 +9738,7 @@ template <> std::string ToString<decode::Decoded_VkValidationCacheCreateInfoEXT>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "initialDataSize", toStringFlags, tabCount, tabSize, ToString(obj.initialDataSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pInitialData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pInitialData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
@@ -9758,7 +9758,7 @@ template <> std::string ToString<decode::Decoded_VkShaderModuleValidationCacheCr
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "validationCache", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.validationCache) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
@@ -9795,7 +9795,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineViewportShadingRateIm
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shadingRateImageEnable", toStringFlags, tabCount, tabSize, ToString(obj.shadingRateImageEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "viewportCount", toStringFlags, tabCount, tabSize, ToString(obj.viewportCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pShadingRatePalettes", toStringFlags, tabCount, tabSize, ArrayToString(obj.viewportCount, obj.pShadingRatePalettes, toStringFlags, tabCount, tabSize));
@@ -9815,7 +9815,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShadingRateImag
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shadingRateImage", toStringFlags, tabCount, tabSize, ToString(obj.shadingRateImage, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shadingRateCoarseSampleOrder", toStringFlags, tabCount, tabSize, ToString(obj.shadingRateCoarseSampleOrder, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -9834,7 +9834,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShadingRateImag
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shadingRateTexelSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.shadingRateTexelSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "shadingRatePaletteSize", toStringFlags, tabCount, tabSize, ToString(obj.shadingRatePaletteSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shadingRateMaxCoarseSamples", toStringFlags, tabCount, tabSize, ToString(obj.shadingRateMaxCoarseSamples, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -9891,7 +9891,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineViewportCoarseSampleO
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "sampleOrderType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sampleOrderType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "customSampleOrderCount", toStringFlags, tabCount, tabSize, ToString(obj.customSampleOrderCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pCustomSampleOrders", toStringFlags, tabCount, tabSize, ArrayToString(obj.customSampleOrderCount, obj.pCustomSampleOrders, toStringFlags, tabCount, tabSize));
@@ -9911,7 +9911,7 @@ template <> std::string ToString<decode::Decoded_VkRayTracingShaderGroupCreateIn
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.type, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "generalShader", toStringFlags, tabCount, tabSize, ToString(obj.generalShader, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "closestHitShader", toStringFlags, tabCount, tabSize, ToString(obj.closestHitShader, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -9933,7 +9933,7 @@ template <> std::string ToString<decode::Decoded_VkRayTracingPipelineCreateInfoN
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "stageCount", toStringFlags, tabCount, tabSize, ToString(obj.stageCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pStages", toStringFlags, tabCount, tabSize, ArrayToString(obj.stageCount, obj.pStages, toStringFlags, tabCount, tabSize));
@@ -9961,7 +9961,7 @@ template <> std::string ToString<decode::Decoded_VkGeometryTrianglesNV>(const de
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "vertexData", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.vertexData) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "vertexOffset", toStringFlags, tabCount, tabSize, ToString(obj.vertexOffset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "vertexCount", toStringFlags, tabCount, tabSize, ToString(obj.vertexCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -9991,7 +9991,7 @@ template <> std::string ToString<decode::Decoded_VkGeometryAABBNV>(const decode:
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "aabbData", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.aabbData) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "numAABBs", toStringFlags, tabCount, tabSize, ToString(obj.numAABBs, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "stride", toStringFlags, tabCount, tabSize, ToString(obj.stride, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -10031,7 +10031,7 @@ template <> std::string ToString<decode::Decoded_VkGeometryNV>(const decode::Dec
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "geometryType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.geometryType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "geometry", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.geometry), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -10051,7 +10051,7 @@ template <> std::string ToString<decode::Decoded_VkAccelerationStructureInfoNV>(
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.type, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "instanceCount", toStringFlags, tabCount, tabSize, ToString(obj.instanceCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -10073,7 +10073,7 @@ template <> std::string ToString<decode::Decoded_VkAccelerationStructureCreateIn
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "compactedSize", toStringFlags, tabCount, tabSize, ToString(obj.compactedSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "info", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.info), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
@@ -10092,7 +10092,7 @@ template <> std::string ToString<decode::Decoded_VkBindAccelerationStructureMemo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "accelerationStructure", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.accelerationStructure) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "memory", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.memory) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "memoryOffset", toStringFlags, tabCount, tabSize, ToString(obj.memoryOffset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -10116,7 +10116,7 @@ template <> std::string ToString<decode::Decoded_VkWriteDescriptorSetAcceleratio
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "accelerationStructureCount", toStringFlags, tabCount, tabSize, ToString(obj.accelerationStructureCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pAccelerationStructures", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pAccelerationStructures, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             /* Struct has at least one handle - Andy */
@@ -10137,7 +10137,7 @@ template <> std::string ToString<decode::Decoded_VkAccelerationStructureMemoryRe
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.type, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "accelerationStructure", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.accelerationStructure) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
@@ -10158,7 +10158,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceRayTracingPrope
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderGroupHandleSize", toStringFlags, tabCount, tabSize, ToString(obj.shaderGroupHandleSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxRecursionDepth", toStringFlags, tabCount, tabSize, ToString(obj.maxRecursionDepth, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxShaderGroupStride", toStringFlags, tabCount, tabSize, ToString(obj.maxShaderGroupStride, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -10225,7 +10225,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceRepresentativeF
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "representativeFragmentTest", toStringFlags, tabCount, tabSize, ToString(obj.representativeFragmentTest, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10243,7 +10243,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineRepresentativeFragmen
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "representativeFragmentTestEnable", toStringFlags, tabCount, tabSize, ToString(obj.representativeFragmentTestEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10261,7 +10261,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceImageViewImageF
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "imageViewType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.imageViewType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -10279,7 +10279,7 @@ template <> std::string ToString<decode::Decoded_VkFilterCubicImageViewImageForm
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "filterCubic", toStringFlags, tabCount, tabSize, ToString(obj.filterCubic, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "filterCubicMinmax", toStringFlags, tabCount, tabSize, ToString(obj.filterCubicMinmax, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -10298,7 +10298,7 @@ template <> std::string ToString<decode::Decoded_VkImportMemoryHostPointerInfoEX
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pHostPointer", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pHostPointer) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
         }
@@ -10317,7 +10317,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryHostPointerPropertiesEX
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memoryTypeBits", toStringFlags, tabCount, tabSize, ToString(obj.memoryTypeBits, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10335,7 +10335,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceExternalMemoryH
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "minImportedHostPointerAlignment", toStringFlags, tabCount, tabSize, ToString(obj.minImportedHostPointerAlignment, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10353,7 +10353,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineCompilerControlCreate
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "compilerControlFlags", toStringFlags, tabCount, tabSize, ToString(obj.compilerControlFlags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10371,7 +10371,7 @@ template <> std::string ToString<decode::Decoded_VkCalibratedTimestampInfoEXT>(c
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "timeDomain", toStringFlags, tabCount, tabSize, '"' + ToString(obj.timeDomain, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -10389,7 +10389,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderCorePrope
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderEngineCount", toStringFlags, tabCount, tabSize, ToString(obj.shaderEngineCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shaderArraysPerEngineCount", toStringFlags, tabCount, tabSize, ToString(obj.shaderArraysPerEngineCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "computeUnitsPerShaderArray", toStringFlags, tabCount, tabSize, ToString(obj.computeUnitsPerShaderArray, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -10420,7 +10420,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceMemoryOverallocationCre
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "overallocationBehavior", toStringFlags, tabCount, tabSize, '"' + ToString(obj.overallocationBehavior, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -10438,7 +10438,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceVertexAttribute
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxVertexAttribDivisor", toStringFlags, tabCount, tabSize, ToString(obj.maxVertexAttribDivisor, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10473,7 +10473,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineVertexInputDivisorSta
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "vertexBindingDivisorCount", toStringFlags, tabCount, tabSize, ToString(obj.vertexBindingDivisorCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pVertexBindingDivisors", toStringFlags, tabCount, tabSize, ArrayToString(obj.vertexBindingDivisorCount, obj.pVertexBindingDivisors, toStringFlags, tabCount, tabSize));
         }
@@ -10492,7 +10492,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceVertexAttribute
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "vertexAttributeInstanceRateDivisor", toStringFlags, tabCount, tabSize, ToString(obj.vertexAttributeInstanceRateDivisor, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "vertexAttributeInstanceRateZeroDivisor", toStringFlags, tabCount, tabSize, ToString(obj.vertexAttributeInstanceRateZeroDivisor, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -10511,7 +10511,7 @@ template <> std::string ToString<decode::Decoded_VkPresentFrameTokenGGP>(const d
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "frameToken", toStringFlags, tabCount, tabSize, ToString(obj.frameToken, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10529,7 +10529,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceComputeShaderDe
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "computeDerivativeGroupQuads", toStringFlags, tabCount, tabSize, ToString(obj.computeDerivativeGroupQuads, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "computeDerivativeGroupLinear", toStringFlags, tabCount, tabSize, ToString(obj.computeDerivativeGroupLinear, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -10548,7 +10548,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMeshShaderFeatu
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "taskShader", toStringFlags, tabCount, tabSize, ToString(obj.taskShader, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "meshShader", toStringFlags, tabCount, tabSize, ToString(obj.meshShader, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -10567,7 +10567,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMeshShaderPrope
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxDrawMeshTasksCount", toStringFlags, tabCount, tabSize, ToString(obj.maxDrawMeshTasksCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxTaskWorkGroupInvocations", toStringFlags, tabCount, tabSize, ToString(obj.maxTaskWorkGroupInvocations, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxTaskWorkGroupSize", toStringFlags, tabCount, tabSize, ArrayToString(3, obj.maxTaskWorkGroupSize, toStringFlags, tabCount, tabSize));
@@ -10614,7 +10614,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderImageFoot
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "imageFootprint", toStringFlags, tabCount, tabSize, ToString(obj.imageFootprint, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10632,7 +10632,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineViewportExclusiveScis
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "exclusiveScissorCount", toStringFlags, tabCount, tabSize, ToString(obj.exclusiveScissorCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pExclusiveScissors", toStringFlags, tabCount, tabSize, ArrayToString(obj.exclusiveScissorCount, obj.pExclusiveScissors, toStringFlags, tabCount, tabSize));
         }
@@ -10651,7 +10651,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceExclusiveScisso
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "exclusiveScissor", toStringFlags, tabCount, tabSize, ToString(obj.exclusiveScissor, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10669,7 +10669,7 @@ template <> std::string ToString<decode::Decoded_VkQueueFamilyCheckpointProperti
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "checkpointExecutionStageMask", toStringFlags, tabCount, tabSize, ToString(obj.checkpointExecutionStageMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10687,7 +10687,7 @@ template <> std::string ToString<decode::Decoded_VkCheckpointDataNV>(const decod
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "stage", toStringFlags, tabCount, tabSize, '"' + ToString(obj.stage, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pCheckpointMarker", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pCheckpointMarker) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
         }
@@ -10706,7 +10706,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderIntegerFu
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderIntegerFunctions2", toStringFlags, tabCount, tabSize, ToString(obj.shaderIntegerFunctions2, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10724,7 +10724,7 @@ template <> std::string ToString<decode::Decoded_VkInitializePerformanceApiInfoI
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pUserData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pUserData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
         }
     );
@@ -10742,7 +10742,7 @@ template <> std::string ToString<decode::Decoded_VkQueryPoolPerformanceQueryCrea
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "performanceCountersSampling", toStringFlags, tabCount, tabSize, '"' + ToString(obj.performanceCountersSampling, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -10760,7 +10760,7 @@ template <> std::string ToString<decode::Decoded_VkPerformanceMarkerInfoINTEL>(c
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "marker", toStringFlags, tabCount, tabSize, ToString(obj.marker, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10778,7 +10778,7 @@ template <> std::string ToString<decode::Decoded_VkPerformanceStreamMarkerInfoIN
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "marker", toStringFlags, tabCount, tabSize, ToString(obj.marker, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10796,7 +10796,7 @@ template <> std::string ToString<decode::Decoded_VkPerformanceOverrideInfoINTEL>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.type, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "enable", toStringFlags, tabCount, tabSize, ToString(obj.enable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "parameter", toStringFlags, tabCount, tabSize, ToString(obj.parameter, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -10816,7 +10816,7 @@ template <> std::string ToString<decode::Decoded_VkPerformanceConfigurationAcqui
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.type, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -10834,7 +10834,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePCIBusInfoPrope
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pciDomain", toStringFlags, tabCount, tabSize, ToString(obj.pciDomain, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pciBus", toStringFlags, tabCount, tabSize, ToString(obj.pciBus, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pciDevice", toStringFlags, tabCount, tabSize, ToString(obj.pciDevice, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -10855,7 +10855,7 @@ template <> std::string ToString<decode::Decoded_VkDisplayNativeHdrSurfaceCapabi
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "localDimmingSupport", toStringFlags, tabCount, tabSize, ToString(obj.localDimmingSupport, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10873,7 +10873,7 @@ template <> std::string ToString<decode::Decoded_VkSwapchainDisplayNativeHdrCrea
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "localDimmingEnable", toStringFlags, tabCount, tabSize, ToString(obj.localDimmingEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -10891,7 +10891,7 @@ template <> std::string ToString<decode::Decoded_VkImagePipeSurfaceCreateInfoFUC
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "imagePipeHandle", toStringFlags, tabCount, tabSize, ToString(obj.imagePipeHandle, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -10910,7 +10910,7 @@ template <> std::string ToString<decode::Decoded_VkMetalSurfaceCreateInfoEXT>(co
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pLayer", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pLayer) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
         }
@@ -10929,7 +10929,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFragmentDensity
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fragmentDensityMap", toStringFlags, tabCount, tabSize, ToString(obj.fragmentDensityMap, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "fragmentDensityMapDynamic", toStringFlags, tabCount, tabSize, ToString(obj.fragmentDensityMapDynamic, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "fragmentDensityMapNonSubsampledImages", toStringFlags, tabCount, tabSize, ToString(obj.fragmentDensityMapNonSubsampledImages, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -10949,7 +10949,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFragmentDensity
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "minFragmentDensityTexelSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.minFragmentDensityTexelSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "maxFragmentDensityTexelSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.maxFragmentDensityTexelSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "fragmentDensityInvocations", toStringFlags, tabCount, tabSize, ToString(obj.fragmentDensityInvocations, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -10969,7 +10969,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassFragmentDensityMapC
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fragmentDensityMapAttachment", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.fragmentDensityMapAttachment), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -10987,7 +10987,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderCorePrope
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderCoreFeatures", toStringFlags, tabCount, tabSize, ToString(obj.shaderCoreFeatures, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "activeComputeUnitCount", toStringFlags, tabCount, tabSize, ToString(obj.activeComputeUnitCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -11006,7 +11006,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceCoherentMemoryF
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceCoherentMemory", toStringFlags, tabCount, tabSize, ToString(obj.deviceCoherentMemory, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11024,7 +11024,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderImageAtom
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderImageInt64Atomics", toStringFlags, tabCount, tabSize, ToString(obj.shaderImageInt64Atomics, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "sparseImageInt64Atomics", toStringFlags, tabCount, tabSize, ToString(obj.sparseImageInt64Atomics, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -11043,7 +11043,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMemoryBudgetPro
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "heapBudget", toStringFlags, tabCount, tabSize, ArrayToString(VK_MAX_MEMORY_HEAPS, obj.heapBudget, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "heapUsage", toStringFlags, tabCount, tabSize, ArrayToString(VK_MAX_MEMORY_HEAPS, obj.heapUsage, toStringFlags, tabCount, tabSize));
         }
@@ -11062,7 +11062,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMemoryPriorityF
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memoryPriority", toStringFlags, tabCount, tabSize, ToString(obj.memoryPriority, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11080,7 +11080,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryPriorityAllocateInfoEXT
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "priority", toStringFlags, tabCount, tabSize, ToString(obj.priority, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11098,7 +11098,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDedicatedAlloca
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "dedicatedAllocationImageAliasing", toStringFlags, tabCount, tabSize, ToString(obj.dedicatedAllocationImageAliasing, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11116,7 +11116,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceBufferDeviceAdd
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "bufferDeviceAddress", toStringFlags, tabCount, tabSize, ToString(obj.bufferDeviceAddress, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "bufferDeviceAddressCaptureReplay", toStringFlags, tabCount, tabSize, ToString(obj.bufferDeviceAddressCaptureReplay, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "bufferDeviceAddressMultiDevice", toStringFlags, tabCount, tabSize, ToString(obj.bufferDeviceAddressMultiDevice, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -11136,7 +11136,7 @@ template <> std::string ToString<decode::Decoded_VkBufferDeviceAddressCreateInfo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceAddress", toStringFlags, tabCount, tabSize, ToString(obj.deviceAddress, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11154,7 +11154,7 @@ template <> std::string ToString<decode::Decoded_VkValidationFeaturesEXT>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "enabledValidationFeatureCount", toStringFlags, tabCount, tabSize, ToString(obj.enabledValidationFeatureCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pEnabledValidationFeatures", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.enabledValidationFeatureCount, obj.pEnabledValidationFeatures, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "disabledValidationFeatureCount", toStringFlags, tabCount, tabSize, ToString(obj.disabledValidationFeatureCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -11175,7 +11175,7 @@ template <> std::string ToString<decode::Decoded_VkCooperativeMatrixPropertiesNV
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "MSize", toStringFlags, tabCount, tabSize, ToString(obj.MSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "NSize", toStringFlags, tabCount, tabSize, ToString(obj.NSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "KSize", toStringFlags, tabCount, tabSize, ToString(obj.KSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -11200,7 +11200,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceCooperativeMatr
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "cooperativeMatrix", toStringFlags, tabCount, tabSize, ToString(obj.cooperativeMatrix, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "cooperativeMatrixRobustBufferAccess", toStringFlags, tabCount, tabSize, ToString(obj.cooperativeMatrixRobustBufferAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -11219,7 +11219,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceCooperativeMatr
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "cooperativeMatrixSupportedStages", toStringFlags, tabCount, tabSize, ToString(obj.cooperativeMatrixSupportedStages, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11237,7 +11237,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceCoverageReducti
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "coverageReductionMode", toStringFlags, tabCount, tabSize, ToString(obj.coverageReductionMode, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11255,7 +11255,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineCoverageReductionStat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "coverageReductionMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.coverageReductionMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
@@ -11274,7 +11274,7 @@ template <> std::string ToString<decode::Decoded_VkFramebufferMixedSamplesCombin
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "coverageReductionMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.coverageReductionMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "rasterizationSamples", toStringFlags, tabCount, tabSize, '"' + ToString(obj.rasterizationSamples, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "depthStencilSamples", toStringFlags, tabCount, tabSize, ToString(obj.depthStencilSamples, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -11295,7 +11295,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFragmentShaderI
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fragmentShaderSampleInterlock", toStringFlags, tabCount, tabSize, ToString(obj.fragmentShaderSampleInterlock, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "fragmentShaderPixelInterlock", toStringFlags, tabCount, tabSize, ToString(obj.fragmentShaderPixelInterlock, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "fragmentShaderShadingRateInterlock", toStringFlags, tabCount, tabSize, ToString(obj.fragmentShaderShadingRateInterlock, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -11315,7 +11315,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceYcbcrImageArray
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "ycbcrImageArrays", toStringFlags, tabCount, tabSize, ToString(obj.ycbcrImageArrays, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11333,7 +11333,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceProvokingVertex
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "provokingVertexLast", toStringFlags, tabCount, tabSize, ToString(obj.provokingVertexLast, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "transformFeedbackPreservesProvokingVertex", toStringFlags, tabCount, tabSize, ToString(obj.transformFeedbackPreservesProvokingVertex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -11352,7 +11352,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceProvokingVertex
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "provokingVertexModePerPipeline", toStringFlags, tabCount, tabSize, ToString(obj.provokingVertexModePerPipeline, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "transformFeedbackPreservesTriangleFanProvokingVertex", toStringFlags, tabCount, tabSize, ToString(obj.transformFeedbackPreservesTriangleFanProvokingVertex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -11371,7 +11371,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineRasterizationProvokin
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "provokingVertexMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.provokingVertexMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -11389,7 +11389,7 @@ template <> std::string ToString<decode::Decoded_VkSurfaceFullScreenExclusiveInf
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fullScreenExclusive", toStringFlags, tabCount, tabSize, '"' + ToString(obj.fullScreenExclusive, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -11407,7 +11407,7 @@ template <> std::string ToString<decode::Decoded_VkSurfaceCapabilitiesFullScreen
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fullScreenExclusiveSupported", toStringFlags, tabCount, tabSize, ToString(obj.fullScreenExclusiveSupported, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11425,7 +11425,7 @@ template <> std::string ToString<decode::Decoded_VkSurfaceFullScreenExclusiveWin
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "hmonitor", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.hmonitor) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
         }
     );
@@ -11443,7 +11443,7 @@ template <> std::string ToString<decode::Decoded_VkHeadlessSurfaceCreateInfoEXT>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11461,7 +11461,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceLineRasterizati
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "rectangularLines", toStringFlags, tabCount, tabSize, ToString(obj.rectangularLines, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "bresenhamLines", toStringFlags, tabCount, tabSize, ToString(obj.bresenhamLines, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "smoothLines", toStringFlags, tabCount, tabSize, ToString(obj.smoothLines, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -11484,7 +11484,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceLineRasterizati
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "lineSubPixelPrecisionBits", toStringFlags, tabCount, tabSize, ToString(obj.lineSubPixelPrecisionBits, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11502,7 +11502,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineRasterizationLineStat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "lineRasterizationMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.lineRasterizationMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "stippledLineEnable", toStringFlags, tabCount, tabSize, ToString(obj.stippledLineEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "lineStippleFactor", toStringFlags, tabCount, tabSize, ToString(obj.lineStippleFactor, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -11523,7 +11523,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderAtomicFlo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderBufferFloat32Atomics", toStringFlags, tabCount, tabSize, ToString(obj.shaderBufferFloat32Atomics, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shaderBufferFloat32AtomicAdd", toStringFlags, tabCount, tabSize, ToString(obj.shaderBufferFloat32AtomicAdd, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shaderBufferFloat64Atomics", toStringFlags, tabCount, tabSize, ToString(obj.shaderBufferFloat64Atomics, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -11552,7 +11552,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceIndexTypeUint8F
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "indexTypeUint8", toStringFlags, tabCount, tabSize, ToString(obj.indexTypeUint8, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11570,7 +11570,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceExtendedDynamic
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "extendedDynamicState", toStringFlags, tabCount, tabSize, ToString(obj.extendedDynamicState, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11588,7 +11588,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderAtomicFlo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderBufferFloat16Atomics", toStringFlags, tabCount, tabSize, ToString(obj.shaderBufferFloat16Atomics, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shaderBufferFloat16AtomicAdd", toStringFlags, tabCount, tabSize, ToString(obj.shaderBufferFloat16AtomicAdd, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "shaderBufferFloat16AtomicMinMax", toStringFlags, tabCount, tabSize, ToString(obj.shaderBufferFloat16AtomicMinMax, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -11617,7 +11617,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDeviceGenerated
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxGraphicsShaderGroupCount", toStringFlags, tabCount, tabSize, ToString(obj.maxGraphicsShaderGroupCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxIndirectSequenceCount", toStringFlags, tabCount, tabSize, ToString(obj.maxIndirectSequenceCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxIndirectCommandsTokenCount", toStringFlags, tabCount, tabSize, ToString(obj.maxIndirectCommandsTokenCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -11643,7 +11643,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDeviceGenerated
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceGeneratedCommands", toStringFlags, tabCount, tabSize, ToString(obj.deviceGeneratedCommands, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11661,7 +11661,7 @@ template <> std::string ToString<decode::Decoded_VkGraphicsShaderGroupCreateInfo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "stageCount", toStringFlags, tabCount, tabSize, ToString(obj.stageCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pStages", toStringFlags, tabCount, tabSize, ArrayToString(obj.stageCount, obj.pStages, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "pVertexInputState", toStringFlags, tabCount, tabSize, (obj.pVertexInputState ? ToString(*obj.pVertexInputState, toStringFlags, tabCount, tabSize) : "\"null\""));
@@ -11682,7 +11682,7 @@ template <> std::string ToString<decode::Decoded_VkGraphicsPipelineShaderGroupsC
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "groupCount", toStringFlags, tabCount, tabSize, ToString(obj.groupCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pGroups", toStringFlags, tabCount, tabSize, ArrayToString(obj.groupCount, obj.pGroups, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "pipelineCount", toStringFlags, tabCount, tabSize, ToString(obj.pipelineCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -11792,7 +11792,7 @@ template <> std::string ToString<decode::Decoded_VkIndirectCommandsLayoutTokenNV
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "tokenType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.tokenType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "stream", toStringFlags, tabCount, tabSize, ToString(obj.stream, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "offset", toStringFlags, tabCount, tabSize, ToString(obj.offset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -11824,7 +11824,7 @@ template <> std::string ToString<decode::Decoded_VkIndirectCommandsLayoutCreateI
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pipelineBindPoint", toStringFlags, tabCount, tabSize, '"' + ToString(obj.pipelineBindPoint, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "tokenCount", toStringFlags, tabCount, tabSize, ToString(obj.tokenCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -11847,7 +11847,7 @@ template <> std::string ToString<decode::Decoded_VkGeneratedCommandsInfoNV>(cons
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pipelineBindPoint", toStringFlags, tabCount, tabSize, '"' + ToString(obj.pipelineBindPoint, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pipeline", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.pipeline) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "indirectCommandsLayout", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.indirectCommandsLayout) + '"' /* < ------------ handle case*/);
@@ -11879,7 +11879,7 @@ template <> std::string ToString<decode::Decoded_VkGeneratedCommandsMemoryRequir
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pipelineBindPoint", toStringFlags, tabCount, tabSize, '"' + ToString(obj.pipelineBindPoint, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pipeline", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.pipeline) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "indirectCommandsLayout", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.indirectCommandsLayout) + '"' /* < ------------ handle case*/);
@@ -11902,7 +11902,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceInheritedViewpo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "inheritedViewportScissor2D", toStringFlags, tabCount, tabSize, ToString(obj.inheritedViewportScissor2D, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11920,7 +11920,7 @@ template <> std::string ToString<decode::Decoded_VkCommandBufferInheritanceViewp
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "viewportScissor2D", toStringFlags, tabCount, tabSize, ToString(obj.viewportScissor2D, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "viewportDepthCount", toStringFlags, tabCount, tabSize, ToString(obj.viewportDepthCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pViewportDepths", toStringFlags, tabCount, tabSize, (obj.pViewportDepths ? ToString(*obj.pViewportDepths, toStringFlags, tabCount, tabSize) : "\"null\""));
@@ -11940,7 +11940,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceTexelBufferAlig
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "texelBufferAlignment", toStringFlags, tabCount, tabSize, ToString(obj.texelBufferAlignment, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -11958,7 +11958,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassTransformBeginInfoQ
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "transform", toStringFlags, tabCount, tabSize, '"' + ToString(obj.transform, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -11976,7 +11976,7 @@ template <> std::string ToString<decode::Decoded_VkCommandBufferInheritanceRende
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "transform", toStringFlags, tabCount, tabSize, '"' + ToString(obj.transform, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "renderArea", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.renderArea), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
@@ -11995,7 +11995,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDeviceMemoryRep
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceMemoryReport", toStringFlags, tabCount, tabSize, ToString(obj.deviceMemoryReport, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12013,7 +12013,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceMemoryReportCallbackDat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.type, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "memoryObjectId", toStringFlags, tabCount, tabSize, ToString(obj.memoryObjectId, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -12037,7 +12037,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceDeviceMemoryReportCreat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pfnUserCallback", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnUserCallback) + "\"" /* <--------- function pointer case. */);
             FieldToString(strStrm, false, "pUserData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pUserData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
@@ -12057,7 +12057,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceRobustness2Feat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "robustBufferAccess2", toStringFlags, tabCount, tabSize, ToString(obj.robustBufferAccess2, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "robustImageAccess2", toStringFlags, tabCount, tabSize, ToString(obj.robustImageAccess2, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "nullDescriptor", toStringFlags, tabCount, tabSize, ToString(obj.nullDescriptor, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -12077,7 +12077,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceRobustness2Prop
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "robustStorageBufferAccessSizeAlignment", toStringFlags, tabCount, tabSize, ToString(obj.robustStorageBufferAccessSizeAlignment, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "robustUniformBufferAccessSizeAlignment", toStringFlags, tabCount, tabSize, ToString(obj.robustUniformBufferAccessSizeAlignment, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -12096,7 +12096,7 @@ template <> std::string ToString<decode::Decoded_VkSamplerCustomBorderColorCreat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "customBorderColor", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.customBorderColor), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.format, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
@@ -12115,7 +12115,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceCustomBorderCol
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxCustomBorderColorSamplers", toStringFlags, tabCount, tabSize, ToString(obj.maxCustomBorderColorSamplers, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12133,7 +12133,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceCustomBorderCol
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "customBorderColors", toStringFlags, tabCount, tabSize, ToString(obj.customBorderColors, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "customBorderColorWithoutFormat", toStringFlags, tabCount, tabSize, ToString(obj.customBorderColorWithoutFormat, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -12152,7 +12152,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDiagnosticsConf
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "diagnosticsConfig", toStringFlags, tabCount, tabSize, ToString(obj.diagnosticsConfig, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12170,7 +12170,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceDiagnosticsConfigCreate
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12188,7 +12188,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceGraphicsPipelin
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "graphicsPipelineLibrary", toStringFlags, tabCount, tabSize, ToString(obj.graphicsPipelineLibrary, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12206,7 +12206,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceGraphicsPipelin
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "graphicsPipelineLibraryFastLinking", toStringFlags, tabCount, tabSize, ToString(obj.graphicsPipelineLibraryFastLinking, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "graphicsPipelineLibraryIndependentInterpolationDecoration", toStringFlags, tabCount, tabSize, ToString(obj.graphicsPipelineLibraryIndependentInterpolationDecoration, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -12225,7 +12225,7 @@ template <> std::string ToString<decode::Decoded_VkGraphicsPipelineLibraryCreate
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12243,7 +12243,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceShaderEarlyAndL
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderEarlyAndLateFragmentTests", toStringFlags, tabCount, tabSize, ToString(obj.shaderEarlyAndLateFragmentTests, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12261,7 +12261,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFragmentShading
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fragmentShadingRateEnums", toStringFlags, tabCount, tabSize, ToString(obj.fragmentShadingRateEnums, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "supersampleFragmentShadingRates", toStringFlags, tabCount, tabSize, ToString(obj.supersampleFragmentShadingRates, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "noInvocationFragmentShadingRates", toStringFlags, tabCount, tabSize, ToString(obj.noInvocationFragmentShadingRates, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -12281,7 +12281,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFragmentShading
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxFragmentShadingRateInvocationCount", toStringFlags, tabCount, tabSize, '"' + ToString(obj.maxFragmentShadingRateInvocationCount, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -12299,7 +12299,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineFragmentShadingRateEn
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shadingRateType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.shadingRateType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "shadingRate", toStringFlags, tabCount, tabSize, '"' + ToString(obj.shadingRate, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "combinerOps", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.combinerOps, toStringFlags, tabCount, tabSize));
@@ -12319,7 +12319,7 @@ template <> std::string ToString<decode::Decoded_VkAccelerationStructureGeometry
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "vertexData", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.vertexData), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -12337,7 +12337,7 @@ template <> std::string ToString<decode::Decoded_VkAccelerationStructureMotionIn
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxInstances", toStringFlags, tabCount, tabSize, ToString(obj.maxInstances, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -12431,7 +12431,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceRayTracingMotio
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "rayTracingMotionBlur", toStringFlags, tabCount, tabSize, ToString(obj.rayTracingMotionBlur, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "rayTracingMotionBlurPipelineTraceRaysIndirect", toStringFlags, tabCount, tabSize, ToString(obj.rayTracingMotionBlurPipelineTraceRaysIndirect, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -12450,7 +12450,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceYcbcr2Plane444F
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "ycbcr2plane444Formats", toStringFlags, tabCount, tabSize, ToString(obj.ycbcr2plane444Formats, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12468,7 +12468,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFragmentDensity
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fragmentDensityMapDeferred", toStringFlags, tabCount, tabSize, ToString(obj.fragmentDensityMapDeferred, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12486,7 +12486,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFragmentDensity
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "subsampledLoads", toStringFlags, tabCount, tabSize, ToString(obj.subsampledLoads, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "subsampledCoarseReconstructionEarlyAccess", toStringFlags, tabCount, tabSize, ToString(obj.subsampledCoarseReconstructionEarlyAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxSubsampledArrayLayers", toStringFlags, tabCount, tabSize, ToString(obj.maxSubsampledArrayLayers, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -12507,7 +12507,7 @@ template <> std::string ToString<decode::Decoded_VkCopyCommandTransformInfoQCOM>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "transform", toStringFlags, tabCount, tabSize, '"' + ToString(obj.transform, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -12525,7 +12525,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceImageCompressio
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "imageCompressionControl", toStringFlags, tabCount, tabSize, ToString(obj.imageCompressionControl, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12543,7 +12543,7 @@ template <> std::string ToString<decode::Decoded_VkImageCompressionControlEXT>(c
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "compressionControlPlaneCount", toStringFlags, tabCount, tabSize, ToString(obj.compressionControlPlaneCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pFixedRateFlags", toStringFlags, tabCount, tabSize, ArrayToString(obj.compressionControlPlaneCount, obj.pFixedRateFlags, toStringFlags, tabCount, tabSize));
@@ -12563,7 +12563,7 @@ template <> std::string ToString<decode::Decoded_VkSubresourceLayout2EXT>(const 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "subresourceLayout", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.subresourceLayout), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -12581,7 +12581,7 @@ template <> std::string ToString<decode::Decoded_VkImageSubresource2EXT>(const d
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "imageSubresource", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.imageSubresource), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -12599,7 +12599,7 @@ template <> std::string ToString<decode::Decoded_VkImageCompressionPropertiesEXT
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "imageCompressionFlags", toStringFlags, tabCount, tabSize, ToString(obj.imageCompressionFlags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "imageCompressionFixedRateFlags", toStringFlags, tabCount, tabSize, ToString(obj.imageCompressionFixedRateFlags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -12618,7 +12618,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevice4444FormatsFeat
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "formatA4R4G4B4", toStringFlags, tabCount, tabSize, ToString(obj.formatA4R4G4B4, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "formatA4B4G4R4", toStringFlags, tabCount, tabSize, ToString(obj.formatA4B4G4R4, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -12637,7 +12637,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceRasterizationOr
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "rasterizationOrderColorAttachmentAccess", toStringFlags, tabCount, tabSize, ToString(obj.rasterizationOrderColorAttachmentAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "rasterizationOrderDepthAttachmentAccess", toStringFlags, tabCount, tabSize, ToString(obj.rasterizationOrderDepthAttachmentAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "rasterizationOrderStencilAttachmentAccess", toStringFlags, tabCount, tabSize, ToString(obj.rasterizationOrderStencilAttachmentAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -12657,7 +12657,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceRGBA10X6Formats
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "formatRgba10x6WithoutYCbCrSampler", toStringFlags, tabCount, tabSize, ToString(obj.formatRgba10x6WithoutYCbCrSampler, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12675,7 +12675,7 @@ template <> std::string ToString<decode::Decoded_VkDirectFBSurfaceCreateInfoEXT>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "dfb", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.dfb) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
             FieldToString(strStrm, false, "surface", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.surface) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
@@ -12695,7 +12695,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMutableDescript
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "mutableDescriptorType", toStringFlags, tabCount, tabSize, ToString(obj.mutableDescriptorType, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12730,7 +12730,7 @@ template <> std::string ToString<decode::Decoded_VkMutableDescriptorTypeCreateIn
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "mutableDescriptorTypeListCount", toStringFlags, tabCount, tabSize, ToString(obj.mutableDescriptorTypeListCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pMutableDescriptorTypeLists", toStringFlags, tabCount, tabSize, ArrayToString(obj.mutableDescriptorTypeListCount, obj.pMutableDescriptorTypeLists, toStringFlags, tabCount, tabSize));
         }
@@ -12749,7 +12749,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceVertexInputDyna
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "vertexInputDynamicState", toStringFlags, tabCount, tabSize, ToString(obj.vertexInputDynamicState, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12767,7 +12767,7 @@ template <> std::string ToString<decode::Decoded_VkVertexInputBindingDescription
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "binding", toStringFlags, tabCount, tabSize, ToString(obj.binding, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "stride", toStringFlags, tabCount, tabSize, ToString(obj.stride, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "inputRate", toStringFlags, tabCount, tabSize, '"' + ToString(obj.inputRate, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -12788,7 +12788,7 @@ template <> std::string ToString<decode::Decoded_VkVertexInputAttributeDescripti
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "location", toStringFlags, tabCount, tabSize, ToString(obj.location, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "binding", toStringFlags, tabCount, tabSize, ToString(obj.binding, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.format, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -12809,7 +12809,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDrmPropertiesEX
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "hasPrimary", toStringFlags, tabCount, tabSize, ToString(obj.hasPrimary, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "hasRender", toStringFlags, tabCount, tabSize, ToString(obj.hasRender, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "primaryMajor", toStringFlags, tabCount, tabSize, ToString(obj.primaryMajor, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -12832,7 +12832,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDepthClipContro
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "depthClipControl", toStringFlags, tabCount, tabSize, ToString(obj.depthClipControl, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12850,7 +12850,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineViewportDepthClipCont
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "negativeOneToOne", toStringFlags, tabCount, tabSize, ToString(obj.negativeOneToOne, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12868,7 +12868,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePrimitiveTopolo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "primitiveTopologyListRestart", toStringFlags, tabCount, tabSize, ToString(obj.primitiveTopologyListRestart, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "primitiveTopologyPatchListRestart", toStringFlags, tabCount, tabSize, ToString(obj.primitiveTopologyPatchListRestart, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -12887,7 +12887,7 @@ template <> std::string ToString<decode::Decoded_VkImportMemoryZirconHandleInfoF
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "handle", toStringFlags, tabCount, tabSize, ToString(obj.handle, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -12906,7 +12906,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryZirconHandlePropertiesF
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memoryTypeBits", toStringFlags, tabCount, tabSize, ToString(obj.memoryTypeBits, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -12924,7 +12924,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryGetZirconHandleInfoFUCH
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memory", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.memory) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             /* Struct has at least one handle - Andy */
@@ -12945,7 +12945,7 @@ template <> std::string ToString<decode::Decoded_VkImportSemaphoreZirconHandleIn
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "semaphore", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.semaphore) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -12968,7 +12968,7 @@ template <> std::string ToString<decode::Decoded_VkSemaphoreGetZirconHandleInfoF
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "semaphore", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.semaphore) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             /* Struct has at least one handle - Andy */
@@ -12989,7 +12989,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceInvocationMaskF
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "invocationMask", toStringFlags, tabCount, tabSize, ToString(obj.invocationMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13007,7 +13007,7 @@ template <> std::string ToString<decode::Decoded_VkMemoryGetRemoteAddressInfoNV>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "memory", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.memory) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             /* Struct has at least one handle - Andy */
@@ -13028,7 +13028,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceExternalMemoryR
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "externalMemoryRDMA", toStringFlags, tabCount, tabSize, ToString(obj.externalMemoryRDMA, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13046,7 +13046,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceExtendedDynamic
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "extendedDynamicState2", toStringFlags, tabCount, tabSize, ToString(obj.extendedDynamicState2, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "extendedDynamicState2LogicOp", toStringFlags, tabCount, tabSize, ToString(obj.extendedDynamicState2LogicOp, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "extendedDynamicState2PatchControlPoints", toStringFlags, tabCount, tabSize, ToString(obj.extendedDynamicState2PatchControlPoints, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -13066,7 +13066,7 @@ template <> std::string ToString<decode::Decoded_VkScreenSurfaceCreateInfoQNX>(c
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "context", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.context) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
             FieldToString(strStrm, false, "window", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.window) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
@@ -13086,7 +13086,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceColorWriteEnabl
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "colorWriteEnable", toStringFlags, tabCount, tabSize, ToString(obj.colorWriteEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13104,7 +13104,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineColorWriteCreateInfoE
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "attachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.attachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pColorWriteEnables", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentCount, obj.pColorWriteEnables, toStringFlags, tabCount, tabSize));
         }
@@ -13123,7 +13123,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePrimitivesGener
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "primitivesGeneratedQuery", toStringFlags, tabCount, tabSize, ToString(obj.primitivesGeneratedQuery, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "primitivesGeneratedQueryWithRasterizerDiscard", toStringFlags, tabCount, tabSize, ToString(obj.primitivesGeneratedQueryWithRasterizerDiscard, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "primitivesGeneratedQueryWithNonZeroStreams", toStringFlags, tabCount, tabSize, ToString(obj.primitivesGeneratedQueryWithNonZeroStreams, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -13143,7 +13143,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceImageViewMinLod
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "minLod", toStringFlags, tabCount, tabSize, ToString(obj.minLod, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13161,7 +13161,7 @@ template <> std::string ToString<decode::Decoded_VkImageViewMinLodCreateInfoEXT>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "minLod", toStringFlags, tabCount, tabSize, ToString(obj.minLod, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13179,7 +13179,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMultiDrawFeatur
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "multiDraw", toStringFlags, tabCount, tabSize, ToString(obj.multiDraw, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13197,7 +13197,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMultiDrawProper
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxMultiDrawCount", toStringFlags, tabCount, tabSize, ToString(obj.maxMultiDrawCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13250,7 +13250,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceImage2DViewOf3D
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "image2DViewOf3D", toStringFlags, tabCount, tabSize, ToString(obj.image2DViewOf3D, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "sampler2DViewOf3D", toStringFlags, tabCount, tabSize, ToString(obj.sampler2DViewOf3D, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -13269,7 +13269,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceBorderColorSwiz
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "borderColorSwizzle", toStringFlags, tabCount, tabSize, ToString(obj.borderColorSwizzle, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "borderColorSwizzleFromImage", toStringFlags, tabCount, tabSize, ToString(obj.borderColorSwizzleFromImage, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -13288,7 +13288,7 @@ template <> std::string ToString<decode::Decoded_VkSamplerBorderColorComponentMa
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "components", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.components), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "srgb", toStringFlags, tabCount, tabSize, ToString(obj.srgb, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -13307,7 +13307,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDevicePageableDeviceL
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pageableDeviceLocalMemory", toStringFlags, tabCount, tabSize, ToString(obj.pageableDeviceLocalMemory, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13325,7 +13325,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDescriptorSetHo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "descriptorSetHostMapping", toStringFlags, tabCount, tabSize, ToString(obj.descriptorSetHostMapping, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13343,7 +13343,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorSetBindingReference
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "descriptorSetLayout", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.descriptorSetLayout) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "binding", toStringFlags, tabCount, tabSize, ToString(obj.binding, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             /* Struct has at least one handle - Andy */
@@ -13364,7 +13364,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorSetLayoutHostMappin
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "descriptorOffset", toStringFlags, tabCount, tabSize, ToString(obj.descriptorOffset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "descriptorSize", toStringFlags, tabCount, tabSize, ToString(obj.descriptorSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -13383,7 +13383,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFragmentDensity
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fragmentDensityMapOffset", toStringFlags, tabCount, tabSize, ToString(obj.fragmentDensityMapOffset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13401,7 +13401,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceFragmentDensity
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fragmentDensityOffsetGranularity", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.fragmentDensityOffsetGranularity), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -13419,7 +13419,7 @@ template <> std::string ToString<decode::Decoded_VkSubpassFragmentDensityMapOffs
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fragmentDensityOffsetCount", toStringFlags, tabCount, tabSize, ToString(obj.fragmentDensityOffsetCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pFragmentDensityOffsets", toStringFlags, tabCount, tabSize, ArrayToString(obj.fragmentDensityOffsetCount, obj.pFragmentDensityOffsets, toStringFlags, tabCount, tabSize));
         }
@@ -13438,7 +13438,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceLinearColorAtta
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "linearColorAttachment", toStringFlags, tabCount, tabSize, ToString(obj.linearColorAttachment, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13456,7 +13456,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceImageCompressio
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "imageCompressionControlSwapchain", toStringFlags, tabCount, tabSize, ToString(obj.imageCompressionControlSwapchain, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13474,7 +13474,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceSubpassMergeFee
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "subpassMergeFeedback", toStringFlags, tabCount, tabSize, ToString(obj.subpassMergeFeedback, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13492,7 +13492,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassCreationControlEXT>
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "disallowMerging", toStringFlags, tabCount, tabSize, ToString(obj.disallowMerging, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13526,7 +13526,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassCreationFeedbackCre
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pRenderPassFeedback", toStringFlags, tabCount, tabSize, (obj.pRenderPassFeedback ? ToString(*obj.pRenderPassFeedback, toStringFlags, tabCount, tabSize) : "\"null\""));
         }
     );
@@ -13562,7 +13562,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassSubpassFeedbackCrea
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pSubpassFeedback", toStringFlags, tabCount, tabSize, (obj.pSubpassFeedback ? ToString(*obj.pSubpassFeedback, toStringFlags, tabCount, tabSize) : "\"null\""));
         }
     );
@@ -13599,7 +13599,7 @@ template <> std::string ToString<decode::Decoded_VkAccelerationStructureGeometry
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "vertexFormat", toStringFlags, tabCount, tabSize, '"' + ToString(obj.vertexFormat, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "vertexData", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.vertexData), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "vertexStride", toStringFlags, tabCount, tabSize, ToString(obj.vertexStride, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -13623,7 +13623,7 @@ template <> std::string ToString<decode::Decoded_VkAccelerationStructureGeometry
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "data", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.data), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "stride", toStringFlags, tabCount, tabSize, ToString(obj.stride, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -13642,7 +13642,7 @@ template <> std::string ToString<decode::Decoded_VkAccelerationStructureGeometry
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "arrayOfPointers", toStringFlags, tabCount, tabSize, ToString(obj.arrayOfPointers, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "data", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.data), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
@@ -13661,7 +13661,7 @@ template <> std::string ToString<decode::Decoded_VkAccelerationStructureCreateIn
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "createFlags", toStringFlags, tabCount, tabSize, ToString(obj.createFlags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "buffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.buffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "offset", toStringFlags, tabCount, tabSize, ToString(obj.offset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -13686,7 +13686,7 @@ template <> std::string ToString<decode::Decoded_VkWriteDescriptorSetAcceleratio
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "accelerationStructureCount", toStringFlags, tabCount, tabSize, ToString(obj.accelerationStructureCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pAccelerationStructures", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pAccelerationStructures, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             /* Struct has at least one handle - Andy */
@@ -13707,7 +13707,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceAccelerationStr
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "accelerationStructure", toStringFlags, tabCount, tabSize, ToString(obj.accelerationStructure, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "accelerationStructureCaptureReplay", toStringFlags, tabCount, tabSize, ToString(obj.accelerationStructureCaptureReplay, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "accelerationStructureIndirectBuild", toStringFlags, tabCount, tabSize, ToString(obj.accelerationStructureIndirectBuild, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -13729,7 +13729,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceAccelerationStr
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxGeometryCount", toStringFlags, tabCount, tabSize, ToString(obj.maxGeometryCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxInstanceCount", toStringFlags, tabCount, tabSize, ToString(obj.maxInstanceCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxPrimitiveCount", toStringFlags, tabCount, tabSize, ToString(obj.maxPrimitiveCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -13754,7 +13754,7 @@ template <> std::string ToString<decode::Decoded_VkAccelerationStructureDeviceAd
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "accelerationStructure", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.accelerationStructure) + '"' /* < ------------ handle case*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
@@ -13774,7 +13774,7 @@ template <> std::string ToString<decode::Decoded_VkCopyAccelerationStructureToMe
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "src", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.src) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "dst", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.dst), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "mode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.mode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -13796,7 +13796,7 @@ template <> std::string ToString<decode::Decoded_VkCopyMemoryToAccelerationStruc
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "src", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.src), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "dst", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.dst) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "mode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.mode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -13818,7 +13818,7 @@ template <> std::string ToString<decode::Decoded_VkCopyAccelerationStructureInfo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "src", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.src) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "dst", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.dst) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "mode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.mode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -13840,7 +13840,7 @@ template <> std::string ToString<decode::Decoded_VkAccelerationStructureBuildSiz
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "accelerationStructureSize", toStringFlags, tabCount, tabSize, ToString(obj.accelerationStructureSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "updateScratchSize", toStringFlags, tabCount, tabSize, ToString(obj.updateScratchSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "buildScratchSize", toStringFlags, tabCount, tabSize, ToString(obj.buildScratchSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -13860,7 +13860,7 @@ template <> std::string ToString<decode::Decoded_VkRayTracingShaderGroupCreateIn
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.type, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "generalShader", toStringFlags, tabCount, tabSize, ToString(obj.generalShader, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "closestHitShader", toStringFlags, tabCount, tabSize, ToString(obj.closestHitShader, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -13883,7 +13883,7 @@ template <> std::string ToString<decode::Decoded_VkRayTracingPipelineInterfaceCr
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxPipelineRayPayloadSize", toStringFlags, tabCount, tabSize, ToString(obj.maxPipelineRayPayloadSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxPipelineRayHitAttributeSize", toStringFlags, tabCount, tabSize, ToString(obj.maxPipelineRayHitAttributeSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -13902,7 +13902,7 @@ template <> std::string ToString<decode::Decoded_VkRayTracingPipelineCreateInfoK
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "stageCount", toStringFlags, tabCount, tabSize, ToString(obj.stageCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pStages", toStringFlags, tabCount, tabSize, ArrayToString(obj.stageCount, obj.pStages, toStringFlags, tabCount, tabSize));
@@ -13933,7 +13933,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceRayTracingPipel
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "rayTracingPipeline", toStringFlags, tabCount, tabSize, ToString(obj.rayTracingPipeline, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "rayTracingPipelineShaderGroupHandleCaptureReplay", toStringFlags, tabCount, tabSize, ToString(obj.rayTracingPipelineShaderGroupHandleCaptureReplay, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "rayTracingPipelineShaderGroupHandleCaptureReplayMixed", toStringFlags, tabCount, tabSize, ToString(obj.rayTracingPipelineShaderGroupHandleCaptureReplayMixed, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -13955,7 +13955,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceRayTracingPipel
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shaderGroupHandleSize", toStringFlags, tabCount, tabSize, ToString(obj.shaderGroupHandleSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxRayRecursionDepth", toStringFlags, tabCount, tabSize, ToString(obj.maxRayRecursionDepth, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxShaderGroupStride", toStringFlags, tabCount, tabSize, ToString(obj.maxShaderGroupStride, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -14016,7 +14016,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceRayQueryFeature
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- ToDo: Generate pnext to strings for decoded types.*/);
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "rayQuery", toStringFlags, tabCount, tabSize, ToString(obj.rayQuery, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
