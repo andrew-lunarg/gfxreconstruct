@@ -284,7 +284,36 @@ inline std::string PointerDecoderArrayToString(const CountType&    countObj,
         tabCount,
         tabSize,
         [&]() { return pObjs && !pObjs->IsNull(); },
-        [&](uint32_t i) { return ToString(pObjs->GetPointer()[i], toStringFlags, tabCount + 1, tabSize); });
+        [&](uint32_t i)
+        {
+            //Original iterating over raw Vulkan Structs:
+            return ToString(pObjs->GetPointer()[i], toStringFlags, tabCount + 1, tabSize);
+        }
+    );
+}
+
+template <typename Decoded_VkStructType>
+inline std::string PointerDecoderArrayToString(const StructPointerDecoder<Decoded_VkStructType>& pObjsPointerDecoder,
+                                               util::ToStringFlags toStringFlags = util::kToString_Default,
+                                               uint32_t            tabCount      = 0,
+                                               uint32_t            tabSize       = 4)
+{
+    using namespace util;
+    const size_t countObj = pObjsPointerDecoder.GetLength();
+    const Decoded_VkStructType* pObjs = pObjsPointerDecoder.GetMetaStructPointer();
+
+    return ArrayToString(
+        GetCount(countObj),
+        pObjs,
+        toStringFlags,
+        tabCount,
+        tabSize,
+        [&]() { return pObjs && (pObjs != nullptr); },
+        [&](uint32_t i)
+        {
+            return ToString(pObjs[i], toStringFlags, tabCount + 1, tabSize);
+        }
+    );
 }
 
 template <typename CountType, typename PointerDecoderType>

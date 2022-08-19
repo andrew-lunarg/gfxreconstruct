@@ -284,7 +284,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineCacheHeaderVersionOne
             FieldToString(strStrm, false, "headerVersion", toStringFlags, tabCount, tabSize, '"' + ToString(obj.headerVersion, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "vendorID", toStringFlags, tabCount, tabSize, ToString(obj.vendorID, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "deviceID", toStringFlags, tabCount, tabSize, ToString(obj.deviceID, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pipelineCacheUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.pipelineCacheUUID) + '"');
+            FieldToString(strStrm, false, "pipelineCacheUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.pipelineCacheUUID) + '"' /** <-------- UUID case. @todo */);
         }
     );
 }
@@ -384,7 +384,7 @@ template <> std::string ToString<decode::Decoded_VkInstanceCreateInfo>(const dec
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pApplicationInfo", toStringFlags, tabCount, tabSize, (obj.pApplicationInfo ? ToString(*obj.pApplicationInfo, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pApplicationInfo", toStringFlags, tabCount, tabSize, (obj.pApplicationInfo ? ToString(*obj.pApplicationInfo, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
             FieldToString(strStrm, false, "enabledLayerCount", toStringFlags, tabCount, tabSize, ToString(obj.enabledLayerCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "ppEnabledLayerNames", toStringFlags, tabCount, tabSize, CStrArrayToString(obj.enabledLayerCount, obj.ppEnabledLayerNames, toStringFlags, tabCount, tabSize) /* <--------- Pointer to C strings case */);
             FieldToString(strStrm, false, "enabledExtensionCount", toStringFlags, tabCount, tabSize, ToString(obj.enabledExtensionCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -560,9 +560,9 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceLimits>(const d
             FieldToString(strStrm, false, "maxFragmentDualSrcAttachments", toStringFlags, tabCount, tabSize, ToString(obj.maxFragmentDualSrcAttachments, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxFragmentCombinedOutputResources", toStringFlags, tabCount, tabSize, ToString(obj.maxFragmentCombinedOutputResources, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxComputeSharedMemorySize", toStringFlags, tabCount, tabSize, ToString(obj.maxComputeSharedMemorySize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "maxComputeWorkGroupCount", toStringFlags, tabCount, tabSize, ArrayToString(3, obj.maxComputeWorkGroupCount, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "maxComputeWorkGroupCount", toStringFlags, tabCount, tabSize, ArrayToString(3, obj.maxComputeWorkGroupCount, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
             FieldToString(strStrm, false, "maxComputeWorkGroupInvocations", toStringFlags, tabCount, tabSize, ToString(obj.maxComputeWorkGroupInvocations, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "maxComputeWorkGroupSize", toStringFlags, tabCount, tabSize, ArrayToString(3, obj.maxComputeWorkGroupSize, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "maxComputeWorkGroupSize", toStringFlags, tabCount, tabSize, ArrayToString(3, obj.maxComputeWorkGroupSize, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
             FieldToString(strStrm, false, "subPixelPrecisionBits", toStringFlags, tabCount, tabSize, ToString(obj.subPixelPrecisionBits, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "subTexelPrecisionBits", toStringFlags, tabCount, tabSize, ToString(obj.subTexelPrecisionBits, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "mipmapPrecisionBits", toStringFlags, tabCount, tabSize, ToString(obj.mipmapPrecisionBits, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -571,8 +571,8 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceLimits>(const d
             FieldToString(strStrm, false, "maxSamplerLodBias", toStringFlags, tabCount, tabSize, ToString(obj.maxSamplerLodBias, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxSamplerAnisotropy", toStringFlags, tabCount, tabSize, ToString(obj.maxSamplerAnisotropy, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxViewports", toStringFlags, tabCount, tabSize, ToString(obj.maxViewports, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "maxViewportDimensions", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.maxViewportDimensions, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "viewportBoundsRange", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.viewportBoundsRange, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "maxViewportDimensions", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.maxViewportDimensions, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
+            FieldToString(strStrm, false, "viewportBoundsRange", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.viewportBoundsRange, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
             FieldToString(strStrm, false, "viewportSubPixelBits", toStringFlags, tabCount, tabSize, ToString(obj.viewportSubPixelBits, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "minMemoryMapAlignment", toStringFlags, tabCount, tabSize, ToString(obj.minMemoryMapAlignment, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "minTexelBufferOffsetAlignment", toStringFlags, tabCount, tabSize, ToString(obj.minTexelBufferOffsetAlignment, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -605,8 +605,8 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceLimits>(const d
             FieldToString(strStrm, false, "maxCullDistances", toStringFlags, tabCount, tabSize, ToString(obj.maxCullDistances, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxCombinedClipAndCullDistances", toStringFlags, tabCount, tabSize, ToString(obj.maxCombinedClipAndCullDistances, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "discreteQueuePriorities", toStringFlags, tabCount, tabSize, ToString(obj.discreteQueuePriorities, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pointSizeRange", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.pointSizeRange, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "lineWidthRange", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.lineWidthRange, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pointSizeRange", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.pointSizeRange, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
+            FieldToString(strStrm, false, "lineWidthRange", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.lineWidthRange, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
             FieldToString(strStrm, false, "pointSizeGranularity", toStringFlags, tabCount, tabSize, ToString(obj.pointSizeGranularity, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "lineWidthGranularity", toStringFlags, tabCount, tabSize, ToString(obj.lineWidthGranularity, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "strictLines", toStringFlags, tabCount, tabSize, ToString(obj.strictLines, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -654,8 +654,8 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceProperties>(con
             FieldToString(strStrm, false, "vendorID", toStringFlags, tabCount, tabSize, ToString(obj.vendorID, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "deviceID", toStringFlags, tabCount, tabSize, ToString(obj.deviceID, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "deviceType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.deviceType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "deviceName", toStringFlags, tabCount, tabSize, '"' + std::string(obj.deviceName) + '"');
-            FieldToString(strStrm, false, "pipelineCacheUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.pipelineCacheUUID) + '"');
+            FieldToString(strStrm, false, "deviceName", toStringFlags, tabCount, tabSize, '"' + std::string(obj.deviceName) + '"' /** <-------- Embedded array of chars case. @todo */);
+            FieldToString(strStrm, false, "pipelineCacheUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.pipelineCacheUUID) + '"' /** <-------- UUID case. @todo */);
             FieldToString(strStrm, false, "limits", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.limits), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "sparseProperties", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.sparseProperties), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
@@ -697,7 +697,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceQueueCreateInfo>(const 
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "queueFamilyIndex", toStringFlags, tabCount, tabSize, ToString(obj.queueFamilyIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "queueCount", toStringFlags, tabCount, tabSize, ToString(obj.queueCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pQueuePriorities", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueCount, obj.pQueuePriorities, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pQueuePriorities", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueCount, obj.pQueuePriorities, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -717,12 +717,12 @@ template <> std::string ToString<decode::Decoded_VkDeviceCreateInfo>(const decod
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "queueCreateInfoCount", toStringFlags, tabCount, tabSize, ToString(obj.queueCreateInfoCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pQueueCreateInfos", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueCreateInfoCount, obj.pQueueCreateInfos, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pQueueCreateInfos", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueCreateInfoCount, obj.pQueueCreateInfos, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "enabledLayerCount", toStringFlags, tabCount, tabSize, ToString(obj.enabledLayerCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "ppEnabledLayerNames", toStringFlags, tabCount, tabSize, CStrArrayToString(obj.enabledLayerCount, obj.ppEnabledLayerNames, toStringFlags, tabCount, tabSize) /* <--------- Pointer to C strings case */);
             FieldToString(strStrm, false, "enabledExtensionCount", toStringFlags, tabCount, tabSize, ToString(obj.enabledExtensionCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "ppEnabledExtensionNames", toStringFlags, tabCount, tabSize, CStrArrayToString(obj.enabledExtensionCount, obj.ppEnabledExtensionNames, toStringFlags, tabCount, tabSize) /* <--------- Pointer to C strings case */);
-            FieldToString(strStrm, false, "pEnabledFeatures", toStringFlags, tabCount, tabSize, (obj.pEnabledFeatures ? ToString(*obj.pEnabledFeatures, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pEnabledFeatures", toStringFlags, tabCount, tabSize, (obj.pEnabledFeatures ? ToString(*obj.pEnabledFeatures, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
         }
     );
 }
@@ -738,7 +738,7 @@ template <> std::string ToString<decode::Decoded_VkExtensionProperties>(const de
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "extensionName", toStringFlags, tabCount, tabSize, '"' + std::string(obj.extensionName) + '"');
+            FieldToString(strStrm, true, "extensionName", toStringFlags, tabCount, tabSize, '"' + std::string(obj.extensionName) + '"' /** <-------- Embedded array of chars case. @todo */);
             FieldToString(strStrm, false, "specVersion", toStringFlags, tabCount, tabSize, ToString(obj.specVersion, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -755,10 +755,10 @@ template <> std::string ToString<decode::Decoded_VkLayerProperties>(const decode
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "layerName", toStringFlags, tabCount, tabSize, '"' + std::string(obj.layerName) + '"');
+            FieldToString(strStrm, true, "layerName", toStringFlags, tabCount, tabSize, '"' + std::string(obj.layerName) + '"' /** <-------- Embedded array of chars case. @todo */);
             FieldToString(strStrm, false, "specVersion", toStringFlags, tabCount, tabSize, ToString(obj.specVersion, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "implementationVersion", toStringFlags, tabCount, tabSize, ToString(obj.implementationVersion, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"');
+            FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"' /** <-------- Embedded array of chars case. @todo */);
         }
     );
 }
@@ -778,7 +778,7 @@ template <> std::string ToString<decode::Decoded_VkSubmitInfo>(const decode::Dec
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "waitSemaphoreCount", toStringFlags, tabCount, tabSize, ToString(obj.waitSemaphoreCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pWaitSemaphores", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pWaitSemaphores, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
-            FieldToString(strStrm, false, "pWaitDstStageMask", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreCount, obj.pWaitDstStageMask, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pWaitDstStageMask", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreCount, obj.pWaitDstStageMask, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             FieldToString(strStrm, false, "commandBufferCount", toStringFlags, tabCount, tabSize, ToString(obj.commandBufferCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pCommandBuffers", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pCommandBuffers, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             FieldToString(strStrm, false, "signalSemaphoreCount", toStringFlags, tabCount, tabSize, ToString(obj.signalSemaphoreCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -883,7 +883,7 @@ template <> std::string ToString<decode::Decoded_VkSparseBufferMemoryBindInfo>(c
         {
             FieldToString(strStrm, true, "buffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.buffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "bindCount", toStringFlags, tabCount, tabSize, ToString(obj.bindCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pBinds", toStringFlags, tabCount, tabSize, ArrayToString(obj.bindCount, obj.pBinds, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pBinds", toStringFlags, tabCount, tabSize, ArrayToString(obj.bindCount, obj.pBinds, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
         }
@@ -903,7 +903,7 @@ template <> std::string ToString<decode::Decoded_VkSparseImageOpaqueMemoryBindIn
         {
             FieldToString(strStrm, true, "image", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.image) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "bindCount", toStringFlags, tabCount, tabSize, ToString(obj.bindCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pBinds", toStringFlags, tabCount, tabSize, ArrayToString(obj.bindCount, obj.pBinds, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pBinds", toStringFlags, tabCount, tabSize, ArrayToString(obj.bindCount, obj.pBinds, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
         }
@@ -964,7 +964,7 @@ template <> std::string ToString<decode::Decoded_VkSparseImageMemoryBindInfo>(co
         {
             FieldToString(strStrm, true, "image", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.image) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "bindCount", toStringFlags, tabCount, tabSize, ToString(obj.bindCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pBinds", toStringFlags, tabCount, tabSize, ArrayToString(obj.bindCount, obj.pBinds, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pBinds", toStringFlags, tabCount, tabSize, ArrayToString(obj.bindCount, obj.pBinds, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
         }
@@ -987,11 +987,11 @@ template <> std::string ToString<decode::Decoded_VkBindSparseInfo>(const decode:
             FieldToString(strStrm, false, "waitSemaphoreCount", toStringFlags, tabCount, tabSize, ToString(obj.waitSemaphoreCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pWaitSemaphores", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pWaitSemaphores, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             FieldToString(strStrm, false, "bufferBindCount", toStringFlags, tabCount, tabSize, ToString(obj.bufferBindCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pBufferBinds", toStringFlags, tabCount, tabSize, ArrayToString(obj.bufferBindCount, obj.pBufferBinds, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pBufferBinds", toStringFlags, tabCount, tabSize, ArrayToString(obj.bufferBindCount, obj.pBufferBinds, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "imageOpaqueBindCount", toStringFlags, tabCount, tabSize, ToString(obj.imageOpaqueBindCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pImageOpaqueBinds", toStringFlags, tabCount, tabSize, ArrayToString(obj.imageOpaqueBindCount, obj.pImageOpaqueBinds, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pImageOpaqueBinds", toStringFlags, tabCount, tabSize, ArrayToString(obj.imageOpaqueBindCount, obj.pImageOpaqueBinds, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "imageBindCount", toStringFlags, tabCount, tabSize, ToString(obj.imageBindCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pImageBinds", toStringFlags, tabCount, tabSize, ArrayToString(obj.imageBindCount, obj.pImageBinds, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pImageBinds", toStringFlags, tabCount, tabSize, ArrayToString(obj.imageBindCount, obj.pImageBinds, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "signalSemaphoreCount", toStringFlags, tabCount, tabSize, ToString(obj.signalSemaphoreCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pSignalSemaphores", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pSignalSemaphores, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             /* Struct has at least one handle - Andy */
@@ -1131,7 +1131,7 @@ template <> std::string ToString<decode::Decoded_VkBufferCreateInfo>(const decod
             FieldToString(strStrm, false, "usage", toStringFlags, tabCount, tabSize, ToString(obj.usage, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "sharingMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sharingMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "queueFamilyIndexCount", toStringFlags, tabCount, tabSize, ToString(obj.queueFamilyIndexCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pQueueFamilyIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueFamilyIndexCount, obj.pQueueFamilyIndices, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pQueueFamilyIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueFamilyIndexCount, obj.pQueueFamilyIndices, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -1184,7 +1184,7 @@ template <> std::string ToString<decode::Decoded_VkImageCreateInfo>(const decode
             FieldToString(strStrm, false, "usage", toStringFlags, tabCount, tabSize, ToString(obj.usage, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "sharingMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sharingMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "queueFamilyIndexCount", toStringFlags, tabCount, tabSize, ToString(obj.queueFamilyIndexCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pQueueFamilyIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueFamilyIndexCount, obj.pQueueFamilyIndices, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pQueueFamilyIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueFamilyIndexCount, obj.pQueueFamilyIndices, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             FieldToString(strStrm, false, "initialLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.initialLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -1304,7 +1304,7 @@ template <> std::string ToString<decode::Decoded_VkSpecializationInfo>(const dec
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "mapEntryCount", toStringFlags, tabCount, tabSize, ToString(obj.mapEntryCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pMapEntries", toStringFlags, tabCount, tabSize, ArrayToString(obj.mapEntryCount, obj.pMapEntries, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pMapEntries", toStringFlags, tabCount, tabSize, ArrayToString(obj.mapEntryCount, obj.pMapEntries, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "dataSize", toStringFlags, tabCount, tabSize, ToString(obj.dataSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
         }
@@ -1328,7 +1328,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineShaderStageCreateInfo
             FieldToString(strStrm, false, "stage", toStringFlags, tabCount, tabSize, '"' + ToString(obj.stage, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "module", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.module) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "pName", toStringFlags, tabCount, tabSize, (obj.pName ? ("\"" + std::string(obj.pName) + "\"") : "null") /* <--------- C string case */);
-            FieldToString(strStrm, false, "pSpecializationInfo", toStringFlags, tabCount, tabSize, (obj.pSpecializationInfo ? ToString(*obj.pSpecializationInfo, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pSpecializationInfo", toStringFlags, tabCount, tabSize, (obj.pSpecializationInfo ? ToString(*obj.pSpecializationInfo, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
         }
@@ -1411,9 +1411,9 @@ template <> std::string ToString<decode::Decoded_VkPipelineVertexInputStateCreat
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "vertexBindingDescriptionCount", toStringFlags, tabCount, tabSize, ToString(obj.vertexBindingDescriptionCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pVertexBindingDescriptions", toStringFlags, tabCount, tabSize, ArrayToString(obj.vertexBindingDescriptionCount, obj.pVertexBindingDescriptions, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pVertexBindingDescriptions", toStringFlags, tabCount, tabSize, ArrayToString(obj.vertexBindingDescriptionCount, obj.pVertexBindingDescriptions, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "vertexAttributeDescriptionCount", toStringFlags, tabCount, tabSize, ToString(obj.vertexAttributeDescriptionCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pVertexAttributeDescriptions", toStringFlags, tabCount, tabSize, ArrayToString(obj.vertexAttributeDescriptionCount, obj.pVertexAttributeDescriptions, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pVertexAttributeDescriptions", toStringFlags, tabCount, tabSize, ArrayToString(obj.vertexAttributeDescriptionCount, obj.pVertexAttributeDescriptions, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -1493,9 +1493,9 @@ template <> std::string ToString<decode::Decoded_VkPipelineViewportStateCreateIn
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "viewportCount", toStringFlags, tabCount, tabSize, ToString(obj.viewportCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pViewports", toStringFlags, tabCount, tabSize, ArrayToString(obj.viewportCount, obj.pViewports, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pViewports", toStringFlags, tabCount, tabSize, ArrayToString(obj.viewportCount, obj.pViewports, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "scissorCount", toStringFlags, tabCount, tabSize, ToString(obj.scissorCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pScissors", toStringFlags, tabCount, tabSize, ArrayToString(obj.scissorCount, obj.pScissors, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pScissors", toStringFlags, tabCount, tabSize, ArrayToString(obj.scissorCount, obj.pScissors, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -1617,8 +1617,8 @@ template <> std::string ToString<decode::Decoded_VkPipelineColorBlendStateCreate
             FieldToString(strStrm, false, "logicOpEnable", toStringFlags, tabCount, tabSize, ToString(obj.logicOpEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "logicOp", toStringFlags, tabCount, tabSize, '"' + ToString(obj.logicOp, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "attachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.attachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentCount, obj.pAttachments, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "blendConstants", toStringFlags, tabCount, tabSize, ArrayToString(4, obj.blendConstants, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentCount, obj.pAttachments, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
+            FieldToString(strStrm, false, "blendConstants", toStringFlags, tabCount, tabSize, ArrayToString(4, obj.blendConstants, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
         }
     );
 }
@@ -1638,7 +1638,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineDynamicStateCreateInf
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "dynamicStateCount", toStringFlags, tabCount, tabSize, ToString(obj.dynamicStateCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDynamicStates", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.dynamicStateCount, obj.pDynamicStates, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDynamicStates", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.dynamicStateCount, obj.pDynamicStates, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */);
         }
     );
 }
@@ -1658,16 +1658,16 @@ template <> std::string ToString<decode::Decoded_VkGraphicsPipelineCreateInfo>(c
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "stageCount", toStringFlags, tabCount, tabSize, ToString(obj.stageCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pStages", toStringFlags, tabCount, tabSize, ArrayToString(obj.stageCount, obj.pStages, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pVertexInputState", toStringFlags, tabCount, tabSize, (obj.pVertexInputState ? ToString(*obj.pVertexInputState, toStringFlags, tabCount, tabSize) : "\"null\""));
-            FieldToString(strStrm, false, "pInputAssemblyState", toStringFlags, tabCount, tabSize, (obj.pInputAssemblyState ? ToString(*obj.pInputAssemblyState, toStringFlags, tabCount, tabSize) : "\"null\""));
-            FieldToString(strStrm, false, "pTessellationState", toStringFlags, tabCount, tabSize, (obj.pTessellationState ? ToString(*obj.pTessellationState, toStringFlags, tabCount, tabSize) : "\"null\""));
-            FieldToString(strStrm, false, "pViewportState", toStringFlags, tabCount, tabSize, (obj.pViewportState ? ToString(*obj.pViewportState, toStringFlags, tabCount, tabSize) : "\"null\""));
-            FieldToString(strStrm, false, "pRasterizationState", toStringFlags, tabCount, tabSize, (obj.pRasterizationState ? ToString(*obj.pRasterizationState, toStringFlags, tabCount, tabSize) : "\"null\""));
-            FieldToString(strStrm, false, "pMultisampleState", toStringFlags, tabCount, tabSize, (obj.pMultisampleState ? ToString(*obj.pMultisampleState, toStringFlags, tabCount, tabSize) : "\"null\""));
-            FieldToString(strStrm, false, "pDepthStencilState", toStringFlags, tabCount, tabSize, (obj.pDepthStencilState ? ToString(*obj.pDepthStencilState, toStringFlags, tabCount, tabSize) : "\"null\""));
-            FieldToString(strStrm, false, "pColorBlendState", toStringFlags, tabCount, tabSize, (obj.pColorBlendState ? ToString(*obj.pColorBlendState, toStringFlags, tabCount, tabSize) : "\"null\""));
-            FieldToString(strStrm, false, "pDynamicState", toStringFlags, tabCount, tabSize, (obj.pDynamicState ? ToString(*obj.pDynamicState, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pStages", toStringFlags, tabCount, tabSize, ArrayToString(obj.stageCount, obj.pStages, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
+            FieldToString(strStrm, false, "pVertexInputState", toStringFlags, tabCount, tabSize, (obj.pVertexInputState ? ToString(*obj.pVertexInputState, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
+            FieldToString(strStrm, false, "pInputAssemblyState", toStringFlags, tabCount, tabSize, (obj.pInputAssemblyState ? ToString(*obj.pInputAssemblyState, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
+            FieldToString(strStrm, false, "pTessellationState", toStringFlags, tabCount, tabSize, (obj.pTessellationState ? ToString(*obj.pTessellationState, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
+            FieldToString(strStrm, false, "pViewportState", toStringFlags, tabCount, tabSize, (obj.pViewportState ? ToString(*obj.pViewportState, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
+            FieldToString(strStrm, false, "pRasterizationState", toStringFlags, tabCount, tabSize, (obj.pRasterizationState ? ToString(*obj.pRasterizationState, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
+            FieldToString(strStrm, false, "pMultisampleState", toStringFlags, tabCount, tabSize, (obj.pMultisampleState ? ToString(*obj.pMultisampleState, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
+            FieldToString(strStrm, false, "pDepthStencilState", toStringFlags, tabCount, tabSize, (obj.pDepthStencilState ? ToString(*obj.pDepthStencilState, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
+            FieldToString(strStrm, false, "pColorBlendState", toStringFlags, tabCount, tabSize, (obj.pColorBlendState ? ToString(*obj.pColorBlendState, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
+            FieldToString(strStrm, false, "pDynamicState", toStringFlags, tabCount, tabSize, (obj.pDynamicState ? ToString(*obj.pDynamicState, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
             FieldToString(strStrm, false, "layout", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.layout) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "renderPass", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.renderPass) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "subpass", toStringFlags, tabCount, tabSize, ToString(obj.subpass, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -1714,7 +1714,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineLayoutCreateInfo>(con
             FieldToString(strStrm, false, "setLayoutCount", toStringFlags, tabCount, tabSize, ToString(obj.setLayoutCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pSetLayouts", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pSetLayouts, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             FieldToString(strStrm, false, "pushConstantRangeCount", toStringFlags, tabCount, tabSize, ToString(obj.pushConstantRangeCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pPushConstantRanges", toStringFlags, tabCount, tabSize, ArrayToString(obj.pushConstantRangeCount, obj.pPushConstantRanges, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pPushConstantRanges", toStringFlags, tabCount, tabSize, ArrayToString(obj.pushConstantRangeCount, obj.pPushConstantRanges, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one pointer to an array of handles - Andy */
         }
@@ -1833,7 +1833,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorPoolCreateInfo>(con
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxSets", toStringFlags, tabCount, tabSize, ToString(obj.maxSets, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "poolSizeCount", toStringFlags, tabCount, tabSize, ToString(obj.poolSizeCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pPoolSizes", toStringFlags, tabCount, tabSize, ArrayToString(obj.poolSizeCount, obj.pPoolSizes, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pPoolSizes", toStringFlags, tabCount, tabSize, ArrayToString(obj.poolSizeCount, obj.pPoolSizes, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -1898,7 +1898,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorSetLayoutCreateInfo
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "bindingCount", toStringFlags, tabCount, tabSize, ToString(obj.bindingCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pBindings", toStringFlags, tabCount, tabSize, ArrayToString(obj.bindingCount, obj.pBindings, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pBindings", toStringFlags, tabCount, tabSize, ArrayToString(obj.bindingCount, obj.pBindings, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -1985,13 +1985,13 @@ template <> std::string ToString<decode::Decoded_VkSubpassDescription>(const dec
             FieldToString(strStrm, true, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pipelineBindPoint", toStringFlags, tabCount, tabSize, '"' + ToString(obj.pipelineBindPoint, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "inputAttachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.inputAttachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pInputAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.inputAttachmentCount, obj.pInputAttachments, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pInputAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.inputAttachmentCount, obj.pInputAttachments, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "colorAttachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.colorAttachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pColorAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.colorAttachmentCount, obj.pColorAttachments, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pResolveAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.colorAttachmentCount, obj.pResolveAttachments, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pDepthStencilAttachment", toStringFlags, tabCount, tabSize, (obj.pDepthStencilAttachment ? ToString(*obj.pDepthStencilAttachment, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pColorAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.colorAttachmentCount, obj.pColorAttachments, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
+            FieldToString(strStrm, false, "pResolveAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.colorAttachmentCount, obj.pResolveAttachments, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
+            FieldToString(strStrm, false, "pDepthStencilAttachment", toStringFlags, tabCount, tabSize, (obj.pDepthStencilAttachment ? ToString(*obj.pDepthStencilAttachment, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
             FieldToString(strStrm, false, "preserveAttachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.preserveAttachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pPreserveAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.preserveAttachmentCount, obj.pPreserveAttachments, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pPreserveAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.preserveAttachmentCount, obj.pPreserveAttachments, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -2033,11 +2033,11 @@ template <> std::string ToString<decode::Decoded_VkRenderPassCreateInfo>(const d
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "attachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.attachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentCount, obj.pAttachments, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentCount, obj.pAttachments, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "subpassCount", toStringFlags, tabCount, tabSize, ToString(obj.subpassCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pSubpasses", toStringFlags, tabCount, tabSize, ArrayToString(obj.subpassCount, obj.pSubpasses, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pSubpasses", toStringFlags, tabCount, tabSize, ArrayToString(obj.subpassCount, obj.pSubpasses, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "dependencyCount", toStringFlags, tabCount, tabSize, ToString(obj.dependencyCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDependencies", toStringFlags, tabCount, tabSize, ArrayToString(obj.dependencyCount, obj.pDependencies, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDependencies", toStringFlags, tabCount, tabSize, ArrayToString(obj.dependencyCount, obj.pDependencies, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -2122,7 +2122,7 @@ template <> std::string ToString<decode::Decoded_VkCommandBufferBeginInfo>(const
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pInheritanceInfo", toStringFlags, tabCount, tabSize, (obj.pInheritanceInfo ? ToString(*obj.pInheritanceInfo, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pInheritanceInfo", toStringFlags, tabCount, tabSize, (obj.pInheritanceInfo ? ToString(*obj.pInheritanceInfo, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
         }
     );
 }
@@ -2250,9 +2250,9 @@ template <> std::string ToString<decode::Decoded_VkImageBlit>(const decode::Deco
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "srcSubresource", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.srcSubresource), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
-            FieldToString(strStrm, false, "srcOffsets", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.srcOffsets, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "srcOffsets", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.srcOffsets, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of structs case. @todo */);
             FieldToString(strStrm, false, "dstSubresource", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.dstSubresource), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
-            FieldToString(strStrm, false, "dstOffsets", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.dstOffsets, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "dstOffsets", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.dstOffsets, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of structs case. @todo */);
         }
     );
 }
@@ -2314,7 +2314,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassBeginInfo>(const de
             FieldToString(strStrm, false, "framebuffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.framebuffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "renderArea", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.renderArea), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "clearValueCount", toStringFlags, tabCount, tabSize, ToString(obj.clearValueCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pClearValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.clearValueCount, obj.pClearValues, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pClearValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.clearValueCount, obj.pClearValues, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
         }
@@ -2481,7 +2481,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceGroupRenderPassBeginInf
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceMask", toStringFlags, tabCount, tabSize, ToString(obj.deviceMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "deviceRenderAreaCount", toStringFlags, tabCount, tabSize, ToString(obj.deviceRenderAreaCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDeviceRenderAreas", toStringFlags, tabCount, tabSize, ArrayToString(obj.deviceRenderAreaCount, obj.pDeviceRenderAreas, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDeviceRenderAreas", toStringFlags, tabCount, tabSize, ArrayToString(obj.deviceRenderAreaCount, obj.pDeviceRenderAreas, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -2518,11 +2518,11 @@ template <> std::string ToString<decode::Decoded_VkDeviceGroupSubmitInfo>(const 
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "waitSemaphoreCount", toStringFlags, tabCount, tabSize, ToString(obj.waitSemaphoreCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pWaitSemaphoreDeviceIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreCount, obj.pWaitSemaphoreDeviceIndices, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pWaitSemaphoreDeviceIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreCount, obj.pWaitSemaphoreDeviceIndices, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             FieldToString(strStrm, false, "commandBufferCount", toStringFlags, tabCount, tabSize, ToString(obj.commandBufferCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pCommandBufferDeviceMasks", toStringFlags, tabCount, tabSize, ArrayToString(obj.commandBufferCount, obj.pCommandBufferDeviceMasks, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pCommandBufferDeviceMasks", toStringFlags, tabCount, tabSize, ArrayToString(obj.commandBufferCount, obj.pCommandBufferDeviceMasks, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             FieldToString(strStrm, false, "signalSemaphoreCount", toStringFlags, tabCount, tabSize, ToString(obj.signalSemaphoreCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pSignalSemaphoreDeviceIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.signalSemaphoreCount, obj.pSignalSemaphoreDeviceIndices, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pSignalSemaphoreDeviceIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.signalSemaphoreCount, obj.pSignalSemaphoreDeviceIndices, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -2560,7 +2560,7 @@ template <> std::string ToString<decode::Decoded_VkBindBufferMemoryDeviceGroupIn
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceIndexCount", toStringFlags, tabCount, tabSize, ToString(obj.deviceIndexCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDeviceIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.deviceIndexCount, obj.pDeviceIndices, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDeviceIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.deviceIndexCount, obj.pDeviceIndices, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -2579,9 +2579,9 @@ template <> std::string ToString<decode::Decoded_VkBindImageMemoryDeviceGroupInf
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "deviceIndexCount", toStringFlags, tabCount, tabSize, ToString(obj.deviceIndexCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDeviceIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.deviceIndexCount, obj.pDeviceIndices, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDeviceIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.deviceIndexCount, obj.pDeviceIndices, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             FieldToString(strStrm, false, "splitInstanceBindRegionCount", toStringFlags, tabCount, tabSize, ToString(obj.splitInstanceBindRegionCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pSplitInstanceBindRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.splitInstanceBindRegionCount, obj.pSplitInstanceBindRegions, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pSplitInstanceBindRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.splitInstanceBindRegionCount, obj.pSplitInstanceBindRegions, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -2600,7 +2600,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceGroupProperties
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "physicalDeviceCount", toStringFlags, tabCount, tabSize, ToString(obj.physicalDeviceCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "physicalDevices", toStringFlags, tabCount, tabSize, VkHandleArrayToString(obj.physicalDeviceCount, obj.physicalDevices, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "physicalDevices", toStringFlags, tabCount, tabSize, ArrayToString(decoded_obj.physicalDevices.GetLength(), decoded_obj.physicalDevices.GetPointer(), toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo Print decimals. */);
             FieldToString(strStrm, false, "subsetAllocation", toStringFlags, tabCount, tabSize, ToString(obj.subsetAllocation, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             /* Struct has at least one handle - Andy */
         }
@@ -2944,7 +2944,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassInputAttachmentAspe
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "aspectReferenceCount", toStringFlags, tabCount, tabSize, ToString(obj.aspectReferenceCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pAspectReferences", toStringFlags, tabCount, tabSize, ArrayToString(obj.aspectReferenceCount, obj.pAspectReferences, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pAspectReferences", toStringFlags, tabCount, tabSize, ArrayToString(obj.aspectReferenceCount, obj.pAspectReferences, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -2999,11 +2999,11 @@ template <> std::string ToString<decode::Decoded_VkRenderPassMultiviewCreateInfo
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "subpassCount", toStringFlags, tabCount, tabSize, ToString(obj.subpassCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pViewMasks", toStringFlags, tabCount, tabSize, ArrayToString(obj.subpassCount, obj.pViewMasks, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pViewMasks", toStringFlags, tabCount, tabSize, ArrayToString(obj.subpassCount, obj.pViewMasks, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             FieldToString(strStrm, false, "dependencyCount", toStringFlags, tabCount, tabSize, ToString(obj.dependencyCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pViewOffsets", toStringFlags, tabCount, tabSize, ArrayToString(obj.dependencyCount, obj.pViewOffsets, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pViewOffsets", toStringFlags, tabCount, tabSize, ArrayToString(obj.dependencyCount, obj.pViewOffsets, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             FieldToString(strStrm, false, "correlationMaskCount", toStringFlags, tabCount, tabSize, ToString(obj.correlationMaskCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pCorrelationMasks", toStringFlags, tabCount, tabSize, ArrayToString(obj.correlationMaskCount, obj.pCorrelationMasks, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pCorrelationMasks", toStringFlags, tabCount, tabSize, ArrayToString(obj.correlationMaskCount, obj.pCorrelationMasks, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -3293,7 +3293,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorUpdateTemplateCreat
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "descriptorUpdateEntryCount", toStringFlags, tabCount, tabSize, ToString(obj.descriptorUpdateEntryCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDescriptorUpdateEntries", toStringFlags, tabCount, tabSize, ArrayToString(obj.descriptorUpdateEntryCount, obj.pDescriptorUpdateEntries, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDescriptorUpdateEntries", toStringFlags, tabCount, tabSize, ArrayToString(obj.descriptorUpdateEntryCount, obj.pDescriptorUpdateEntries, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "templateType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.templateType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "descriptorSetLayout", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.descriptorSetLayout) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "pipelineBindPoint", toStringFlags, tabCount, tabSize, '"' + ToString(obj.pipelineBindPoint, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -3410,9 +3410,9 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceIDProperties>(c
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "deviceUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.deviceUUID) + '"');
-            FieldToString(strStrm, false, "driverUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.driverUUID) + '"');
-            FieldToString(strStrm, false, "deviceLUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_LUID_SIZE, obj.deviceLUID) + '"');
+            FieldToString(strStrm, false, "deviceUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.deviceUUID) + '"' /** <-------- UUID case. @todo */);
+            FieldToString(strStrm, false, "driverUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.driverUUID) + '"' /** <-------- UUID case. @todo */);
+            FieldToString(strStrm, false, "deviceLUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_LUID_SIZE, obj.deviceLUID) + '"' /** <-------- UUID case. @todo */);
             FieldToString(strStrm, false, "deviceNodeMask", toStringFlags, tabCount, tabSize, ToString(obj.deviceNodeMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "deviceLUIDValid", toStringFlags, tabCount, tabSize, ToString(obj.deviceLUIDValid, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -3682,9 +3682,9 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceVulkan11Propert
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "deviceUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.deviceUUID) + '"');
-            FieldToString(strStrm, false, "driverUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.driverUUID) + '"');
-            FieldToString(strStrm, false, "deviceLUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_LUID_SIZE, obj.deviceLUID) + '"');
+            FieldToString(strStrm, false, "deviceUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.deviceUUID) + '"' /** <-------- UUID case. @todo */);
+            FieldToString(strStrm, false, "driverUUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.driverUUID) + '"' /** <-------- UUID case. @todo */);
+            FieldToString(strStrm, false, "deviceLUID", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_LUID_SIZE, obj.deviceLUID) + '"' /** <-------- UUID case. @todo */);
             FieldToString(strStrm, false, "deviceNodeMask", toStringFlags, tabCount, tabSize, ToString(obj.deviceNodeMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "deviceLUIDValid", toStringFlags, tabCount, tabSize, ToString(obj.deviceLUIDValid, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "subgroupSize", toStringFlags, tabCount, tabSize, ToString(obj.subgroupSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -3798,8 +3798,8 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceVulkan12Propert
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "driverID", toStringFlags, tabCount, tabSize, '"' + ToString(obj.driverID, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "driverName", toStringFlags, tabCount, tabSize, '"' + std::string(obj.driverName) + '"');
-            FieldToString(strStrm, false, "driverInfo", toStringFlags, tabCount, tabSize, '"' + std::string(obj.driverInfo) + '"');
+            FieldToString(strStrm, false, "driverName", toStringFlags, tabCount, tabSize, '"' + std::string(obj.driverName) + '"' /** <-------- Embedded array of chars case. @todo */);
+            FieldToString(strStrm, false, "driverInfo", toStringFlags, tabCount, tabSize, '"' + std::string(obj.driverInfo) + '"' /** <-------- Embedded array of chars case. @todo */);
             FieldToString(strStrm, false, "conformanceVersion", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.conformanceVersion), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "denormBehaviorIndependence", toStringFlags, tabCount, tabSize, '"' + ToString(obj.denormBehaviorIndependence, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "roundingModeIndependence", toStringFlags, tabCount, tabSize, '"' + ToString(obj.roundingModeIndependence, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -3867,7 +3867,7 @@ template <> std::string ToString<decode::Decoded_VkImageFormatListCreateInfo>(co
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "viewFormatCount", toStringFlags, tabCount, tabSize, ToString(obj.viewFormatCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pViewFormats", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.viewFormatCount, obj.pViewFormats, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pViewFormats", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.viewFormatCount, obj.pViewFormats, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */);
         }
     );
 }
@@ -3935,13 +3935,13 @@ template <> std::string ToString<decode::Decoded_VkSubpassDescription2>(const de
             FieldToString(strStrm, false, "pipelineBindPoint", toStringFlags, tabCount, tabSize, '"' + ToString(obj.pipelineBindPoint, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "viewMask", toStringFlags, tabCount, tabSize, ToString(obj.viewMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "inputAttachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.inputAttachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pInputAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.inputAttachmentCount, obj.pInputAttachments, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pInputAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.inputAttachmentCount, obj.pInputAttachments, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "colorAttachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.colorAttachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pColorAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.colorAttachmentCount, obj.pColorAttachments, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pResolveAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.colorAttachmentCount, obj.pResolveAttachments, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pDepthStencilAttachment", toStringFlags, tabCount, tabSize, (obj.pDepthStencilAttachment ? ToString(*obj.pDepthStencilAttachment, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pColorAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.colorAttachmentCount, obj.pColorAttachments, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
+            FieldToString(strStrm, false, "pResolveAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.colorAttachmentCount, obj.pResolveAttachments, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
+            FieldToString(strStrm, false, "pDepthStencilAttachment", toStringFlags, tabCount, tabSize, (obj.pDepthStencilAttachment ? ToString(*obj.pDepthStencilAttachment, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
             FieldToString(strStrm, false, "preserveAttachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.preserveAttachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pPreserveAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.preserveAttachmentCount, obj.pPreserveAttachments, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pPreserveAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.preserveAttachmentCount, obj.pPreserveAttachments, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -3986,13 +3986,13 @@ template <> std::string ToString<decode::Decoded_VkRenderPassCreateInfo2>(const 
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "attachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.attachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentCount, obj.pAttachments, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentCount, obj.pAttachments, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "subpassCount", toStringFlags, tabCount, tabSize, ToString(obj.subpassCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pSubpasses", toStringFlags, tabCount, tabSize, ArrayToString(obj.subpassCount, obj.pSubpasses, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pSubpasses", toStringFlags, tabCount, tabSize, ArrayToString(obj.subpassCount, obj.pSubpasses, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "dependencyCount", toStringFlags, tabCount, tabSize, ToString(obj.dependencyCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDependencies", toStringFlags, tabCount, tabSize, ArrayToString(obj.dependencyCount, obj.pDependencies, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDependencies", toStringFlags, tabCount, tabSize, ArrayToString(obj.dependencyCount, obj.pDependencies, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "correlatedViewMaskCount", toStringFlags, tabCount, tabSize, ToString(obj.correlatedViewMaskCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pCorrelatedViewMasks", toStringFlags, tabCount, tabSize, ArrayToString(obj.correlatedViewMaskCount, obj.pCorrelatedViewMasks, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pCorrelatedViewMasks", toStringFlags, tabCount, tabSize, ArrayToString(obj.correlatedViewMaskCount, obj.pCorrelatedViewMasks, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -4066,8 +4066,8 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceDriverPropertie
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "driverID", toStringFlags, tabCount, tabSize, '"' + ToString(obj.driverID, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "driverName", toStringFlags, tabCount, tabSize, '"' + std::string(obj.driverName) + '"');
-            FieldToString(strStrm, false, "driverInfo", toStringFlags, tabCount, tabSize, '"' + std::string(obj.driverInfo) + '"');
+            FieldToString(strStrm, false, "driverName", toStringFlags, tabCount, tabSize, '"' + std::string(obj.driverName) + '"' /** <-------- Embedded array of chars case. @todo */);
+            FieldToString(strStrm, false, "driverInfo", toStringFlags, tabCount, tabSize, '"' + std::string(obj.driverInfo) + '"' /** <-------- Embedded array of chars case. @todo */);
             FieldToString(strStrm, false, "conformanceVersion", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.conformanceVersion), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -4159,7 +4159,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorSetLayoutBindingFla
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "bindingCount", toStringFlags, tabCount, tabSize, ToString(obj.bindingCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pBindingFlags", toStringFlags, tabCount, tabSize, ArrayToString(obj.bindingCount, obj.pBindingFlags, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pBindingFlags", toStringFlags, tabCount, tabSize, ArrayToString(obj.bindingCount, obj.pBindingFlags, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -4255,7 +4255,7 @@ template <> std::string ToString<decode::Decoded_VkDescriptorSetVariableDescript
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "descriptorSetCount", toStringFlags, tabCount, tabSize, ToString(obj.descriptorSetCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDescriptorCounts", toStringFlags, tabCount, tabSize, ArrayToString(obj.descriptorSetCount, obj.pDescriptorCounts, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDescriptorCounts", toStringFlags, tabCount, tabSize, ArrayToString(obj.descriptorSetCount, obj.pDescriptorCounts, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -4293,7 +4293,7 @@ template <> std::string ToString<decode::Decoded_VkSubpassDescriptionDepthStenci
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "depthResolveMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.depthResolveMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "stencilResolveMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.stencilResolveMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "pDepthStencilResolveAttachment", toStringFlags, tabCount, tabSize, (obj.pDepthStencilResolveAttachment ? ToString(*obj.pDepthStencilResolveAttachment, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pDepthStencilResolveAttachment", toStringFlags, tabCount, tabSize, (obj.pDepthStencilResolveAttachment ? ToString(*obj.pDepthStencilResolveAttachment, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
         }
     );
 }
@@ -4449,7 +4449,7 @@ template <> std::string ToString<decode::Decoded_VkFramebufferAttachmentImageInf
             FieldToString(strStrm, false, "height", toStringFlags, tabCount, tabSize, ToString(obj.height, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "layerCount", toStringFlags, tabCount, tabSize, ToString(obj.layerCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "viewFormatCount", toStringFlags, tabCount, tabSize, ToString(obj.viewFormatCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pViewFormats", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.viewFormatCount, obj.pViewFormats, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pViewFormats", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.viewFormatCount, obj.pViewFormats, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */);
         }
     );
 }
@@ -4468,7 +4468,7 @@ template <> std::string ToString<decode::Decoded_VkFramebufferAttachmentsCreateI
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "attachmentImageInfoCount", toStringFlags, tabCount, tabSize, ToString(obj.attachmentImageInfoCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pAttachmentImageInfos", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentImageInfoCount, obj.pAttachmentImageInfos, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pAttachmentImageInfos", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentImageInfoCount, obj.pAttachmentImageInfos, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -4672,9 +4672,9 @@ template <> std::string ToString<decode::Decoded_VkTimelineSemaphoreSubmitInfo>(
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "waitSemaphoreValueCount", toStringFlags, tabCount, tabSize, ToString(obj.waitSemaphoreValueCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pWaitSemaphoreValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreValueCount, obj.pWaitSemaphoreValues, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pWaitSemaphoreValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreValueCount, obj.pWaitSemaphoreValues, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             FieldToString(strStrm, false, "signalSemaphoreValueCount", toStringFlags, tabCount, tabSize, ToString(obj.signalSemaphoreValueCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pSignalSemaphoreValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.signalSemaphoreValueCount, obj.pSignalSemaphoreValues, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pSignalSemaphoreValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.signalSemaphoreValueCount, obj.pSignalSemaphoreValues, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -4695,7 +4695,7 @@ template <> std::string ToString<decode::Decoded_VkSemaphoreWaitInfo>(const deco
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "semaphoreCount", toStringFlags, tabCount, tabSize, ToString(obj.semaphoreCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pSemaphores", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pSemaphores, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
-            FieldToString(strStrm, false, "pValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.semaphoreCount, obj.pValues, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.semaphoreCount, obj.pValues, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one pointer to an array of handles - Andy */
         }
@@ -4943,9 +4943,9 @@ template <> std::string ToString<decode::Decoded_VkPipelineCreationFeedbackCreat
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "pPipelineCreationFeedback", toStringFlags, tabCount, tabSize, (obj.pPipelineCreationFeedback ? ToString(*obj.pPipelineCreationFeedback, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pPipelineCreationFeedback", toStringFlags, tabCount, tabSize, (obj.pPipelineCreationFeedback ? ToString(*obj.pPipelineCreationFeedback, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
             FieldToString(strStrm, false, "pipelineStageCreationFeedbackCount", toStringFlags, tabCount, tabSize, ToString(obj.pipelineStageCreationFeedbackCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pPipelineStageCreationFeedbacks", toStringFlags, tabCount, tabSize, ArrayToString(obj.pipelineStageCreationFeedbackCount, obj.pPipelineStageCreationFeedbacks, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pPipelineStageCreationFeedbacks", toStringFlags, tabCount, tabSize, ArrayToString(obj.pipelineStageCreationFeedbackCount, obj.pPipelineStageCreationFeedbacks, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -4981,11 +4981,11 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceToolProperties>
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, '"' + std::string(obj.name) + '"');
-            FieldToString(strStrm, false, "version", toStringFlags, tabCount, tabSize, '"' + std::string(obj.version) + '"');
+            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, '"' + std::string(obj.name) + '"' /** <-------- Embedded array of chars case. @todo */);
+            FieldToString(strStrm, false, "version", toStringFlags, tabCount, tabSize, '"' + std::string(obj.version) + '"' /** <-------- Embedded array of chars case. @todo */);
             FieldToString(strStrm, false, "purposes", toStringFlags, tabCount, tabSize, ToString(obj.purposes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"');
-            FieldToString(strStrm, false, "layer", toStringFlags, tabCount, tabSize, '"' + std::string(obj.layer) + '"');
+            FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"' /** <-------- Embedded array of chars case. @todo */);
+            FieldToString(strStrm, false, "layer", toStringFlags, tabCount, tabSize, '"' + std::string(obj.layer) + '"' /** <-------- Embedded array of chars case. @todo */);
         }
     );
 }
@@ -5173,11 +5173,11 @@ template <> std::string ToString<decode::Decoded_VkDependencyInfo>(const decode:
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "dependencyFlags", toStringFlags, tabCount, tabSize, ToString(obj.dependencyFlags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "memoryBarrierCount", toStringFlags, tabCount, tabSize, ToString(obj.memoryBarrierCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pMemoryBarriers", toStringFlags, tabCount, tabSize, ArrayToString(obj.memoryBarrierCount, obj.pMemoryBarriers, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pMemoryBarriers", toStringFlags, tabCount, tabSize, ArrayToString(obj.memoryBarrierCount, obj.pMemoryBarriers, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "bufferMemoryBarrierCount", toStringFlags, tabCount, tabSize, ToString(obj.bufferMemoryBarrierCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pBufferMemoryBarriers", toStringFlags, tabCount, tabSize, ArrayToString(obj.bufferMemoryBarrierCount, obj.pBufferMemoryBarriers, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pBufferMemoryBarriers", toStringFlags, tabCount, tabSize, ArrayToString(obj.bufferMemoryBarrierCount, obj.pBufferMemoryBarriers, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "imageMemoryBarrierCount", toStringFlags, tabCount, tabSize, ToString(obj.imageMemoryBarrierCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pImageMemoryBarriers", toStringFlags, tabCount, tabSize, ArrayToString(obj.imageMemoryBarrierCount, obj.pImageMemoryBarriers, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pImageMemoryBarriers", toStringFlags, tabCount, tabSize, ArrayToString(obj.imageMemoryBarrierCount, obj.pImageMemoryBarriers, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -5241,11 +5241,11 @@ template <> std::string ToString<decode::Decoded_VkSubmitInfo2>(const decode::De
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "waitSemaphoreInfoCount", toStringFlags, tabCount, tabSize, ToString(obj.waitSemaphoreInfoCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pWaitSemaphoreInfos", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreInfoCount, obj.pWaitSemaphoreInfos, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pWaitSemaphoreInfos", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreInfoCount, obj.pWaitSemaphoreInfos, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "commandBufferInfoCount", toStringFlags, tabCount, tabSize, ToString(obj.commandBufferInfoCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pCommandBufferInfos", toStringFlags, tabCount, tabSize, ArrayToString(obj.commandBufferInfoCount, obj.pCommandBufferInfos, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pCommandBufferInfos", toStringFlags, tabCount, tabSize, ArrayToString(obj.commandBufferInfoCount, obj.pCommandBufferInfos, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "signalSemaphoreInfoCount", toStringFlags, tabCount, tabSize, ToString(obj.signalSemaphoreInfoCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pSignalSemaphoreInfos", toStringFlags, tabCount, tabSize, ArrayToString(obj.signalSemaphoreInfoCount, obj.pSignalSemaphoreInfos, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pSignalSemaphoreInfos", toStringFlags, tabCount, tabSize, ArrayToString(obj.signalSemaphoreInfoCount, obj.pSignalSemaphoreInfos, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -5340,7 +5340,7 @@ template <> std::string ToString<decode::Decoded_VkCopyBufferInfo2>(const decode
             FieldToString(strStrm, false, "srcBuffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.srcBuffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "dstBuffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.dstBuffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "regionCount", toStringFlags, tabCount, tabSize, ToString(obj.regionCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.regionCount, obj.pRegions, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.regionCount, obj.pRegions, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
         }
@@ -5387,7 +5387,7 @@ template <> std::string ToString<decode::Decoded_VkCopyImageInfo2>(const decode:
             FieldToString(strStrm, false, "dstImage", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.dstImage) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "dstImageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.dstImageLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "regionCount", toStringFlags, tabCount, tabSize, ToString(obj.regionCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.regionCount, obj.pRegions, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.regionCount, obj.pRegions, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
         }
@@ -5434,7 +5434,7 @@ template <> std::string ToString<decode::Decoded_VkCopyBufferToImageInfo2>(const
             FieldToString(strStrm, false, "dstImage", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.dstImage) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "dstImageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.dstImageLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "regionCount", toStringFlags, tabCount, tabSize, ToString(obj.regionCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.regionCount, obj.pRegions, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.regionCount, obj.pRegions, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
         }
@@ -5458,7 +5458,7 @@ template <> std::string ToString<decode::Decoded_VkCopyImageToBufferInfo2>(const
             FieldToString(strStrm, false, "srcImageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.srcImageLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "dstBuffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.dstBuffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "regionCount", toStringFlags, tabCount, tabSize, ToString(obj.regionCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.regionCount, obj.pRegions, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.regionCount, obj.pRegions, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
         }
@@ -5479,9 +5479,9 @@ template <> std::string ToString<decode::Decoded_VkImageBlit2>(const decode::Dec
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "srcSubresource", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.srcSubresource), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
-            FieldToString(strStrm, false, "srcOffsets", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.srcOffsets, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "srcOffsets", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.srcOffsets, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of structs case. @todo */);
             FieldToString(strStrm, false, "dstSubresource", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.dstSubresource), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
-            FieldToString(strStrm, false, "dstOffsets", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.dstOffsets, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "dstOffsets", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.dstOffsets, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of structs case. @todo */);
         }
     );
 }
@@ -5504,7 +5504,7 @@ template <> std::string ToString<decode::Decoded_VkBlitImageInfo2>(const decode:
             FieldToString(strStrm, false, "dstImage", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.dstImage) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "dstImageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.dstImageLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "regionCount", toStringFlags, tabCount, tabSize, ToString(obj.regionCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.regionCount, obj.pRegions, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.regionCount, obj.pRegions, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "filter", toStringFlags, tabCount, tabSize, '"' + ToString(obj.filter, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
@@ -5552,7 +5552,7 @@ template <> std::string ToString<decode::Decoded_VkResolveImageInfo2>(const deco
             FieldToString(strStrm, false, "dstImage", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.dstImage) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "dstImageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.dstImageLayout, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "regionCount", toStringFlags, tabCount, tabSize, ToString(obj.regionCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.regionCount, obj.pRegions, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.regionCount, obj.pRegions, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
         }
@@ -5758,9 +5758,9 @@ template <> std::string ToString<decode::Decoded_VkRenderingInfo>(const decode::
             FieldToString(strStrm, false, "layerCount", toStringFlags, tabCount, tabSize, ToString(obj.layerCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "viewMask", toStringFlags, tabCount, tabSize, ToString(obj.viewMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "colorAttachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.colorAttachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pColorAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.colorAttachmentCount, obj.pColorAttachments, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pDepthAttachment", toStringFlags, tabCount, tabSize, (obj.pDepthAttachment ? ToString(*obj.pDepthAttachment, toStringFlags, tabCount, tabSize) : "\"null\""));
-            FieldToString(strStrm, false, "pStencilAttachment", toStringFlags, tabCount, tabSize, (obj.pStencilAttachment ? ToString(*obj.pStencilAttachment, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pColorAttachments", toStringFlags, tabCount, tabSize, ArrayToString(obj.colorAttachmentCount, obj.pColorAttachments, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
+            FieldToString(strStrm, false, "pDepthAttachment", toStringFlags, tabCount, tabSize, (obj.pDepthAttachment ? ToString(*obj.pDepthAttachment, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
+            FieldToString(strStrm, false, "pStencilAttachment", toStringFlags, tabCount, tabSize, (obj.pStencilAttachment ? ToString(*obj.pStencilAttachment, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
         }
     );
 }
@@ -5780,7 +5780,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineRenderingCreateInfo>(
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "viewMask", toStringFlags, tabCount, tabSize, ToString(obj.viewMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "colorAttachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.colorAttachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pColorAttachmentFormats", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.colorAttachmentCount, obj.pColorAttachmentFormats, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pColorAttachmentFormats", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.colorAttachmentCount, obj.pColorAttachmentFormats, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */);
             FieldToString(strStrm, false, "depthAttachmentFormat", toStringFlags, tabCount, tabSize, '"' + ToString(obj.depthAttachmentFormat, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "stencilAttachmentFormat", toStringFlags, tabCount, tabSize, '"' + ToString(obj.stencilAttachmentFormat, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
@@ -5821,7 +5821,7 @@ template <> std::string ToString<decode::Decoded_VkCommandBufferInheritanceRende
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "viewMask", toStringFlags, tabCount, tabSize, ToString(obj.viewMask, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "colorAttachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.colorAttachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pColorAttachmentFormats", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.colorAttachmentCount, obj.pColorAttachmentFormats, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pColorAttachmentFormats", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.colorAttachmentCount, obj.pColorAttachmentFormats, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */);
             FieldToString(strStrm, false, "depthAttachmentFormat", toStringFlags, tabCount, tabSize, '"' + ToString(obj.depthAttachmentFormat, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "stencilAttachmentFormat", toStringFlags, tabCount, tabSize, '"' + ToString(obj.stencilAttachmentFormat, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "rasterizationSamples", toStringFlags, tabCount, tabSize, '"' + ToString(obj.rasterizationSamples, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -5984,7 +5984,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceBufferMemoryRequirement
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "pCreateInfo", toStringFlags, tabCount, tabSize, (obj.pCreateInfo ? ToString(*obj.pCreateInfo, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pCreateInfo", toStringFlags, tabCount, tabSize, (obj.pCreateInfo ? ToString(*obj.pCreateInfo, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
         }
     );
 }
@@ -6002,7 +6002,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceImageMemoryRequirements
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "pCreateInfo", toStringFlags, tabCount, tabSize, (obj.pCreateInfo ? ToString(*obj.pCreateInfo, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pCreateInfo", toStringFlags, tabCount, tabSize, (obj.pCreateInfo ? ToString(*obj.pCreateInfo, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
             FieldToString(strStrm, false, "planeAspect", toStringFlags, tabCount, tabSize, '"' + ToString(obj.planeAspect, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -6073,7 +6073,7 @@ template <> std::string ToString<decode::Decoded_VkSwapchainCreateInfoKHR>(const
             FieldToString(strStrm, false, "imageUsage", toStringFlags, tabCount, tabSize, ToString(obj.imageUsage, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "imageSharingMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.imageSharingMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "queueFamilyIndexCount", toStringFlags, tabCount, tabSize, ToString(obj.queueFamilyIndexCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pQueueFamilyIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueFamilyIndexCount, obj.pQueueFamilyIndices, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pQueueFamilyIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueFamilyIndexCount, obj.pQueueFamilyIndices, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             FieldToString(strStrm, false, "preTransform", toStringFlags, tabCount, tabSize, '"' + ToString(obj.preTransform, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "compositeAlpha", toStringFlags, tabCount, tabSize, '"' + ToString(obj.compositeAlpha, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "presentMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.presentMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
@@ -6102,8 +6102,8 @@ template <> std::string ToString<decode::Decoded_VkPresentInfoKHR>(const decode:
             FieldToString(strStrm, false, "pWaitSemaphores", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pWaitSemaphores, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             FieldToString(strStrm, false, "swapchainCount", toStringFlags, tabCount, tabSize, ToString(obj.swapchainCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pSwapchains", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pSwapchains, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
-            FieldToString(strStrm, false, "pImageIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.swapchainCount, obj.pImageIndices, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pResults", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.swapchainCount, obj.pResults, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pImageIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.swapchainCount, obj.pImageIndices, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
+            FieldToString(strStrm, false, "pResults", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.swapchainCount, obj.pResults, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one pointer to an array of handles - Andy */
         }
@@ -6188,7 +6188,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceGroupPresentCapabilitie
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "presentMask", toStringFlags, tabCount, tabSize, ArrayToString(VK_MAX_DEVICE_GROUP_SIZE, obj.presentMask, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "presentMask", toStringFlags, tabCount, tabSize, ArrayToString(VK_MAX_DEVICE_GROUP_SIZE, obj.presentMask, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
             FieldToString(strStrm, false, "modes", toStringFlags, tabCount, tabSize, ToString(obj.modes, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -6208,7 +6208,7 @@ template <> std::string ToString<decode::Decoded_VkDeviceGroupPresentInfoKHR>(co
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "swapchainCount", toStringFlags, tabCount, tabSize, ToString(obj.swapchainCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDeviceMasks", toStringFlags, tabCount, tabSize, ArrayToString(obj.swapchainCount, obj.pDeviceMasks, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDeviceMasks", toStringFlags, tabCount, tabSize, ArrayToString(obj.swapchainCount, obj.pDeviceMasks, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             FieldToString(strStrm, false, "mode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.mode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -6557,7 +6557,7 @@ template <> std::string ToString<decode::Decoded_VkAttachmentSampleCountInfoAMD>
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "colorAttachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.colorAttachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pColorAttachmentSamples", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.colorAttachmentCount, obj.pColorAttachmentSamples, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pColorAttachmentSamples", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.colorAttachmentCount, obj.pColorAttachmentSamples, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */);
             FieldToString(strStrm, false, "depthStencilAttachmentSamples", toStringFlags, tabCount, tabSize, '"' + ToString(obj.depthStencilAttachmentSamples, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
         }
     );
@@ -6597,7 +6597,7 @@ template <> std::string ToString<decode::Decoded_VkImportMemoryWin32HandleInfoKH
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "handle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.handle) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
-            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -6615,9 +6615,9 @@ template <> std::string ToString<decode::Decoded_VkExportMemoryWin32HandleInfoKH
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "pAttributes", toStringFlags, tabCount, tabSize, (obj.pAttributes ? ToString(*obj.pAttributes, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pAttributes", toStringFlags, tabCount, tabSize, (obj.pAttributes ? ToString(*obj.pAttributes, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
             FieldToString(strStrm, false, "dwAccess", toStringFlags, tabCount, tabSize, ToString(obj.dwAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -6734,11 +6734,11 @@ template <> std::string ToString<decode::Decoded_VkWin32KeyedMutexAcquireRelease
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "acquireCount", toStringFlags, tabCount, tabSize, ToString(obj.acquireCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pAcquireSyncs", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pAcquireSyncs, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
-            FieldToString(strStrm, false, "pAcquireKeys", toStringFlags, tabCount, tabSize, ArrayToString(obj.acquireCount, obj.pAcquireKeys, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pAcquireTimeouts", toStringFlags, tabCount, tabSize, ArrayToString(obj.acquireCount, obj.pAcquireTimeouts, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pAcquireKeys", toStringFlags, tabCount, tabSize, ArrayToString(obj.acquireCount, obj.pAcquireKeys, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
+            FieldToString(strStrm, false, "pAcquireTimeouts", toStringFlags, tabCount, tabSize, ArrayToString(obj.acquireCount, obj.pAcquireTimeouts, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             FieldToString(strStrm, false, "releaseCount", toStringFlags, tabCount, tabSize, ToString(obj.releaseCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pReleaseSyncs", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pReleaseSyncs, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
-            FieldToString(strStrm, false, "pReleaseKeys", toStringFlags, tabCount, tabSize, ArrayToString(obj.releaseCount, obj.pReleaseKeys, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pReleaseKeys", toStringFlags, tabCount, tabSize, ArrayToString(obj.releaseCount, obj.pReleaseKeys, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one pointer to an array of handles - Andy */
         }
@@ -6762,7 +6762,7 @@ template <> std::string ToString<decode::Decoded_VkImportSemaphoreWin32HandleInf
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "handle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.handle) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
-            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to array of anything else case.*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
         }
@@ -6782,9 +6782,9 @@ template <> std::string ToString<decode::Decoded_VkExportSemaphoreWin32HandleInf
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "pAttributes", toStringFlags, tabCount, tabSize, (obj.pAttributes ? ToString(*obj.pAttributes, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pAttributes", toStringFlags, tabCount, tabSize, (obj.pAttributes ? ToString(*obj.pAttributes, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
             FieldToString(strStrm, false, "dwAccess", toStringFlags, tabCount, tabSize, ToString(obj.dwAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -6803,9 +6803,9 @@ template <> std::string ToString<decode::Decoded_VkD3D12FenceSubmitInfoKHR>(cons
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "waitSemaphoreValuesCount", toStringFlags, tabCount, tabSize, ToString(obj.waitSemaphoreValuesCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pWaitSemaphoreValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreValuesCount, obj.pWaitSemaphoreValues, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pWaitSemaphoreValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.waitSemaphoreValuesCount, obj.pWaitSemaphoreValues, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             FieldToString(strStrm, false, "signalSemaphoreValuesCount", toStringFlags, tabCount, tabSize, ToString(obj.signalSemaphoreValuesCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pSignalSemaphoreValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.signalSemaphoreValuesCount, obj.pSignalSemaphoreValues, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pSignalSemaphoreValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.signalSemaphoreValuesCount, obj.pSignalSemaphoreValues, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -6923,7 +6923,7 @@ template <> std::string ToString<decode::Decoded_VkPresentRegionKHR>(const decod
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "rectangleCount", toStringFlags, tabCount, tabSize, ToString(obj.rectangleCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pRectangles", toStringFlags, tabCount, tabSize, ArrayToString(obj.rectangleCount, obj.pRectangles, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pRectangles", toStringFlags, tabCount, tabSize, ArrayToString(obj.rectangleCount, obj.pRectangles, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -6942,7 +6942,7 @@ template <> std::string ToString<decode::Decoded_VkPresentRegionsKHR>(const deco
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "swapchainCount", toStringFlags, tabCount, tabSize, ToString(obj.swapchainCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.swapchainCount, obj.pRegions, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pRegions", toStringFlags, tabCount, tabSize, ArrayToString(obj.swapchainCount, obj.pRegions, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -6982,7 +6982,7 @@ template <> std::string ToString<decode::Decoded_VkImportFenceWin32HandleInfoKHR
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "handle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.handle) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
-            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to array of anything else case.*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
         }
@@ -7002,9 +7002,9 @@ template <> std::string ToString<decode::Decoded_VkExportFenceWin32HandleInfoKHR
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "pAttributes", toStringFlags, tabCount, tabSize, (obj.pAttributes ? ToString(*obj.pAttributes, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pAttributes", toStringFlags, tabCount, tabSize, (obj.pAttributes ? ToString(*obj.pAttributes, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
             FieldToString(strStrm, false, "dwAccess", toStringFlags, tabCount, tabSize, ToString(obj.dwAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -7127,7 +7127,7 @@ template <> std::string ToString<decode::Decoded_VkPerformanceCounterKHR>(const 
             FieldToString(strStrm, false, "unit", toStringFlags, tabCount, tabSize, '"' + ToString(obj.unit, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "scope", toStringFlags, tabCount, tabSize, '"' + ToString(obj.scope, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "storage", toStringFlags, tabCount, tabSize, '"' + ToString(obj.storage, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "uuid", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.uuid) + '"');
+            FieldToString(strStrm, false, "uuid", toStringFlags, tabCount, tabSize, '"' + UIDToString(VK_UUID_SIZE, obj.uuid) + '"' /** <-------- UUID case. @todo */);
         }
     );
 }
@@ -7146,9 +7146,9 @@ template <> std::string ToString<decode::Decoded_VkPerformanceCounterDescription
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, '"' + std::string(obj.name) + '"');
-            FieldToString(strStrm, false, "category", toStringFlags, tabCount, tabSize, '"' + std::string(obj.category) + '"');
-            FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"');
+            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, '"' + std::string(obj.name) + '"' /** <-------- Embedded array of chars case. @todo */);
+            FieldToString(strStrm, false, "category", toStringFlags, tabCount, tabSize, '"' + std::string(obj.category) + '"' /** <-------- Embedded array of chars case. @todo */);
+            FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"' /** <-------- Embedded array of chars case. @todo */);
         }
     );
 }
@@ -7168,7 +7168,7 @@ template <> std::string ToString<decode::Decoded_VkQueryPoolPerformanceCreateInf
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "queueFamilyIndex", toStringFlags, tabCount, tabSize, ToString(obj.queueFamilyIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "counterIndexCount", toStringFlags, tabCount, tabSize, ToString(obj.counterIndexCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pCounterIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.counterIndexCount, obj.pCounterIndices, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pCounterIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.counterIndexCount, obj.pCounterIndices, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -7478,7 +7478,7 @@ template <> std::string ToString<decode::Decoded_VkQueueFamilyGlobalPriorityProp
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "priorityCount", toStringFlags, tabCount, tabSize, ToString(obj.priorityCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "priorities", toStringFlags, tabCount, tabSize, ArrayToString(VK_MAX_GLOBAL_PRIORITY_SIZE_KHR, obj.priorities, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "priorities", toStringFlags, tabCount, tabSize, ArrayToString(VK_MAX_GLOBAL_PRIORITY_SIZE_KHR, obj.priorities, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of enums case. @todo */);
         }
     );
 }
@@ -7496,7 +7496,7 @@ template <> std::string ToString<decode::Decoded_VkFragmentShadingRateAttachment
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "pFragmentShadingRateAttachment", toStringFlags, tabCount, tabSize, (obj.pFragmentShadingRateAttachment ? ToString(*obj.pFragmentShadingRateAttachment, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pFragmentShadingRateAttachment", toStringFlags, tabCount, tabSize, (obj.pFragmentShadingRateAttachment ? ToString(*obj.pFragmentShadingRateAttachment, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
             FieldToString(strStrm, false, "shadingRateAttachmentTexelSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.shadingRateAttachmentTexelSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
         }
     );
@@ -7516,7 +7516,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineFragmentShadingRateSt
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fragmentSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.fragmentSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
-            FieldToString(strStrm, false, "combinerOps", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.combinerOps, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "combinerOps", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.combinerOps, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of enums case. @todo */);
         }
     );
 }
@@ -7682,8 +7682,8 @@ template <> std::string ToString<decode::Decoded_VkPipelineExecutablePropertiesK
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "stages", toStringFlags, tabCount, tabSize, ToString(obj.stages, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, '"' + std::string(obj.name) + '"');
-            FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"');
+            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, '"' + std::string(obj.name) + '"' /** <-------- Embedded array of chars case. @todo */);
+            FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"' /** <-------- Embedded array of chars case. @todo */);
             FieldToString(strStrm, false, "subgroupSize", toStringFlags, tabCount, tabSize, ToString(obj.subgroupSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -7723,8 +7723,8 @@ template <> std::string ToString<decode::Decoded_VkPipelineExecutableInternalRep
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, '"' + std::string(obj.name) + '"');
-            FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"');
+            FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, '"' + std::string(obj.name) + '"' /** <-------- Embedded array of chars case. @todo */);
+            FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"' /** <-------- Embedded array of chars case. @todo */);
             FieldToString(strStrm, false, "isText", toStringFlags, tabCount, tabSize, ToString(obj.isText, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "dataSize", toStringFlags, tabCount, tabSize, ToString(obj.dataSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
@@ -7767,7 +7767,7 @@ template <> std::string ToString<decode::Decoded_VkPresentIdKHR>(const decode::D
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "swapchainCount", toStringFlags, tabCount, tabSize, ToString(obj.swapchainCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pPresentIds", toStringFlags, tabCount, tabSize, ArrayToString(obj.swapchainCount, obj.pPresentIds, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pPresentIds", toStringFlags, tabCount, tabSize, ArrayToString(obj.swapchainCount, obj.pPresentIds, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -8044,7 +8044,7 @@ template <> std::string ToString<decode::Decoded_VkDebugMarkerMarkerInfoEXT>(con
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pMarkerName", toStringFlags, tabCount, tabSize, (obj.pMarkerName ? ("\"" + std::string(obj.pMarkerName) + "\"") : "null") /* <--------- C string case */);
-            FieldToString(strStrm, false, "color", toStringFlags, tabCount, tabSize, ArrayToString(4, obj.color, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "color", toStringFlags, tabCount, tabSize, ArrayToString(4, obj.color, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
         }
     );
 }
@@ -8267,7 +8267,7 @@ template <> std::string ToString<decode::Decoded_VkShaderStatisticsInfoAMD>(cons
             FieldToString(strStrm, false, "numPhysicalSgprs", toStringFlags, tabCount, tabSize, ToString(obj.numPhysicalSgprs, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "numAvailableVgprs", toStringFlags, tabCount, tabSize, ToString(obj.numAvailableVgprs, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "numAvailableSgprs", toStringFlags, tabCount, tabSize, ToString(obj.numAvailableSgprs, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "computeWorkGroupSize", toStringFlags, tabCount, tabSize, ArrayToString(3, obj.computeWorkGroupSize, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "computeWorkGroupSize", toStringFlags, tabCount, tabSize, ArrayToString(3, obj.computeWorkGroupSize, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
         }
     );
 }
@@ -8396,7 +8396,7 @@ template <> std::string ToString<decode::Decoded_VkExportMemoryWin32HandleInfoNV
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "pAttributes", toStringFlags, tabCount, tabSize, (obj.pAttributes ? ToString(*obj.pAttributes, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pAttributes", toStringFlags, tabCount, tabSize, (obj.pAttributes ? ToString(*obj.pAttributes, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
             FieldToString(strStrm, false, "dwAccess", toStringFlags, tabCount, tabSize, ToString(obj.dwAccess, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -8417,11 +8417,11 @@ template <> std::string ToString<decode::Decoded_VkWin32KeyedMutexAcquireRelease
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "acquireCount", toStringFlags, tabCount, tabSize, ToString(obj.acquireCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pAcquireSyncs", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pAcquireSyncs, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
-            FieldToString(strStrm, false, "pAcquireKeys", toStringFlags, tabCount, tabSize, ArrayToString(obj.acquireCount, obj.pAcquireKeys, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pAcquireTimeoutMilliseconds", toStringFlags, tabCount, tabSize, ArrayToString(obj.acquireCount, obj.pAcquireTimeoutMilliseconds, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pAcquireKeys", toStringFlags, tabCount, tabSize, ArrayToString(obj.acquireCount, obj.pAcquireKeys, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
+            FieldToString(strStrm, false, "pAcquireTimeoutMilliseconds", toStringFlags, tabCount, tabSize, ArrayToString(obj.acquireCount, obj.pAcquireTimeoutMilliseconds, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             FieldToString(strStrm, false, "releaseCount", toStringFlags, tabCount, tabSize, ToString(obj.releaseCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pReleaseSyncs", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pReleaseSyncs, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
-            FieldToString(strStrm, false, "pReleaseKeys", toStringFlags, tabCount, tabSize, ArrayToString(obj.releaseCount, obj.pReleaseKeys, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pReleaseKeys", toStringFlags, tabCount, tabSize, ArrayToString(obj.releaseCount, obj.pReleaseKeys, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one pointer to an array of handles - Andy */
         }
@@ -8442,7 +8442,7 @@ template <> std::string ToString<decode::Decoded_VkValidationFlagsEXT>(const dec
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "disabledValidationCheckCount", toStringFlags, tabCount, tabSize, ToString(obj.disabledValidationCheckCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDisabledValidationChecks", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.disabledValidationCheckCount, obj.pDisabledValidationChecks, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDisabledValidationChecks", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.disabledValidationCheckCount, obj.pDisabledValidationChecks, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */);
         }
     );
 }
@@ -8593,7 +8593,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineViewportWScalingState
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "viewportWScalingEnable", toStringFlags, tabCount, tabSize, ToString(obj.viewportWScalingEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "viewportCount", toStringFlags, tabCount, tabSize, ToString(obj.viewportCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pViewportWScalings", toStringFlags, tabCount, tabSize, ArrayToString(obj.viewportCount, obj.pViewportWScalings, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pViewportWScalings", toStringFlags, tabCount, tabSize, ArrayToString(obj.viewportCount, obj.pViewportWScalings, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -8765,7 +8765,7 @@ template <> std::string ToString<decode::Decoded_VkPresentTimesInfoGOOGLE>(const
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "swapchainCount", toStringFlags, tabCount, tabSize, ToString(obj.swapchainCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pTimes", toStringFlags, tabCount, tabSize, ArrayToString(obj.swapchainCount, obj.pTimes, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pTimes", toStringFlags, tabCount, tabSize, ArrayToString(obj.swapchainCount, obj.pTimes, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -8822,7 +8822,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineViewportSwizzleStateC
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "viewportCount", toStringFlags, tabCount, tabSize, ToString(obj.viewportCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pViewportSwizzles", toStringFlags, tabCount, tabSize, ArrayToString(obj.viewportCount, obj.pViewportSwizzles, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pViewportSwizzles", toStringFlags, tabCount, tabSize, ArrayToString(obj.viewportCount, obj.pViewportSwizzles, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -8861,7 +8861,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineDiscardRectangleState
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "discardRectangleMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.discardRectangleMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "discardRectangleCount", toStringFlags, tabCount, tabSize, ToString(obj.discardRectangleCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDiscardRectangles", toStringFlags, tabCount, tabSize, ArrayToString(obj.discardRectangleCount, obj.pDiscardRectangles, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDiscardRectangles", toStringFlags, tabCount, tabSize, ArrayToString(obj.discardRectangleCount, obj.pDiscardRectangles, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -9043,7 +9043,7 @@ template <> std::string ToString<decode::Decoded_VkDebugUtilsLabelEXT>(const dec
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "pLabelName", toStringFlags, tabCount, tabSize, (obj.pLabelName ? ("\"" + std::string(obj.pLabelName) + "\"") : "null") /* <--------- C string case */);
-            FieldToString(strStrm, false, "color", toStringFlags, tabCount, tabSize, ArrayToString(4, obj.color, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "color", toStringFlags, tabCount, tabSize, ArrayToString(4, obj.color, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
         }
     );
 }
@@ -9086,11 +9086,11 @@ template <> std::string ToString<decode::Decoded_VkDebugUtilsMessengerCallbackDa
             FieldToString(strStrm, false, "messageIdNumber", toStringFlags, tabCount, tabSize, ToString(obj.messageIdNumber, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pMessage", toStringFlags, tabCount, tabSize, (obj.pMessage ? ("\"" + std::string(obj.pMessage) + "\"") : "null") /* <--------- C string case */);
             FieldToString(strStrm, false, "queueLabelCount", toStringFlags, tabCount, tabSize, ToString(obj.queueLabelCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pQueueLabels", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueLabelCount, obj.pQueueLabels, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pQueueLabels", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueLabelCount, obj.pQueueLabels, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "cmdBufLabelCount", toStringFlags, tabCount, tabSize, ToString(obj.cmdBufLabelCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pCmdBufLabels", toStringFlags, tabCount, tabSize, ArrayToString(obj.cmdBufLabelCount, obj.pCmdBufLabels, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pCmdBufLabels", toStringFlags, tabCount, tabSize, ArrayToString(obj.cmdBufLabelCount, obj.pCmdBufLabels, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "objectCount", toStringFlags, tabCount, tabSize, ToString(obj.objectCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pObjects", toStringFlags, tabCount, tabSize, ArrayToString(obj.objectCount, obj.pObjects, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pObjects", toStringFlags, tabCount, tabSize, ArrayToString(obj.objectCount, obj.pObjects, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -9315,7 +9315,7 @@ template <> std::string ToString<decode::Decoded_VkSampleLocationsInfoEXT>(const
             FieldToString(strStrm, false, "sampleLocationsPerPixel", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sampleLocationsPerPixel, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "sampleLocationGridSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.sampleLocationGridSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
             FieldToString(strStrm, false, "sampleLocationsCount", toStringFlags, tabCount, tabSize, ToString(obj.sampleLocationsCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pSampleLocations", toStringFlags, tabCount, tabSize, ArrayToString(obj.sampleLocationsCount, obj.pSampleLocations, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pSampleLocations", toStringFlags, tabCount, tabSize, ArrayToString(obj.sampleLocationsCount, obj.pSampleLocations, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -9368,9 +9368,9 @@ template <> std::string ToString<decode::Decoded_VkRenderPassSampleLocationsBegi
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "attachmentInitialSampleLocationsCount", toStringFlags, tabCount, tabSize, ToString(obj.attachmentInitialSampleLocationsCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pAttachmentInitialSampleLocations", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentInitialSampleLocationsCount, obj.pAttachmentInitialSampleLocations, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pAttachmentInitialSampleLocations", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentInitialSampleLocationsCount, obj.pAttachmentInitialSampleLocations, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "postSubpassSampleLocationsCount", toStringFlags, tabCount, tabSize, ToString(obj.postSubpassSampleLocationsCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pPostSubpassSampleLocations", toStringFlags, tabCount, tabSize, ArrayToString(obj.postSubpassSampleLocationsCount, obj.pPostSubpassSampleLocations, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pPostSubpassSampleLocations", toStringFlags, tabCount, tabSize, ArrayToString(obj.postSubpassSampleLocationsCount, obj.pPostSubpassSampleLocations, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -9409,7 +9409,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceSampleLocations
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "sampleLocationSampleCounts", toStringFlags, tabCount, tabSize, ToString(obj.sampleLocationSampleCounts, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxSampleLocationGridSize", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.maxSampleLocationGridSize), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/);
-            FieldToString(strStrm, false, "sampleLocationCoordinateRange", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.sampleLocationCoordinateRange, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "sampleLocationCoordinateRange", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.sampleLocationCoordinateRange, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
             FieldToString(strStrm, false, "sampleLocationSubPixelBits", toStringFlags, tabCount, tabSize, ToString(obj.sampleLocationSubPixelBits, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "variableSampleLocations", toStringFlags, tabCount, tabSize, ToString(obj.variableSampleLocations, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
@@ -9532,7 +9532,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineCoverageModulationSta
             FieldToString(strStrm, false, "coverageModulationMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.coverageModulationMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "coverageModulationTableEnable", toStringFlags, tabCount, tabSize, ToString(obj.coverageModulationTableEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "coverageModulationTableCount", toStringFlags, tabCount, tabSize, ToString(obj.coverageModulationTableCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pCoverageModulationTable", toStringFlags, tabCount, tabSize, ArrayToString(obj.coverageModulationTableCount, obj.pCoverageModulationTable, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pCoverageModulationTable", toStringFlags, tabCount, tabSize, ArrayToString(obj.coverageModulationTableCount, obj.pCoverageModulationTable, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -9606,7 +9606,7 @@ template <> std::string ToString<decode::Decoded_VkDrmFormatModifierPropertiesLi
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "drmFormatModifierCount", toStringFlags, tabCount, tabSize, ToString(obj.drmFormatModifierCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDrmFormatModifierProperties", toStringFlags, tabCount, tabSize, ArrayToString(obj.drmFormatModifierCount, obj.pDrmFormatModifierProperties, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDrmFormatModifierProperties", toStringFlags, tabCount, tabSize, ArrayToString(obj.drmFormatModifierCount, obj.pDrmFormatModifierProperties, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -9627,7 +9627,7 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceImageDrmFormatM
             FieldToString(strStrm, false, "drmFormatModifier", toStringFlags, tabCount, tabSize, ToString(obj.drmFormatModifier, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "sharingMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sharingMode, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "queueFamilyIndexCount", toStringFlags, tabCount, tabSize, ToString(obj.queueFamilyIndexCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pQueueFamilyIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueFamilyIndexCount, obj.pQueueFamilyIndices, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pQueueFamilyIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.queueFamilyIndexCount, obj.pQueueFamilyIndices, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -9646,7 +9646,7 @@ template <> std::string ToString<decode::Decoded_VkImageDrmFormatModifierListCre
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "drmFormatModifierCount", toStringFlags, tabCount, tabSize, ToString(obj.drmFormatModifierCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDrmFormatModifiers", toStringFlags, tabCount, tabSize, ArrayToString(obj.drmFormatModifierCount, obj.pDrmFormatModifiers, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDrmFormatModifiers", toStringFlags, tabCount, tabSize, ArrayToString(obj.drmFormatModifierCount, obj.pDrmFormatModifiers, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -9666,7 +9666,7 @@ template <> std::string ToString<decode::Decoded_VkImageDrmFormatModifierExplici
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "drmFormatModifier", toStringFlags, tabCount, tabSize, ToString(obj.drmFormatModifier, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "drmFormatModifierPlaneCount", toStringFlags, tabCount, tabSize, ToString(obj.drmFormatModifierPlaneCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pPlaneLayouts", toStringFlags, tabCount, tabSize, ArrayToString(obj.drmFormatModifierPlaneCount, obj.pPlaneLayouts, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pPlaneLayouts", toStringFlags, tabCount, tabSize, ArrayToString(obj.drmFormatModifierPlaneCount, obj.pPlaneLayouts, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -9721,7 +9721,7 @@ template <> std::string ToString<decode::Decoded_VkDrmFormatModifierPropertiesLi
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "drmFormatModifierCount", toStringFlags, tabCount, tabSize, ToString(obj.drmFormatModifierCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDrmFormatModifierProperties", toStringFlags, tabCount, tabSize, ArrayToString(obj.drmFormatModifierCount, obj.pDrmFormatModifierProperties, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDrmFormatModifierProperties", toStringFlags, tabCount, tabSize, ArrayToString(obj.drmFormatModifierCount, obj.pDrmFormatModifierProperties, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -9778,7 +9778,7 @@ template <> std::string ToString<decode::Decoded_VkShadingRatePaletteNV>(const d
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "shadingRatePaletteEntryCount", toStringFlags, tabCount, tabSize, ToString(obj.shadingRatePaletteEntryCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pShadingRatePaletteEntries", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.shadingRatePaletteEntryCount, obj.pShadingRatePaletteEntries, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pShadingRatePaletteEntries", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.shadingRatePaletteEntryCount, obj.pShadingRatePaletteEntries, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */);
         }
     );
 }
@@ -9798,7 +9798,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineViewportShadingRateIm
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shadingRateImageEnable", toStringFlags, tabCount, tabSize, ToString(obj.shadingRateImageEnable, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "viewportCount", toStringFlags, tabCount, tabSize, ToString(obj.viewportCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pShadingRatePalettes", toStringFlags, tabCount, tabSize, ArrayToString(obj.viewportCount, obj.pShadingRatePalettes, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pShadingRatePalettes", toStringFlags, tabCount, tabSize, ArrayToString(obj.viewportCount, obj.pShadingRatePalettes, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -9874,7 +9874,7 @@ template <> std::string ToString<decode::Decoded_VkCoarseSampleOrderCustomNV>(co
             FieldToString(strStrm, true, "shadingRate", toStringFlags, tabCount, tabSize, '"' + ToString(obj.shadingRate, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "sampleCount", toStringFlags, tabCount, tabSize, ToString(obj.sampleCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "sampleLocationCount", toStringFlags, tabCount, tabSize, ToString(obj.sampleLocationCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pSampleLocations", toStringFlags, tabCount, tabSize, ArrayToString(obj.sampleLocationCount, obj.pSampleLocations, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pSampleLocations", toStringFlags, tabCount, tabSize, ArrayToString(obj.sampleLocationCount, obj.pSampleLocations, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -9894,7 +9894,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineViewportCoarseSampleO
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "sampleOrderType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sampleOrderType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "customSampleOrderCount", toStringFlags, tabCount, tabSize, ToString(obj.customSampleOrderCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pCustomSampleOrders", toStringFlags, tabCount, tabSize, ArrayToString(obj.customSampleOrderCount, obj.pCustomSampleOrders, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pCustomSampleOrders", toStringFlags, tabCount, tabSize, ArrayToString(obj.customSampleOrderCount, obj.pCustomSampleOrders, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -9936,9 +9936,9 @@ template <> std::string ToString<decode::Decoded_VkRayTracingPipelineCreateInfoN
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "stageCount", toStringFlags, tabCount, tabSize, ToString(obj.stageCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pStages", toStringFlags, tabCount, tabSize, ArrayToString(obj.stageCount, obj.pStages, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pStages", toStringFlags, tabCount, tabSize, ArrayToString(obj.stageCount, obj.pStages, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "groupCount", toStringFlags, tabCount, tabSize, ToString(obj.groupCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pGroups", toStringFlags, tabCount, tabSize, ArrayToString(obj.groupCount, obj.pGroups, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pGroups", toStringFlags, tabCount, tabSize, ArrayToString(obj.groupCount, obj.pGroups, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "maxRecursionDepth", toStringFlags, tabCount, tabSize, ToString(obj.maxRecursionDepth, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "layout", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.layout) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "basePipelineHandle", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.basePipelineHandle) + '"' /* < ------------ handle case*/);
@@ -10056,7 +10056,7 @@ template <> std::string ToString<decode::Decoded_VkAccelerationStructureInfoNV>(
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "instanceCount", toStringFlags, tabCount, tabSize, ToString(obj.instanceCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "geometryCount", toStringFlags, tabCount, tabSize, ToString(obj.geometryCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pGeometries", toStringFlags, tabCount, tabSize, ArrayToString(obj.geometryCount, obj.pGeometries, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pGeometries", toStringFlags, tabCount, tabSize, ArrayToString(obj.geometryCount, obj.pGeometries, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -10097,7 +10097,7 @@ template <> std::string ToString<decode::Decoded_VkBindAccelerationStructureMemo
             FieldToString(strStrm, false, "memory", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.memory) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "memoryOffset", toStringFlags, tabCount, tabSize, ToString(obj.memoryOffset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "deviceIndexCount", toStringFlags, tabCount, tabSize, ToString(obj.deviceIndexCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDeviceIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.deviceIndexCount, obj.pDeviceIndices, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDeviceIndices", toStringFlags, tabCount, tabSize, ArrayToString(obj.deviceIndexCount, obj.pDeviceIndices, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
         }
@@ -10475,7 +10475,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineVertexInputDivisorSta
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "vertexBindingDivisorCount", toStringFlags, tabCount, tabSize, ToString(obj.vertexBindingDivisorCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pVertexBindingDivisors", toStringFlags, tabCount, tabSize, ArrayToString(obj.vertexBindingDivisorCount, obj.pVertexBindingDivisors, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pVertexBindingDivisors", toStringFlags, tabCount, tabSize, ArrayToString(obj.vertexBindingDivisorCount, obj.pVertexBindingDivisors, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -10570,11 +10570,11 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMeshShaderPrope
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "maxDrawMeshTasksCount", toStringFlags, tabCount, tabSize, ToString(obj.maxDrawMeshTasksCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxTaskWorkGroupInvocations", toStringFlags, tabCount, tabSize, ToString(obj.maxTaskWorkGroupInvocations, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "maxTaskWorkGroupSize", toStringFlags, tabCount, tabSize, ArrayToString(3, obj.maxTaskWorkGroupSize, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "maxTaskWorkGroupSize", toStringFlags, tabCount, tabSize, ArrayToString(3, obj.maxTaskWorkGroupSize, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
             FieldToString(strStrm, false, "maxTaskTotalMemorySize", toStringFlags, tabCount, tabSize, ToString(obj.maxTaskTotalMemorySize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxTaskOutputCount", toStringFlags, tabCount, tabSize, ToString(obj.maxTaskOutputCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxMeshWorkGroupInvocations", toStringFlags, tabCount, tabSize, ToString(obj.maxMeshWorkGroupInvocations, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "maxMeshWorkGroupSize", toStringFlags, tabCount, tabSize, ArrayToString(3, obj.maxMeshWorkGroupSize, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "maxMeshWorkGroupSize", toStringFlags, tabCount, tabSize, ArrayToString(3, obj.maxMeshWorkGroupSize, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
             FieldToString(strStrm, false, "maxMeshTotalMemorySize", toStringFlags, tabCount, tabSize, ToString(obj.maxMeshTotalMemorySize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxMeshOutputVertices", toStringFlags, tabCount, tabSize, ToString(obj.maxMeshOutputVertices, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "maxMeshOutputPrimitives", toStringFlags, tabCount, tabSize, ToString(obj.maxMeshOutputPrimitives, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -10634,7 +10634,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineViewportExclusiveScis
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "exclusiveScissorCount", toStringFlags, tabCount, tabSize, ToString(obj.exclusiveScissorCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pExclusiveScissors", toStringFlags, tabCount, tabSize, ArrayToString(obj.exclusiveScissorCount, obj.pExclusiveScissors, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pExclusiveScissors", toStringFlags, tabCount, tabSize, ArrayToString(obj.exclusiveScissorCount, obj.pExclusiveScissors, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -11044,8 +11044,8 @@ template <> std::string ToString<decode::Decoded_VkPhysicalDeviceMemoryBudgetPro
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "heapBudget", toStringFlags, tabCount, tabSize, ArrayToString(VK_MAX_MEMORY_HEAPS, obj.heapBudget, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "heapUsage", toStringFlags, tabCount, tabSize, ArrayToString(VK_MAX_MEMORY_HEAPS, obj.heapUsage, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "heapBudget", toStringFlags, tabCount, tabSize, ArrayToString(VK_MAX_MEMORY_HEAPS, obj.heapBudget, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
+            FieldToString(strStrm, false, "heapUsage", toStringFlags, tabCount, tabSize, ArrayToString(VK_MAX_MEMORY_HEAPS, obj.heapUsage, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */);
         }
     );
 }
@@ -11156,9 +11156,9 @@ template <> std::string ToString<decode::Decoded_VkValidationFeaturesEXT>(const 
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "enabledValidationFeatureCount", toStringFlags, tabCount, tabSize, ToString(obj.enabledValidationFeatureCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pEnabledValidationFeatures", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.enabledValidationFeatureCount, obj.pEnabledValidationFeatures, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pEnabledValidationFeatures", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.enabledValidationFeatureCount, obj.pEnabledValidationFeatures, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */);
             FieldToString(strStrm, false, "disabledValidationFeatureCount", toStringFlags, tabCount, tabSize, ToString(obj.disabledValidationFeatureCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDisabledValidationFeatures", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.disabledValidationFeatureCount, obj.pDisabledValidationFeatures, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDisabledValidationFeatures", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.disabledValidationFeatureCount, obj.pDisabledValidationFeatures, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */);
         }
     );
 }
@@ -11663,9 +11663,9 @@ template <> std::string ToString<decode::Decoded_VkGraphicsShaderGroupCreateInfo
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "stageCount", toStringFlags, tabCount, tabSize, ToString(obj.stageCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pStages", toStringFlags, tabCount, tabSize, ArrayToString(obj.stageCount, obj.pStages, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pVertexInputState", toStringFlags, tabCount, tabSize, (obj.pVertexInputState ? ToString(*obj.pVertexInputState, toStringFlags, tabCount, tabSize) : "\"null\""));
-            FieldToString(strStrm, false, "pTessellationState", toStringFlags, tabCount, tabSize, (obj.pTessellationState ? ToString(*obj.pTessellationState, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pStages", toStringFlags, tabCount, tabSize, ArrayToString(obj.stageCount, obj.pStages, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
+            FieldToString(strStrm, false, "pVertexInputState", toStringFlags, tabCount, tabSize, (obj.pVertexInputState ? ToString(*obj.pVertexInputState, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
+            FieldToString(strStrm, false, "pTessellationState", toStringFlags, tabCount, tabSize, (obj.pTessellationState ? ToString(*obj.pTessellationState, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
         }
     );
 }
@@ -11684,7 +11684,7 @@ template <> std::string ToString<decode::Decoded_VkGraphicsPipelineShaderGroupsC
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "groupCount", toStringFlags, tabCount, tabSize, ToString(obj.groupCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pGroups", toStringFlags, tabCount, tabSize, ArrayToString(obj.groupCount, obj.pGroups, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pGroups", toStringFlags, tabCount, tabSize, ArrayToString(obj.groupCount, obj.pGroups, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "pipelineCount", toStringFlags, tabCount, tabSize, ToString(obj.pipelineCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pPipelines", toStringFlags, tabCount, tabSize, VkHandleArrayToString(decoded_obj.pPipelines, toStringFlags, tabCount, tabSize) /* <-------- Pointer to array of handles case. */ );
             /* Struct has at least one handle - Andy */
@@ -11804,8 +11804,8 @@ template <> std::string ToString<decode::Decoded_VkIndirectCommandsLayoutTokenNV
             FieldToString(strStrm, false, "pushconstantSize", toStringFlags, tabCount, tabSize, ToString(obj.pushconstantSize, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "indirectStateFlags", toStringFlags, tabCount, tabSize, ToString(obj.indirectStateFlags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "indexTypeCount", toStringFlags, tabCount, tabSize, ToString(obj.indexTypeCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pIndexTypes", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.indexTypeCount, obj.pIndexTypes, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pIndexTypeValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.indexTypeCount, obj.pIndexTypeValues, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pIndexTypes", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.indexTypeCount, obj.pIndexTypes, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */);
+            FieldToString(strStrm, false, "pIndexTypeValues", toStringFlags, tabCount, tabSize, ArrayToString(obj.indexTypeCount, obj.pIndexTypeValues, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
             /* Struct has at least one handle - Andy */
             /* Struct has at least one single handle - Andy */
         }
@@ -11828,9 +11828,9 @@ template <> std::string ToString<decode::Decoded_VkIndirectCommandsLayoutCreateI
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "pipelineBindPoint", toStringFlags, tabCount, tabSize, '"' + ToString(obj.pipelineBindPoint, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "tokenCount", toStringFlags, tabCount, tabSize, ToString(obj.tokenCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pTokens", toStringFlags, tabCount, tabSize, ArrayToString(obj.tokenCount, obj.pTokens, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pTokens", toStringFlags, tabCount, tabSize, ArrayToString(obj.tokenCount, obj.pTokens, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "streamCount", toStringFlags, tabCount, tabSize, ToString(obj.streamCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pStreamStrides", toStringFlags, tabCount, tabSize, ArrayToString(obj.streamCount, obj.pStreamStrides, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pStreamStrides", toStringFlags, tabCount, tabSize, ArrayToString(obj.streamCount, obj.pStreamStrides, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -11852,7 +11852,7 @@ template <> std::string ToString<decode::Decoded_VkGeneratedCommandsInfoNV>(cons
             FieldToString(strStrm, false, "pipeline", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.pipeline) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "indirectCommandsLayout", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.indirectCommandsLayout) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "streamCount", toStringFlags, tabCount, tabSize, ToString(obj.streamCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pStreams", toStringFlags, tabCount, tabSize, ArrayToString(obj.streamCount, obj.pStreams, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pStreams", toStringFlags, tabCount, tabSize, ArrayToString(obj.streamCount, obj.pStreams, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "sequencesCount", toStringFlags, tabCount, tabSize, ToString(obj.sequencesCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "preprocessBuffer", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.preprocessBuffer) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "preprocessOffset", toStringFlags, tabCount, tabSize, ToString(obj.preprocessOffset, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
@@ -11923,7 +11923,7 @@ template <> std::string ToString<decode::Decoded_VkCommandBufferInheritanceViewp
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "viewportScissor2D", toStringFlags, tabCount, tabSize, ToString(obj.viewportScissor2D, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "viewportDepthCount", toStringFlags, tabCount, tabSize, ToString(obj.viewportDepthCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pViewportDepths", toStringFlags, tabCount, tabSize, (obj.pViewportDepths ? ToString(*obj.pViewportDepths, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pViewportDepths", toStringFlags, tabCount, tabSize, (obj.pViewportDepths ? ToString(*obj.pViewportDepths, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
         }
     );
 }
@@ -12302,7 +12302,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineFragmentShadingRateEn
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "shadingRateType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.shadingRateType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "shadingRate", toStringFlags, tabCount, tabSize, '"' + ToString(obj.shadingRate, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "combinerOps", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.combinerOps, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "combinerOps", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.combinerOps, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of enums case. @todo */);
         }
     );
 }
@@ -12546,7 +12546,7 @@ template <> std::string ToString<decode::Decoded_VkImageCompressionControlEXT>(c
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "compressionControlPlaneCount", toStringFlags, tabCount, tabSize, ToString(obj.compressionControlPlaneCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pFixedRateFlags", toStringFlags, tabCount, tabSize, ArrayToString(obj.compressionControlPlaneCount, obj.pFixedRateFlags, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pFixedRateFlags", toStringFlags, tabCount, tabSize, ArrayToString(obj.compressionControlPlaneCount, obj.pFixedRateFlags, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -12713,7 +12713,7 @@ template <> std::string ToString<decode::Decoded_VkMutableDescriptorTypeListVALV
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "descriptorTypeCount", toStringFlags, tabCount, tabSize, ToString(obj.descriptorTypeCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pDescriptorTypes", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.descriptorTypeCount, obj.pDescriptorTypes, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pDescriptorTypes", toStringFlags, tabCount, tabSize, VkEnumArrayToString(obj.descriptorTypeCount, obj.pDescriptorTypes, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */);
         }
     );
 }
@@ -12732,7 +12732,7 @@ template <> std::string ToString<decode::Decoded_VkMutableDescriptorTypeCreateIn
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "mutableDescriptorTypeListCount", toStringFlags, tabCount, tabSize, ToString(obj.mutableDescriptorTypeListCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pMutableDescriptorTypeLists", toStringFlags, tabCount, tabSize, ArrayToString(obj.mutableDescriptorTypeListCount, obj.pMutableDescriptorTypeLists, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pMutableDescriptorTypeLists", toStringFlags, tabCount, tabSize, ArrayToString(obj.mutableDescriptorTypeListCount, obj.pMutableDescriptorTypeLists, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -13106,7 +13106,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineColorWriteCreateInfoE
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "attachmentCount", toStringFlags, tabCount, tabSize, ToString(obj.attachmentCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pColorWriteEnables", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentCount, obj.pColorWriteEnables, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pColorWriteEnables", toStringFlags, tabCount, tabSize, ArrayToString(obj.attachmentCount, obj.pColorWriteEnables, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/);
         }
     );
 }
@@ -13421,7 +13421,7 @@ template <> std::string ToString<decode::Decoded_VkSubpassFragmentDensityMapOffs
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "fragmentDensityOffsetCount", toStringFlags, tabCount, tabSize, ToString(obj.fragmentDensityOffsetCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pFragmentDensityOffsets", toStringFlags, tabCount, tabSize, ArrayToString(obj.fragmentDensityOffsetCount, obj.pFragmentDensityOffsets, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pFragmentDensityOffsets", toStringFlags, tabCount, tabSize, ArrayToString(obj.fragmentDensityOffsetCount, obj.pFragmentDensityOffsets, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
         }
     );
 }
@@ -13527,7 +13527,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassCreationFeedbackCre
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "pRenderPassFeedback", toStringFlags, tabCount, tabSize, (obj.pRenderPassFeedback ? ToString(*obj.pRenderPassFeedback, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pRenderPassFeedback", toStringFlags, tabCount, tabSize, (obj.pRenderPassFeedback ? ToString(*obj.pRenderPassFeedback, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
         }
     );
 }
@@ -13544,7 +13544,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassSubpassFeedbackInfo
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "subpassMergeStatus", toStringFlags, tabCount, tabSize, '"' + ToString(obj.subpassMergeStatus, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
-            FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"');
+            FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"' /** <-------- Embedded array of chars case. @todo */);
             FieldToString(strStrm, false, "postMergeIndex", toStringFlags, tabCount, tabSize, ToString(obj.postMergeIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
         }
     );
@@ -13563,7 +13563,7 @@ template <> std::string ToString<decode::Decoded_VkRenderPassSubpassFeedbackCrea
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"' /* < ------------ enum case*/);
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
-            FieldToString(strStrm, false, "pSubpassFeedback", toStringFlags, tabCount, tabSize, (obj.pSubpassFeedback ? ToString(*obj.pSubpassFeedback, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pSubpassFeedback", toStringFlags, tabCount, tabSize, (obj.pSubpassFeedback ? ToString(*obj.pSubpassFeedback, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
         }
     );
 }
@@ -13905,13 +13905,13 @@ template <> std::string ToString<decode::Decoded_VkRayTracingPipelineCreateInfoK
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize) /* <----------------- pNext case.*/);
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
             FieldToString(strStrm, false, "stageCount", toStringFlags, tabCount, tabSize, ToString(obj.stageCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pStages", toStringFlags, tabCount, tabSize, ArrayToString(obj.stageCount, obj.pStages, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pStages", toStringFlags, tabCount, tabSize, ArrayToString(obj.stageCount, obj.pStages, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "groupCount", toStringFlags, tabCount, tabSize, ToString(obj.groupCount, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pGroups", toStringFlags, tabCount, tabSize, ArrayToString(obj.groupCount, obj.pGroups, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pGroups", toStringFlags, tabCount, tabSize, ArrayToString(obj.groupCount, obj.pGroups, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */);
             FieldToString(strStrm, false, "maxPipelineRayRecursionDepth", toStringFlags, tabCount, tabSize, ToString(obj.maxPipelineRayRecursionDepth, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);
-            FieldToString(strStrm, false, "pLibraryInfo", toStringFlags, tabCount, tabSize, (obj.pLibraryInfo ? ToString(*obj.pLibraryInfo, toStringFlags, tabCount, tabSize) : "\"null\""));
-            FieldToString(strStrm, false, "pLibraryInterface", toStringFlags, tabCount, tabSize, (obj.pLibraryInterface ? ToString(*obj.pLibraryInterface, toStringFlags, tabCount, tabSize) : "\"null\""));
-            FieldToString(strStrm, false, "pDynamicState", toStringFlags, tabCount, tabSize, (obj.pDynamicState ? ToString(*obj.pDynamicState, toStringFlags, tabCount, tabSize) : "\"null\""));
+            FieldToString(strStrm, false, "pLibraryInfo", toStringFlags, tabCount, tabSize, (obj.pLibraryInfo ? ToString(*obj.pLibraryInfo, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
+            FieldToString(strStrm, false, "pLibraryInterface", toStringFlags, tabCount, tabSize, (obj.pLibraryInterface ? ToString(*obj.pLibraryInterface, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
+            FieldToString(strStrm, false, "pDynamicState", toStringFlags, tabCount, tabSize, (obj.pDynamicState ? ToString(*obj.pDynamicState, toStringFlags, tabCount, tabSize) : "\"null\"") /** <-------- Pointer to single struct case. @todo */);
             FieldToString(strStrm, false, "layout", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.layout) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "basePipelineHandle", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(decoded_obj.basePipelineHandle) + '"' /* < ------------ handle case*/);
             FieldToString(strStrm, false, "basePipelineIndex", toStringFlags, tabCount, tabSize, ToString(obj.basePipelineIndex, toStringFlags, tabCount, tabSize) /* < ------------ else case*/);

@@ -201,37 +201,40 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         hasHandle = True
                         hasArrayPtrHandle = True
                     elif self.is_struct(value.base_type):
-                        toString = 'ArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'ArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */'
                     elif self.is_enum(value.base_type):
-                        toString = 'VkEnumArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'VkEnumArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */'
                     else:
-                        toString = 'ArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'ArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/'
                 else:
                     if self.is_handle(value.base_type):
                         toString = 'static_assert(false, "Unhandled pointer to VkHandle in `vulkan_struct_decoders_to_string_body_generator.py`")'
                         hasHandle = True
                     elif self.is_struct(value.base_type):
-                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "\\"null\\"")'
+                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "\\"null\\"") /** <-------- Pointer to single struct case. @todo */'
                     elif self.is_enum(value.base_type):
                         toString = 'static_assert(false, "Unhandled pointer to VkEnum in `vulkan_struct_decoders_to_string_body_generator.py`")'
                     else:
-                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "\\"null\\"")'
+                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "\\"null\\"") /** <-------- Pointer to array of anything else case.*/'
             else:
                 if value.is_array:
                     if self.is_handle(value.base_type):
-                        #toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
-                        toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        # toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        # toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */'
+                        # toString = '''VkHandleArrayToString(decoded_obj.{0}.GetLength(), decoded_obj.{0}.GetHandlePointer(), toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo Print decimals. */'''
+                        # toString = '''VkHandleArrayToString(decoded_obj.{0}.GetLength(), decoded_obj.{0}.GetPointer(), toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo Print decimals. */'''
+                        toString = '''ArrayToString(decoded_obj.{0}.GetLength(), decoded_obj.{0}.GetPointer(), toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo Print decimals. */'''
                         hasHandle = True
                     elif self.is_struct(value.base_type):
-                        toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of structs case. @todo */'
                     elif self.is_enum(value.base_type):
-                        toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of enums case. @todo */'
                     elif 'char' in value.base_type:
-                        toString = '\'"\' + std::string(obj.{0}) + \'"\''
+                        toString = '\'"\' + std::string(obj.{0}) + \'"\' /** <-------- Embedded array of chars case. @todo */'
                     elif 'UUID' in value.array_length or 'LUID' in value.array_length:
-                        toString = '\'"\' + UIDToString({1}, obj.{0}) + \'"\''
+                        toString = '\'"\' + UIDToString({1}, obj.{0}) + \'"\' /** <-------- UUID case. @todo */'
                     else:
-                        toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */'
                 else:
                     if self.is_handle(value.base_type):
                         # Version accessing the null handle in the raw vulkan struct: toString = '\'"\' + VkHandleToString(obj.{0}) + \'"\''

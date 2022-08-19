@@ -197,7 +197,8 @@ class VulkanAsciiConsumerBodyGenerator(BaseGenerator):
                     if self.is_handle(value.base_type):
                         toString = 'HandlePointerDecoderArrayToString({1}, {0}, toStringFlags, tabCount, tabSize)'
                     elif self.is_struct(value.base_type):
-                        toString = 'PointerDecoderArrayToString({1}, {0}, toStringFlags, tabCount, tabSize)'
+                        # Old using raw structs: toString = 'PointerDecoderArrayToString({1}, {0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'PointerDecoderArrayToString(*{0}, toStringFlags, tabCount, tabSize) /** <---------------- Pointer to array of structs */'
                     elif self.is_enum(value.base_type):
                         toString = 'EnumPointerDecoderArrayToString({1}, {0}, toStringFlags, tabCount, tabSize)'
                     else:

@@ -245,6 +245,22 @@ std::string ToString<decode::Decoded_VkPerformanceValueINTEL>(const decode::Deco
     return str;
 }
 
+
+/// @todo Use the DecodedStruct to properly traverse pNext.
+template <>
+std::string ToString<decode::Decoded_VkPipelineExecutableStatisticKHR>(const decode::Decoded_VkPipelineExecutableStatisticKHR& obj,
+                                           ToStringFlags               toStringFlags,
+                                           uint32_t                    tabCount,
+                                           uint32_t                    tabSize)
+{
+    assert(obj.decoded_value);
+    std::string str;
+    if(obj.decoded_value)
+    {
+        str += ToString(*obj.decoded_value, toStringFlags, tabCount, tabSize);
+    }
+    return str;
+}
 /*
 template <> std::string ToString<decode::Decoded_VkPipelineExecutableStatisticKHR>(const decode::Decoded_VkPipelineExecutableStatisticKHR& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {
@@ -288,8 +304,25 @@ template <> std::string ToString<decode::Decoded_VkPipelineExecutableStatisticKH
         }
     );
 }
-/// @todo Why don't we need decoded version of ToString<VkPipelineExecutableStatisticKHR>?
+*/
 
+/// @todo Use the DecodedStruct to properly traverse pNext and get the dstSet
+template <>
+std::string ToString<decode::Decoded_VkWriteDescriptorSet>(const decode::Decoded_VkWriteDescriptorSet& obj,
+                                           ToStringFlags               toStringFlags,
+                                           uint32_t                    tabCount,
+                                           uint32_t                    tabSize)
+{
+    assert(obj.decoded_value);
+    std::string str;
+    if(obj.decoded_value)
+    {
+        str += ToString(*obj.decoded_value, toStringFlags, tabCount, tabSize);
+    }
+    return str;
+}
+
+/*
 template <>
 std::string ToString<decode::Decoded_VkWriteDescriptorSet>(const decode::Decoded_VkWriteDescriptorSet& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {
