@@ -85,9 +85,10 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
     def beginFile(self, genOpts):
         BaseGenerator.beginFile(self, genOpts)
         body = inspect.cleandoc('''
-            #include "decode/custom_vulkan_struct_decoders_to_string.h"
-            #include "generated_vulkan_struct_to_string.h"
             #include "generated_vulkan_struct_decoders_to_string.h"
+            #include "decode/custom_vulkan_struct_decoders_to_string.h"
+            #include "decode/custom_vulkan_ascii_consumer.h"
+            #include "generated_vulkan_struct_to_string.h"
             #include "generated_vulkan_enum_to_string.h"
 
             GFXRECON_BEGIN_NAMESPACE(gfxrecon)
@@ -201,9 +202,11 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         hasHandle = True
                         hasArrayPtrHandle = True
                     elif self.is_struct(value.base_type):
-                        toString = 'ArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. @todo */'
+                        # Original: toString = 'ArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. */'
+                        toString = 'PointerDecoderArrayToString(*decoded_obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of structs case. */'
                     elif self.is_enum(value.base_type):
-                        toString = 'VkEnumArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. @todo */'
+                        # For enums, it is fine to reach through to the raw struct since no deeper recursion will happen:
+                        toString = 'VkEnumArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of enums case. */'
                     else:
                         toString = 'ArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Pointer to array of anything else case.*/'
                 else:
@@ -211,22 +214,21 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         toString = 'static_assert(false, "Unhandled pointer to VkHandle in `vulkan_struct_decoders_to_string_body_generator.py`")'
                         hasHandle = True
                     elif self.is_struct(value.base_type):
-                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "null") /** <-------- Pointer to single struct case. @todo */'
+                        toString = '((decoded_obj.{0} && decoded_obj.{0}->GetMetaStructPointer()) ? ToString(*decoded_obj.{0}->GetMetaStructPointer(), toStringFlags, tabCount, tabSize) : "null") /** <-------- Pointer to single struct case.*/'
                     elif self.is_enum(value.base_type):
                         toString = 'static_assert(false, "Unhandled pointer to VkEnum in `vulkan_struct_decoders_to_string_body_generator.py`")'
                     else:
-                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "null") /** <-------- Pointer to array of anything else case.*/'
+                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "null") /** <-------- Pointer to single anything else case.*/'
             else:
                 if value.is_array:
                     if self.is_handle(value.base_type):
                         # toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
-                        # toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo */'
-                        # toString = '''VkHandleArrayToString(decoded_obj.{0}.GetLength(), decoded_obj.{0}.GetHandlePointer(), toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo Print decimals. */'''
-                        # toString = '''VkHandleArrayToString(decoded_obj.{0}.GetLength(), decoded_obj.{0}.GetPointer(), toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo Print decimals. */'''
-                        toString = '''ArrayToString(decoded_obj.{0}.GetLength(), decoded_obj.{0}.GetPointer(), toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. @todo Print decimals. */'''
+                        toString = '''ArrayToString(decoded_obj.{0}.GetLength(), decoded_obj.{0}.GetPointer(), toStringFlags, tabCount, tabSize) /** <-------- Embedded array of handles case. */'''
                         hasHandle = True
                     elif self.is_struct(value.base_type):
-                        toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of structs case. @todo */'
+                        # Original: 
+                        toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        #toString = 'PointerDecoderArrayToString(*decoded_obj.{0}, toStringFlags, tabCount, tabSize)'
                     elif self.is_enum(value.base_type):
                         toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize) /** <-------- Embedded array of enums case. @todo */'
                     elif 'char' in value.base_type:

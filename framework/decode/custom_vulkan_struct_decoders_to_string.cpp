@@ -410,6 +410,19 @@ std::string ToString<decode::Decoded_VkPhysicalDeviceMemoryProperties>(const dec
     return str;
 }
 
+/// @note Temp pass-through to raw Vulkan struct.
+/// @todo Implement properly, accounting for the pNext.
+template <>
+std::string ToString<decode::Decoded_VkPipelineMultisampleStateCreateInfo>(const decode::Decoded_VkPipelineMultisampleStateCreateInfo& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
+{
+    assert(obj.decoded_value);
+    std::string str;
+    if(obj.decoded_value)
+    {
+        str += ToString(*obj.decoded_value, toStringFlags, tabCount, tabSize);
+    }
+    return str;
+}
 /*
 template <>
 std::string ToString<decode::Decoded_VkPipelineMultisampleStateCreateInfo>(const decode::Decoded_VkPipelineMultisampleStateCreateInfo& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
