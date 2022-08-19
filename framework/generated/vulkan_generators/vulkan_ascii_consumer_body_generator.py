@@ -211,7 +211,7 @@ class VulkanAsciiConsumerBodyGenerator(BaseGenerator):
                         #print(value)
                         #print(value.base_type)
                         #print(value.__dict__)
-                        toString = 'PointerDecoderToString({0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'PointerDecoderToString({0}, toStringFlags, tabCount, tabSize) <--------------- Pointer to Struct case'
                         constains_struct_ptr = True
                     elif self.is_enum(value.base_type):
                         toString = 'EnumPointerDecoderToString({0})'
