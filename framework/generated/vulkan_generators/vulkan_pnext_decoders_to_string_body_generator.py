@@ -94,14 +94,14 @@ class VulkanPNextDecodersToStringBodyGenerator(BaseGenerator):
                 if(nullptr == meta)
                 {
                     GFXRECON_LOG_ERROR("Attempt to follow pNext chain without a metastructure pointer via PNextNode at address %p.", pNext);
-                    return "\\"null\\"";
+                    return "null";
                 }
                 const VkBaseInStructure*const decoded_value = (*(reinterpret_cast<const VkBaseInStructure*const*>(meta)));
                 assert(decoded_value);
                 if(nullptr == decoded_value)
                 {
                     GFXRECON_LOG_ERROR("Attempt to follow pNext chain to a struct which has not been decoded at address %p.", meta);
-                    return "\\"null\\"";
+                    return "null";
                 }
                 const VkStructureType sType = decoded_value->sType;
                 switch (sType)
@@ -117,7 +117,7 @@ class VulkanPNextDecodersToStringBodyGenerator(BaseGenerator):
                     return std::string("\\"Unknown Struct in pNext chain. sType: ") + std::to_string(uint32_t(sType)) + "\\"";
                 }
             }
-            return "\\"null\\"";
+            return "null";
         }
 
         GFXRECON_END_NAMESPACE(util)

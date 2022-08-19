@@ -211,11 +211,11 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         toString = 'static_assert(false, "Unhandled pointer to VkHandle in `vulkan_struct_decoders_to_string_body_generator.py`")'
                         hasHandle = True
                     elif self.is_struct(value.base_type):
-                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "\\"null\\"") /** <-------- Pointer to single struct case. @todo */'
+                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "null") /** <-------- Pointer to single struct case. @todo */'
                     elif self.is_enum(value.base_type):
                         toString = 'static_assert(false, "Unhandled pointer to VkEnum in `vulkan_struct_decoders_to_string_body_generator.py`")'
                     else:
-                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "\\"null\\"") /** <-------- Pointer to array of anything else case.*/'
+                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "null") /** <-------- Pointer to array of anything else case.*/'
             else:
                 if value.is_array:
                     if self.is_handle(value.base_type):

@@ -99,7 +99,7 @@ class VulkanPNextToStringBodyGenerator(BaseGenerator):
                     return std::string("\\"Unknown Struct in pNext chain. sType: ") + std::to_string(uint32_t(reinterpret_cast<const VkBaseInStructure*>(pNext)->sType)) + "\\"";
                 }
             }
-            return "\\"null\\"";
+            return "null";
         }
 
         GFXRECON_END_NAMESPACE(util)
