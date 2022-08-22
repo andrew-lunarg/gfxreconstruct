@@ -191,7 +191,7 @@ class VulkanAsciiConsumerBodyGenerator(BaseGenerator):
                 toString = 'StringDecoderToString({0})'
 
             # There's some repeated code in this if/else block...It's easier (imo) to reason
-            #   about each case when they're all listed explictly
+            # about each case when they're all listed explictly
             elif value.is_pointer:
                 if value.is_array:
                     if self.is_handle(value.base_type):
