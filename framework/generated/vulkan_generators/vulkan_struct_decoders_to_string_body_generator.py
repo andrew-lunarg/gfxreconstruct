@@ -168,6 +168,7 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                 toString = 'PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize)'
 
             # Function pointers and void data pointers simply write the address
+            # BOOKMARK <-------------------------------------------------------------------------------------- Eyeball this and compare to dev. @todo
             elif 'pfn' in value.name:
                 # toString = '"\\"" + PtrToString(obj.{0}) + "\\""'
                 # In decoded types these are uint64_ts:
@@ -184,11 +185,12 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                 #    Discriminate this!
 
             # C strings require custom handling
+            # BOOKMARK <-------------------------------------------------------------------------------------- Eyeball this and compare to dev. @todo
             elif 'const char*' in value.full_type:
                 if 'const char* const*' in value.full_type:
-                    toString = 'CStrArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize) /* <--------- Pointer to C strings case */'
+                    toString = 'CStrArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                 else:
-                    toString = '(obj.{0} ? ("\\"" + std::string(obj.{0}) + "\\"") : "null") /* <--------- C string case */'
+                    toString = '(obj.{0} ? ("\\"" + std::string(obj.{0}) + "\\"") : "null")'
 
             # There's some repeated code in this if/else block...for instance, arrays of
             # structs, enums, and primitives all route through ArrayToString()...It's
@@ -198,7 +200,10 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                     if self.is_handle(value.base_type):
                         # Pointer to array of handles case:
                         # Original: toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
-                        toString = 'VkHandleArrayToString(decoded_obj.{0}, toStringFlags, tabCount, tabSize)'
+                        # Works but outputs hex: toString = 'VkHandleArrayToString(decoded_obj.{0}, toStringFlags, tabCount, tabSize)'
+                        # Decimals output:
+                        toString = 'ArrayToString(decoded_obj.{0}.GetLength(), decoded_obj.{0}.GetPointer(), toStringFlags, tabCount, tabSize)'
+
                         hasHandle = True
                         hasArrayPtrHandle = True
                     elif self.is_struct(value.base_type):
@@ -248,7 +253,6 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         # Embedded array of misc other stuff (ints, masks, floats, etc.):
                         toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                 else:
-                    # BOOKMARK <-------------------------------------------------------------------------------------- Keep working through these making good choices.
                     if self.is_handle(value.base_type):
                         # Version accessing the null handle in the raw vulkan struct: toString = '\'"\' + VkHandleToString(obj.{0}) + \'"\''
                         # Outputs a hex value:
@@ -260,19 +264,18 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         hasHandle = True
                         hasSingleHandle = True
                     elif self.is_struct(value.base_type):
-                        # Raw struct: toString = 'ToString(obj.{0}, toStringFlags, tabCount, tabSize)'
-                        # Fails: toString = 'ToString(decoded_obj.{0}, toStringFlags, tabCount, tabSize) /* < ------------ struct case*/'
-                        toString = 'ToString(*(decoded_obj.{0}), toStringFlags, tabCount, tabSize) /* < ------------ struct case*/'
+                        # Original: toString = 'ToString(obj.{0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'ToString(*(decoded_obj.{0}), toStringFlags, tabCount, tabSize)'
                     elif self.is_enum(value.base_type):
-                        toString = '\'"\' + ToString(obj.{0}, toStringFlags, tabCount, tabSize) + \'"\' /* < ------------ enum case*/'
+                        toString = '\'"\' + ToString(obj.{0}, toStringFlags, tabCount, tabSize) + \'"\''
                     else:
-                        toString = 'ToString(obj.{0}, toStringFlags, tabCount, tabSize) /* < ------------ else case*/'
+                        toString = 'ToString(obj.{0}, toStringFlags, tabCount, tabSize)'
 
             firstField = 'true' if not body else 'false'
             toString = toString.format(value.name, value.array_length)
             body += '            FieldToString(strStrm, {0}, "{1}", toStringFlags, tabCount, tabSize, {2});\n'.format(firstField, value.name, toString)
         if(hasHandle == True):
-                body += '            /* Struct has at least one handle - Andy */\n'
+                body += '            /** Struct has at least one handle - Andy  @todo Delete all this debug / understanding stuff <--------------------------------------------------------------[TODO] */\n'
         if(hasSingleHandle == True):
                 body += '            /* Struct has at least one single handle - Andy */\n'
         if(hasArrayPtrHandle == True):
