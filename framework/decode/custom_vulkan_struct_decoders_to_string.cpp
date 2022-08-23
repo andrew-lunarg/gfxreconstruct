@@ -30,7 +30,7 @@
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(util)
 
-#define GFXRECON_PREFIX_JSON_STR std::string str {"\"fixme\": \"The decoded version of the following struct needs a proper ToString() funxction.\""};
+#define GFXRECON_PREFIX_JSON_STR std::string str {"\"fixme\": \"The decoded version of the following struct needs a proper ToString() function.\""};
 // clang-format off
 
 // NOTE : The following structures' ToString() functions aren't generated due
@@ -49,27 +49,24 @@ std::string ToString<decode::Decoded_SECURITY_ATTRIBUTES>(const decode::Decoded_
     return "";
 }
 
+// Follow the decoded struct pointers:
 template<>
-std::string ToString<decode::Decoded_VkAccelerationStructureGeometryKHR>(const decode::Decoded_VkAccelerationStructureGeometryKHR& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
+std::string ToString<decode::Decoded_VkAccelerationStructureGeometryKHR>(const decode::Decoded_VkAccelerationStructureGeometryKHR& decoded_obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {
-    assert(obj.decoded_value);
-    GFXRECON_PREFIX_JSON_STR
-    if(obj.decoded_value)
+    assert(decoded_obj.decoded_value != nullptr);
+    if(decoded_obj.decoded_value == nullptr)
     {
-        str += ToString(*obj.decoded_value, toStringFlags, tabCount, tabSize);
+        return "";
     }
-    return str;
-}
-/*template <>
-std::string ToString<VkAccelerationStructureGeometryKHR>(const VkAccelerationStructureGeometryKHR& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
-{
+    const VkAccelerationStructureGeometryKHR& obj = *decoded_obj.decoded_value;
+    //return ToString(obj, toStringFlags, tabCount, tabSize);
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(obj.pNext, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "geometryType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.geometryType, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "geometry", toStringFlags, tabCount, tabSize,
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "geometryType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.geometryType, toStringFlags, tabCount, tabSize) + '"'); // Just an enum
+            FieldToString(strStrm, false, "geometry", toStringFlags, tabCount, tabSize, // The structs in the union have pNexts that we have to traverse through the decoded versions.
                 ObjectToString(toStringFlags, tabCount, tabSize,
                     [&](std::stringstream& subStrStrm)
                     {
@@ -77,15 +74,15 @@ std::string ToString<VkAccelerationStructureGeometryKHR>(const VkAccelerationStr
                         {
                         case VK_GEOMETRY_TYPE_TRIANGLES_KHR:
                         {
-                            FieldToString(subStrStrm, true, "triangles", toStringFlags, tabCount, tabSize, ToString(obj.geometry.triangles, toStringFlags, tabCount, tabSize));
+                            FieldToString(subStrStrm, true, "triangles", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.geometry->triangles), toStringFlags, tabCount, tabSize));
                         } break;
                         case VK_GEOMETRY_TYPE_AABBS_KHR:
                         {
-                            FieldToString(subStrStrm, true, "aabbs", toStringFlags, tabCount, tabSize, ToString(obj.geometry.aabbs, toStringFlags, tabCount, tabSize));
+                            FieldToString(subStrStrm, true, "aabbs", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.geometry->aabbs), toStringFlags, tabCount, tabSize));
                         } break;
                         case VK_GEOMETRY_TYPE_INSTANCES_KHR:
                         {
-                            FieldToString(subStrStrm, true, "instances", toStringFlags, tabCount, tabSize, ToString(obj.geometry.instances, toStringFlags, tabCount, tabSize));
+                            FieldToString(subStrStrm, true, "instances", toStringFlags, tabCount, tabSize, ToString(*(decoded_obj.geometry->instances), toStringFlags, tabCount, tabSize));
                         } break;
                         default:
                         {
@@ -98,7 +95,6 @@ std::string ToString<VkAccelerationStructureGeometryKHR>(const VkAccelerationStr
         }
     );
 }
-*/
 
 template <>
 std::string ToString<decode::Decoded_VkAccelerationStructureMotionInstanceNV>(const decode::Decoded_VkAccelerationStructureMotionInstanceNV& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
