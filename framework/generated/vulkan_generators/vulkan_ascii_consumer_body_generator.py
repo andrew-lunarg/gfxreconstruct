@@ -173,8 +173,6 @@ class VulkanAsciiConsumerBodyGenerator(BaseGenerator):
         if not 'void' in return_type:
             body = '            FieldToString(strStrm, true, "return", toStringFlags, tabCount, tabSize, \'"\' + ToString(returnValue, toStringFlags, tabCount, tabSize) + \'"\');\n'
 
-        constains_struct_ptr = False
-
         # Handle function arguments
         for value in values:
 
@@ -197,8 +195,7 @@ class VulkanAsciiConsumerBodyGenerator(BaseGenerator):
                     if self.is_handle(value.base_type):
                         toString = 'HandlePointerDecoderArrayToString({1}, {0}, toStringFlags, tabCount, tabSize)'
                     elif self.is_struct(value.base_type):
-                        # Old using raw structs: toString = 'PointerDecoderArrayToString({1}, {0}, toStringFlags, tabCount, tabSize)'
-                        toString = 'PointerDecoderArrayToString(*{0}, toStringFlags, tabCount, tabSize) /** <---------------- Pointer to array of structs */'
+                        toString = 'PointerDecoderArrayToString(*{0}, toStringFlags, tabCount, tabSize)'
                     elif self.is_enum(value.base_type):
                         toString = 'EnumPointerDecoderArrayToString({1}, {0}, toStringFlags, tabCount, tabSize)'
                     else:
@@ -207,12 +204,8 @@ class VulkanAsciiConsumerBodyGenerator(BaseGenerator):
                     if self.is_handle(value.base_type):
                         toString = 'HandlePointerDecoderToString({0})'
                     elif self.is_struct(value.base_type):
-                        #print("\nPointer to Struct:")
-                        #print(value)
-                        #print(value.base_type)
-                        #print(value.__dict__)
-                        toString = 'PointerDecoderToString({0}, toStringFlags, tabCount, tabSize) /** <--------------- Pointer to Struct case */'
-                        constains_struct_ptr = True
+
+                        toString = 'PointerDecoderToString({0}, toStringFlags, tabCount, tabSize)'
                     elif self.is_enum(value.base_type):
                         toString = 'EnumPointerDecoderToString({0})'
                     else:
@@ -231,6 +224,7 @@ class VulkanAsciiConsumerBodyGenerator(BaseGenerator):
                     if self.is_handle(value.base_type):
                         toString = 'HandleIdToString({0})'
                     elif self.is_struct(value.base_type):
+                        # @note This never happens, as we don't pass structs into Vulkan by value.
                         toString = 'ToString({0}, toStringFlags, tabCount, tabSize)'
                     elif self.is_enum(value.base_type):
                         toString = '\'"\' + ToString({0}, toStringFlags, tabCount, tabSize) + \'"\''
@@ -241,7 +235,5 @@ class VulkanAsciiConsumerBodyGenerator(BaseGenerator):
             valueName = ('[out]' if self.is_output_parameter(value) else '') + value.name
             toString = toString.format(value.name, value.array_length)
             body += '            FieldToString(strStrm, {0}, "{1}", toStringFlags, tabCount, tabSize, {2});\n'.format(firstField, valueName, toString)
-        if constains_struct_ptr == True:
-            body += '            // Pointer to struct in arguments <------------- [Andy, STRUCTP]\n'
         return body
     # yapf: enable
