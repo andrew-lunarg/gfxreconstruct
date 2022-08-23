@@ -58,13 +58,22 @@ std::string ToString<decode::Decoded_VkAccelerationStructureMotionInstanceNV>(co
                                                               uint32_t      tabCount,
                                                               uint32_t      tabSize);
 
-
+// Dispatch to the raw vulkan version as there are no pNexts or handles reachable through this.
 template <>
-std::string ToString<decode::Decoded_VkClearColorValue>(const decode::Decoded_VkClearColorValue& obj,
+inline std::string ToString<decode::Decoded_VkClearColorValue>(const decode::Decoded_VkClearColorValue& obj,
                                         ToStringFlags            toStringFlags,
                                         uint32_t                 tabCount,
-                                        uint32_t                 tabSize);
+                                        uint32_t                 tabSize)
+{
+    assert(obj.decoded_value);
+    if(obj.decoded_value)
+    {
+        return ToString<VkClearColorValue>(*obj.decoded_value, toStringFlags, tabCount, tabSize);
+    }
+    return "";
+}
 
+// Dispatch to the raw vulkan version as there are no pNexts or handles reachable through this.
 template <>
 inline std::string ToString<decode::Decoded_VkClearValue>(const decode::Decoded_VkClearValue& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {

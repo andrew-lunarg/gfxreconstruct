@@ -59,7 +59,6 @@ std::string ToString<decode::Decoded_VkAccelerationStructureGeometryKHR>(const d
         return "";
     }
     const VkAccelerationStructureGeometryKHR& obj = *decoded_obj.decoded_value;
-    //return ToString(obj, toStringFlags, tabCount, tabSize);
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
@@ -96,94 +95,39 @@ std::string ToString<decode::Decoded_VkAccelerationStructureGeometryKHR>(const d
     );
 }
 
+// Dispatch to the raw vulkan version as there are no pNexts or handles reachable through this:
 template <>
 std::string ToString<decode::Decoded_VkAccelerationStructureMotionInstanceNV>(const decode::Decoded_VkAccelerationStructureMotionInstanceNV& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {
     assert(obj.decoded_value);
-    GFXRECON_PREFIX_JSON_STR
+    std::string str;
     if(obj.decoded_value)
     {
         str += ToString(*obj.decoded_value, toStringFlags, tabCount, tabSize);
     }
     return str;
 }
-/*{
-    return ObjectToString(toStringFlags, tabCount, tabSize,
-        [&](std::stringstream& strStrm)
-        {
-            FieldToString(strStrm, true, "type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.type, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "data", toStringFlags, tabCount, tabSize,
-                ObjectToString(toStringFlags, tabCount, tabSize,
-                    [&](std::stringstream& subStrStrm)
-                    {
-                        switch (obj.type)
-                        {
-                        case VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_STATIC_NV:
-                        {
-                            FieldToString(subStrStrm, true, "staticInstance", toStringFlags, tabCount, tabSize, ToString(obj.data.staticInstance, toStringFlags, tabCount, tabSize));
-                        } break;
-                        case VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_MATRIX_MOTION_NV:
-                        {
-                            FieldToString(subStrStrm, true, "matrixMotionInstance", toStringFlags, tabCount, tabSize, ToString(obj.data.matrixMotionInstance, toStringFlags, tabCount, tabSize));
-                        } break;
-                        case VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_SRT_MOTION_NV:
-                        {
-                            FieldToString(subStrStrm, true, "srtMotionInstance", toStringFlags, tabCount, tabSize, ToString(obj.data.srtMotionInstance, toStringFlags, tabCount, tabSize));
-                        } break;
-                        default:
-                        {
-                        } break;
-                        }
-                    }
-                )
-            );
-        }
-    );
-}*/
 
-/// @todo Delete (Inline function in header does the job)
 template <>
-std::string ToString<decode::Decoded_VkClearColorValue>(const decode::Decoded_VkClearColorValue& obj,
-                                        ToStringFlags            toStringFlags,
-                                        uint32_t                 tabCount,
-                                        uint32_t                 tabSize)
+std::string ToString<decode::Decoded_VkDescriptorImageInfo>(const decode::Decoded_VkDescriptorImageInfo& decoded_obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {
-    assert(obj.decoded_value);
-    if(obj.decoded_value)
+    assert(decoded_obj.decoded_value != nullptr);
+    if(decoded_obj.decoded_value == nullptr)
     {
-        return ToString<VkClearColorValue>(*obj.decoded_value, toStringFlags, tabCount, tabSize);
+        return "";
     }
-    return "";
+    const VkDescriptorImageInfo obj = *decoded_obj.decoded_value;
+    return ObjectToString(toStringFlags, tabCount, tabSize,
+        [&](std::stringstream& strStrm)
+        {
+            FieldToString(strStrm, true,  "sampler",     toStringFlags, tabCount, tabSize, '"' + ToString(decoded_obj.sampler) + '"');
+            FieldToString(strStrm, false, "imageView",   toStringFlags, tabCount, tabSize, '"' + ToString(decoded_obj.imageView) + '"');
+            FieldToString(strStrm, false, "imageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.imageLayout, toStringFlags, tabCount, tabSize) + '"');
+        }
+    );
 }
+
 /*
-/// @todo Delete (Inline function in header does the job)
-template <>
-std::string ToString<decode::Decoded_VkClearValue>(const decode::Decoded_VkClearValue& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
-{
-    return ObjectToString(toStringFlags, tabCount, tabSize,
-        [&](std::stringstream& strStrm)
-        {
-            FieldToString(strStrm, true, "color", toStringFlags, tabCount, tabSize, ToString(obj.color, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "depthStencil", toStringFlags, tabCount, tabSize, ToString(obj.depthStencil, toStringFlags, tabCount, tabSize));
-        }
-    );
-}
-
-template <>
-std::string ToString<decode::Decoded_VkDescriptorImageInfo>(const decode::Decoded_VkDescriptorImageInfo& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
-{
-    return ObjectToString(toStringFlags, tabCount, tabSize,
-        [&](std::stringstream& strStrm)
-        {
-            FieldToString(strStrm, true, "sampler", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(obj.sampler) + '"');
-            FieldToString(strStrm, false, "imageView", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(obj.imageView) + '"');
-            FieldToString(strStrm, false, "imageLayout", toStringFlags, tabCount, tabSize, '"'+ ToString(obj.imageLayout, toStringFlags, tabCount, tabSize) + '"');
-        }
-    );
-}
-/// @todo Why don't we need decoded version of ToString<VkDescriptorImageInfo> to build cleanly?
-
 template <>
 std::string ToString<decode::Decoded_VkDeviceOrHostAddressConstKHR>(const decode::Decoded_VkDeviceOrHostAddressConstKHR& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {
