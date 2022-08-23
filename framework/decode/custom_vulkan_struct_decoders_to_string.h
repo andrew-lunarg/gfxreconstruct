@@ -37,7 +37,6 @@
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(util)
 
-//std::string PNextDecodedToString(const void* pNext, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize);
 std::string PNextDecodedToString(const decode::PNextNode* pNext, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize);
 
 template <>
@@ -135,14 +134,6 @@ std::string ToString<decode::Decoded_VkWriteDescriptorSet>(const decode::Decoded
                                            ToStringFlags               toStringFlags,
                                            uint32_t                    tabCount,
                                            uint32_t                    tabSize);
-/// @todo Our handles are small ints, not pointers.
-/*template <typename VkHandleType>
-format::HandleId is the type
-inline std::string VkHandleToString(VkHandleType vkHandle)
-{
-    return vkHandle ? PtrToString(vkHandle) : "VK_NULL_HANDLE";
-}
-*/
 
 template <typename VkHandleType>
 inline std::string VkHandleArrayToString(const decode::HandlePointerDecoder<VkHandleType>& pHandles,
