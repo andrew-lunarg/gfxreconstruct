@@ -166,24 +166,14 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                 toString = 'PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize)'
 
             # Function pointers and void data pointers simply write the address
-            # BOOKMARK <-------------------------------------------------------------------------------------- Eyeball this and compare to dev. @todo
             elif 'pfn' in value.name:
                 # toString = '"\\"" + PtrToString(obj.{0}) + "\\""'
                 # In decoded types these are uint64_ts:
-                toString = '"\\"" + ToString(decoded_obj.{0}) + "\\"" /* <--------- function pointer case. */'
+                toString = '"\\"" + ToString(decoded_obj.{0}) + "\\""'
             elif 'void' in value.full_type:
-                # Original: toString = '"\\"" + PtrToString(obj.{0}) + "\\""'
-                toString = '"\\"" + PtrToString(obj.{0}) + "\\"" /* <---------- \"void\" in full_type [ToDo!]*/'
-                # In decoded types these are PointerDecoder<T>s:
-                # This should be for some members: toString = '"\\"" + PtrToString(decoded_obj.{0}.GetPointer()) + "\\"" /* <--------- void pointer case. [ToDo: GetOutputPointer() instead?] */'
-                # toString = '"\\"" + ToString(decoded_obj.{0}) + "\\"" /* <--------- void pointer case. */'
-                # ToDo:
-                # 1. This is hitting pointer to initial data in Decoded_VkPipelineCacheCreateInfo (PointerDecoder<uint8_t> pInitialData;_)
-                #    which was a `const void* pInitialData;` in the raw struct.
-                #    Discriminate this!
+                toString = '"\\"" + PtrToString(obj.{0}) + "\\""'
 
             # C strings require custom handling
-            # BOOKMARK <-------------------------------------------------------------------------------------- Eyeball this and compare to dev. @todo
             elif 'const char*' in value.full_type:
                 if 'const char* const*' in value.full_type:
                     toString = 'CStrArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
@@ -231,7 +221,7 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         # Original: toString = 'VkHandleArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                         # Plumbs through to HandlePointerDecoder::GetPointer() which returns a pointer
                         # to a format::HandleId, which is a typedef of uint64_t.
-                        toString = '''ArrayToString(decoded_obj.{0}.GetLength(), decoded_obj.{0}.GetPointer(), toStringFlags, tabCount, tabSize)'''
+                        toString = 'ArrayToString(decoded_obj.{0}.GetLength(), decoded_obj.{0}.GetPointer(), toStringFlags, tabCount, tabSize)'
                     elif self.is_struct(value.base_type):
                         # Embedded array of structs:
                         # Original: toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'

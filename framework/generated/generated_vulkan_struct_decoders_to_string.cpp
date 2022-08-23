@@ -297,12 +297,12 @@ template <> std::string ToString<decode::Decoded_VkAllocationCallbacks>(const de
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "pUserData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pUserData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
-            FieldToString(strStrm, false, "pfnAllocation", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnAllocation) + "\"" /* <--------- function pointer case. */);
-            FieldToString(strStrm, false, "pfnReallocation", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnReallocation) + "\"" /* <--------- function pointer case. */);
-            FieldToString(strStrm, false, "pfnFree", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnFree) + "\"" /* <--------- function pointer case. */);
-            FieldToString(strStrm, false, "pfnInternalAllocation", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnInternalAllocation) + "\"" /* <--------- function pointer case. */);
-            FieldToString(strStrm, false, "pfnInternalFree", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnInternalFree) + "\"" /* <--------- function pointer case. */);
+            FieldToString(strStrm, true, "pUserData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pUserData) + "\"");
+            FieldToString(strStrm, false, "pfnAllocation", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnAllocation) + "\"");
+            FieldToString(strStrm, false, "pfnReallocation", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnReallocation) + "\"");
+            FieldToString(strStrm, false, "pfnFree", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnFree) + "\"");
+            FieldToString(strStrm, false, "pfnInternalAllocation", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnInternalAllocation) + "\"");
+            FieldToString(strStrm, false, "pfnInternalFree", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnInternalFree) + "\"");
         }
     );
 }
@@ -1246,7 +1246,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineCacheCreateInfo>(cons
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "initialDataSize", toStringFlags, tabCount, tabSize, ToString(obj.initialDataSize, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pInitialData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pInitialData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pInitialData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pInitialData) + "\"");
         }
     );
 }
@@ -1283,7 +1283,7 @@ template <> std::string ToString<decode::Decoded_VkSpecializationInfo>(const dec
             FieldToString(strStrm, true, "mapEntryCount", toStringFlags, tabCount, tabSize, ToString(obj.mapEntryCount, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "pMapEntries", toStringFlags, tabCount, tabSize, PointerDecoderArrayToString(*decoded_obj.pMapEntries, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "dataSize", toStringFlags, tabCount, tabSize, ToString(obj.dataSize, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pData) + "\"");
         }
     );
 }
@@ -5574,7 +5574,7 @@ template <> std::string ToString<decode::Decoded_VkWriteDescriptorSetInlineUnifo
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "dataSize", toStringFlags, tabCount, tabSize, ToString(obj.dataSize, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pData) + "\"");
         }
     );
 }
@@ -6297,7 +6297,7 @@ template <> std::string ToString<decode::Decoded_VkXlibSurfaceCreateInfoKHR>(con
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "dpy", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.dpy) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "dpy", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.dpy) + "\"");
             FieldToString(strStrm, false, "window", toStringFlags, tabCount, tabSize, ToString(obj.window, toStringFlags, tabCount, tabSize));
         }
     );
@@ -6317,7 +6317,7 @@ template <> std::string ToString<decode::Decoded_VkXcbSurfaceCreateInfoKHR>(cons
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "connection", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.connection) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "connection", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.connection) + "\"");
             FieldToString(strStrm, false, "window", toStringFlags, tabCount, tabSize, ToString(obj.window, toStringFlags, tabCount, tabSize));
         }
     );
@@ -6337,8 +6337,8 @@ template <> std::string ToString<decode::Decoded_VkWaylandSurfaceCreateInfoKHR>(
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "display", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.display) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
-            FieldToString(strStrm, false, "surface", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.surface) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "display", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.display) + "\"");
+            FieldToString(strStrm, false, "surface", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.surface) + "\"");
         }
     );
 }
@@ -6357,7 +6357,7 @@ template <> std::string ToString<decode::Decoded_VkAndroidSurfaceCreateInfoKHR>(
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "window", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.window) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "window", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.window) + "\"");
         }
     );
 }
@@ -6376,8 +6376,8 @@ template <> std::string ToString<decode::Decoded_VkWin32SurfaceCreateInfoKHR>(co
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "hinstance", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.hinstance) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
-            FieldToString(strStrm, false, "hwnd", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.hwnd) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "hinstance", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.hinstance) + "\"");
+            FieldToString(strStrm, false, "hwnd", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.hwnd) + "\"");
         }
     );
 }
@@ -6474,7 +6474,7 @@ template <> std::string ToString<decode::Decoded_VkImportMemoryWin32HandleInfoKH
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "handle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.handle) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "handle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.handle) + "\"");
             FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "null"));
         }
     );
@@ -6633,7 +6633,7 @@ template <> std::string ToString<decode::Decoded_VkImportSemaphoreWin32HandleInf
             FieldToString(strStrm, false, "semaphore", toStringFlags, tabCount, tabSize, ToString(decoded_obj.semaphore));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "handle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.handle) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "handle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.handle) + "\"");
             FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "null"));
         }
     );
@@ -6845,7 +6845,7 @@ template <> std::string ToString<decode::Decoded_VkImportFenceWin32HandleInfoKHR
             FieldToString(strStrm, false, "fence", toStringFlags, tabCount, tabSize, ToString(decoded_obj.fence));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "handle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.handle) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "handle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.handle) + "\"");
             FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, (obj.name ? ToString(*obj.name, toStringFlags, tabCount, tabSize) : "null"));
         }
     );
@@ -7575,7 +7575,7 @@ template <> std::string ToString<decode::Decoded_VkPipelineExecutableInternalRep
             FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"');
             FieldToString(strStrm, false, "isText", toStringFlags, tabCount, tabSize, ToString(obj.isText, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "dataSize", toStringFlags, tabCount, tabSize, ToString(obj.dataSize, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pData) + "\"");
         }
     );
 }
@@ -7668,7 +7668,7 @@ template <> std::string ToString<decode::Decoded_VkCheckpointData2NV>(const deco
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "stage", toStringFlags, tabCount, tabSize, ToString(obj.stage, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pCheckpointMarker", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pCheckpointMarker) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pCheckpointMarker", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pCheckpointMarker) + "\"");
         }
     );
 }
@@ -7810,8 +7810,8 @@ template <> std::string ToString<decode::Decoded_VkDebugReportCallbackCreateInfo
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pfnCallback", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnCallback) + "\"" /* <--------- function pointer case. */);
-            FieldToString(strStrm, false, "pUserData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pUserData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pfnCallback", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnCallback) + "\"");
+            FieldToString(strStrm, false, "pUserData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pUserData) + "\"");
         }
     );
 }
@@ -7871,7 +7871,7 @@ template <> std::string ToString<decode::Decoded_VkDebugMarkerObjectTagInfoEXT>(
             FieldToString(strStrm, false, "object", toStringFlags, tabCount, tabSize, ToString(obj.object, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "tagName", toStringFlags, tabCount, tabSize, ToString(obj.tagName, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "tagSize", toStringFlags, tabCount, tabSize, ToString(obj.tagSize, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pTag", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pTag) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pTag", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pTag) + "\"");
         }
     );
 }
@@ -8220,7 +8220,7 @@ template <> std::string ToString<decode::Decoded_VkImportMemoryWin32HandleInfoNV
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, ToString(obj.handleType, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "handle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.handle) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "handle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.handle) + "\"");
         }
     );
 }
@@ -8301,7 +8301,7 @@ template <> std::string ToString<decode::Decoded_VkViSurfaceCreateInfoNN>(const 
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "window", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.window) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "window", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.window) + "\"");
         }
     );
 }
@@ -8843,7 +8843,7 @@ template <> std::string ToString<decode::Decoded_VkIOSSurfaceCreateInfoMVK>(cons
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pView", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pView) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pView", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pView) + "\"");
         }
     );
 }
@@ -8862,7 +8862,7 @@ template <> std::string ToString<decode::Decoded_VkMacOSSurfaceCreateInfoMVK>(co
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pView", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pView) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pView", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pView) + "\"");
         }
     );
 }
@@ -8949,8 +8949,8 @@ template <> std::string ToString<decode::Decoded_VkDebugUtilsMessengerCreateInfo
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "messageSeverity", toStringFlags, tabCount, tabSize, ToString(obj.messageSeverity, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "messageType", toStringFlags, tabCount, tabSize, ToString(obj.messageType, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pfnUserCallback", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnUserCallback) + "\"" /* <--------- function pointer case. */);
-            FieldToString(strStrm, false, "pUserData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pUserData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pfnUserCallback", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnUserCallback) + "\"");
+            FieldToString(strStrm, false, "pUserData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pUserData) + "\"");
         }
     );
 }
@@ -8972,7 +8972,7 @@ template <> std::string ToString<decode::Decoded_VkDebugUtilsObjectTagInfoEXT>(c
             FieldToString(strStrm, false, "objectHandle", toStringFlags, tabCount, tabSize, ToString(obj.objectHandle, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "tagName", toStringFlags, tabCount, tabSize, ToString(obj.tagName, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "tagSize", toStringFlags, tabCount, tabSize, ToString(obj.tagSize, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pTag", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pTag) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pTag", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pTag) + "\"");
         }
     );
 }
@@ -9052,7 +9052,7 @@ template <> std::string ToString<decode::Decoded_VkImportAndroidHardwareBufferIn
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "buffer", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.buffer) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "buffer", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.buffer) + "\"");
         }
     );
 }
@@ -9577,7 +9577,7 @@ template <> std::string ToString<decode::Decoded_VkValidationCacheCreateInfoEXT>
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "initialDataSize", toStringFlags, tabCount, tabSize, ToString(obj.initialDataSize, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pInitialData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pInitialData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pInitialData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pInitialData) + "\"");
         }
     );
 }
@@ -10122,7 +10122,7 @@ template <> std::string ToString<decode::Decoded_VkImportMemoryHostPointerInfoEX
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "handleType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.handleType, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "pHostPointer", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pHostPointer) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pHostPointer", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pHostPointer) + "\"");
         }
     );
 }
@@ -10511,7 +10511,7 @@ template <> std::string ToString<decode::Decoded_VkCheckpointDataNV>(const decod
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "stage", toStringFlags, tabCount, tabSize, '"' + ToString(obj.stage, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "pCheckpointMarker", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pCheckpointMarker) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pCheckpointMarker", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pCheckpointMarker) + "\"");
         }
     );
 }
@@ -10547,7 +10547,7 @@ template <> std::string ToString<decode::Decoded_VkInitializePerformanceApiInfoI
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pUserData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pUserData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pUserData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pUserData) + "\"");
         }
     );
 }
@@ -10734,7 +10734,7 @@ template <> std::string ToString<decode::Decoded_VkMetalSurfaceCreateInfoEXT>(co
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pLayer", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pLayer) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pLayer", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pLayer) + "\"");
         }
     );
 }
@@ -11248,7 +11248,7 @@ template <> std::string ToString<decode::Decoded_VkSurfaceFullScreenExclusiveWin
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "hmonitor", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.hmonitor) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "hmonitor", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.hmonitor) + "\"");
         }
     );
 }
@@ -11851,8 +11851,8 @@ template <> std::string ToString<decode::Decoded_VkDeviceDeviceMemoryReportCreat
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pfnUserCallback", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnUserCallback) + "\"" /* <--------- function pointer case. */);
-            FieldToString(strStrm, false, "pUserData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pUserData) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pfnUserCallback", toStringFlags, tabCount, tabSize, "\"" + ToString(decoded_obj.pfnUserCallback) + "\"");
+            FieldToString(strStrm, false, "pUserData", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pUserData) + "\"");
         }
     );
 }
@@ -12489,8 +12489,8 @@ template <> std::string ToString<decode::Decoded_VkDirectFBSurfaceCreateInfoEXT>
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "dfb", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.dfb) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
-            FieldToString(strStrm, false, "surface", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.surface) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "dfb", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.dfb) + "\"");
+            FieldToString(strStrm, false, "surface", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.surface) + "\"");
         }
     );
 }
@@ -12872,8 +12872,8 @@ template <> std::string ToString<decode::Decoded_VkScreenSurfaceCreateInfoQNX>(c
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "context", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.context) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
-            FieldToString(strStrm, false, "window", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.window) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "context", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.context) + "\"");
+            FieldToString(strStrm, false, "window", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.window) + "\"");
         }
     );
 }
@@ -13656,7 +13656,7 @@ template <> std::string ToString<decode::Decoded_VkRayTracingShaderGroupCreateIn
             FieldToString(strStrm, false, "closestHitShader", toStringFlags, tabCount, tabSize, ToString(obj.closestHitShader, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "anyHitShader", toStringFlags, tabCount, tabSize, ToString(obj.anyHitShader, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "intersectionShader", toStringFlags, tabCount, tabSize, ToString(obj.intersectionShader, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pShaderGroupCaptureReplayHandle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pShaderGroupCaptureReplayHandle) + "\"" /* <---------- "void" in full_type [ToDo!]*/);
+            FieldToString(strStrm, false, "pShaderGroupCaptureReplayHandle", toStringFlags, tabCount, tabSize, "\"" + PtrToString(obj.pShaderGroupCaptureReplayHandle) + "\"");
         }
     );
 }
