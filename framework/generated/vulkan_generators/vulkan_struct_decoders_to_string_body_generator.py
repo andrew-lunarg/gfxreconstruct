@@ -153,9 +153,7 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
     # yapf: disable
     def makeStructBody(self, name, values):
         body = ''
-        hasHandle = False
-        hasSingleHandle = False
-        hasArrayPtrHandle = False
+
         for value in values:
 
             # Start with a static_assert() so that if any values make it through the logic
@@ -204,8 +202,6 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         # Decimals output:
                         toString = 'ArrayToString(decoded_obj.{0}.GetLength(), decoded_obj.{0}.GetPointer(), toStringFlags, tabCount, tabSize)'
 
-                        hasHandle = True
-                        hasArrayPtrHandle = True
                     elif self.is_struct(value.base_type):
                         # Pointer to array of structs case:
                         # Original: toString = 'ArrayToString(obj.{1}, obj.{0}, toStringFlags, tabCount, tabSize)'
@@ -220,7 +216,6 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                 else:
                     if self.is_handle(value.base_type):
                         toString = 'static_assert(false, "Unhandled pointer to VkHandle in `vulkan_struct_decoders_to_string_body_generator.py`")'
-                        hasHandle = True
                     elif self.is_struct(value.base_type):
                         # Pointer to single struct case:
                         toString = '((decoded_obj.{0} && decoded_obj.{0}->GetMetaStructPointer()) ? ToString(*decoded_obj.{0}->GetMetaStructPointer(), toStringFlags, tabCount, tabSize) : "null")'
@@ -237,7 +232,6 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         # Plumbs through to HandlePointerDecoder::GetPointer() which returns a pointer
                         # to a format::HandleId, which is a typedef of uint64_t.
                         toString = '''ArrayToString(decoded_obj.{0}.GetLength(), decoded_obj.{0}.GetPointer(), toStringFlags, tabCount, tabSize)'''
-                        hasHandle = True
                     elif self.is_struct(value.base_type):
                         # Embedded array of structs:
                         # Original: toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
@@ -254,15 +248,8 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                 else:
                     if self.is_handle(value.base_type):
-                        # Version accessing the null handle in the raw vulkan struct: toString = '\'"\' + VkHandleToString(obj.{0}) + \'"\''
-                        # Outputs a hex value:
-                        # toString = '\'"\' + VkHandleToString(decoded_obj.{0}) + \'"\''
-                        # Outputs decimal value surrounded by quotation marks, not hex:
-                        # toString = '\'"\' + ToString(decoded_obj.{0}) + \'"\''
                         # Outputs decimal value of the handle:
                         toString = 'ToString(decoded_obj.{0})'
-                        hasHandle = True
-                        hasSingleHandle = True
                     elif self.is_struct(value.base_type):
                         # Original: toString = 'ToString(obj.{0}, toStringFlags, tabCount, tabSize)'
                         toString = 'ToString(*(decoded_obj.{0}), toStringFlags, tabCount, tabSize)'
@@ -274,12 +261,5 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
             firstField = 'true' if not body else 'false'
             toString = toString.format(value.name, value.array_length)
             body += '            FieldToString(strStrm, {0}, "{1}", toStringFlags, tabCount, tabSize, {2});\n'.format(firstField, value.name, toString)
-        if(hasHandle == True):
-                body += '            /** Struct has at least one handle - Andy  @todo Delete all this debug / understanding stuff <--------------------------------------------------------------[TODO] */\n'
-        if(hasSingleHandle == True):
-                body += '            /* Struct has at least one single handle - Andy */\n'
-        if(hasArrayPtrHandle == True):
-                body += '            /* Struct has at least one pointer to an array of handles - Andy */\n'
-
         return body
     # yapf: enable
