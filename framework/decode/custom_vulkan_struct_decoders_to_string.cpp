@@ -21,6 +21,7 @@
 */
 
 #include "custom_vulkan_struct_decoders_to_string.h"
+#include "custom_vulkan_ascii_consumer.h"
 #include "generated/generated_vulkan_enum_to_string.h"
 #include "generated/generated_vulkan_struct_to_string.h"
 #include "generated/generated_vulkan_struct_decoders_to_string.h"
@@ -116,7 +117,7 @@ std::string ToString<decode::Decoded_VkDescriptorImageInfo>(const decode::Decode
     {
         return "";
     }
-    const VkDescriptorImageInfo obj = *decoded_obj.decoded_value;
+    const VkDescriptorImageInfo& obj = *decoded_obj.decoded_value;
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
@@ -127,52 +128,7 @@ std::string ToString<decode::Decoded_VkDescriptorImageInfo>(const decode::Decode
     );
 }
 
-/*
-template <>
-std::string ToString<decode::Decoded_VkDeviceOrHostAddressConstKHR>(const decode::Decoded_VkDeviceOrHostAddressConstKHR& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
-{
-    return ObjectToString(toStringFlags, tabCount, tabSize,
-        [&](std::stringstream& strStrm)
-        {
-            FieldToString(strStrm, true, "deviceAddress", toStringFlags, tabCount, tabSize, '"' + PtrToString(obj.deviceAddress) + '"');
-            FieldToString(strStrm, false, "hostAddress", toStringFlags, tabCount, tabSize, '"' + PtrToString(obj.hostAddress) + '"');
-        }
-    );
-}
-/// @todo Why don't we need decoded version of ToString<VkDeviceOrHostAddressConstKHR> to build cleanly?
-
-template <>
-std::string ToString<decode::Decoded_VkDeviceOrHostAddressKHR>(const decode::Decoded_VkDeviceOrHostAddressKHR& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
-{
-    return ObjectToString(toStringFlags, tabCount, tabSize,
-        [&](std::stringstream& strStrm)
-        {
-            FieldToString(strStrm, true, "deviceAddress", toStringFlags, tabCount, tabSize, '"' + PtrToString(obj.deviceAddress) + '"');
-            FieldToString(strStrm, false, "hostAddress", toStringFlags, tabCount, tabSize, '"' + PtrToString(obj.hostAddress) + '"');
-        }
-    );
-}
-/// @todo Why don't we need decoded version of ToString<VkDeviceOrHostAddressKHR> to build cleanly?
-
-template <>
-std::string ToString<decode::Decoded_VkPerformanceCounterResultKHR>(const decode::Decoded_VkPerformanceCounterResultKHR& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
-{
-    return ObjectToString(toStringFlags, tabCount, tabSize,
-        [&](std::stringstream& strStrm)
-        {
-            FieldToString(strStrm, true, "int32", toStringFlags, tabCount, tabSize, ToString(obj.int32, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "int64", toStringFlags, tabCount, tabSize, ToString(obj.int64, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "uint32", toStringFlags, tabCount, tabSize, ToString(obj.uint32, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "uint64", toStringFlags, tabCount, tabSize, ToString(obj.uint64, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "float32", toStringFlags, tabCount, tabSize, ToString(obj.float32, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "float64", toStringFlags, tabCount, tabSize, ToString(obj.float64, toStringFlags, tabCount, tabSize));
-        }
-    );
-}
-/// @todo Why don't we need decoded version of ToString<VkPerformanceCounterResultKHR>?
-*/
-
-/// Should be correct.
+/// Call through to raw vulkan struct version as there are no handles reachable through this.
 template <>
 std::string ToString<decode::Decoded_VkPerformanceValueINTEL>(const decode::Decoded_VkPerformanceValueINTEL& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {
@@ -185,30 +141,24 @@ std::string ToString<decode::Decoded_VkPerformanceValueINTEL>(const decode::Deco
     return str;
 }
 
-
-/// @todo Use the DecodedStruct to properly traverse pNext.
 template <>
-std::string ToString<decode::Decoded_VkPipelineExecutableStatisticKHR>(const decode::Decoded_VkPipelineExecutableStatisticKHR& obj,
+std::string ToString<decode::Decoded_VkPipelineExecutableStatisticKHR>(const decode::Decoded_VkPipelineExecutableStatisticKHR& decoded_obj,
                                            ToStringFlags               toStringFlags,
                                            uint32_t                    tabCount,
                                            uint32_t                    tabSize)
 {
-    assert(obj.decoded_value);
-    std::string str;
-    if(obj.decoded_value)
+    assert(decoded_obj.decoded_value != nullptr);
+    if(decoded_obj.decoded_value == nullptr)
     {
-        str += ToString(*obj.decoded_value, toStringFlags, tabCount, tabSize);
+        return "";
     }
-    return str;
-}
-/*
-template <> std::string ToString<decode::Decoded_VkPipelineExecutableStatisticKHR>(const decode::Decoded_VkPipelineExecutableStatisticKHR& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
-{
+    const VkPipelineExecutableStatisticKHR& obj = *decoded_obj.decoded_value;
+
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(obj.pNext, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, true,  "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "name", toStringFlags, tabCount, tabSize, '"' + std::string(obj.name) + '"');
             FieldToString(strStrm, false, "description", toStringFlags, tabCount, tabSize, '"' + std::string(obj.description) + '"');
             FieldToString(strStrm, false, "format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.format, toStringFlags, tabCount, tabSize) + '"');
@@ -244,41 +194,34 @@ template <> std::string ToString<decode::Decoded_VkPipelineExecutableStatisticKH
         }
     );
 }
-*/
 
 /// @todo Use the DecodedStruct to properly traverse pNext and get the dstSet
 template <>
-std::string ToString<decode::Decoded_VkWriteDescriptorSet>(const decode::Decoded_VkWriteDescriptorSet& obj,
+std::string ToString<decode::Decoded_VkWriteDescriptorSet>(const decode::Decoded_VkWriteDescriptorSet& decoded_obj,
                                            ToStringFlags               toStringFlags,
                                            uint32_t                    tabCount,
                                            uint32_t                    tabSize)
 {
-    assert(obj.decoded_value);
-    std::string str;
-    if(obj.decoded_value)
+    assert(decoded_obj.decoded_value != nullptr);
+    if(decoded_obj.decoded_value == nullptr)
     {
-        str += ToString(*obj.decoded_value, toStringFlags, tabCount, tabSize);
+        return "";
     }
-    return str;
-}
-
-/*
-template <>
-std::string ToString<decode::Decoded_VkWriteDescriptorSet>(const decode::Decoded_VkWriteDescriptorSet& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
-{
+    const VkWriteDescriptorSet& obj = *decoded_obj.decoded_value;
+    
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(obj.pNext, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "dstSet", toStringFlags, tabCount, tabSize, '"' + VkHandleToString(obj.dstSet) + '"');
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "dstSet", toStringFlags, tabCount, tabSize, '"' + ToString(decoded_obj.dstSet) + '"');
             FieldToString(strStrm, false, "dstBinding", toStringFlags, tabCount, tabSize, ToString(obj.dstBinding, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "dstArrayElement", toStringFlags, tabCount, tabSize, ToString(obj.dstArrayElement, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "descriptorCount", toStringFlags, tabCount, tabSize, ToString(obj.descriptorCount, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "descriptorType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.descriptorType, toStringFlags, tabCount, tabSize) + '"');
-            const VkDescriptorImageInfo* pImageInfo = nullptr;
-            const VkDescriptorBufferInfo* pBufferInfo = nullptr;
-            const VkBufferView* pTexelBufferView = nullptr;
+            const decode::StructPointerDecoder<decode::Decoded_VkDescriptorImageInfo>* pImageInfo = nullptr;
+            const decode::StructPointerDecoder<decode::Decoded_VkDescriptorBufferInfo>* pBufferInfo = nullptr;
+            const decode::HandlePointerDecoder<VkBufferView>* pTexelBufferView = nullptr;
             switch (obj.descriptorType)
             {
             case VK_DESCRIPTOR_TYPE_SAMPLER:
@@ -287,30 +230,29 @@ std::string ToString<decode::Decoded_VkWriteDescriptorSet>(const decode::Decoded
             case VK_DESCRIPTOR_TYPE_STORAGE_IMAGE:
             case VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT:
             {
-                pImageInfo = obj.pImageInfo;
+                pImageInfo = decoded_obj.pImageInfo;
             } break;
             case VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER:
             case VK_DESCRIPTOR_TYPE_STORAGE_BUFFER:
             case VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC:
             case VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC:
             {
-                pBufferInfo = obj.pBufferInfo;
+                pBufferInfo = decoded_obj.pBufferInfo;
             } break;
             case VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER:
             case VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER:
             {
-                pTexelBufferView = obj.pTexelBufferView;
+                pTexelBufferView = &decoded_obj.pTexelBufferView;
             } break;
             default: break;
             }
-            FieldToString(strStrm, false, "pImageInfo", toStringFlags, tabCount, tabSize, ArrayToString(obj.descriptorCount, pImageInfo, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pBufferInfo", toStringFlags, tabCount, tabSize, ArrayToString(obj.descriptorCount, pBufferInfo, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pTexelBufferView", toStringFlags, tabCount, tabSize, VkHandleArrayToString(obj.descriptorCount, pTexelBufferView, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pImageInfo", toStringFlags, tabCount, tabSize, PointerDecoderArrayToString(*pImageInfo, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pBufferInfo", toStringFlags, tabCount, tabSize, PointerDecoderArrayToString(*pBufferInfo, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pTexelBufferView", toStringFlags, tabCount, tabSize, ArrayToString(pTexelBufferView->GetLength(), pTexelBufferView->GetPointer(), toStringFlags, tabCount, tabSize));
         }
     );
 }
-/// @todo Why don't we need decoded version of ToString<VkWriteDescriptorSet>?
-*/
+
 template <>
 std::string ToString<decode::Decoded_VkAccelerationStructureBuildGeometryInfoKHR>(const decode::Decoded_VkAccelerationStructureBuildGeometryInfoKHR& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {

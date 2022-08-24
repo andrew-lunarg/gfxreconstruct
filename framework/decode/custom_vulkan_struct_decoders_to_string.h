@@ -125,13 +125,6 @@ std::string ToString<decode::Decoded_VkLayerProperties>(const decode::Decoded_Vk
                                         ToStringFlags            toStringFlags,
                                         uint32_t                 tabCount,
                                         uint32_t                 tabSize);
-
-template <>
-std::string ToString<VkPerformanceCounterResultKHR>(const VkPerformanceCounterResultKHR& obj,
-                                                    ToStringFlags                        toStringFlags,
-                                                    uint32_t                             tabCount,
-                                                    uint32_t                             tabSize);
-
 template <>
 std::string ToString<decode::Decoded_VkPerformanceValueINTEL>(const decode::Decoded_VkPerformanceValueINTEL& obj,
                                               ToStringFlags                  toStringFlags,
