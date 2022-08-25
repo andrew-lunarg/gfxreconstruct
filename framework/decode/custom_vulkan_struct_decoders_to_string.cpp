@@ -276,11 +276,13 @@ std::string ToString<decode::Decoded_VkAccelerationStructureBuildGeometryInfoKHR
             FieldToString(strStrm, false, "pGeometries", toStringFlags, tabCount, tabSize, decode::PointerDecoderArrayToString(*decoded_obj.pGeometries, toStringFlags, tabCount, tabSize));
             // If ppGeometries is non-null, step through and process the decoded struct pointed-to by any non-null elements in it:
             FieldToString(strStrm, false, "ppGeometries", toStringFlags, tabCount, tabSize,
-                decoded_obj.ppGeometries ? ArrayToString(decoded_obj.ppGeometries->GetLength(), decoded_obj.ppGeometries->GetPointer(), toStringFlags, tabCount, tabSize,
+                decoded_obj.ppGeometries ? ArrayToString(decoded_obj.ppGeometries->GetLength(), decoded_obj.ppGeometries->GetMetaStructPointer(), toStringFlags, tabCount, tabSize,
+                    // Lambda for checking whether to turn the array into a string at all:
                     [&]()
                     {
                         return decoded_obj.ppGeometries != nullptr && decoded_obj.ppGeometries->GetLength() > 0u && decoded_obj.ppGeometries->GetMetaStructPointer() != nullptr;
                     },
+                    // Lambda for turning one element of the array into a string:
                     [&](uint32_t i)
                     {
                         decode::Decoded_VkAccelerationStructureGeometryKHR* geom = decoded_obj.ppGeometries->GetMetaStructPointer()[i];
@@ -293,7 +295,10 @@ std::string ToString<decode::Decoded_VkAccelerationStructureBuildGeometryInfoKHR
                             return std::string(decode::GFXRECON_TOJSON_NULL);
                         }
                     }
-                ) : decode::GFXRECON_TOJSON_EMPTY_ARRAY
+                )
+                // Default to returning a string representing an empty array:
+                // pGeometries is also represented as an empty array if null.
+                : decode::GFXRECON_TOJSON_EMPTY_ARRAY
             );
             FieldToString(strStrm, false, "scratchData", toStringFlags, tabCount, tabSize, ToString(obj.scratchData, toStringFlags, tabCount, tabSize));
         }
