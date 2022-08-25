@@ -325,6 +325,7 @@ std::string ToString<decode::Decoded_VkAccelerationStructureVersionInfoKHR>(cons
     );
 }
 
+
 /// Should be fine to call through to raw Vulkan struct as no handles are reachable.
 template <>
 std::string ToString<decode::Decoded_VkPhysicalDeviceMemoryProperties>(const decode::Decoded_VkPhysicalDeviceMemoryProperties& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
@@ -338,28 +339,23 @@ std::string ToString<decode::Decoded_VkPhysicalDeviceMemoryProperties>(const dec
     return str;
 }
 
-/// @note Temp pass-through to raw Vulkan struct.
-/// @todo Implement properly, accounting for the pNext.
+
+/// Mostly POD but we need to traverse the pNext on the Decoded side.
 template <>
-std::string ToString<decode::Decoded_VkPipelineMultisampleStateCreateInfo>(const decode::Decoded_VkPipelineMultisampleStateCreateInfo& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
+std::string ToString<decode::Decoded_VkPipelineMultisampleStateCreateInfo>(const decode::Decoded_VkPipelineMultisampleStateCreateInfo& decoded_obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {
-    assert(obj.decoded_value);
-    std::string str;
-    if(obj.decoded_value)
+    assert(decoded_obj.decoded_value != nullptr);
+    if(decoded_obj.decoded_value == nullptr)
     {
-        str += ToString(*obj.decoded_value, toStringFlags, tabCount, tabSize);
+        return "";
     }
-    return str;
-}
-/*
-template <>
-std::string ToString<decode::Decoded_VkPipelineMultisampleStateCreateInfo>(const decode::Decoded_VkPipelineMultisampleStateCreateInfo& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
-{
+    const VkPipelineMultisampleStateCreateInfo& obj = *decoded_obj.decoded_value;
+    
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(obj.pNext, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "rasterizationSamples", toStringFlags, tabCount, tabSize, '"' + ToString(obj.rasterizationSamples, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "sampleShadingEnable", toStringFlags, tabCount, tabSize, ToString(obj.sampleShadingEnable, toStringFlags, tabCount, tabSize));
@@ -370,8 +366,6 @@ std::string ToString<decode::Decoded_VkPipelineMultisampleStateCreateInfo>(const
         }
     );
 }
-*/
-/// @todo Why don't we need decoded version of ToString<VkPipelineMultisampleStateCreateInfo>?
 
 template <>
 std::string ToString<decode::Decoded_VkShaderModuleCreateInfo>(const decode::Decoded_VkShaderModuleCreateInfo& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
