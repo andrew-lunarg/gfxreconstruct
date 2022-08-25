@@ -306,16 +306,23 @@ std::string ToString<decode::Decoded_VkAccelerationStructureBuildGeometryInfoKHR
 }
 
 template <>
-std::string ToString<decode::Decoded_VkAccelerationStructureVersionInfoKHR>(const decode::Decoded_VkAccelerationStructureVersionInfoKHR& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
+std::string ToString<decode::Decoded_VkAccelerationStructureVersionInfoKHR>(const decode::Decoded_VkAccelerationStructureVersionInfoKHR& decoded_obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {
-    assert(obj.decoded_value);
-    /// @fixme there is a pNext to look at.
-    GFXRECON_PREFIX_JSON_STR
-    if(obj.decoded_value)
+    assert(decoded_obj.decoded_value != nullptr);
+    if(decoded_obj.decoded_value == nullptr)
     {
-        str += ToString(*obj.decoded_value, toStringFlags, tabCount, tabSize);
+        return "";
     }
-    return str;
+    const VkAccelerationStructureVersionInfoKHR& obj = *decoded_obj.decoded_value;
+
+    return ObjectToString(toStringFlags, tabCount, tabSize,
+        [&](std::stringstream& strStrm)
+        {
+            FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pVersionData", toStringFlags, tabCount, tabSize, '"' + PtrToString(obj.pVersionData) + '"');
+        }
+    );
 }
 
 /// Should be fine to call through to raw Vulkan struct as no handles are reachable.
