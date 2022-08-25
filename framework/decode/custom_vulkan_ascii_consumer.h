@@ -19,7 +19,7 @@
 ** FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 ** DEALINGS IN THE SOFTWARE.
 */
-
+/// @file Custom code used when outputing a textual representation of a capture.
 #ifndef GFXRECON_CUSTOM_VULKAN_ASCII_CONSUMER_H
 #define GFXRECON_CUSTOM_VULKAN_ASCII_CONSUMER_H
 
@@ -44,12 +44,14 @@
 #include <sstream>
 #include <string>
 
-/// @note Will be generated
-template <> std::string gfxrecon::util::ToString<gfxrecon::decode::Decoded_VkFramebufferCreateInfo>(const gfxrecon::decode::Decoded_VkFramebufferCreateInfo& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize);
-// <---------------------------------------------------------------------------------------------------------------------------------------------------[BOOKMARK]
 
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(decode)
+
+/// String representation of empty array.
+constexpr auto GFXRECON_TOJSON_EMPTY_ARRAY = "[]";
+/// String representation of a null pointer.
+constexpr auto GFXRECON_TOJSON_NULL = "null";
 
 inline std::string HandleIdToString(format::HandleId handleId)
 {
@@ -112,18 +114,10 @@ inline std::string PointerDecoderToString(PointerDecoderType* pObj,
                                           uint32_t            tabCount      = 0,
                                           uint32_t            tabSize       = 4)
 {
-    // fprintf(stderr, "\n[gfxr] Generic PointerDecoderToString() used.\n");
     // Get a pointer to the raw vulkan type:
     auto pDecodedObj = pObj ? pObj->GetPointer() : nullptr;
-    //auto pMetaObj = pObj ? pObj->GetMetaStructPointer() : nullptr;
-    //pObj->GetMetaStructPointer();
-    const char* tname = typeid(pObj).name();
-    //fprintf(stderr, "\n[gfxr] PointerDecoderToString() dispatching ToString() on type: %s\n", tname);
-    // Call a function for the raw Vulkan type, ignoring the fact that handles in it are null:
+    // Call a function for the raw Vulkan type:
     return pDecodedObj ? util::ToString(*pDecodedObj, toStringFlags, tabCount, tabSize) : "null";
-    // The generated functions we want to call do not yet exist:
-    //return pObj ? util::ToString(*pObj, toStringFlags, tabCount, tabSize) : "null";
-    // <---------------------------------------------------------------------------------------------------------------------------------------------------[BOOKMARK]
 }
 
 /// Overloaded function specialising dispatch for structs.
@@ -133,7 +127,6 @@ inline std::string PointerDecoderToString(StructPointerDecoder<StructType>* pObj
                                           uint32_t            tabCount,
                                           uint32_t            tabSize)
 {
-    //fprintf(stderr, "\n[gfxr] PointerDecoderToString() specialised for Structs used.\n");
     std::string str = "null";
     if(nullptr != pObj)
     {
@@ -155,41 +148,6 @@ inline std::string PointerDecoderToString(StructPointerDecoder<StructType>* pObj
     }
     return str;
 }
-
-/// @note Temporary overload to dispatch to the hand-crafted ToString for the decoded struct.
-/// [BOOKMARK]
-/*inline std::string PointerDecoderToString(StructPointerDecoder<Decoded_VkFramebufferCreateInfo>* pObj,
-                                          util::ToStringFlags toStringFlags,
-                                          uint32_t            tabCount,
-                                          uint32_t            tabSize)
-{
-    //fprintf(stderr, "\n[gfxr] PointerDecoderToString() specialised for StructPointerDecoder<Decoded_VkFramebufferCreateInfo> used.\n");
-    if(nullptr == pObj)
-    {
-        return "null";
-    }
-    auto pMetaObj = pObj->GetMetaStructPointer();
-    // If there was no struct pointer provided by the app, e.g. for allocation
-    // callbacks, we'll have a null pointer here too:
-    if(nullptr == pMetaObj){
-        return "null";
-    }
-    return pMetaObj ? util::ToString(*pMetaObj, toStringFlags, tabCount, tabSize) : "null";
-}*/
-
-/// Look-see for Option 1 above:
-/// Template specialisation which stuff's the decoded image handle into the raw Vulkan struct for which we have a generated ToString function.
-/*template <>
-inline std::string PointerDecoderToString<StructPointerDecoder<Decoded_VkImageViewCreateInfo>>(StructPointerDecoder<Decoded_VkImageViewCreateInfo>* pObj,
-                                          util::ToStringFlags toStringFlags,
-                                          uint32_t            tabCount,
-                                          uint32_t            tabSize)
-{
-    fprintf(stderr, "\n[gfxr] PointerDecoderToString() specialised for Decoded_VkImageViewCreateInfo used.\n");
-    auto pDecodedObj = pObj ? pObj->GetPointer() : nullptr;
-    pDecodedObj->image = reinterpret_cast<VkImage>(pObj->GetMetaStructPointer()->image);
-    return pDecodedObj ? util::ToString(*pDecodedObj, toStringFlags, tabCount, tabSize) : "null";
-}*/
 
 inline std::string DescriptorUpdateTemplateDecoderToString(const DescriptorUpdateTemplateDecoder* pObj,
                                                            util::ToStringFlags toStringFlags = util::kToString_Default,
@@ -314,6 +272,20 @@ inline std::string PointerDecoderArrayToString(const StructPointerDecoder<Decode
             return ToString(pObjs[i], toStringFlags, tabCount + 1, tabSize);
         }
     );
+}
+
+template <typename Decoded_VkStructType>
+inline std::string PointerDecoderArrayToString(const StructPointerDecoder<Decoded_VkStructType>* pObjsPointerDecoder,
+                                               util::ToStringFlags toStringFlags = util::kToString_Default,
+                                               uint32_t            tabCount      = 0,
+                                               uint32_t            tabSize       = 4)
+{
+    if(nullptr != pObjsPointerDecoder)
+    {
+        return PointerDecoderArrayToString(*pObjsPointerDecoder, toStringFlags, tabCount, tabSize);
+    }
+    // We represent a null pointer as an empty array on a single line.
+    return GFXRECON_TOJSON_EMPTY_ARRAY;
 }
 
 template <typename CountType, typename PointerDecoderType>

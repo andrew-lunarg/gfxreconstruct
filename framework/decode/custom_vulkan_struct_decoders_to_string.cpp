@@ -121,8 +121,8 @@ std::string ToString<decode::Decoded_VkDescriptorImageInfo>(const decode::Decode
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true,  "sampler",     toStringFlags, tabCount, tabSize, '"' + ToString(decoded_obj.sampler) + '"');
-            FieldToString(strStrm, false, "imageView",   toStringFlags, tabCount, tabSize, '"' + ToString(decoded_obj.imageView) + '"');
+            FieldToString(strStrm, true,  "sampler",     toStringFlags, tabCount, tabSize, ToString(decoded_obj.sampler));
+            FieldToString(strStrm, false, "imageView",   toStringFlags, tabCount, tabSize, ToString(decoded_obj.imageView));
             FieldToString(strStrm, false, "imageLayout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.imageLayout, toStringFlags, tabCount, tabSize) + '"');
         }
     );
@@ -195,7 +195,7 @@ std::string ToString<decode::Decoded_VkPipelineExecutableStatisticKHR>(const dec
     );
 }
 
-/// @todo Use the DecodedStruct to properly traverse pNext and get the dstSet
+/// Use the DecodedStruct to properly traverse pNext and get the dstSet
 template <>
 std::string ToString<decode::Decoded_VkWriteDescriptorSet>(const decode::Decoded_VkWriteDescriptorSet& decoded_obj,
                                            ToStringFlags               toStringFlags,
@@ -214,14 +214,12 @@ std::string ToString<decode::Decoded_VkWriteDescriptorSet>(const decode::Decoded
         {
             FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "dstSet", toStringFlags, tabCount, tabSize, '"' + ToString(decoded_obj.dstSet) + '"');
+            FieldToString(strStrm, false, "dstSet", toStringFlags, tabCount, tabSize, ToString(decoded_obj.dstSet));
             FieldToString(strStrm, false, "dstBinding", toStringFlags, tabCount, tabSize, ToString(obj.dstBinding, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "dstArrayElement", toStringFlags, tabCount, tabSize, ToString(obj.dstArrayElement, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "descriptorCount", toStringFlags, tabCount, tabSize, ToString(obj.descriptorCount, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "descriptorType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.descriptorType, toStringFlags, tabCount, tabSize) + '"');
-            const decode::StructPointerDecoder<decode::Decoded_VkDescriptorImageInfo>* pImageInfo = nullptr;
-            const decode::StructPointerDecoder<decode::Decoded_VkDescriptorBufferInfo>* pBufferInfo = nullptr;
-            const decode::HandlePointerDecoder<VkBufferView>* pTexelBufferView = nullptr;
+
             switch (obj.descriptorType)
             {
             case VK_DESCRIPTOR_TYPE_SAMPLER:
@@ -230,41 +228,77 @@ std::string ToString<decode::Decoded_VkWriteDescriptorSet>(const decode::Decoded
             case VK_DESCRIPTOR_TYPE_STORAGE_IMAGE:
             case VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT:
             {
-                pImageInfo = decoded_obj.pImageInfo;
+                FieldToString(strStrm, false, "pImageInfo", toStringFlags, tabCount, tabSize, PointerDecoderArrayToString(decoded_obj.pImageInfo, toStringFlags, tabCount, tabSize));
             } break;
             case VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER:
             case VK_DESCRIPTOR_TYPE_STORAGE_BUFFER:
             case VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC:
             case VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC:
             {
-                pBufferInfo = decoded_obj.pBufferInfo;
+                FieldToString(strStrm, false, "pBufferInfo", toStringFlags, tabCount, tabSize, PointerDecoderArrayToString(decoded_obj.pBufferInfo, toStringFlags, tabCount, tabSize));
             } break;
             case VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER:
             case VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER:
             {
-                pTexelBufferView = &decoded_obj.pTexelBufferView;
+                FieldToString(strStrm, false, "pTexelBufferView", toStringFlags, tabCount, tabSize, ArrayToString(decoded_obj.pTexelBufferView.GetLength(), decoded_obj.pTexelBufferView.GetPointer(), toStringFlags, tabCount, tabSize));
             } break;
-            default: break;
+            default: 
+            {
+                GFXRECON_LOG_ERROR("Unknown descriptorType in VkWriteDescriptorSet.");
             }
-            FieldToString(strStrm, false, "pImageInfo", toStringFlags, tabCount, tabSize, PointerDecoderArrayToString(*pImageInfo, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pBufferInfo", toStringFlags, tabCount, tabSize, PointerDecoderArrayToString(*pBufferInfo, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "pTexelBufferView", toStringFlags, tabCount, tabSize, ArrayToString(pTexelBufferView->GetLength(), pTexelBufferView->GetPointer(), toStringFlags, tabCount, tabSize));
+            break;
+            }
         }
     );
 }
 
 template <>
-std::string ToString<decode::Decoded_VkAccelerationStructureBuildGeometryInfoKHR>(const decode::Decoded_VkAccelerationStructureBuildGeometryInfoKHR& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
+std::string ToString<decode::Decoded_VkAccelerationStructureBuildGeometryInfoKHR>(const decode::Decoded_VkAccelerationStructureBuildGeometryInfoKHR& decoded_obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {
-    assert(obj.decoded_value);
-    GFXRECON_PREFIX_JSON_STR
-    if(obj.decoded_value)
+    assert(decoded_obj.decoded_value != nullptr);
+    if(decoded_obj.decoded_value == nullptr)
     {
-        str += ToString(*obj.decoded_value, toStringFlags, tabCount, tabSize);
+        return "";
     }
-    return str;
-}
+    const VkAccelerationStructureBuildGeometryInfoKHR& obj = *decoded_obj.decoded_value;
 
+    return ObjectToString(toStringFlags, tabCount, tabSize,
+        [&](std::stringstream& strStrm)
+        {
+            FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.type, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "mode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.mode, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "srcAccelerationStructure", toStringFlags, tabCount, tabSize, ToString(decoded_obj.srcAccelerationStructure));
+            FieldToString(strStrm, false, "dstAccelerationStructure", toStringFlags, tabCount, tabSize, ToString(decoded_obj.dstAccelerationStructure));
+            FieldToString(strStrm, false, "geometryCount", toStringFlags, tabCount, tabSize, ToString(obj.geometryCount, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pGeometries", toStringFlags, tabCount, tabSize, decode::PointerDecoderArrayToString(*decoded_obj.pGeometries, toStringFlags, tabCount, tabSize));
+            // If ppGeometries is non-null, step through and process the decoded struct pointed-to by any non-null elements in it:
+            FieldToString(strStrm, false, "ppGeometries", toStringFlags, tabCount, tabSize,
+                decoded_obj.ppGeometries ? ArrayToString(decoded_obj.ppGeometries->GetLength(), decoded_obj.ppGeometries->GetPointer(), toStringFlags, tabCount, tabSize,
+                    [&]()
+                    {
+                        return decoded_obj.ppGeometries != nullptr && decoded_obj.ppGeometries->GetLength() > 0u && decoded_obj.ppGeometries->GetMetaStructPointer() != nullptr;
+                    },
+                    [&](uint32_t i)
+                    {
+                        decode::Decoded_VkAccelerationStructureGeometryKHR* geom = decoded_obj.ppGeometries->GetMetaStructPointer()[i];
+                        if(nullptr != geom)
+                        {
+                            return ToString(*geom, toStringFlags, tabCount, tabSize);
+                        }
+                        else
+                        {
+                            return std::string(decode::GFXRECON_TOJSON_NULL);
+                        }
+                    }
+                ) : decode::GFXRECON_TOJSON_EMPTY_ARRAY
+            );
+            FieldToString(strStrm, false, "scratchData", toStringFlags, tabCount, tabSize, ToString(obj.scratchData, toStringFlags, tabCount, tabSize));
+        }
+    );
+}
 
 template <>
 std::string ToString<decode::Decoded_VkAccelerationStructureVersionInfoKHR>(const decode::Decoded_VkAccelerationStructureVersionInfoKHR& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
@@ -279,7 +313,7 @@ std::string ToString<decode::Decoded_VkAccelerationStructureVersionInfoKHR>(cons
     return str;
 }
 
-/// Should be fine.
+/// Should be fine to call through to raw Vulkan struct as no handles are reachable.
 template <>
 std::string ToString<decode::Decoded_VkPhysicalDeviceMemoryProperties>(const decode::Decoded_VkPhysicalDeviceMemoryProperties& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {
