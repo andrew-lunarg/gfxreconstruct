@@ -367,8 +367,32 @@ std::string ToString<decode::Decoded_VkPipelineMultisampleStateCreateInfo>(const
     );
 }
 
+/// Mostly POD but we need to traverse the pNext on the Decoded side.
 template <>
-std::string ToString<decode::Decoded_VkShaderModuleCreateInfo>(const decode::Decoded_VkShaderModuleCreateInfo& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
+std::string ToString<decode::Decoded_VkShaderModuleCreateInfo>(const decode::Decoded_VkShaderModuleCreateInfo& decoded_obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
+{
+    assert(decoded_obj.decoded_value != nullptr);
+    if(decoded_obj.decoded_value == nullptr)
+    {
+        return "";
+    }
+    const VkShaderModuleCreateInfo& obj = *decoded_obj.decoded_value;
+
+    return ObjectToString(toStringFlags, tabCount, tabSize,
+        [&](std::stringstream& strStrm)
+        {
+            FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.sType, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextDecodedToString(decoded_obj.pNext, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "codeSize", toStringFlags, tabCount, tabSize, ToString(obj.codeSize, toStringFlags, tabCount, tabSize));
+            FieldToString(strStrm, false, "pCode", toStringFlags, tabCount, tabSize, '"' + PtrToString(obj.pCode) + '"');
+        }
+    );
+}
+
+/// It is just twelve floats so call through to the raw vulkan struct version.
+template <>
+std::string ToString<decode::Decoded_VkTransformMatrixKHR>(const decode::Decoded_VkTransformMatrixKHR& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {
     assert(obj.decoded_value);
     std::string str;
@@ -377,60 +401,6 @@ std::string ToString<decode::Decoded_VkShaderModuleCreateInfo>(const decode::Dec
         str += ToString(*obj.decoded_value, toStringFlags, tabCount, tabSize);
     }
     return str;
-}
-
-template <>
-std::string ToString<decode::Decoded_VkTransformMatrixKHR>(const decode::Decoded_VkTransformMatrixKHR& decoded_obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
-{
-    assert(decoded_obj.decoded_value);
-    if(decoded_obj.decoded_value)
-    {
-        fprintf(stderr, "FixMe: Check the output is correct from ToString<decode::Decoded_VkTransformMatrixKHR>.\n");
-        const VkTransformMatrixKHR &obj = *decoded_obj.decoded_value;
-        return ObjectToString(toStringFlags, tabCount, tabSize,
-            [&](std::stringstream& strStrm)
-            {
-                std::string strs[3][4];
-                size_t maxStrLength = 0;
-                for (size_t y = 0; y < 3; ++y)
-                {
-                    for (size_t x = 0; x < 4; ++x)
-                    {
-                        strs[y][x] = std::to_string(obj.matrix[y][x]);
-                        maxStrLength = std::max(maxStrLength, strs[y][x].size());
-                    }
-                }
-                FieldToString(strStrm, true, "matrix", toStringFlags, tabCount, tabSize,
-                    ArrayToString(3, obj.matrix, toStringFlags, tabCount, tabSize,
-                        [&]()
-                        {
-                            return true;
-                        },
-                        [&](uint32_t y)
-                        {
-                            std::stringstream rowStrStrm;
-                            rowStrStrm << '[' << GetWhitespaceString(toStringFlags);
-                            for (size_t x = 0; x < 4; ++x)
-                            {
-                                if (x)
-                                {
-                                    rowStrStrm << ',' << GetWhitespaceString(toStringFlags);
-                                }
-                                if (strs[y][x].size() < maxStrLength)
-                                {
-                                    strs[y][x].insert(0, maxStrLength - strs[y][x].size(), ' ');
-                                }
-                                rowStrStrm << strs[y][x];
-                            }
-                            rowStrStrm << GetWhitespaceString(toStringFlags) << ']';
-                            return rowStrStrm.str();
-                        }
-                    )
-                );
-            }
-        );
-    }
-    return "";
 }
 
 // clang-format on
