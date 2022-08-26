@@ -26,9 +26,8 @@
 **
 */
 
-#include "decode/custom_vulkan_to_string.h"
-#include "generated_vulkan_struct_to_string.h"
 #include "generated_vulkan_struct_decoders_to_string.h"
+#include "util/logging.h"
 
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(util)
@@ -37,7 +36,6 @@ std::string PNextDecodedToString(const decode::PNextNode* pNext, ToStringFlags t
 {
     if (pNext)
     {
-        // Original for raw structs: switch (reinterpret_cast<const VkBaseInStructure*>(pNext)->sType)
         // Assumes decoded_value is always first member of Decoded_[VulkanStructX].
         const void* meta = pNext->GetMetaStructPointer();
         assert(nullptr != meta);
@@ -747,7 +745,11 @@ std::string PNextDecodedToString(const decode::PNextNode* pNext, ToStringFlags t
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR:
             return ToString(*reinterpret_cast<const decode::Decoded_VkPhysicalDeviceRayQueryFeaturesKHR*>(meta), toStringFlags, tabCount, tabSize);
         default:
-            return std::string("\"Unknown Struct in pNext chain. sType: ") + std::to_string(uint32_t(sType)) + "\"";
+            {
+                std::string error_message{std::string("\"Unknown Struct in pNext chain. sType: ") + std::to_string(uint32_t(sType)) + "\""};
+                GFXRECON_LOG_ERROR(error_message.c_str());
+                return error_message;
+            }
         }
     }
     return "null";
