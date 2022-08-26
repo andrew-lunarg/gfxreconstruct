@@ -31,7 +31,6 @@
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(util)
 
-#define GFXRECON_PREFIX_JSON_STR std::string str {"\"fixme\": \"The decoded version of the following struct needs a proper ToString() function.\""};
 // clang-format off
 
 // NOTE : The following structures' ToString() functions aren't generated due
