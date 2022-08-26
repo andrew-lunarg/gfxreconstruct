@@ -23,7 +23,7 @@
 #ifndef GFXRECON_CUSTOM_VULKAN_STRUCT_DECODERS_TO_STRING_H
 #define GFXRECON_CUSTOM_VULKAN_STRUCT_DECODERS_TO_STRING_H
 
-#include "custom_vulkan_to_string.h"
+#include "util/custom_vulkan_to_string.h"
 #include "custom_vulkan_struct_decoders.h"
 #include "generated/generated_vulkan_struct_decoders.h"
 #include "format/platform_types.h"
