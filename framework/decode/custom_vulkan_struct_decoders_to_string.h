@@ -23,7 +23,7 @@
 #ifndef GFXRECON_CUSTOM_VULKAN_STRUCT_DECODERS_TO_STRING_H
 #define GFXRECON_CUSTOM_VULKAN_STRUCT_DECODERS_TO_STRING_H
 
-#include "custom_vulkan_to_string.h"
+#include "util/custom_vulkan_to_string.h"
 #include "custom_vulkan_struct_decoders.h"
 #include "generated/generated_vulkan_struct_decoders.h"
 #include "format/platform_types.h"
@@ -58,32 +58,14 @@ std::string ToString<decode::Decoded_VkAccelerationStructureMotionInstanceNV>(co
                                                               uint32_t      tabCount,
                                                               uint32_t      tabSize);
 
-// Dispatch to the raw vulkan version as there are no pNexts or handles reachable through this.
 template <>
-inline std::string ToString<decode::Decoded_VkClearColorValue>(const decode::Decoded_VkClearColorValue& obj,
+std::string ToString<decode::Decoded_VkClearColorValue>(const decode::Decoded_VkClearColorValue& obj,
                                         ToStringFlags            toStringFlags,
                                         uint32_t                 tabCount,
-                                        uint32_t                 tabSize)
-{
-    assert(obj.decoded_value);
-    if(obj.decoded_value)
-    {
-        return ToString<VkClearColorValue>(*obj.decoded_value, toStringFlags, tabCount, tabSize);
-    }
-    return "";
-}
+                                        uint32_t                 tabSize);
 
-// Dispatch to the raw vulkan version as there are no pNexts or handles reachable through this.
 template <>
-inline std::string ToString<decode::Decoded_VkClearValue>(const decode::Decoded_VkClearValue& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
-{
-    assert(obj.decoded_value);
-    if(obj.decoded_value)
-    {
-        return ToString<VkClearValue>(*obj.decoded_value, toStringFlags, tabCount, tabSize);
-    }
-    return "";
-}
+std::string ToString<decode::Decoded_VkClearValue>(const decode::Decoded_VkClearValue& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize);
 
 template <>
 std::string ToString<decode::Decoded_VkDescriptorImageInfo>(const decode::Decoded_VkDescriptorImageInfo& obj,
@@ -91,34 +73,17 @@ std::string ToString<decode::Decoded_VkDescriptorImageInfo>(const decode::Decode
                                             uint32_t                     tabCount,
                                             uint32_t                     tabSize);
 
-
 template <>
-inline std::string ToString<decode::Decoded_VkDeviceOrHostAddressConstKHR>(const decode::Decoded_VkDeviceOrHostAddressConstKHR& obj,
+std::string ToString<decode::Decoded_VkDeviceOrHostAddressConstKHR>(const decode::Decoded_VkDeviceOrHostAddressConstKHR& obj,
                                                     ToStringFlags                        toStringFlags,
                                                     uint32_t                             tabCount,
-                                                    uint32_t                             tabSize)
-{
-    assert(obj.decoded_value);
-    if(obj.decoded_value)
-    {
-        return ToString(*obj.decoded_value, toStringFlags, tabCount, tabSize);
-    }
-    return "";
-}
+                                                    uint32_t                             tabSize);
 
 template <> 
-inline std::string ToString<decode::Decoded_VkDeviceOrHostAddressKHR>(const decode::Decoded_VkDeviceOrHostAddressKHR& obj,
+std::string ToString<decode::Decoded_VkDeviceOrHostAddressKHR>(const decode::Decoded_VkDeviceOrHostAddressKHR& obj,
                                                ToStringFlags                   toStringFlags,
                                                uint32_t                        tabCount,
-                                               uint32_t                        tabSize)
-{
-    assert(obj.decoded_value);
-    if(obj.decoded_value)
-    {
-        return ToString(*obj.decoded_value, toStringFlags, tabCount, tabSize);
-    }
-    return "";
-}
+                                               uint32_t                        tabSize);
 
 template <>
 std::string ToString<decode::Decoded_VkLayerProperties>(const decode::Decoded_VkLayerProperties& obj,
