@@ -44,7 +44,6 @@
 #include <sstream>
 #include <string>
 
-
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(decode)
 
@@ -94,7 +93,7 @@ inline std::string DataPointerDecoderToString(const T& pObj)
 }
 
 /// Template which unwraps the decoder type for a pointer to the underlying
-/// version before dispatching to a generated to-string function for that type.
+/// type before dispatching to a generated to-string function for that type.
 /// Pointers to primitive types like uint32_t, size_t, int will come through
 /// here, with the specialisation for structs further below.
 template <typename PointerDecoderType>
@@ -109,7 +108,8 @@ inline std::string PointerDecoderToString(PointerDecoderType* pObj,
     return pDecodedObj ? util::ToString(*pDecodedObj, toStringFlags, tabCount, tabSize) : "null";
 }
 
-/// Overloaded function specialising dispatch for structs.
+/// Overloaded function specialising dispatch for structs which goes through the
+/// meta struct pointer to stay on the Decoded_Vk<STRUCT_X> side of things.
 template <typename StructType>
 inline std::string PointerDecoderToString(StructPointerDecoder<StructType>* pObj,
                                           util::ToStringFlags toStringFlags,
@@ -208,6 +208,7 @@ inline std::string HandlePointerDecoderArrayToString(const CountType&           
         [&](uint32_t i) { return HandleIdToString((format::HandleId)pObjs->GetPointer()[i]); });
 }
 
+/// Traverse arrays of simple types like uint32_t, not structs or handles.
 template <typename CountType, typename PointerDecoderType>
 inline std::string PointerDecoderArrayToString(const CountType&    countObj,
                                                PointerDecoderType* pObjs,
@@ -225,12 +226,15 @@ inline std::string PointerDecoderArrayToString(const CountType&    countObj,
         [&]() { return pObjs && !pObjs->IsNull(); },
         [&](uint32_t i)
         {
-            //Original iterating over raw Vulkan Structs:
+            // Note the pObjs->GetPointer(), not pObjs->GetMetaStructPointer()
             return ToString(pObjs->GetPointer()[i], toStringFlags, tabCount + 1, tabSize);
         }
     );
 }
 
+/// Specialisation of array traversal for arrays of VkStructs which are handled
+/// on the Decoded_<VK_STRUCT_X> side, by dereferencing through
+/// GetMetaStructPointer() rather than GetPointer().
 template <typename Decoded_VkStructType>
 inline std::string PointerDecoderArrayToString(const StructPointerDecoder<Decoded_VkStructType>& pObjsPointerDecoder,
                                                util::ToStringFlags toStringFlags = util::kToString_Default,
@@ -255,6 +259,8 @@ inline std::string PointerDecoderArrayToString(const StructPointerDecoder<Decode
     );
 }
 
+/// Convenience wrapper for PointerDecoderArrayToString() above to spare caller
+/// from checking for null.
 template <typename Decoded_VkStructType>
 inline std::string PointerDecoderArrayToString(const StructPointerDecoder<Decoded_VkStructType>* pObjsPointerDecoder,
                                                util::ToStringFlags toStringFlags = util::kToString_Default,
@@ -265,7 +271,7 @@ inline std::string PointerDecoderArrayToString(const StructPointerDecoder<Decode
     {
         return PointerDecoderArrayToString(*pObjsPointerDecoder, toStringFlags, tabCount, tabSize);
     }
-    // We represent a null pointer as an empty array on a single line.
+    // We represent a null pointer to an array as an empty array on a single line.
     return GFXRECON_TOJSON_EMPTY_ARRAY;
 }
 
