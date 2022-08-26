@@ -93,30 +93,19 @@ inline std::string DataPointerDecoderToString(const T& pObj)
     return "\"" + util::PtrToString(pObj) + "\"";
 }
 
-/// Template which unwraps the decoder type for a Vulkan Struct to the
-/// underlying Vulkan version before dispatching to a generated to-string
-/// function for that type.
-/// @note This is broken: any handle in a struct will be VK_NULL_HANDLE in the
-/// string generated.
-/// @fixme: either:
-/// 1. dispatch to a new set of to-string functions which handle the
-/// wrapper type directly, or
-/// 2. generate specialisations of this dispatcher which
-/// stuff our handle IDs into the handles as shown in the manually-written example,
-/// below, or
-/// 3. generate to-strings for the decoded types which do the stuffing and then call the existing
-///    ToString()s.
-
-/// Pointers to primitive types like integers and to arrays will come through here:
+/// Template which unwraps the decoder type for a pointer to the underlying
+/// version before dispatching to a generated to-string function for that type.
+/// Pointers to primitive types like uint32_t, size_t, int will come through
+/// here, with the specialisation for structs further below.
 template <typename PointerDecoderType>
 inline std::string PointerDecoderToString(PointerDecoderType* pObj,
                                           util::ToStringFlags toStringFlags = util::kToString_Default,
                                           uint32_t            tabCount      = 0,
                                           uint32_t            tabSize       = 4)
 {
-    // Get a pointer to the raw vulkan type:
+    // Get a pointer to the raw type:
     auto pDecodedObj = pObj ? pObj->GetPointer() : nullptr;
-    // Call a function for the raw Vulkan type:
+    // Call a function for the raw type:
     return pDecodedObj ? util::ToString(*pDecodedObj, toStringFlags, tabCount, tabSize) : "null";
 }
 
@@ -127,7 +116,7 @@ inline std::string PointerDecoderToString(StructPointerDecoder<StructType>* pObj
                                           uint32_t            tabCount,
                                           uint32_t            tabSize)
 {
-    std::string str = "null";
+    std::string str = GFXRECON_TOJSON_NULL;
     if(nullptr != pObj)
     {
         auto pMetaObj = pObj->GetMetaStructPointer();
@@ -136,14 +125,6 @@ inline std::string PointerDecoderToString(StructPointerDecoder<StructType>* pObj
         if(nullptr != pMetaObj)
         {
             str = util::ToString(*pMetaObj, toStringFlags, tabCount, tabSize);
-        }
-        else
-        {
-            auto vkStructPtr = pObj->GetPointer();
-            if(nullptr != vkStructPtr)
-            {
-                str = util::ToString(*vkStructPtr, toStringFlags, tabCount, tabSize);
-            }
         }
     }
     return str;
