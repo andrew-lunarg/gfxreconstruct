@@ -103,7 +103,28 @@ inline std::string DataPointerDecoderToString(const uint64_t buffer)
     return str;
 }
 
+/// Pointer overload for when the value of interest is passed indirectly.
+inline std::string DataPointerDecoderToString(const uint64_t* pBuffer)
+{
+    assert(nullptr != pBuffer && "This should only ever come through as a pointer through an unavoidable weaknesses in "
+                                 "the code gen: it should never be null.");
+    std::string str{ "\"" + util::PtrToString(*pBuffer) + "\"" };
+    return str;
+}
+
 /// Convert pointers to arrays of void pointers to a string of the captured address.
+template <typename T, typename U>
+inline std::string DataPointerDecoderToString(const PointerDecoder<T, U>* pDecoder)
+{
+    if (nullptr == pDecoder)
+    {
+        assert(0 == 1);
+        return GFXRECON_TOJSON_NULL;
+    }
+    std::string str{ "\"" + util::PtrToString(pDecoder->GetAddress()) + "\"" };
+    return str;
+}
+
 template <typename T, typename U>
 inline std::string DataPointerDecoderToString(PointerDecoder<T, U>* pDecoder)
 {
@@ -114,7 +135,7 @@ inline std::string DataPointerDecoderToString(PointerDecoder<T, U>* pDecoder)
 }
 
 /// Convert void pointers into a string representation of the address in the capture file.
-inline std::string DataPointerDecoderToString(PointerDecoder<uint8_t>* pDecoder)
+inline std::string DataPointerDecoderToString(const PointerDecoder<uint8_t>* pDecoder)
 {
     GFXRECON_ASSERT(pDecoder != nullptr &&
                     "This pointer can never be null, even if the pointer from the capture encoded within it is null.");
