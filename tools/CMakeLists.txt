@@ -7,6 +7,6 @@ add_subdirectory(capture)
 add_subdirectory(gfxrecon)
 
 # TOASCII build is currently disabled pending resolution of some issues
-if(BUILD_TOASCII)
+#if(BUILD_TOASCII)
 add_subdirectory(toascii)
-endif()
+#endif()
