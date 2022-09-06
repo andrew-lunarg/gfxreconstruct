@@ -107,11 +107,8 @@ inline std::string DataPointerDecoderToString(const uint64_t buffer)
 template <typename T, typename U>
 inline std::string DataPointerDecoderToString(PointerDecoder<T, U>* pDecoder)
 {
-    if (nullptr == pDecoder)
-    {
-        assert(0 == 1);
-        return GFXRECON_TOJSON_NULL;
-    }
+    GFXRECON_ASSERT(pDecoder != nullptr &&
+                    "This pointer can never be null, even if the pointer from the capture encoded within it is null.");
     std::string str{ "\"" + util::PtrToString(pDecoder->GetAddress()) + "\"" };
     return str;
 }
@@ -119,11 +116,8 @@ inline std::string DataPointerDecoderToString(PointerDecoder<T, U>* pDecoder)
 /// Convert void pointers into a string representation of the address in the capture file.
 inline std::string DataPointerDecoderToString(PointerDecoder<uint8_t>* pDecoder)
 {
-    if (nullptr == pDecoder)
-    {
-        assert(0 == 1);
-        return GFXRECON_TOJSON_NULL;
-    }
+    GFXRECON_ASSERT(pDecoder != nullptr &&
+                    "This pointer can never be null, even if the pointer from the capture encoded within it is null.");
     std::string str{ "\"" + util::PtrToString(pDecoder->GetAddress()) + "\"" };
     return str;
 }
