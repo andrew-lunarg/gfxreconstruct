@@ -573,8 +573,8 @@ The `gfxrecon-convert` tool converts a capture file into a series of JSON
 documents, one per line following the
 [JSON Lines standard](https://jsonlines.org/).
 The JSON document on each line is designed to be parsed by tools such as simple
-Python scripts as well as being usefully inspectable by eye after pretty
-printing, for example by piping through a commandline tool such as
+Python scripts as well as being useful for inspection by eye after pretty
+printing, for example by piping through a command-line tool such as
 [`jq`](https://stedolan.github.io/jq/).
 For these post-processing use cases, `gfxrecon-convert` can be used to stream
 binary captures directly into `stdin` of the next tool in the chain, without
@@ -585,10 +585,9 @@ are heavier-weight to reduce their workload on large captures.
 
 The file begins with a header object containing some metadata, followed by a
 series of objects representing the sequence of Vulkan calls stored in the
-capture.
+capture. More details of the file format can be found in the tool's
+[README](tools/convert/README.md).
 
- 
---------------------------------------------------------------------------------
 
 ```text
 gfxrecon-convert - A tool to convert GFXReconstruct capture files to text.
