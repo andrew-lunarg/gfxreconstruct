@@ -577,7 +577,7 @@ Python scripts as well as being useful for inspection by eye after pretty
 printing, for example by piping through a command-line tool such as
 [`jq`](https://stedolan.github.io/jq/).
 For these post-processing use cases, `gfxrecon-convert` can be used to stream
-binary captures directly into `stdin` of the next tool in the chain, without
+from binary captures directly, without
 having to save the intermediate JSON files to storage.
 Because each JSON object is on its own line, line oriented tools such as
 grep, sed, head, and split can be applied ahead of JSON-aware ones which

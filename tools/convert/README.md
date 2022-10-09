@@ -30,44 +30,238 @@ Python scripts as well as being useful for inspecting by eye after pretty
 printing, for example by piping through a command-line tool such as
 [`jq`](https://stedolan.github.io/jq/).
 For these post-processing use cases, `gfxrecon-convert` can be used to stream
-binary captures directly into `stdin` of the next tool in the chain, without
+from binary captures directly, without
 having to save the intermediate JSON files to storage.
 Because each JSON object is on its own line, line oriented tools such as
 grep, sed, head, and split can be applied ahead of JSON-aware ones which
 are heavier-weight to reduce their workload on large captures.
 
+
 ## JSON Structure
 
-The tool's output is an ordered list of strings, one per line, each line a valid JSON document (JSON Lines).
-Every line is a separate JSON object, which means the output as a whole is not valid JSON, although it can be trivially transformed into a valid JSON array by appending a comma to each line and topping and tailing with square brackets.
+The tool's output is an ordered list of strings, one per line, each line a valid
+JSON document (JSON Lines). Below are the first few lines from a capture of vkcube, truncated to 200 columns.
+
+```
+{"header":{"source-path":"vkcube.f1.gfxr","json-version":"0.8.0","gfxrecon-version":"0.9.15-dev","vulkan-version":"1.3.224"}}
+{"index":0,"vkFunc":{"name":"vkCreateInstance","return":"VK_SUCCESS","args":{"pCreateInfo":{"sType":"VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO","pNext":null,"flags":1,"pApplicationInfo":{"sType":"VK_S...
+{"index":1,"vkFunc":{"name":"vkEnumeratePhysicalDevices","return":"VK_SUCCESS","args":{"instance":1,"pPhysicalDeviceCount":3,"pPhysicalDevices":null}}}
+{"index":2,"vkFunc":{"name":"vkEnumeratePhysicalDevices","return":"VK_SUCCESS","args":{"instance":1,"pPhysicalDeviceCount":3,"pPhysicalDevices":[2,3,4]}}}
+{"index":3,"vkFunc":{"name":"vkGetPhysicalDeviceProperties","args":{"physicalDevice":2,"pProperties":{"apiVersion":4206786,"driverVersion":2140487808,"vendorID":4318,"deviceID":9568,"deviceType":"V...
+{"index":4,"vkFunc":{"name":"vkGetPhysicalDeviceProperties","args":{"physicalDevice":3,"pProperties":{"apiVersion":4206796,"driverVersion":92274693,"vendorID":32902,"deviceID":18086,"deviceType":"V...
+{"index":5,"vkFunc":{"name":"vkGetPhysicalDeviceProperties","args":{"physicalDevice":4,"pProperties":{"apiVersion":4202700,"driverVersion":1,"vendorID":65541,"deviceID":0,"deviceType":"VK_PHYSICAL_...
+{"index":6,"vkFunc":{"name":"vkEnumeratePhysicalDevices","return":"VK_SUCCESS","args":{"instance":1,"pPhysicalDeviceCount":3,"pPhysicalDevices":null}}}
+{"index":7,"vkFunc":{"name":"vkEnumeratePhysicalDevices","return":"VK_SUCCESS","args":{"instance":1,"pPhysicalDeviceCount":3,"pPhysicalDevices":[2,3,4]}}}
+
+```
 
 The file begins with a header object containing some metadata, followed by a
 series of objects representing the sequence of Vulkan calls stored in the
-capture. Here are some examples:
+capture. Below are some examples generated from the same capture of `vkcube`
+listed above but pretty-printed with
+`gfxrecon-convert --output stdout vkcube.f1.gfxr | jq`.
 
+The first line is a header identifying the source capture file,
+the version of the file format,
+the version of GFXReconstruct used to generate the file,
+and the version of the Vulkan headers used to build that GFXReconstruct version.
+This header may be expanded in the future but these fields will remain.
+
+```json
+{
+  "header": {
+    "source-path": "vkcube.f1.gfxr",
+    "json-version": "0.8.0",
+    "gfxrecon-version": "0.9.15-dev",
+    "vulkan-version": "1.3.224"
+  }
+}
+```
+
+The first Vulkan function of the capture follows the header.
+Of note are the fields `"vkFunc"` which identifies the line as Vulkan function
+call, and `"index"` which is a monotonically increasing positive integer
+representing the position of the call in the sequence recorded in the capture.
+
+```json
+{
+  "index": 0,
+  "vkFunc": {
+    "name": "vkCreateInstance",
+    "return": "VK_SUCCESS",
+    "args": {
+      "pCreateInfo": {
+        "sType": "VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO",
+        "pNext": null,
+        "flags": 1,
+        "pApplicationInfo": {
+          "sType": "VK_STRUCTURE_TYPE_APPLICATION_INFO",
+          "pNext": null,
+          "pApplicationName": "vkcube",
+          "applicationVersion": 0,
+          "pEngineName": "vkcube",
+          "engineVersion": 0,
+          "apiVersion": 4194304
+        },
+        "enabledLayerCount": 0,
+        "ppEnabledLayerNames": null,
+        "enabledExtensionCount": 4,
+        "ppEnabledExtensionNames": [
+          "VK_KHR_get_physical_device_properties2",
+          "VK_KHR_surface",
+          "VK_KHR_xcb_surface",
+          "VK_KHR_portability_enumeration"
+        ]
+      },
+      "pAllocator": null,
+      "pInstance": 1
+    }
+  }
+}
+
+```
+
+### Type Mapping [Todo]
+
+#### Scalar Numeric Types
+
+`int`, `float`, `double`, and related types and aliases are represented with
+the JSON number type.
+The output is additionally constrained to match the underlying C type, so a
+value like `1.1` will never be output where the C type is an integer, despite
+that being a valid JSON number.
+
+#### Handles
+
+Handles in capture files are represented by integers.
+I.e., the _ith_ handle allocation will be stored as the integer _i_.
+Convert shows those integers directly as the JSON number type, constrained to
+be positive integers.
+
+#### Strings
+
+#### Structures
+
+#### Pointers to Structures
+
+Where a pointer is to a single struct, as is the case for `pCreateInfo` and
+`pNext` struct pointers, the representation of the pointed-to type is nested
+within the JSON file at that point.
+If the same struct is pointed-to a thousand times in a capture file, the JSON
+representation at each point of use will show its full, transitively expanded
+structure a ... BOOKMARK
+
+#### Arrays 
+
+When a variable length array is represented in the C-API by adjacent
+`{count, pointer}` arguments or members, the JSON representation retains
+the explicit `count` even though that is duplicated in the length of the
+JSON array which inherits the name of the pointer in the pair.
+ [Todo]
 
 ### Top Level Structure
 
-A tool can work out what kind of JSON document each line contains.
+All current and future lines have a top-level JSON object with a key that
+identifies the type of the line and a value that is a nested object holding
+the data for the line, possibly in further nested structure.
+The currently-defined two keys are `"vkFunc"` and `"header"`.
+A line can hold _either_ a nested `"vkFunc"` or a nested `"header"`,
+but not _both_.
+A tool can work out what kind of JSON document each line contains by checking
+for the presence of the keys in the top-level object.
+In pseudocode that could look something like this:
 
+```
+for line in input_lines:
+  doc = json.parse(line)
+  if doc.contains("vkFunc"):
+      process Vulkan API Call document
+  else if doc.contains("header"):
+      process metadata document
+  else:
+      warning: unknown JSON line
+```
 
 ### Header Objects
 
+All values of a header are strings.
+
 ### vkFunc Objects
 
+Vulkan function objects have a nested internal structure.
+
+* `"name"`: The type is always a string. Identifies which function was called
+  with the name defined in the C-API.
+* `"return"`: The type is a string with the human-readable value of
+  enumerations,
+  or `null`, or an integer number in the case of a handle, a string with a hex
+  number encoded inside in the case of an address, or a number if the C-API type
+  is a plain number like a float or int.
+* `"args"`: object. A nested object with a set of key:value pairs, one for each
+  argument passed to the function.
+  The arguments are output in the some order as defined by the C-API although
+  JSON tools may reorder them arbitrarily after further processing.
+
 ### Function Arguments
+
+Arguments are delivered in a nested JSON object.
+The key for each field of the object is the name it has in the Vulkan C-API.
+The value of a field could be any JSON type, constrained to be appropriate to
+the C argument's type.
+
+In this example of `"vkUnmapMemory"`, the values are the integer mappings of
+handles as stored in the capture file.
+
+```
+    "args": {
+      "device": 6,
+      "memory": 27
+    }
+```
+
+A more complex example is illustrated by `vkCmdSetScissor`.
+Here we see the pointer to a variable number of entries from the C-API,
+`pScissors`, represented as a nested JSON array.
+Each element in that array is a JSON object for the corresponding C struct.
+
+```
+"args": {
+    "commandBuffer": 43,
+    "firstScissor": 0,
+    "scissorCount": 1,
+    "pScissors": [
+      {
+        "offset": {
+          "x": 0,
+          "y": 0
+        },
+        "extent": {
+          "width": 256,
+          "height": 192
+        }
+      }
+    ]
+  }
+```
+
+#### To Say
 Names and values.
 * handles are numbers...
 
-### Structures
-
-### Arrays 
 
 ### Processing Examples
 
 #### To Add
 * Output all submits and all presents.
 * Cut at first present.
+
+### JSON Lines to JSON
+
+Because every line is a separate JSON object, the output as a whole is not
+valid JSON.
+It can, however, be trivially transformed into a valid JSON array by
+appending a comma to each line and topping and tailing with square brackets.
+
 
 ### Caveats and Gotchas
 
@@ -95,14 +289,92 @@ console.log(obj.count);
 Captures don't store output structs or values for calls that failed, so some
 structs will be `null` (Python `None`) even though the app passed in something.
 
-## TO Mention Above
-* include the link
-* include a sample of a few lines
-* note that it can be made pretty through jq and through the yq pipeline.
 
- 
+## Recipes
+
+Once the JSON has been emitted, the the next step is to do something with it.
+Below are some example usages of the output, tested in Bash.
+These are presented using a file called `vkcube.f1.gfxr`, a capture of the first
+frame of `vkcube`, which you can easily reproduce locally using the
+GFXReconstruct capture layer.
+
+### List of Functions Used in a Capture
+
+One useful thing to do with a capture is to generate a summary of the Vulkan
+functions used within it.
+Given a large set of diverse captures, generating this summary once for each
+capture ahead of time allows later recursive greps to find all the files that
+use a particular function rapidly.
+This would be useful when reproducing a bug somewhere in the graphics stack
+for which that function was implicated.
+
+```
+gfxrecon-convert --output stdout vkcube.f1.gfxr | sed "s/.*\"name\":\"vk\([^\"]*\).*/vk\1/" | sort | uniq | egrep -v "{\"header\""
+```
+Output:
+```
+vkAcquireNextImageKHR
+vkAllocateCommandBuffers
+vkAllocateDescriptorSets
+vkAllocateMemory
+vkBeginCommandBuffer
+vkBindBufferMemory
+vkBindImageMemory
+...
+vkUnmapMemory
+vkUpdateDescriptorSets
+vkWaitForFences
+```
+
+Splitting the `sed` command in two should execute several times faster:
+
+```
+gfxrecon-convert --output stdout vkcube.f1.gfxr | sed "s/.*\"name\":\"vk/vk/" | sed "s/\",.*//" | sort | uniq | egrep -v "{\"header\""
+```
+
+For large captures, screening out runs of duplicate function names before the sort can be a little faster still:
+
+```
+gfxrecon-convert --output stdout vkcube.f1.gfxr | sed "s/.*\"name\":\"vk/vk/" | sed "s/\",.*//" | uniq | sort | uniq | egrep -v "{\"header\""
+```
+
+### All Unique Argument Names
+
+This pipeline summarizes the names of function arguments and struct member names
+transitively included from arguments into a json array on each line.
+These might be useful to keep beside a set of multi-gigabyte binary traces to
+allow fast grepping when looking for traces that use particular named arguments.
+
+```
+gfxrecon-convert --output stdout vkcube.f1.gfxr | jq  -c "[.. | objects | keys[]] | unique" | sed "s/\"args\",//" | sed "s/\"index\",//" | sed "s/\"name\",//" | sed "s/\"return\",//" | sed "s/,\"vkFunc\"//" | sort | uniq
+```
+
+Output:
+
+```json
+...
+["alignment","buffer","device","memoryTypeBits","pMemoryRequirements","size"]
+["alignment","device","image","memoryTypeBits","pMemoryRequirements","size"]
+["allocationSize","device","memoryTypeIndex","pAllocateInfo","pAllocator","pMemory","pNext","sType"]
+...
+```
+
+
+## FAQ
+* Where is the type information? [ToDo]
+* Can I rely on the ordering of `args` object `key:value` pairs?
+  - Convert will output fields in the same order as they appear in the parameter
+    lists of the corresponding C API.
+    While that order is not guaranteed to be preserved by all parsers, many do
+    preserve it by default or can be configured to do so.
+  - jq snippet to transform to an array. [ToDo]
+  - ordered map in python parser. [ToDo]
 
 ## Useful Scrap
 
-Our output is an ordered list of strings, one per line, each line a valid JSON document (JSON Lines).
-Every line is a separate JSON object, which means.
+...
+
+## TO Mention Above
+* note that it can be made pretty through jq and through the yq pipeline.
+* Use of `--unbuffered` for `jq` and `--line-buffered` for `grep` 
+* Rather than documenting types for return values, args, separately, Have the mapping in one place.
