@@ -42,7 +42,7 @@ are heavier-weight to reduce their workload on large captures.
 The tool's output is an ordered list of strings, one per line, each line a valid
 JSON document (JSON Lines). Below are the first few lines from a capture of vkcube, truncated to 200 columns.
 
-```
+```json
 {"header":{"source-path":"vkcube.f1.gfxr","json-version":"0.8.0","gfxrecon-version":"0.9.15-dev","vulkan-version":"1.3.224"}}
 {"index":0,"vkFunc":{"name":"vkCreateInstance","return":"VK_SUCCESS","args":{"pCreateInfo":{"sType":"VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO","pNext":null,"flags":1,"pApplicationInfo":{"sType":"VK_S...
 {"index":1,"vkFunc":{"name":"vkEnumeratePhysicalDevices","return":"VK_SUCCESS","args":{"instance":1,"pPhysicalDeviceCount":3,"pPhysicalDevices":null}}}
@@ -121,7 +121,10 @@ representing the position of the call in the sequence recorded in the capture.
 
 ```
 
-### Type Mapping [Todo]
+### Type Mapping of Values
+
+Values in the file such as function arguments, function return values, and
+structure members are mapped to the following JSON representations.
 
 #### Scalar Numeric Types
 
@@ -134,38 +137,73 @@ that being a valid JSON number.
 #### Handles
 
 Handles in capture files are represented by integers.
-I.e., the _ith_ handle allocation will be stored as the integer _i_.
-Convert shows those integers directly as the JSON number type, constrained to
+I.e., the _ith_ handle allocation will be stored as the integer _i_, counting
+from one.
+Convert shows those integers as the JSON number type, constrained to
 be positive integers.
 
 #### Strings
 
+`const char*` strings from the C-API are represented as JSON strings.
+
+#### Enumerations
+
+Single enumerator values (as opposed to the result of ORing together several
+flags defined by an enumeration) such as `VkResult`'s `VK_SUCCESS` and
+`VK_INCOMPLETE` are represented by JSON strings holding the exact character
+sequence used in the C-API enumerator, so `"VK_SUCCESS"` and `"VK_INCOMPLETE"`
+in the preceding examples.
+
+#### Masks / Flag Sets
+
+Theses are currently output as JSON numbers with their bit patterns
+interpreted as an unsigned decimal integer.
+Tools written now should test whether masks are represented as JSON numbers and
+fail gracefully if not as some changes are anticipated before version `1.0.0` of
+the JSON Lines file format.
+
+#### Void Pointers
+
+Pointers to void and pointers to pointers to void are represented as strings
+with the hexadecimal integer value of the address in the capture file encoded
+within them. For example `"0x55f5aa64d2f0"`.
+
 #### Structures
+
+Structures are represented as JSON objects.
+The names of their fields become element keys and their values are translated
+as described for any value in this section and the resulting JSON text is used
+as element values.
 
 #### Pointers to Structures
 
 Where a pointer is to a single struct, as is the case for `pCreateInfo` and
 `pNext` struct pointers, the representation of the pointed-to type is nested
 within the JSON file at that point.
-If the same struct is pointed-to a thousand times in a capture file, the JSON
-representation at each point of use will show its full, transitively expanded
-structure a ... BOOKMARK
+The output does not preserve the identity of pointed-to structs.
+If the same struct with the same values was pointed-to a thousand times by an
+application during capture, the JSON representation will show its full,
+transitively expanded structure at each of those points of use.
+There is no mechanism to refer back to previously defined sub-trees of structs.
 
 #### Arrays 
 
+Arrays, whether embedded directly in a struct, or pointed-to, are represented as
+a JSON array type.
+Each element of an array is represented by converting its type according to the
+appropriate.
 When a variable length array is represented in the C-API by adjacent
 `{count, pointer}` arguments or members, the JSON representation retains
 the explicit `count` even though that is duplicated in the length of the
 JSON array which inherits the name of the pointer in the pair.
- [Todo]
 
 ### Top Level Structure
 
 All current and future lines have a top-level JSON object with a key that
 identifies the type of the line and a value that is a nested object holding
 the data for the line, possibly in further nested structure.
-The currently-defined two keys are `"vkFunc"` and `"header"`.
-A line can hold _either_ a nested `"vkFunc"` or a nested `"header"`,
+The currently-defined two keys are `"header"` and `"vkFunc"`.
+A line can hold _either_ a nested `"header"` or a nested `"vkFunc"`,
 but not _both_.
 A tool can work out what kind of JSON document each line contains by checking
 for the presence of the keys in the top-level object.
@@ -177,7 +215,7 @@ for line in input_lines:
   if doc.contains("vkFunc"):
       process Vulkan API Call document
   else if doc.contains("header"):
-      process metadata document
+      process header document
   else:
       warning: unknown JSON line
 ```
@@ -186,33 +224,50 @@ for line in input_lines:
 
 All values of a header are strings.
 
+[ToDo]
+
 ### vkFunc Objects
 
-Vulkan function objects have a nested internal structure.
+Vulkan function objects contain `"index"` at the top level which is a
+JSON number representing the position of the call in the sequence recorded in
+the capture and a nested object under the key `"vkFunc"` which contains the data captured from a Vulkan call.
 
-* `"name"`: The type is always a string. Identifies which function was called
+```json
+{
+  "index": 0,
+  "vkFunc": {
+    "name": "vkCreateInstance",
+    "return": "VK_SUCCESS",
+    "args": {
+      ... details omitted ...
+    }
+  }
+}
+```
+
+Within the nested object are several elements.
+
+* `"name"`: A JSON string that identifies which function was called
   with the name defined in the C-API.
-* `"return"`: The type is a string with the human-readable value of
-  enumerations,
-  or `null`, or an integer number in the case of a handle, a string with a hex
-  number encoded inside in the case of an address, or a number if the C-API type
-  is a plain number like a float or int.
+* `"return"`: An optional element whose value represents what was returned from Vulkan at capture time translated to JSON according to the C-API type as detailed above in section _Type Mapping of Values_.
 * `"args"`: object. A nested object with a set of key:value pairs, one for each
   argument passed to the function.
-  The arguments are output in the some order as defined by the C-API although
+  The arguments are output in the same order as defined by the C-API although
   JSON tools may reorder them arbitrarily after further processing.
+  The value of each element is translated from the corresponding argument in the
+  capture file as detailed above in section _Type Mapping of Values_.
 
-### Function Arguments
+#### Function Arguments
 
 Arguments are delivered in a nested JSON object.
 The key for each field of the object is the name it has in the Vulkan C-API.
 The value of a field could be any JSON type, constrained to be appropriate to
-the C argument's type.
+the C argument's type as detailed above in section _Type Mapping of Values_.
 
 In this example of `"vkUnmapMemory"`, the values are the integer mappings of
 handles as stored in the capture file.
 
-```
+```json
     "args": {
       "device": 6,
       "memory": 27
@@ -224,7 +279,7 @@ Here we see the pointer to a variable number of entries from the C-API,
 `pScissors`, represented as a nested JSON array.
 Each element in that array is a JSON object for the corresponding C struct.
 
-```
+```json
 "args": {
     "commandBuffer": 43,
     "firstScissor": 0,
@@ -243,10 +298,6 @@ Each element in that array is a JSON object for the corresponding C struct.
     ]
   }
 ```
-
-#### To Say
-Names and values.
-* handles are numbers...
 
 
 ### Processing Examples
@@ -370,11 +421,8 @@ Output:
   - jq snippet to transform to an array. [ToDo]
   - ordered map in python parser. [ToDo]
 
-## Useful Scrap
-
-...
 
 ## TO Mention Above
 * note that it can be made pretty through jq and through the yq pipeline.
-* Use of `--unbuffered` for `jq` and `--line-buffered` for `grep` 
-* Rather than documenting types for return values, args, separately, Have the mapping in one place.
+* Use of `--unbuffered` for `jq` and `--line-buffered` for `grep`
+* When Arrays (and structs) linked by pointers can be null.
