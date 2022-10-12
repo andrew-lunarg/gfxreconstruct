@@ -187,7 +187,7 @@ application during capture, the JSON representation will show its full,
 recursively expanded structure at each of those points of use.
 There is no mechanism to refer back to previously defined sub-trees of structs.
 
-#### Arrays 
+#### Arrays
 
 Arrays, whether embedded directly in a struct, or pointed-to, are represented as
 a JSON array type.
@@ -654,8 +654,3 @@ frames or an arbitrary single frame without needing to parse the JSON.
     To bake the order in, args may be transforned into an array with `jq` as
     shown in the section
     [Transform Arguments to Positional Array Form](#transform-arguments-to-positional-array-form).
-
-
-
-
-

@@ -598,15 +598,14 @@ Usage:
 
 Required arguments:
   <file>		Path to the GFXReconstruct capture file to be converted
-        		to text.
+                to text.
 
 Optional arguments:
   -h			Print usage information and exit (same as --help).
   --version		Print version information and exit.
-  --output file		'stdout' or a path to a file to write JSON output
-        		to. Default is the input filepath with "gfxr" replaced
-        		by "txt".
-
+  --output file 'stdout' or a path to a file to write JSON output
+                to. Default is the input filepath with "gfxr" replaced
+                by "txt".
 ```
 
 ### Command Launcher
