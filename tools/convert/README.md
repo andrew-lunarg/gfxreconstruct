@@ -361,6 +361,12 @@ These are presented using a file called `vkcube.f1.gfxr`, a capture of the first
 frame of `vkcube`, and `vkcube.f1-10.gfxr`, a capture of its first ten frames,
 which you can easily reproduce locally using the GFXReconstruct capture layer.
 
+When composing pipelines for interactive use it is usually worthwhile to have
+each tool use unbuffered IO so results make it through to printing to the
+console as soon as possible.
+The switches for that are `--line-buffered` for `grep` and `--unbuffered` for
+`jq`.
+
 ### Grep for Functions
 
 We can limit output to functions of particular interest easily with a pipeline.
@@ -384,20 +390,21 @@ In this example we see the `pImageIndices` index being cycled through:
 ...
 ```
 
-### Pretty Print
+### Pretty Print JSON
 
 There are many tools that will pretty-print JSON Lines.
 A common one on many platforms, written in C, and with no dependencies is `jq`.
-Here we grep for a couple of short lines and feed them to `jq`:
+Here we output to stdout and pipe through them to `jq`:
 
 ```bash
-gfxrecon-convert --output stdout vkcube.f1.gfxr | egrep --line-buffered "vkCmd(EndRenderPass|BindPipeline)" | jq
+gfxrecon-convert --output stdout vkcube.f1.gfxr | jq
 ```
 
-The result is nicely formatted for human comprehension and preserves the
+The result (abbreviated below) is nicely formatted for human comprehension and preserves the
 ordering of function arguments, to match the C-API.
 
 ```json
+
 {
   "index": 102,
   "vkFunc": {
@@ -421,6 +428,36 @@ ordering of function arguments, to match the C-API.
 ...
 ```
 
+### Pretty Print YAML
+
+The [yq](https://github.com/mikefarah/yq) YAML processor can give a cleaner
+pretty print.
+We pipe our output into it after adding a line with the YAML separator `---`
+between each JSON line.
+
+```bash
+gfxrecon-convert --output stdout vkcube.f1.gfxr | sed -s "s/$/\n---\n/" | yq -P
+```
+
+The same excerpt as shown for the JSON pretty print above:
+
+```yaml
+index: 102
+vkFunc:
+  name: vkCmdBindPipeline
+  args:
+    commandBuffer: 43
+    pipelineBindPoint: VK_PIPELINE_BIND_POINT_GRAPHICS
+    pipeline: 42
+---
+index: 107
+vkFunc:
+  name: vkCmdEndRenderPass
+  args:
+    commandBuffer: 43
+---
+```
+
 ### List of Functions Used in a Capture
 
 One useful thing to do with a capture is to generate a summary of the Vulkan
@@ -428,8 +465,8 @@ functions used within it.
 Given a large set of diverse captures, generating this summary once for each
 capture ahead of time allows later recursive greps to find all the files that
 use a particular function rapidly.
-This would be useful when reproducing a bug somewhere in the graphics stack
-for which that function was implicated.
+This would be useful when collecting a set of existing traces to reproduce a bug
+somewhere in the graphics stack for which that function was implicated.
 
 ```bash
 gfxrecon-convert --output stdout vkcube.f1.gfxr | sed "s/.*\"name\":\"vk\([^\"]*\).*/vk\1/" | sort | uniq | egrep -v "{\"header\""
@@ -461,6 +498,73 @@ For large captures, screening out runs of duplicate function names before the so
 gfxrecon-convert --output stdout vkcube.f1.gfxr | sed "s/.*\"name\":\"vk/vk/" | sed "s/\",.*//" | uniq | sort | uniq | egrep -v "{\"header\""
 ```
 
+### Transform Arguments to Positional Array Form
+
+While the JSON format for functions represents arguments as a JSON object,
+it is straightforward to transform that to an array that bakes in the argument
+ordering.
+This substitution in `jq` turns each argument into its own JSON object with name
+and value fields, and orders them all in an array.
+
+```bash
+gfxrecon-convert --output stdout vkcube.f1.gfxr | egrep -v "^{\"header\":{\"" | jq '.vkFunc.args = (.vkFunc.args | to_entries | map_values({"name":(.key), "value":(.value)}))'
+```
+
+```json
+{
+  "index": 76,
+  "vkFunc": {
+    "name": "vkMapMemory",
+    "return": "VK_SUCCESS",
+    "args": [
+      {
+        "name": "device",
+        "value": 6
+      },
+      {
+        "name": "memory",
+        "value": 35
+      },
+      {
+        "name": "offset",
+        "value": 0
+      },
+      {
+        "name": "size",
+        "value": 18446744073709552000
+      },
+      {
+        "name": "flags",
+        "value": 0
+      },
+      {
+        "name": "ppData",
+        "value": "0x55f5aa64d380"
+      }
+    ]
+  }
+}
+```
+
+This can be stripped-down to just the values:
+
+```bash
+gfxrecon-convert --output stdout vkcube.f1.gfxr | egrep -v "^{\"header\":{\"" | jq -c '.vkFunc.args = (.vkFunc.args | to_entries | map_values(.value))'
+```
+
+Note the `-c` option to `jq` preserves the JSON Lines output rather than
+pretty-printing indented JSON.
+
+```json
+{"index":72,"vkFunc":{"name":"vkBindBufferMemory","return":"VK_SUCCESS","args":[6,32,33,0]}}
+{"index":73,"vkFunc":{"name":"vkCreateBuffer","return":"VK_SUCCESS","args":[6,{"sType":"VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO","pNext":null,"flags":0,"size":1216,"usage":16,"sharingMode":"VK_SHARING_MODE_EXCLUSIVE","queueFamilyIndexCount":0,"pQueueFamilyIndices":null},null,34]}}
+{"index":74,"vkFunc":{"name":"vkGetBufferMemoryRequirements","args":[6,34,{"size":1280,"alignment":256,"memoryTypeBits":1921}]}}
+{"index":75,"vkFunc":{"name":"vkAllocateMemory","return":"VK_SUCCESS","args":[6,{"sType":"VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO","pNext":null,"allocationSize":1280,"memoryTypeIndex":8},null,35]}}
+{"index":76,"vkFunc":{"name":"vkMapMemory","return":"VK_SUCCESS","args":[6,35,0,18446744073709552000,0,"0x55f5aa64d380"]}}
+{"index":77,"vkFunc":{"name":"vkBindBufferMemory","return":"VK_SUCCESS","args":[6,34,35,0]}}
+```
+
+
 ### All Unique Argument Names
 
 This pipeline summarizes the names of function arguments and struct member names
@@ -482,6 +586,54 @@ Output:
 ...
 ```
 
+### Truncate at Match
+When looking at a multi-gigabyte capture file, it can be useful to limit the
+output of conversion, ending it early, for example to concentrate on the first
+frame.
+A little Python script can enable that.
+
+`stop-after-match.py`:
+```python
+#! /usr/bin/python3
+import sys
+import argparse
+parser = argparse.ArgumentParser(description='Pass through input until match')
+parser.add_argument('match', help='The string to stop after seeing on a line')
+args = parser.parse_args()
+match = args.match
+
+for l in sys.stdin:
+    # Print out long lines:
+    print(l,  end = '', flush=True)
+    if match in l:
+        exit(0)
+```
+As an example, let's use that to see all the submits in the first frame:
+
+```bash
+gfxrecon-convert --output stdout bigcapture.gfxr | stop-after-match.py vkQueuePresent | fgrep --line-buffered vkQueueSubmit
+```
+
+For one particular 33GB capture, the above pipeline runs in around a second on a
+laptop because conversion ends at the match.
+In the output we see 301 single command buffer single submits to get to the first
+frame which would give the developer inspiration to look into merging some of
+them if possible.
+
+```json
+{"index":168,"vkFunc":{"name":"vkQueueSubmit","return":"VK_SUCCESS","args":{"queue":68,"submitCount":1,"pSubmits":[{"sType":"VK_STRUCTURE_TYPE_SUBMIT_INFO","pNext":null,"waitSemaphoreCount":0,"pWaitSemaphores":null,"pWaitDstStageMask":null,"commandBufferCount":1,"pCommandBuffers":[91],"signalSemaphoreCount":0,"pSignalSemaphores":null}],"fence":89}}}
+{"index":337,"vkFunc":{"name":"vkQueueSubmit","return":"VK_SUCCESS","args":{"queue":96,"submitCount":1,"pSubmits":[{"sType":"VK_STRUCTURE_TYPE_SUBMIT_INFO","pNext":null,"waitSemaphoreCount":0,"pWaitSemaphores":null,"pWaitDstStageMask":null,"commandBufferCount":1,"pCommandBuffers":[98],"signalSemaphoreCount":0,"pSignalSemaphores":null}],"fence":99}}}
+... skip hundreds of similar calls ...
+{"index":6580,"vkFunc":{"name":"vkQueueSubmit","return":"VK_SUCCESS","args":{"queue":96,"submitCount":1,"pSubmits":[{"sType":"VK_STRUCTURE_TYPE_SUBMIT_INFO","pNext":null,"waitSemaphoreCount":0,"pWaitSemaphores":null,"pWaitDstStageMask":null,"commandBufferCount":1,"pCommandBuffers":[128],"signalSemaphoreCount":0,"pSignalSemaphores":null}],"fence":129}}}
+{"index":6585,"vkFunc":{"name":"vkQueueSubmit","return":"VK_SUCCESS","args":{"queue":96,"submitCount":1,"pSubmits":[{"sType":"VK_STRUCTURE_TYPE_SUBMIT_INFO","pNext":null,"waitSemaphoreCount":0,"pWaitSemaphores":null,"pWaitDstStageMask":null,"commandBufferCount":1,"pCommandBuffers":[131],"signalSemaphoreCount":0,"pSignalSemaphores":null}],"fence":132}}}
+{"index":6755,"vkFunc":{"name":"vkQueueSubmit","return":"VK_SUCCESS","args":{"queue":68,"submitCount":1,"pSubmits":[{"sType":"VK_STRUCTURE_TYPE_SUBMIT_INFO","pNext":null,"waitSemaphoreCount":0,"pWaitSemaphores":null,"pWaitDstStageMask":null,"commandBufferCount":2,"pCommandBuffers":[1894,1895],"signalSemaphoreCount":0,"pSignalSemaphores":null}],"fence":1896}}}
+{"index":6757,"vkFunc":{"name":"vkQueueSubmit","return":"VK_SUCCESS","args":{"queue":68,"submitCount":1,"pSubmits":[{"sType":"VK_STRUCTURE_TYPE_SUBMIT_INFO","pNext":null,"waitSemaphoreCount":0,"pWaitSemaphores":null,"pWaitDstStageMask":null,"commandBufferCount":2,"pCommandBuffers":[1912,1913],"signalSemaphoreCount":0,"pSignalSemaphores":null}],"fence":1897}}}
+{"index":6812,"vkFunc":{"name":"vkQueueSubmit","return":"VK_SUCCESS","args":{"queue":68,"submitCount":1,"pSubmits":[{"sType":"VK_STRUCTURE_TYPE_SUBMIT_INFO","pNext":null,"waitSemaphoreCount":0,"pWaitSemaphores":null,"pWaitDstStageMask":null,"commandBufferCount":1,"pCommandBuffers":[2120],"signalSemaphoreCount":0,"pSignalSemaphores":null}],"fence":"VK_NULL_HANDLE"}}}
+{"index":6814,"vkFunc":{"name":"vkQueueSubmit","return":"VK_SUCCESS","args":{"queue":68,"submitCount":1,"pSubmits":[{"sType":"VK_STRUCTURE_TYPE_SUBMIT_INFO","pNext":null,"waitSemaphoreCount":1,"pWaitSemaphores":[867],"pWaitDstStageMask":[65536],"commandBufferCount":1,"pCommandBuffers":[2167],"signalSemaphoreCount":1,"pSignalSemaphores":[878]}],"fence":877}}}
+```
+
+Similar line-oriented scripts could extend this idea to outputting the first n
+frames or an arbitrary single frame without needing to parse the JSON.
 
 ## FAQ
 * Where is the type information?
@@ -490,16 +642,20 @@ Output:
     there when introspecting on the output or from their programmers' reading of
     the specification.
     Annotating every value with its type as done by some other tools such as the
-    API Dump layer was deemed redundant, obfuscatory, and verbose for this
-    tool's anticipated uses.
+    API Dump layer was a tradeoff not taken based on anticipated uses for this
+    format.
 * Can I rely on the ordering of `args` object `key:value` pairs?
   - Convert will output fields in the same order as they appear in the parameter
     lists of the corresponding C API.
-    While that order is not guaranteed to be preserved by all parsers, many do
-    preserve it by default or can be configured to do so.
+    While that order is not guaranteed to be preserved by all JSON parsers,
+    many do preserve it by default or can be configured to do so.
+    The JSON module in Python can
+    [use an `OrderedDict`](https://stackoverflow.com/a/6921760) for example.
+    To bake the order in, args may be transforned into an array with `jq` as
+    shown in the section
+    [Transform Arguments to Positional Array Form](#transform-arguments-to-positional-array-form).
 
-## TO Mention Above
-* note that it can be made pretty  through the yq pipeline.
-* Use of `--unbuffered` for `jq` and `--line-buffered` for `grep`
-- jq snippet to transform to an array. [ToDo]
-  - ordered map in python parser. [ToDo]
+
+
+
+
