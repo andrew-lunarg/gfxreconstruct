@@ -159,8 +159,8 @@ in the preceding examples.
 Theses are currently output as JSON numbers with their bit patterns
 interpreted as an unsigned decimal integer.
 Tools written now should test whether masks are represented as JSON numbers and
-fail gracefully if not as some changes are anticipated before version `1.0.0` of
-the JSON Lines file format.
+fail gracefully if not as some changes are anticipated to this aspect of the
+JSON Lines file format.
 
 #### Void Pointers
 
@@ -180,10 +180,11 @@ as element values.
 Where a pointer is to a single struct, as is the case for `pCreateInfo` and
 `pNext` struct pointers, the representation of the pointed-to type is nested
 within the JSON file at that point.
+If the pointer is null, the json type `null` will be used.
 The output does not preserve the identity of pointed-to structs.
 If the same struct with the same values was pointed-to a thousand times by an
 application during capture, the JSON representation will show its full,
-transitively expanded structure at each of those points of use.
+recursively expanded structure at each of those points of use.
 There is no mechanism to refer back to previously defined sub-trees of structs.
 
 #### Arrays 
@@ -191,11 +192,15 @@ There is no mechanism to refer back to previously defined sub-trees of structs.
 Arrays, whether embedded directly in a struct, or pointed-to, are represented as
 a JSON array type.
 Each element of an array is represented by converting its type according to the
-appropriate.
+appropriate rules.
 When a variable length array is represented in the C-API by adjacent
 `{count, pointer}` arguments or members, the JSON representation retains
 the explicit `count` even though that is duplicated in the length of the
 JSON array which inherits the name of the pointer in the pair.
+If an application assigns a null pointer to a pointer-to-array argument or
+struct member, it will be represented in the JSON as the `null` type.
+If a non-zero address is assigned to a pointer but a zero count is used,
+the representation will be an empty array: `[]`.
 
 ### Top Level Structure
 
@@ -224,7 +229,15 @@ for line in input_lines:
 
 All values of a header are strings.
 
-[ToDo]
+* `"source-path"`: The path to the gfxr file which was the source for
+  conversion. The exact string passed to the application is stored, whether
+  it is a relative or absolute path.
+* `"json-version"`: The version of the Convert JSON Lines file format used by
+  the current file.
+* `"gfxrecon-version"`: The release or build of GFXReconstruct used to do the
+  conversion of the file.
+* `"vulkan-version"`: The version of the Vulkan headers that the GFXReconstruct
+  used for conversion was built against.
 
 ### vkFunc Objects
 
@@ -245,12 +258,18 @@ the capture and a nested object under the key `"vkFunc"` which contains the data
 }
 ```
 
+When debugging a during replay, the value of the `"index"` field can be matched
+to the value of the GFXReconstruct `FileProcessor::api_call_index_` member
+variable.
+This allows a developer to see the history of calls in JSON form up to the point
+of interest in their debugger.
+
 Within the nested object are several elements.
 
-* `"name"`: A JSON string that identifies which function was called
+* `"name"`: A JSON string which identifies the function that was called
   with the name defined in the C-API.
 * `"return"`: An optional element whose value represents what was returned from Vulkan at capture time translated to JSON according to the C-API type as detailed above in section _Type Mapping of Values_.
-* `"args"`: object. A nested object with a set of key:value pairs, one for each
+* `"args"`: A nested object with a set of key:value pairs, one for each
   argument passed to the function.
   The arguments are output in the same order as defined by the C-API although
   JSON tools may reorder them arbitrarily after further processing.
@@ -259,7 +278,7 @@ Within the nested object are several elements.
 
 #### Function Arguments
 
-Arguments are delivered in a nested JSON object.
+Arguments are delivered in a nested JSON object with the key `"args"`.
 The key for each field of the object is the name it has in the Vulkan C-API.
 The value of a field could be any JSON type, constrained to be appropriate to
 the C argument's type as detailed above in section _Type Mapping of Values_.
@@ -298,13 +317,6 @@ Each element in that array is a JSON object for the corresponding C struct.
     ]
   }
 ```
-
-
-### Processing Examples
-
-#### To Add
-* Output all submits and all presents.
-* Cut at first present.
 
 ### JSON Lines to JSON
 
@@ -346,8 +358,67 @@ structs will be `null` (Python `None`) even though the app passed in something.
 Once the JSON has been emitted, the the next step is to do something with it.
 Below are some example usages of the output, tested in Bash.
 These are presented using a file called `vkcube.f1.gfxr`, a capture of the first
-frame of `vkcube`, which you can easily reproduce locally using the
-GFXReconstruct capture layer.
+frame of `vkcube`, and `vkcube.f1-10.gfxr`, a capture of its first ten frames,
+which you can easily reproduce locally using the GFXReconstruct capture layer.
+
+### Grep for Functions
+
+We can limit output to functions of particular interest easily with a pipeline.
+
+```bash
+gfxrecon-convert --output stdout vkcube.f1-10.gfxr | fgrep --line-buffered "vkQueuePresent"
+```
+
+We use `--line-buffered` to keep results flowing.
+As soon as a new JSON Lines line is matched, it is passed to the next stage,
+in this case being displayed.
+In this example we see the `pImageIndices` index being cycled through:
+
+```json
+{"index":137,"vkFunc":{"name":"vkQueuePresentKHR","return":"VK_SUCCESS","args":{"queue":7,"pPresentInfo":{"sType":"VK_STRUCTURE_TYPE_PRESENT_INFO_KHR","pNext":null,"waitSemaphoreCount":1,"pWaitSemaphores":[10],"swapchainCount":1,"pSwapchains":[14],"pImageIndices":[0],"pResults":null}}}}
+{"index":142,"vkFunc":{"name":"vkQueuePresentKHR","return":"VK_SUCCESS","args":{"queue":7,"pPresentInfo":{"sType":"VK_STRUCTURE_TYPE_PRESENT_INFO_KHR","pNext":null,"waitSemaphoreCount":1,"pWaitSemaphores":[13],"swapchainCount":1,"pSwapchains":[14],"pImageIndices":[1],"pResults":null}}}}
+{"index":147,"vkFunc":{"name":"vkQueuePresentKHR","return":"VK_SUCCESS","args":{"queue":7,"pPresentInfo":{"sType":"VK_STRUCTURE_TYPE_PRESENT_INFO_KHR","pNext":null,"waitSemaphoreCount":1,"pWaitSemaphores":[10],"swapchainCount":1,"pSwapchains":[14],"pImageIndices":[2],"pResults":null}}}}
+{"index":152,"vkFunc":{"name":"vkQueuePresentKHR","return":"VK_SUCCESS","args":{"queue":7,"pPresentInfo":{"sType":"VK_STRUCTURE_TYPE_PRESENT_INFO_KHR","pNext":null,"waitSemaphoreCount":1,"pWaitSemaphores":[13],"swapchainCount":1,"pSwapchains":[14],"pImageIndices":[0],"pResults":null}}}}
+{"index":157,"vkFunc":{"name":"vkQueuePresentKHR","return":"VK_SUCCESS","args":{"queue":7,"pPresentInfo":{"sType":"VK_STRUCTURE_TYPE_PRESENT_INFO_KHR","pNext":null,"waitSemaphoreCount":1,"pWaitSemaphores":[10],"swapchainCount":1,"pSwapchains":[14],"pImageIndices":[1],"pResults":null}}}}
+{"index":162,"vkFunc":{"name":"vkQueuePresentKHR","return":"VK_SUCCESS","args":{"queue":7,"pPresentInfo":{"sType":"VK_STRUCTURE_TYPE_PRESENT_INFO_KHR","pNext":null,"waitSemaphoreCount":1,"pWaitSemaphores":[13],"swapchainCount":1,"pSwapchains":[14],"pImageIndices":[2],"pResults":null}}}}
+...
+```
+### Pretty Print
+
+There are many tools that will pretty-print JSON Lines.
+A common one on many platforms, written in C, and with no dependencies is `jq`.
+Here we grep for a couple of short lines and feed them to `jq`:
+
+```bash
+gfxrecon-convert --output stdout vkcube.f1.gfxr | egrep --line-buffered "vkCmd(EndRenderPass|BindPipeline)" | jq
+```
+
+The result is nicely formatted for human comprehension and preserves the
+ordering of function arguments, to match the C-API.
+
+```json
+{
+  "index": 102,
+  "vkFunc": {
+    "name": "vkCmdBindPipeline",
+    "args": {
+      "commandBuffer": 43,
+      "pipelineBindPoint": "VK_PIPELINE_BIND_POINT_GRAPHICS",
+      "pipeline": 42
+    }
+  }
+}
+{
+  "index": 107,
+  "vkFunc": {
+    "name": "vkCmdEndRenderPass",
+    "args": {
+      "commandBuffer": 43
+    }
+  }
+}
+...
+```
 
 ### List of Functions Used in a Capture
 
@@ -359,7 +430,7 @@ use a particular function rapidly.
 This would be useful when reproducing a bug somewhere in the graphics stack
 for which that function was implicated.
 
-```
+```bash
 gfxrecon-convert --output stdout vkcube.f1.gfxr | sed "s/.*\"name\":\"vk\([^\"]*\).*/vk\1/" | sort | uniq | egrep -v "{\"header\""
 ```
 Output:
@@ -379,24 +450,24 @@ vkWaitForFences
 
 Splitting the `sed` command in two should execute several times faster:
 
-```
+```bash
 gfxrecon-convert --output stdout vkcube.f1.gfxr | sed "s/.*\"name\":\"vk/vk/" | sed "s/\",.*//" | sort | uniq | egrep -v "{\"header\""
 ```
 
 For large captures, screening out runs of duplicate function names before the sort can be a little faster still:
 
-```
+```bash
 gfxrecon-convert --output stdout vkcube.f1.gfxr | sed "s/.*\"name\":\"vk/vk/" | sed "s/\",.*//" | uniq | sort | uniq | egrep -v "{\"header\""
 ```
 
 ### All Unique Argument Names
 
 This pipeline summarizes the names of function arguments and struct member names
-transitively included from arguments into a json array on each line.
+recursively included from arguments into a json array on each line.
 These might be useful to keep beside a set of multi-gigabyte binary traces to
 allow fast grepping when looking for traces that use particular named arguments.
 
-```
+```bash
 gfxrecon-convert --output stdout vkcube.f1.gfxr | jq  -c "[.. | objects | keys[]] | unique" | sed "s/\"args\",//" | sed "s/\"index\",//" | sed "s/\"name\",//" | sed "s/\"return\",//" | sed "s/,\"vkFunc\"//" | sort | uniq
 ```
 
