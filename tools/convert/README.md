@@ -383,6 +383,7 @@ In this example we see the `pImageIndices` index being cycled through:
 {"index":162,"vkFunc":{"name":"vkQueuePresentKHR","return":"VK_SUCCESS","args":{"queue":7,"pPresentInfo":{"sType":"VK_STRUCTURE_TYPE_PRESENT_INFO_KHR","pNext":null,"waitSemaphoreCount":1,"pWaitSemaphores":[13],"swapchainCount":1,"pSwapchains":[14],"pImageIndices":[2],"pResults":null}}}}
 ...
 ```
+
 ### Pretty Print
 
 There are many tools that will pretty-print JSON Lines.
@@ -483,17 +484,22 @@ Output:
 
 
 ## FAQ
-* Where is the type information? [ToDo]
+* Where is the type information?
+  * Type information is defined by the xml of the Vulkan specification.
+    Applications using the format are required to derive type information from
+    there when introspecting on the output or from their programmers' reading of
+    the specification.
+    Annotating every value with its type as done by some other tools such as the
+    API Dump layer was deemed redundant, obfuscatory, and verbose for this
+    tool's anticipated uses.
 * Can I rely on the ordering of `args` object `key:value` pairs?
   - Convert will output fields in the same order as they appear in the parameter
     lists of the corresponding C API.
     While that order is not guaranteed to be preserved by all parsers, many do
     preserve it by default or can be configured to do so.
-  - jq snippet to transform to an array. [ToDo]
-  - ordered map in python parser. [ToDo]
-
 
 ## TO Mention Above
-* note that it can be made pretty through jq and through the yq pipeline.
+* note that it can be made pretty  through the yq pipeline.
 * Use of `--unbuffered` for `jq` and `--line-buffered` for `grep`
-* When Arrays (and structs) linked by pointers can be null.
+- jq snippet to transform to an array. [ToDo]
+  - ordered map in python parser. [ToDo]
