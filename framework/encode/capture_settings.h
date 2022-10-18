@@ -67,7 +67,7 @@ class CaptureSettings
         std::string                   capture_file{ kDefaultCaptureFileName };
         format::EnabledOptions        capture_file_options;
         bool                          time_stamp_file{ true };
-        bool                          force_flush{ false };
+        bool                          force_flush{ true };
         MemoryTrackingMode            memory_tracking_mode{ kPageGuard };
         std::string                   screenshot_dir;
         std::vector<util::FrameRange> screenshot_ranges;

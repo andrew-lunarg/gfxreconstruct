@@ -152,7 +152,7 @@ Capture triggered for Android | debug.gfxrecon.capture_android_use_trigger | BOO
 Capture trigger for Android | debug.gfxrecon.capture_android_trigger | BOOL | Set to `true` to start capturing and to `false` to stop. Default is: `false`
 Capture File Compression Type | debug.gfxrecon.capture_compression_type | STRING | Compression format to use with the capture file.  Valid values are: `LZ4`, `ZLIB`, `ZSTD`, and `NONE`. Default is: `LZ4`
 Capture File Timestamp | debug.gfxrecon.capture_file_timestamp | BOOL | Add a timestamp to the capture file as described by [Timestamps](#timestamps).  Default is: `true`
-Capture File Flush After Write | debug.gfxrecon.capture_file_flush | BOOL | Flush output stream after each packet is written to the capture file.  Default is: `false`
+Capture File Flush After Write | debug.gfxrecon.capture_file_flush | BOOL | Flush output stream after each packet is written to the capture file.  Default is: `true`
 Log Level | debug.gfxrecon.log_level | STRING | Specify the highest level message to log.  Options are: `debug`, `info`, `warning`, `error`, and `fatal`.  The specified level and all levels listed after it will be enabled for logging.  For example, choosing the `warning` level will also enable the `error` and `fatal` levels. Default is: `info`
 Log Output to Console | debug.gfxrecon.log_output_to_console | BOOL | Log messages will be written to Logcat. Default is: `true`
 Log File | debug.gfxrecon.log_file | STRING | When set, log messages will be written to a file at the specified path. Default is: Empty string (file logging disabled).
