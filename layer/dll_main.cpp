@@ -1,6 +1,6 @@
 /*
-** Copyright (c) 2018 Valve Corporation
-** Copyright (c) 2018 LunarG, Inc.
+** Copyright (c) 2018, 2022 Valve Corporation
+** Copyright (c) 2018, 2022 LunarG, Inc.
 **
 ** Permission is hereby granted, free of charge, to any person obtaining a
 ** copy of this software and associated documentation files (the "Software"),
@@ -20,6 +20,22 @@
 ** FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 ** DEALINGS IN THE SOFTWARE.
 */
+/// @file Handlers for shared library lifecycle events from the linker / OS.
+///
+/// On shared library detach we flush both open writeable files as cheap
+/// insurance against a crash in another shared library during shutdown.
+/// While this is unnecessary in the case of a clean shutdown as our dynamically
+/// linked libc will flush and close files for us in its own detach
+/// notification, a hard crash in another shared library such as a SEGV will
+/// prevent the libc detach from ever happening.
+/// Shutdown is a time in an application lifecycle during which it is easy for
+/// a developer to ignore a crash that doesn't corrupt their data since it has
+/// no negative effect on their users.
+/// We would also like to be robust to use during development when
+/// any of the shared libraries in the system may still be of beta or alpha
+/// quality, and to be used alongside other layers that may be hacked together
+/// and therefore of lower robustness as a deliberate design decision trading
+/// development time versus utility.
 
 #include "encode/vulkan_capture_manager.h"
 #include "layer/trace_layer.h"
@@ -49,6 +65,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
             {
                 // TODO: Ensure that the trace is finalized.
             }
+            // Flush all open write-mode files (capture and log):
+            fflush(0);
             break;
     }
 
@@ -66,6 +84,9 @@ __attribute__((constructor)) static void create_trace_layer()
 __attribute__((destructor)) static void destroy_trace_layer()
 {
     // TODO: Ensure that the trace is finalized.
+
+    // Flush all open write-mode files (capture and log):
+    fflush(0);
 }
 
 #endif // WIN32
