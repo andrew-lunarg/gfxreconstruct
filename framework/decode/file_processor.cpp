@@ -384,7 +384,8 @@ void FileProcessor::HandleBlockReadError(Error error_code, const char* error_mes
     // Report incomplete block at end of file as a warning, other I/O errors as an error.
     if (feof(file_descriptor_) && !ferror(file_descriptor_))
     {
-        GFXRECON_LOG_WARNING("Incomplete block at end of file");
+        GFXRECON_LOG_WARNING(
+            "Incomplete block at end of file. error_code: %d, error_message: \"%s\"", error_code, error_message);
     }
     else
     {
