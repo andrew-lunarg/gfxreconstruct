@@ -233,6 +233,6 @@ class VulkanStructToStringBodyGenerator(BaseGenerator):
                 length_expr.replace('value', 'obj')
             
             toString = toString.format(value.name, length_expr)
-            body += '            FieldToString(strStrm, {0}, "{1}", toStringFlags, tabCount, tabSize, {2});\n'.format(firstField, value.name, toString)
+            body += '            FieldToString(strStrm, {0}, "{1}", {2});\n'.format(firstField, value.name, toString)
         return body
     # yapf: enable

@@ -114,6 +114,33 @@ ObjectToString(ToStringFlags toStringFlags, uint32_t& tabCount, uint32_t tabSize
     return strStrm.str();
 }
 
+/// @brief Outputs an unformatted "name":"value" pair, without line breaks other
+/// than possible escaped ones in the value.
+/// @param strStrm     The destination to output to.
+/// @param firstField  True if this the first field of a JSON object.
+/// @param fieldName   The name of the field, passed as a plain C string to save
+/// significant compilation time over using std::string. This is safe as the
+/// field names are expected to be known at compile time and so to exist as
+/// literals in the program code, rather than being generated at runtime.
+/// @param fieldString The value of the field, passed as a reference to a string
+/// since the values are usually generated at runtime and so we may as well have
+/// the optimization benefit of the string object's explicit size rather than
+/// requiring most callers to do a `.c_str()` at the call site.
+inline void
+FieldToString(std::ostream& stream, bool firstField, const char* const fieldName, const std::string& fieldString)
+{
+    if (!firstField)
+    {
+        stream << ',';
+    }
+    stream << "\"" << fieldName << "\":" << fieldString;
+}
+
+/// @deprecated This contains a function signature with legacy from an old
+/// approach to JSON formatting which has since been retired.
+/// @note This is retained to bridge the existing custom output functions until
+/// they can be refactored.
+/// @see FieldToString Use the simpler form of the function above in new code.
 inline void FieldToString(std::stringstream& strStrm,
                           bool               firstField,
                           const char*        fieldName,
@@ -122,14 +149,7 @@ inline void FieldToString(std::stringstream& strStrm,
                           uint32_t           tabSize,
                           const std::string& fieldString)
 {
-    if (!firstField)
-    {
-        strStrm << ',' << GetNewlineString(toStringFlags);
-    }
-    strStrm << GetTabString(toStringFlags, tabCount, tabSize);
-    strStrm << "\"" << fieldName << "\":";
-    strStrm << GetWhitespaceString(toStringFlags);
-    strStrm << fieldString;
+    FieldToString(strStrm, firstField, fieldName, fieldString);
 }
 
 template <typename ObjectType, typename ValidateArrayFunctionType, typename ToStringFunctionType>

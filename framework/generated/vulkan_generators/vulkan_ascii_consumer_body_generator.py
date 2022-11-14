@@ -230,6 +230,6 @@ class VulkanAsciiConsumerBodyGenerator(BaseGenerator):
 
             firstField = 'true' if not body else 'false'
             toString = toString.format(value.name, value.array_length)
-            body += '            FieldToString(strStrm, {0}, "{1}", toStringFlags, tabCount, tabSize, {2});\n'.format(firstField, value.name, toString)
+            body += '            FieldToString(strStrm, {0}, "{1}", {2});\n'.format(firstField, value.name, toString)
         return body
     # yapf: enable
