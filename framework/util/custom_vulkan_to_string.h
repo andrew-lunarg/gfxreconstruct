@@ -26,6 +26,7 @@
 #include "format/platform_types.h"
 #include "util/defines.h"
 #include "util/to_string.h"
+#include "../framework/generated/generated_vulkan_enum_to_string.h"
 
 #include "vulkan/vulkan.h"
 
@@ -143,7 +144,11 @@ inline std::string VkEnumArrayToString(uint32_t          count,
         tabCount,
         tabSize,
         [&]() { return pVkEnums != nullptr; },
-        [&](uint32_t i) { return "\"" + ToString(pVkEnums[i]) + "\""; });
+        [&](uint32_t i) {
+            std::string enum_str{ ToString(pVkEnums[i]) };
+            std::string quoted_enum_str{ Quote(enum_str) };
+            return quoted_enum_str;
+        });
 }
 
 template <typename VkBitmaskType>

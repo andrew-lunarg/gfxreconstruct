@@ -212,7 +212,7 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                     elif self.is_enum(value.base_type):
                         # Pointer to array of enums case. For enums, it is fine to reach through to the
                         # raw struct since no deeper recursion will happen:
-                        toString = 'VkEnumArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'VkEnumArrayToString({1}, obj.{0})'
                     else:
                         # Pointer to array of anything else case can access the raw vulkan struct:
                         toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
@@ -241,7 +241,8 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         toString = 'PointerDecoderArrayToString(*decoded_obj.{0}, toStringFlags, tabCount, tabSize)'
                     elif self.is_enum(value.base_type):
                         # For embedded arrays of enums, grab them out of the raw vulkan struct:
-                        toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        # toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        toString = 'VkEnumArrayToString({1}, obj.{0})'
                     elif 'char' in value.base_type:
                         toString = 'CStrToString(obj.{0})'
                     elif 'UUID' in value.array_length or 'LUID' in value.array_length:
@@ -257,7 +258,7 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                     elif self.is_struct(value.base_type):
                         toString = 'ToString(*(decoded_obj.{0}), toStringFlags, tabCount, tabSize)'
                     elif self.is_enum(value.base_type):
-                        toString = 'Quote(ToString(obj.{0}, toStringFlags, tabCount, tabSize))'
+                        toString = 'Quote(ToString(obj.{0}))'
                     # Some simple scalar data like an int or a float, or a 32 bit or 64 bit flag set typedef:
                     else:
                         # Check whether we have a set of 64 bit flags:

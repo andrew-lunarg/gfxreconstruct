@@ -131,7 +131,7 @@ class VulkanEnumToStringBodyGenerator(BaseGenerator):
                     # dispense with the parameters that are always ignored:
                     body = 'std::string {0}ToString(const {0} value)\n'
                 else:
-                    body = 'template <> std::string ToString<{0}>(const {0}& value, ToStringFlags, uint32_t, uint32_t)\n'
+                    body = 'std::string ToString(const {0}& value)\n'
                 body += '{{\n'
                 enumerants = self.enumEnumerants[enum]
                 if len(enumerants):

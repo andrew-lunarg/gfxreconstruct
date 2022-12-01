@@ -31,7 +31,7 @@
 
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(util)
-template <> std::string ToString<VkAccessFlagBits>(const VkAccessFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkAccessFlagBits& value)
 {
     switch (value) {
     case VK_ACCESS_INDIRECT_COMMAND_READ_BIT: return "VK_ACCESS_INDIRECT_COMMAND_READ_BIT";
@@ -73,7 +73,7 @@ template <> std::string ToString<VkAccessFlagBits>(VkFlags vkFlags, ToStringFlag
     return BitmaskToString<VkAccessFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkAttachmentDescriptionFlagBits>(const VkAttachmentDescriptionFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkAttachmentDescriptionFlagBits& value)
 {
     switch (value) {
     case VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT: return "VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT";
@@ -87,7 +87,7 @@ template <> std::string ToString<VkAttachmentDescriptionFlagBits>(VkFlags vkFlag
     return BitmaskToString<VkAttachmentDescriptionFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkAttachmentLoadOp>(const VkAttachmentLoadOp& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkAttachmentLoadOp& value)
 {
     switch (value) {
     case VK_ATTACHMENT_LOAD_OP_LOAD: return "VK_ATTACHMENT_LOAD_OP_LOAD";
@@ -99,7 +99,7 @@ template <> std::string ToString<VkAttachmentLoadOp>(const VkAttachmentLoadOp& v
     return "Unhandled VkAttachmentLoadOp";
 }
 
-template <> std::string ToString<VkAttachmentStoreOp>(const VkAttachmentStoreOp& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkAttachmentStoreOp& value)
 {
     switch (value) {
     case VK_ATTACHMENT_STORE_OP_STORE: return "VK_ATTACHMENT_STORE_OP_STORE";
@@ -110,7 +110,7 @@ template <> std::string ToString<VkAttachmentStoreOp>(const VkAttachmentStoreOp&
     return "Unhandled VkAttachmentStoreOp";
 }
 
-template <> std::string ToString<VkBlendFactor>(const VkBlendFactor& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkBlendFactor& value)
 {
     switch (value) {
     case VK_BLEND_FACTOR_ZERO: return "VK_BLEND_FACTOR_ZERO";
@@ -137,7 +137,7 @@ template <> std::string ToString<VkBlendFactor>(const VkBlendFactor& value, ToSt
     return "Unhandled VkBlendFactor";
 }
 
-template <> std::string ToString<VkBlendOp>(const VkBlendOp& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkBlendOp& value)
 {
     switch (value) {
     case VK_BLEND_OP_ADD: return "VK_BLEND_OP_ADD";
@@ -196,7 +196,7 @@ template <> std::string ToString<VkBlendOp>(const VkBlendOp& value, ToStringFlag
     return "Unhandled VkBlendOp";
 }
 
-template <> std::string ToString<VkBorderColor>(const VkBorderColor& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkBorderColor& value)
 {
     switch (value) {
     case VK_BORDER_COLOR_FLOAT_TRANSPARENT_BLACK: return "VK_BORDER_COLOR_FLOAT_TRANSPARENT_BLACK";
@@ -212,7 +212,7 @@ template <> std::string ToString<VkBorderColor>(const VkBorderColor& value, ToSt
     return "Unhandled VkBorderColor";
 }
 
-template <> std::string ToString<VkBufferCreateFlagBits>(const VkBufferCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkBufferCreateFlagBits& value)
 {
     switch (value) {
     case VK_BUFFER_CREATE_SPARSE_BINDING_BIT: return "VK_BUFFER_CREATE_SPARSE_BINDING_BIT";
@@ -230,7 +230,7 @@ template <> std::string ToString<VkBufferCreateFlagBits>(VkFlags vkFlags, ToStri
     return BitmaskToString<VkBufferCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkBufferUsageFlagBits>(const VkBufferUsageFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkBufferUsageFlagBits& value)
 {
     switch (value) {
     case VK_BUFFER_USAGE_TRANSFER_SRC_BIT: return "VK_BUFFER_USAGE_TRANSFER_SRC_BIT";
@@ -265,7 +265,7 @@ template <> std::string ToString<VkBufferUsageFlagBits>(VkFlags vkFlags, ToStrin
     return BitmaskToString<VkBufferUsageFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkColorComponentFlagBits>(const VkColorComponentFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkColorComponentFlagBits& value)
 {
     switch (value) {
     case VK_COLOR_COMPONENT_R_BIT: return "VK_COLOR_COMPONENT_R_BIT";
@@ -282,7 +282,7 @@ template <> std::string ToString<VkColorComponentFlagBits>(VkFlags vkFlags, ToSt
     return BitmaskToString<VkColorComponentFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkCommandBufferLevel>(const VkCommandBufferLevel& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkCommandBufferLevel& value)
 {
     switch (value) {
     case VK_COMMAND_BUFFER_LEVEL_PRIMARY: return "VK_COMMAND_BUFFER_LEVEL_PRIMARY";
@@ -292,7 +292,7 @@ template <> std::string ToString<VkCommandBufferLevel>(const VkCommandBufferLeve
     return "Unhandled VkCommandBufferLevel";
 }
 
-template <> std::string ToString<VkCommandBufferResetFlagBits>(const VkCommandBufferResetFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkCommandBufferResetFlagBits& value)
 {
     switch (value) {
     case VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT: return "VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT";
@@ -306,7 +306,7 @@ template <> std::string ToString<VkCommandBufferResetFlagBits>(VkFlags vkFlags, 
     return BitmaskToString<VkCommandBufferResetFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkCommandBufferUsageFlagBits>(const VkCommandBufferUsageFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkCommandBufferUsageFlagBits& value)
 {
     switch (value) {
     case VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT: return "VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT";
@@ -322,7 +322,7 @@ template <> std::string ToString<VkCommandBufferUsageFlagBits>(VkFlags vkFlags, 
     return BitmaskToString<VkCommandBufferUsageFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkCommandPoolCreateFlagBits>(const VkCommandPoolCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkCommandPoolCreateFlagBits& value)
 {
     switch (value) {
     case VK_COMMAND_POOL_CREATE_TRANSIENT_BIT: return "VK_COMMAND_POOL_CREATE_TRANSIENT_BIT";
@@ -338,7 +338,7 @@ template <> std::string ToString<VkCommandPoolCreateFlagBits>(VkFlags vkFlags, T
     return BitmaskToString<VkCommandPoolCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkCommandPoolResetFlagBits>(const VkCommandPoolResetFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkCommandPoolResetFlagBits& value)
 {
     switch (value) {
     case VK_COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT: return "VK_COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT";
@@ -352,7 +352,7 @@ template <> std::string ToString<VkCommandPoolResetFlagBits>(VkFlags vkFlags, To
     return BitmaskToString<VkCommandPoolResetFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkCompareOp>(const VkCompareOp& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkCompareOp& value)
 {
     switch (value) {
     case VK_COMPARE_OP_NEVER: return "VK_COMPARE_OP_NEVER";
@@ -368,7 +368,7 @@ template <> std::string ToString<VkCompareOp>(const VkCompareOp& value, ToString
     return "Unhandled VkCompareOp";
 }
 
-template <> std::string ToString<VkComponentSwizzle>(const VkComponentSwizzle& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkComponentSwizzle& value)
 {
     switch (value) {
     case VK_COMPONENT_SWIZZLE_IDENTITY: return "VK_COMPONENT_SWIZZLE_IDENTITY";
@@ -383,7 +383,7 @@ template <> std::string ToString<VkComponentSwizzle>(const VkComponentSwizzle& v
     return "Unhandled VkComponentSwizzle";
 }
 
-template <> std::string ToString<VkCullModeFlagBits>(const VkCullModeFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkCullModeFlagBits& value)
 {
     switch (value) {
     case VK_CULL_MODE_NONE: return "VK_CULL_MODE_NONE";
@@ -400,7 +400,7 @@ template <> std::string ToString<VkCullModeFlagBits>(VkFlags vkFlags, ToStringFl
     return BitmaskToString<VkCullModeFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkDependencyFlagBits>(const VkDependencyFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDependencyFlagBits& value)
 {
     switch (value) {
     case VK_DEPENDENCY_BY_REGION_BIT: return "VK_DEPENDENCY_BY_REGION_BIT";
@@ -417,7 +417,7 @@ template <> std::string ToString<VkDependencyFlagBits>(VkFlags vkFlags, ToString
     return BitmaskToString<VkDependencyFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkDescriptorPoolCreateFlagBits>(const VkDescriptorPoolCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDescriptorPoolCreateFlagBits& value)
 {
     switch (value) {
     case VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT: return "VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT";
@@ -433,7 +433,7 @@ template <> std::string ToString<VkDescriptorPoolCreateFlagBits>(VkFlags vkFlags
     return BitmaskToString<VkDescriptorPoolCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkDescriptorSetLayoutCreateFlagBits>(const VkDescriptorSetLayoutCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDescriptorSetLayoutCreateFlagBits& value)
 {
     switch (value) {
     case VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT: return "VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT";
@@ -449,7 +449,7 @@ template <> std::string ToString<VkDescriptorSetLayoutCreateFlagBits>(VkFlags vk
     return BitmaskToString<VkDescriptorSetLayoutCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkDescriptorType>(const VkDescriptorType& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDescriptorType& value)
 {
     switch (value) {
     case VK_DESCRIPTOR_TYPE_SAMPLER: return "VK_DESCRIPTOR_TYPE_SAMPLER";
@@ -474,7 +474,7 @@ template <> std::string ToString<VkDescriptorType>(const VkDescriptorType& value
     return "Unhandled VkDescriptorType";
 }
 
-template <> std::string ToString<VkDeviceQueueCreateFlagBits>(const VkDeviceQueueCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDeviceQueueCreateFlagBits& value)
 {
     switch (value) {
     case VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT: return "VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT";
@@ -488,7 +488,7 @@ template <> std::string ToString<VkDeviceQueueCreateFlagBits>(VkFlags vkFlags, T
     return BitmaskToString<VkDeviceQueueCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkDynamicState>(const VkDynamicState& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDynamicState& value)
 {
     switch (value) {
     case VK_DYNAMIC_STATE_VIEWPORT: return "VK_DYNAMIC_STATE_VIEWPORT";
@@ -564,7 +564,7 @@ template <> std::string ToString<VkDynamicState>(const VkDynamicState& value, To
     return "Unhandled VkDynamicState";
 }
 
-template <> std::string ToString<VkEventCreateFlagBits>(const VkEventCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkEventCreateFlagBits& value)
 {
     switch (value) {
     case VK_EVENT_CREATE_DEVICE_ONLY_BIT: return "VK_EVENT_CREATE_DEVICE_ONLY_BIT";
@@ -578,7 +578,7 @@ template <> std::string ToString<VkEventCreateFlagBits>(VkFlags vkFlags, ToStrin
     return BitmaskToString<VkEventCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkFenceCreateFlagBits>(const VkFenceCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkFenceCreateFlagBits& value)
 {
     switch (value) {
     case VK_FENCE_CREATE_SIGNALED_BIT: return "VK_FENCE_CREATE_SIGNALED_BIT";
@@ -592,7 +592,7 @@ template <> std::string ToString<VkFenceCreateFlagBits>(VkFlags vkFlags, ToStrin
     return BitmaskToString<VkFenceCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkFilter>(const VkFilter& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkFilter& value)
 {
     switch (value) {
     case VK_FILTER_NEAREST: return "VK_FILTER_NEAREST";
@@ -603,7 +603,7 @@ template <> std::string ToString<VkFilter>(const VkFilter& value, ToStringFlags,
     return "Unhandled VkFilter";
 }
 
-template <> std::string ToString<VkFormat>(const VkFormat& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkFormat& value)
 {
     switch (value) {
     case VK_FORMAT_UNDEFINED: return "VK_FORMAT_UNDEFINED";
@@ -859,7 +859,7 @@ template <> std::string ToString<VkFormat>(const VkFormat& value, ToStringFlags,
     return "Unhandled VkFormat";
 }
 
-template <> std::string ToString<VkFormatFeatureFlagBits>(const VkFormatFeatureFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkFormatFeatureFlagBits& value)
 {
     switch (value) {
     case VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT: return "VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT";
@@ -903,7 +903,7 @@ template <> std::string ToString<VkFormatFeatureFlagBits>(VkFlags vkFlags, ToStr
     return BitmaskToString<VkFormatFeatureFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkFramebufferCreateFlagBits>(const VkFramebufferCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkFramebufferCreateFlagBits& value)
 {
     switch (value) {
     case VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT: return "VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT";
@@ -917,7 +917,7 @@ template <> std::string ToString<VkFramebufferCreateFlagBits>(VkFlags vkFlags, T
     return BitmaskToString<VkFramebufferCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkFrontFace>(const VkFrontFace& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkFrontFace& value)
 {
     switch (value) {
     case VK_FRONT_FACE_COUNTER_CLOCKWISE: return "VK_FRONT_FACE_COUNTER_CLOCKWISE";
@@ -927,7 +927,7 @@ template <> std::string ToString<VkFrontFace>(const VkFrontFace& value, ToString
     return "Unhandled VkFrontFace";
 }
 
-template <> std::string ToString<VkImageAspectFlagBits>(const VkImageAspectFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkImageAspectFlagBits& value)
 {
     switch (value) {
     case VK_IMAGE_ASPECT_COLOR_BIT: return "VK_IMAGE_ASPECT_COLOR_BIT";
@@ -952,7 +952,7 @@ template <> std::string ToString<VkImageAspectFlagBits>(VkFlags vkFlags, ToStrin
     return BitmaskToString<VkImageAspectFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkImageCreateFlagBits>(const VkImageCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkImageCreateFlagBits& value)
 {
     switch (value) {
     case VK_IMAGE_CREATE_SPARSE_BINDING_BIT: return "VK_IMAGE_CREATE_SPARSE_BINDING_BIT";
@@ -983,7 +983,7 @@ template <> std::string ToString<VkImageCreateFlagBits>(VkFlags vkFlags, ToStrin
     return BitmaskToString<VkImageCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkImageLayout>(const VkImageLayout& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkImageLayout& value)
 {
     switch (value) {
     case VK_IMAGE_LAYOUT_UNDEFINED: return "VK_IMAGE_LAYOUT_UNDEFINED";
@@ -1019,7 +1019,7 @@ template <> std::string ToString<VkImageLayout>(const VkImageLayout& value, ToSt
     return "Unhandled VkImageLayout";
 }
 
-template <> std::string ToString<VkImageTiling>(const VkImageTiling& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkImageTiling& value)
 {
     switch (value) {
     case VK_IMAGE_TILING_OPTIMAL: return "VK_IMAGE_TILING_OPTIMAL";
@@ -1030,7 +1030,7 @@ template <> std::string ToString<VkImageTiling>(const VkImageTiling& value, ToSt
     return "Unhandled VkImageTiling";
 }
 
-template <> std::string ToString<VkImageType>(const VkImageType& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkImageType& value)
 {
     switch (value) {
     case VK_IMAGE_TYPE_1D: return "VK_IMAGE_TYPE_1D";
@@ -1041,7 +1041,7 @@ template <> std::string ToString<VkImageType>(const VkImageType& value, ToString
     return "Unhandled VkImageType";
 }
 
-template <> std::string ToString<VkImageUsageFlagBits>(const VkImageUsageFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkImageUsageFlagBits& value)
 {
     switch (value) {
     case VK_IMAGE_USAGE_TRANSFER_SRC_BIT: return "VK_IMAGE_USAGE_TRANSFER_SRC_BIT";
@@ -1074,7 +1074,7 @@ template <> std::string ToString<VkImageUsageFlagBits>(VkFlags vkFlags, ToString
     return BitmaskToString<VkImageUsageFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkImageViewCreateFlagBits>(const VkImageViewCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkImageViewCreateFlagBits& value)
 {
     switch (value) {
     case VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT: return "VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT";
@@ -1089,7 +1089,7 @@ template <> std::string ToString<VkImageViewCreateFlagBits>(VkFlags vkFlags, ToS
     return BitmaskToString<VkImageViewCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkImageViewType>(const VkImageViewType& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkImageViewType& value)
 {
     switch (value) {
     case VK_IMAGE_VIEW_TYPE_1D: return "VK_IMAGE_VIEW_TYPE_1D";
@@ -1104,7 +1104,7 @@ template <> std::string ToString<VkImageViewType>(const VkImageViewType& value, 
     return "Unhandled VkImageViewType";
 }
 
-template <> std::string ToString<VkIndexType>(const VkIndexType& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkIndexType& value)
 {
     switch (value) {
     case VK_INDEX_TYPE_UINT16: return "VK_INDEX_TYPE_UINT16";
@@ -1116,7 +1116,7 @@ template <> std::string ToString<VkIndexType>(const VkIndexType& value, ToString
     return "Unhandled VkIndexType";
 }
 
-template <> std::string ToString<VkInstanceCreateFlagBits>(const VkInstanceCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkInstanceCreateFlagBits& value)
 {
     switch (value) {
     case VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR: return "VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR";
@@ -1130,7 +1130,7 @@ template <> std::string ToString<VkInstanceCreateFlagBits>(VkFlags vkFlags, ToSt
     return BitmaskToString<VkInstanceCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkInternalAllocationType>(const VkInternalAllocationType& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkInternalAllocationType& value)
 {
     switch (value) {
     case VK_INTERNAL_ALLOCATION_TYPE_EXECUTABLE: return "VK_INTERNAL_ALLOCATION_TYPE_EXECUTABLE";
@@ -1139,7 +1139,7 @@ template <> std::string ToString<VkInternalAllocationType>(const VkInternalAlloc
     return "Unhandled VkInternalAllocationType";
 }
 
-template <> std::string ToString<VkLogicOp>(const VkLogicOp& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkLogicOp& value)
 {
     switch (value) {
     case VK_LOGIC_OP_CLEAR: return "VK_LOGIC_OP_CLEAR";
@@ -1163,7 +1163,7 @@ template <> std::string ToString<VkLogicOp>(const VkLogicOp& value, ToStringFlag
     return "Unhandled VkLogicOp";
 }
 
-template <> std::string ToString<VkMemoryHeapFlagBits>(const VkMemoryHeapFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkMemoryHeapFlagBits& value)
 {
     switch (value) {
     case VK_MEMORY_HEAP_DEVICE_LOCAL_BIT: return "VK_MEMORY_HEAP_DEVICE_LOCAL_BIT";
@@ -1178,7 +1178,7 @@ template <> std::string ToString<VkMemoryHeapFlagBits>(VkFlags vkFlags, ToString
     return BitmaskToString<VkMemoryHeapFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkMemoryPropertyFlagBits>(const VkMemoryPropertyFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkMemoryPropertyFlagBits& value)
 {
     switch (value) {
     case VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT: return "VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT";
@@ -1200,7 +1200,7 @@ template <> std::string ToString<VkMemoryPropertyFlagBits>(VkFlags vkFlags, ToSt
     return BitmaskToString<VkMemoryPropertyFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkObjectType>(const VkObjectType& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkObjectType& value)
 {
     switch (value) {
     case VK_OBJECT_TYPE_UNKNOWN: return "VK_OBJECT_TYPE_UNKNOWN";
@@ -1256,7 +1256,7 @@ template <> std::string ToString<VkObjectType>(const VkObjectType& value, ToStri
     return "Unhandled VkObjectType";
 }
 
-template <> std::string ToString<VkPhysicalDeviceType>(const VkPhysicalDeviceType& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPhysicalDeviceType& value)
 {
     switch (value) {
     case VK_PHYSICAL_DEVICE_TYPE_OTHER: return "VK_PHYSICAL_DEVICE_TYPE_OTHER";
@@ -1269,7 +1269,7 @@ template <> std::string ToString<VkPhysicalDeviceType>(const VkPhysicalDeviceTyp
     return "Unhandled VkPhysicalDeviceType";
 }
 
-template <> std::string ToString<VkPipelineBindPoint>(const VkPipelineBindPoint& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPipelineBindPoint& value)
 {
     switch (value) {
     case VK_PIPELINE_BIND_POINT_GRAPHICS: return "VK_PIPELINE_BIND_POINT_GRAPHICS";
@@ -1281,7 +1281,7 @@ template <> std::string ToString<VkPipelineBindPoint>(const VkPipelineBindPoint&
     return "Unhandled VkPipelineBindPoint";
 }
 
-template <> std::string ToString<VkPipelineCacheCreateFlagBits>(const VkPipelineCacheCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPipelineCacheCreateFlagBits& value)
 {
     switch (value) {
     case VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT: return "VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT";
@@ -1295,7 +1295,7 @@ template <> std::string ToString<VkPipelineCacheCreateFlagBits>(VkFlags vkFlags,
     return BitmaskToString<VkPipelineCacheCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkPipelineCacheHeaderVersion>(const VkPipelineCacheHeaderVersion& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPipelineCacheHeaderVersion& value)
 {
     switch (value) {
     case VK_PIPELINE_CACHE_HEADER_VERSION_ONE: return "VK_PIPELINE_CACHE_HEADER_VERSION_ONE";
@@ -1304,7 +1304,7 @@ template <> std::string ToString<VkPipelineCacheHeaderVersion>(const VkPipelineC
     return "Unhandled VkPipelineCacheHeaderVersion";
 }
 
-template <> std::string ToString<VkPipelineColorBlendStateCreateFlagBits>(const VkPipelineColorBlendStateCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPipelineColorBlendStateCreateFlagBits& value)
 {
     switch (value) {
     case VK_PIPELINE_COLOR_BLEND_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_BIT_EXT: return "VK_PIPELINE_COLOR_BLEND_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_BIT_EXT";
@@ -1318,7 +1318,7 @@ template <> std::string ToString<VkPipelineColorBlendStateCreateFlagBits>(VkFlag
     return BitmaskToString<VkPipelineColorBlendStateCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkPipelineCreateFlagBits>(const VkPipelineCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPipelineCreateFlagBits& value)
 {
     switch (value) {
     case VK_PIPELINE_CREATE_DISABLE_OPTIMIZATION_BIT: return "VK_PIPELINE_CREATE_DISABLE_OPTIMIZATION_BIT";
@@ -1360,7 +1360,7 @@ template <> std::string ToString<VkPipelineCreateFlagBits>(VkFlags vkFlags, ToSt
     return BitmaskToString<VkPipelineCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkPipelineDepthStencilStateCreateFlagBits>(const VkPipelineDepthStencilStateCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPipelineDepthStencilStateCreateFlagBits& value)
 {
     switch (value) {
     case VK_PIPELINE_DEPTH_STENCIL_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_BIT_EXT: return "VK_PIPELINE_DEPTH_STENCIL_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_BIT_EXT";
@@ -1375,7 +1375,7 @@ template <> std::string ToString<VkPipelineDepthStencilStateCreateFlagBits>(VkFl
     return BitmaskToString<VkPipelineDepthStencilStateCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkPipelineLayoutCreateFlagBits>(const VkPipelineLayoutCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPipelineLayoutCreateFlagBits& value)
 {
     switch (value) {
     case VK_PIPELINE_LAYOUT_CREATE_INDEPENDENT_SETS_BIT_EXT: return "VK_PIPELINE_LAYOUT_CREATE_INDEPENDENT_SETS_BIT_EXT";
@@ -1389,7 +1389,7 @@ template <> std::string ToString<VkPipelineLayoutCreateFlagBits>(VkFlags vkFlags
     return BitmaskToString<VkPipelineLayoutCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkPipelineShaderStageCreateFlagBits>(const VkPipelineShaderStageCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPipelineShaderStageCreateFlagBits& value)
 {
     switch (value) {
     case VK_PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT: return "VK_PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT";
@@ -1404,7 +1404,7 @@ template <> std::string ToString<VkPipelineShaderStageCreateFlagBits>(VkFlags vk
     return BitmaskToString<VkPipelineShaderStageCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkPipelineStageFlagBits>(const VkPipelineStageFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPipelineStageFlagBits& value)
 {
     switch (value) {
     case VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT: return "VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT";
@@ -1444,7 +1444,7 @@ template <> std::string ToString<VkPipelineStageFlagBits>(VkFlags vkFlags, ToStr
     return BitmaskToString<VkPipelineStageFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkPolygonMode>(const VkPolygonMode& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPolygonMode& value)
 {
     switch (value) {
     case VK_POLYGON_MODE_FILL: return "VK_POLYGON_MODE_FILL";
@@ -1456,7 +1456,7 @@ template <> std::string ToString<VkPolygonMode>(const VkPolygonMode& value, ToSt
     return "Unhandled VkPolygonMode";
 }
 
-template <> std::string ToString<VkPrimitiveTopology>(const VkPrimitiveTopology& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPrimitiveTopology& value)
 {
     switch (value) {
     case VK_PRIMITIVE_TOPOLOGY_POINT_LIST: return "VK_PRIMITIVE_TOPOLOGY_POINT_LIST";
@@ -1475,7 +1475,7 @@ template <> std::string ToString<VkPrimitiveTopology>(const VkPrimitiveTopology&
     return "Unhandled VkPrimitiveTopology";
 }
 
-template <> std::string ToString<VkQueryControlFlagBits>(const VkQueryControlFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkQueryControlFlagBits& value)
 {
     switch (value) {
     case VK_QUERY_CONTROL_PRECISE_BIT: return "VK_QUERY_CONTROL_PRECISE_BIT";
@@ -1489,7 +1489,7 @@ template <> std::string ToString<VkQueryControlFlagBits>(VkFlags vkFlags, ToStri
     return BitmaskToString<VkQueryControlFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkQueryPipelineStatisticFlagBits>(const VkQueryPipelineStatisticFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkQueryPipelineStatisticFlagBits& value)
 {
     switch (value) {
     case VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT: return "VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT";
@@ -1515,7 +1515,7 @@ template <> std::string ToString<VkQueryPipelineStatisticFlagBits>(VkFlags vkFla
     return BitmaskToString<VkQueryPipelineStatisticFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkQueryResultFlagBits>(const VkQueryResultFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkQueryResultFlagBits& value)
 {
     switch (value) {
     case VK_QUERY_RESULT_64_BIT: return "VK_QUERY_RESULT_64_BIT";
@@ -1533,7 +1533,7 @@ template <> std::string ToString<VkQueryResultFlagBits>(VkFlags vkFlags, ToStrin
     return BitmaskToString<VkQueryResultFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkQueryType>(const VkQueryType& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkQueryType& value)
 {
     switch (value) {
     case VK_QUERY_TYPE_OCCLUSION: return "VK_QUERY_TYPE_OCCLUSION";
@@ -1558,7 +1558,7 @@ template <> std::string ToString<VkQueryType>(const VkQueryType& value, ToString
     return "Unhandled VkQueryType";
 }
 
-template <> std::string ToString<VkQueueFlagBits>(const VkQueueFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkQueueFlagBits& value)
 {
     switch (value) {
     case VK_QUEUE_GRAPHICS_BIT: return "VK_QUEUE_GRAPHICS_BIT";
@@ -1579,7 +1579,7 @@ template <> std::string ToString<VkQueueFlagBits>(VkFlags vkFlags, ToStringFlags
     return BitmaskToString<VkQueueFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkRenderPassCreateFlagBits>(const VkRenderPassCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkRenderPassCreateFlagBits& value)
 {
     switch (value) {
     case VK_RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM: return "VK_RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM";
@@ -1593,7 +1593,7 @@ template <> std::string ToString<VkRenderPassCreateFlagBits>(VkFlags vkFlags, To
     return BitmaskToString<VkRenderPassCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkResult>(const VkResult& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkResult& value)
 {
     switch (value) {
     case VK_SUCCESS: return "VK_SUCCESS";
@@ -1646,7 +1646,7 @@ template <> std::string ToString<VkResult>(const VkResult& value, ToStringFlags,
     return "Unhandled VkResult";
 }
 
-template <> std::string ToString<VkSampleCountFlagBits>(const VkSampleCountFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSampleCountFlagBits& value)
 {
     switch (value) {
     case VK_SAMPLE_COUNT_1_BIT: return "VK_SAMPLE_COUNT_1_BIT";
@@ -1666,7 +1666,7 @@ template <> std::string ToString<VkSampleCountFlagBits>(VkFlags vkFlags, ToStrin
     return BitmaskToString<VkSampleCountFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkSamplerAddressMode>(const VkSamplerAddressMode& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSamplerAddressMode& value)
 {
     switch (value) {
     case VK_SAMPLER_ADDRESS_MODE_REPEAT: return "VK_SAMPLER_ADDRESS_MODE_REPEAT";
@@ -1679,7 +1679,7 @@ template <> std::string ToString<VkSamplerAddressMode>(const VkSamplerAddressMod
     return "Unhandled VkSamplerAddressMode";
 }
 
-template <> std::string ToString<VkSamplerCreateFlagBits>(const VkSamplerCreateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSamplerCreateFlagBits& value)
 {
     switch (value) {
     case VK_SAMPLER_CREATE_SUBSAMPLED_BIT_EXT: return "VK_SAMPLER_CREATE_SUBSAMPLED_BIT_EXT";
@@ -1696,7 +1696,7 @@ template <> std::string ToString<VkSamplerCreateFlagBits>(VkFlags vkFlags, ToStr
     return BitmaskToString<VkSamplerCreateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkSamplerMipmapMode>(const VkSamplerMipmapMode& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSamplerMipmapMode& value)
 {
     switch (value) {
     case VK_SAMPLER_MIPMAP_MODE_NEAREST: return "VK_SAMPLER_MIPMAP_MODE_NEAREST";
@@ -1706,7 +1706,7 @@ template <> std::string ToString<VkSamplerMipmapMode>(const VkSamplerMipmapMode&
     return "Unhandled VkSamplerMipmapMode";
 }
 
-template <> std::string ToString<VkShaderStageFlagBits>(const VkShaderStageFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkShaderStageFlagBits& value)
 {
     switch (value) {
     case VK_SHADER_STAGE_VERTEX_BIT: return "VK_SHADER_STAGE_VERTEX_BIT";
@@ -1736,7 +1736,7 @@ template <> std::string ToString<VkShaderStageFlagBits>(VkFlags vkFlags, ToStrin
     return BitmaskToString<VkShaderStageFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkSharingMode>(const VkSharingMode& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSharingMode& value)
 {
     switch (value) {
     case VK_SHARING_MODE_EXCLUSIVE: return "VK_SHARING_MODE_EXCLUSIVE";
@@ -1746,7 +1746,7 @@ template <> std::string ToString<VkSharingMode>(const VkSharingMode& value, ToSt
     return "Unhandled VkSharingMode";
 }
 
-template <> std::string ToString<VkSparseImageFormatFlagBits>(const VkSparseImageFormatFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSparseImageFormatFlagBits& value)
 {
     switch (value) {
     case VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT: return "VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT";
@@ -1762,7 +1762,7 @@ template <> std::string ToString<VkSparseImageFormatFlagBits>(VkFlags vkFlags, T
     return BitmaskToString<VkSparseImageFormatFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkSparseMemoryBindFlagBits>(const VkSparseMemoryBindFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSparseMemoryBindFlagBits& value)
 {
     switch (value) {
     case VK_SPARSE_MEMORY_BIND_METADATA_BIT: return "VK_SPARSE_MEMORY_BIND_METADATA_BIT";
@@ -1776,7 +1776,7 @@ template <> std::string ToString<VkSparseMemoryBindFlagBits>(VkFlags vkFlags, To
     return BitmaskToString<VkSparseMemoryBindFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkStencilFaceFlagBits>(const VkStencilFaceFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkStencilFaceFlagBits& value)
 {
     switch (value) {
     case VK_STENCIL_FACE_FRONT_BIT: return "VK_STENCIL_FACE_FRONT_BIT";
@@ -1792,7 +1792,7 @@ template <> std::string ToString<VkStencilFaceFlagBits>(VkFlags vkFlags, ToStrin
     return BitmaskToString<VkStencilFaceFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkStencilOp>(const VkStencilOp& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkStencilOp& value)
 {
     switch (value) {
     case VK_STENCIL_OP_KEEP: return "VK_STENCIL_OP_KEEP";
@@ -1808,7 +1808,7 @@ template <> std::string ToString<VkStencilOp>(const VkStencilOp& value, ToString
     return "Unhandled VkStencilOp";
 }
 
-template <> std::string ToString<VkStructureType>(const VkStructureType& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkStructureType& value)
 {
     switch (value) {
     case VK_STRUCTURE_TYPE_APPLICATION_INFO: return "VK_STRUCTURE_TYPE_APPLICATION_INFO";
@@ -2532,7 +2532,7 @@ template <> std::string ToString<VkStructureType>(const VkStructureType& value, 
     return "Unhandled VkStructureType";
 }
 
-template <> std::string ToString<VkSubpassContents>(const VkSubpassContents& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSubpassContents& value)
 {
     switch (value) {
     case VK_SUBPASS_CONTENTS_INLINE: return "VK_SUBPASS_CONTENTS_INLINE";
@@ -2542,7 +2542,7 @@ template <> std::string ToString<VkSubpassContents>(const VkSubpassContents& val
     return "Unhandled VkSubpassContents";
 }
 
-template <> std::string ToString<VkSubpassDescriptionFlagBits>(const VkSubpassDescriptionFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSubpassDescriptionFlagBits& value)
 {
     switch (value) {
     case VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX: return "VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX";
@@ -2563,7 +2563,7 @@ template <> std::string ToString<VkSubpassDescriptionFlagBits>(VkFlags vkFlags, 
     return BitmaskToString<VkSubpassDescriptionFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkSystemAllocationScope>(const VkSystemAllocationScope& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSystemAllocationScope& value)
 {
     switch (value) {
     case VK_SYSTEM_ALLOCATION_SCOPE_COMMAND: return "VK_SYSTEM_ALLOCATION_SCOPE_COMMAND";
@@ -2576,7 +2576,7 @@ template <> std::string ToString<VkSystemAllocationScope>(const VkSystemAllocati
     return "Unhandled VkSystemAllocationScope";
 }
 
-template <> std::string ToString<VkVendorId>(const VkVendorId& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkVendorId& value)
 {
     switch (value) {
     case VK_VENDOR_ID_VIV: return "VK_VENDOR_ID_VIV";
@@ -2590,7 +2590,7 @@ template <> std::string ToString<VkVendorId>(const VkVendorId& value, ToStringFl
     return "Unhandled VkVendorId";
 }
 
-template <> std::string ToString<VkVertexInputRate>(const VkVertexInputRate& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkVertexInputRate& value)
 {
     switch (value) {
     case VK_VERTEX_INPUT_RATE_VERTEX: return "VK_VERTEX_INPUT_RATE_VERTEX";
@@ -2600,7 +2600,7 @@ template <> std::string ToString<VkVertexInputRate>(const VkVertexInputRate& val
     return "Unhandled VkVertexInputRate";
 }
 
-template <> std::string ToString<VkChromaLocation>(const VkChromaLocation& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkChromaLocation& value)
 {
     switch (value) {
     case VK_CHROMA_LOCATION_COSITED_EVEN: return "VK_CHROMA_LOCATION_COSITED_EVEN";
@@ -2610,7 +2610,7 @@ template <> std::string ToString<VkChromaLocation>(const VkChromaLocation& value
     return "Unhandled VkChromaLocation";
 }
 
-template <> std::string ToString<VkDescriptorUpdateTemplateType>(const VkDescriptorUpdateTemplateType& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDescriptorUpdateTemplateType& value)
 {
     switch (value) {
     case VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET: return "VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET";
@@ -2620,7 +2620,7 @@ template <> std::string ToString<VkDescriptorUpdateTemplateType>(const VkDescrip
     return "Unhandled VkDescriptorUpdateTemplateType";
 }
 
-template <> std::string ToString<VkExternalFenceFeatureFlagBits>(const VkExternalFenceFeatureFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkExternalFenceFeatureFlagBits& value)
 {
     switch (value) {
     case VK_EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT: return "VK_EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT";
@@ -2635,7 +2635,7 @@ template <> std::string ToString<VkExternalFenceFeatureFlagBits>(VkFlags vkFlags
     return BitmaskToString<VkExternalFenceFeatureFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkExternalFenceHandleTypeFlagBits>(const VkExternalFenceHandleTypeFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkExternalFenceHandleTypeFlagBits& value)
 {
     switch (value) {
     case VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT: return "VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT";
@@ -2652,7 +2652,7 @@ template <> std::string ToString<VkExternalFenceHandleTypeFlagBits>(VkFlags vkFl
     return BitmaskToString<VkExternalFenceHandleTypeFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkExternalMemoryFeatureFlagBits>(const VkExternalMemoryFeatureFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkExternalMemoryFeatureFlagBits& value)
 {
     switch (value) {
     case VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT: return "VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT";
@@ -2668,7 +2668,7 @@ template <> std::string ToString<VkExternalMemoryFeatureFlagBits>(VkFlags vkFlag
     return BitmaskToString<VkExternalMemoryFeatureFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkExternalMemoryHandleTypeFlagBits>(const VkExternalMemoryHandleTypeFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkExternalMemoryHandleTypeFlagBits& value)
 {
     switch (value) {
     case VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT: return "VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT";
@@ -2694,7 +2694,7 @@ template <> std::string ToString<VkExternalMemoryHandleTypeFlagBits>(VkFlags vkF
     return BitmaskToString<VkExternalMemoryHandleTypeFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkExternalSemaphoreFeatureFlagBits>(const VkExternalSemaphoreFeatureFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkExternalSemaphoreFeatureFlagBits& value)
 {
     switch (value) {
     case VK_EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT: return "VK_EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT";
@@ -2709,7 +2709,7 @@ template <> std::string ToString<VkExternalSemaphoreFeatureFlagBits>(VkFlags vkF
     return BitmaskToString<VkExternalSemaphoreFeatureFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkExternalSemaphoreHandleTypeFlagBits>(const VkExternalSemaphoreHandleTypeFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkExternalSemaphoreHandleTypeFlagBits& value)
 {
     switch (value) {
     case VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT: return "VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT";
@@ -2728,7 +2728,7 @@ template <> std::string ToString<VkExternalSemaphoreHandleTypeFlagBits>(VkFlags 
     return BitmaskToString<VkExternalSemaphoreHandleTypeFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkFenceImportFlagBits>(const VkFenceImportFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkFenceImportFlagBits& value)
 {
     switch (value) {
     case VK_FENCE_IMPORT_TEMPORARY_BIT: return "VK_FENCE_IMPORT_TEMPORARY_BIT";
@@ -2742,7 +2742,7 @@ template <> std::string ToString<VkFenceImportFlagBits>(VkFlags vkFlags, ToStrin
     return BitmaskToString<VkFenceImportFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkMemoryAllocateFlagBits>(const VkMemoryAllocateFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkMemoryAllocateFlagBits& value)
 {
     switch (value) {
     case VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT: return "VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT";
@@ -2758,7 +2758,7 @@ template <> std::string ToString<VkMemoryAllocateFlagBits>(VkFlags vkFlags, ToSt
     return BitmaskToString<VkMemoryAllocateFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkPeerMemoryFeatureFlagBits>(const VkPeerMemoryFeatureFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPeerMemoryFeatureFlagBits& value)
 {
     switch (value) {
     case VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT: return "VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT";
@@ -2775,7 +2775,7 @@ template <> std::string ToString<VkPeerMemoryFeatureFlagBits>(VkFlags vkFlags, T
     return BitmaskToString<VkPeerMemoryFeatureFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkPointClippingBehavior>(const VkPointClippingBehavior& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPointClippingBehavior& value)
 {
     switch (value) {
     case VK_POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES: return "VK_POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES";
@@ -2785,7 +2785,7 @@ template <> std::string ToString<VkPointClippingBehavior>(const VkPointClippingB
     return "Unhandled VkPointClippingBehavior";
 }
 
-template <> std::string ToString<VkSamplerYcbcrModelConversion>(const VkSamplerYcbcrModelConversion& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSamplerYcbcrModelConversion& value)
 {
     switch (value) {
     case VK_SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY: return "VK_SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY";
@@ -2798,7 +2798,7 @@ template <> std::string ToString<VkSamplerYcbcrModelConversion>(const VkSamplerY
     return "Unhandled VkSamplerYcbcrModelConversion";
 }
 
-template <> std::string ToString<VkSamplerYcbcrRange>(const VkSamplerYcbcrRange& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSamplerYcbcrRange& value)
 {
     switch (value) {
     case VK_SAMPLER_YCBCR_RANGE_ITU_FULL: return "VK_SAMPLER_YCBCR_RANGE_ITU_FULL";
@@ -2808,7 +2808,7 @@ template <> std::string ToString<VkSamplerYcbcrRange>(const VkSamplerYcbcrRange&
     return "Unhandled VkSamplerYcbcrRange";
 }
 
-template <> std::string ToString<VkSemaphoreImportFlagBits>(const VkSemaphoreImportFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSemaphoreImportFlagBits& value)
 {
     switch (value) {
     case VK_SEMAPHORE_IMPORT_TEMPORARY_BIT: return "VK_SEMAPHORE_IMPORT_TEMPORARY_BIT";
@@ -2822,7 +2822,7 @@ template <> std::string ToString<VkSemaphoreImportFlagBits>(VkFlags vkFlags, ToS
     return BitmaskToString<VkSemaphoreImportFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkSubgroupFeatureFlagBits>(const VkSubgroupFeatureFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSubgroupFeatureFlagBits& value)
 {
     switch (value) {
     case VK_SUBGROUP_FEATURE_BASIC_BIT: return "VK_SUBGROUP_FEATURE_BASIC_BIT";
@@ -2844,7 +2844,7 @@ template <> std::string ToString<VkSubgroupFeatureFlagBits>(VkFlags vkFlags, ToS
     return BitmaskToString<VkSubgroupFeatureFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkTessellationDomainOrigin>(const VkTessellationDomainOrigin& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkTessellationDomainOrigin& value)
 {
     switch (value) {
     case VK_TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT: return "VK_TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT";
@@ -2854,7 +2854,7 @@ template <> std::string ToString<VkTessellationDomainOrigin>(const VkTessellatio
     return "Unhandled VkTessellationDomainOrigin";
 }
 
-template <> std::string ToString<VkDescriptorBindingFlagBits>(const VkDescriptorBindingFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDescriptorBindingFlagBits& value)
 {
     switch (value) {
     case VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT: return "VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT";
@@ -2871,7 +2871,7 @@ template <> std::string ToString<VkDescriptorBindingFlagBits>(VkFlags vkFlags, T
     return BitmaskToString<VkDescriptorBindingFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkDriverId>(const VkDriverId& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDriverId& value)
 {
     switch (value) {
     case VK_DRIVER_ID_AMD_PROPRIETARY: return "VK_DRIVER_ID_AMD_PROPRIETARY";
@@ -2902,7 +2902,7 @@ template <> std::string ToString<VkDriverId>(const VkDriverId& value, ToStringFl
     return "Unhandled VkDriverId";
 }
 
-template <> std::string ToString<VkResolveModeFlagBits>(const VkResolveModeFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkResolveModeFlagBits& value)
 {
     switch (value) {
     case VK_RESOLVE_MODE_NONE: return "VK_RESOLVE_MODE_NONE";
@@ -2920,7 +2920,7 @@ template <> std::string ToString<VkResolveModeFlagBits>(VkFlags vkFlags, ToStrin
     return BitmaskToString<VkResolveModeFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkSamplerReductionMode>(const VkSamplerReductionMode& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSamplerReductionMode& value)
 {
     switch (value) {
     case VK_SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE: return "VK_SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE";
@@ -2931,7 +2931,7 @@ template <> std::string ToString<VkSamplerReductionMode>(const VkSamplerReductio
     return "Unhandled VkSamplerReductionMode";
 }
 
-template <> std::string ToString<VkSemaphoreType>(const VkSemaphoreType& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSemaphoreType& value)
 {
     switch (value) {
     case VK_SEMAPHORE_TYPE_BINARY: return "VK_SEMAPHORE_TYPE_BINARY";
@@ -2941,7 +2941,7 @@ template <> std::string ToString<VkSemaphoreType>(const VkSemaphoreType& value, 
     return "Unhandled VkSemaphoreType";
 }
 
-template <> std::string ToString<VkSemaphoreWaitFlagBits>(const VkSemaphoreWaitFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSemaphoreWaitFlagBits& value)
 {
     switch (value) {
     case VK_SEMAPHORE_WAIT_ANY_BIT: return "VK_SEMAPHORE_WAIT_ANY_BIT";
@@ -2955,7 +2955,7 @@ template <> std::string ToString<VkSemaphoreWaitFlagBits>(VkFlags vkFlags, ToStr
     return BitmaskToString<VkSemaphoreWaitFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkShaderFloatControlsIndependence>(const VkShaderFloatControlsIndependence& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkShaderFloatControlsIndependence& value)
 {
     switch (value) {
     case VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY: return "VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY";
@@ -3114,7 +3114,7 @@ std::string VkFormatFeatureFlags2ToString(VkFlags64 vkFlags)
     return str;
 }
 
-template <> std::string ToString<VkPipelineCreationFeedbackFlagBits>(const VkPipelineCreationFeedbackFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPipelineCreationFeedbackFlagBits& value)
 {
     switch (value) {
     case VK_PIPELINE_CREATION_FEEDBACK_VALID_BIT: return "VK_PIPELINE_CREATION_FEEDBACK_VALID_BIT";
@@ -3203,7 +3203,7 @@ std::string VkPipelineStageFlags2ToString(VkFlags64 vkFlags)
     return str;
 }
 
-template <> std::string ToString<VkRenderingFlagBits>(const VkRenderingFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkRenderingFlagBits& value)
 {
     switch (value) {
     case VK_RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT: return "VK_RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT";
@@ -3220,7 +3220,7 @@ template <> std::string ToString<VkRenderingFlagBits>(VkFlags vkFlags, ToStringF
     return BitmaskToString<VkRenderingFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkSubmitFlagBits>(const VkSubmitFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSubmitFlagBits& value)
 {
     switch (value) {
     case VK_SUBMIT_PROTECTED_BIT: return "VK_SUBMIT_PROTECTED_BIT";
@@ -3234,7 +3234,7 @@ template <> std::string ToString<VkSubmitFlagBits>(VkFlags vkFlags, ToStringFlag
     return BitmaskToString<VkSubmitFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkToolPurposeFlagBits>(const VkToolPurposeFlagBits& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkToolPurposeFlagBits& value)
 {
     switch (value) {
     case VK_TOOL_PURPOSE_VALIDATION_BIT: return "VK_TOOL_PURPOSE_VALIDATION_BIT";
@@ -3254,7 +3254,7 @@ template <> std::string ToString<VkToolPurposeFlagBits>(VkFlags vkFlags, ToStrin
     return BitmaskToString<VkToolPurposeFlagBits>(vkFlags);
 }
 
-template <> std::string ToString<VkColorSpaceKHR>(const VkColorSpaceKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkColorSpaceKHR& value)
 {
     switch (value) {
     case VK_COLOR_SPACE_SRGB_NONLINEAR_KHR: return "VK_COLOR_SPACE_SRGB_NONLINEAR_KHR";
@@ -3278,7 +3278,7 @@ template <> std::string ToString<VkColorSpaceKHR>(const VkColorSpaceKHR& value, 
     return "Unhandled VkColorSpaceKHR";
 }
 
-template <> std::string ToString<VkCompositeAlphaFlagBitsKHR>(const VkCompositeAlphaFlagBitsKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkCompositeAlphaFlagBitsKHR& value)
 {
     switch (value) {
     case VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR: return "VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR";
@@ -3295,7 +3295,7 @@ template <> std::string ToString<VkCompositeAlphaFlagBitsKHR>(VkFlags vkFlags, T
     return BitmaskToString<VkCompositeAlphaFlagBitsKHR>(vkFlags);
 }
 
-template <> std::string ToString<VkPresentModeKHR>(const VkPresentModeKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPresentModeKHR& value)
 {
     switch (value) {
     case VK_PRESENT_MODE_IMMEDIATE_KHR: return "VK_PRESENT_MODE_IMMEDIATE_KHR";
@@ -3309,7 +3309,7 @@ template <> std::string ToString<VkPresentModeKHR>(const VkPresentModeKHR& value
     return "Unhandled VkPresentModeKHR";
 }
 
-template <> std::string ToString<VkSurfaceTransformFlagBitsKHR>(const VkSurfaceTransformFlagBitsKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSurfaceTransformFlagBitsKHR& value)
 {
     switch (value) {
     case VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR: return "VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR";
@@ -3331,7 +3331,7 @@ template <> std::string ToString<VkSurfaceTransformFlagBitsKHR>(VkFlags vkFlags,
     return BitmaskToString<VkSurfaceTransformFlagBitsKHR>(vkFlags);
 }
 
-template <> std::string ToString<VkDeviceGroupPresentModeFlagBitsKHR>(const VkDeviceGroupPresentModeFlagBitsKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDeviceGroupPresentModeFlagBitsKHR& value)
 {
     switch (value) {
     case VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR: return "VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR";
@@ -3348,7 +3348,7 @@ template <> std::string ToString<VkDeviceGroupPresentModeFlagBitsKHR>(VkFlags vk
     return BitmaskToString<VkDeviceGroupPresentModeFlagBitsKHR>(vkFlags);
 }
 
-template <> std::string ToString<VkSwapchainCreateFlagBitsKHR>(const VkSwapchainCreateFlagBitsKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSwapchainCreateFlagBitsKHR& value)
 {
     switch (value) {
     case VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR: return "VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR";
@@ -3364,7 +3364,7 @@ template <> std::string ToString<VkSwapchainCreateFlagBitsKHR>(VkFlags vkFlags, 
     return BitmaskToString<VkSwapchainCreateFlagBitsKHR>(vkFlags);
 }
 
-template <> std::string ToString<VkDisplayPlaneAlphaFlagBitsKHR>(const VkDisplayPlaneAlphaFlagBitsKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDisplayPlaneAlphaFlagBitsKHR& value)
 {
     switch (value) {
     case VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR: return "VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR";
@@ -3381,7 +3381,7 @@ template <> std::string ToString<VkDisplayPlaneAlphaFlagBitsKHR>(VkFlags vkFlags
     return BitmaskToString<VkDisplayPlaneAlphaFlagBitsKHR>(vkFlags);
 }
 
-template <> std::string ToString<VkAcquireProfilingLockFlagBitsKHR>(const VkAcquireProfilingLockFlagBitsKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkAcquireProfilingLockFlagBitsKHR& value)
 {
     return "Unhandled VkAcquireProfilingLockFlagBitsKHR";
 }
@@ -3391,7 +3391,7 @@ template <> std::string ToString<VkAcquireProfilingLockFlagBitsKHR>(VkFlags vkFl
     return BitmaskToString<VkAcquireProfilingLockFlagBitsKHR>(vkFlags);
 }
 
-template <> std::string ToString<VkPerformanceCounterDescriptionFlagBitsKHR>(const VkPerformanceCounterDescriptionFlagBitsKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPerformanceCounterDescriptionFlagBitsKHR& value)
 {
     switch (value) {
     case VK_PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR: return "VK_PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR";
@@ -3406,7 +3406,7 @@ template <> std::string ToString<VkPerformanceCounterDescriptionFlagBitsKHR>(VkF
     return BitmaskToString<VkPerformanceCounterDescriptionFlagBitsKHR>(vkFlags);
 }
 
-template <> std::string ToString<VkPerformanceCounterScopeKHR>(const VkPerformanceCounterScopeKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPerformanceCounterScopeKHR& value)
 {
     switch (value) {
     case VK_PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER_KHR: return "VK_PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER_KHR";
@@ -3417,7 +3417,7 @@ template <> std::string ToString<VkPerformanceCounterScopeKHR>(const VkPerforman
     return "Unhandled VkPerformanceCounterScopeKHR";
 }
 
-template <> std::string ToString<VkPerformanceCounterStorageKHR>(const VkPerformanceCounterStorageKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPerformanceCounterStorageKHR& value)
 {
     switch (value) {
     case VK_PERFORMANCE_COUNTER_STORAGE_INT32_KHR: return "VK_PERFORMANCE_COUNTER_STORAGE_INT32_KHR";
@@ -3431,7 +3431,7 @@ template <> std::string ToString<VkPerformanceCounterStorageKHR>(const VkPerform
     return "Unhandled VkPerformanceCounterStorageKHR";
 }
 
-template <> std::string ToString<VkPerformanceCounterUnitKHR>(const VkPerformanceCounterUnitKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPerformanceCounterUnitKHR& value)
 {
     switch (value) {
     case VK_PERFORMANCE_COUNTER_UNIT_GENERIC_KHR: return "VK_PERFORMANCE_COUNTER_UNIT_GENERIC_KHR";
@@ -3450,7 +3450,7 @@ template <> std::string ToString<VkPerformanceCounterUnitKHR>(const VkPerformanc
     return "Unhandled VkPerformanceCounterUnitKHR";
 }
 
-template <> std::string ToString<VkQueueGlobalPriorityKHR>(const VkQueueGlobalPriorityKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkQueueGlobalPriorityKHR& value)
 {
     switch (value) {
     case VK_QUEUE_GLOBAL_PRIORITY_LOW_KHR: return "VK_QUEUE_GLOBAL_PRIORITY_LOW_KHR";
@@ -3462,7 +3462,7 @@ template <> std::string ToString<VkQueueGlobalPriorityKHR>(const VkQueueGlobalPr
     return "Unhandled VkQueueGlobalPriorityKHR";
 }
 
-template <> std::string ToString<VkFragmentShadingRateCombinerOpKHR>(const VkFragmentShadingRateCombinerOpKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkFragmentShadingRateCombinerOpKHR& value)
 {
     switch (value) {
     case VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR: return "VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR";
@@ -3475,7 +3475,7 @@ template <> std::string ToString<VkFragmentShadingRateCombinerOpKHR>(const VkFra
     return "Unhandled VkFragmentShadingRateCombinerOpKHR";
 }
 
-template <> std::string ToString<VkPipelineExecutableStatisticFormatKHR>(const VkPipelineExecutableStatisticFormatKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPipelineExecutableStatisticFormatKHR& value)
 {
     switch (value) {
     case VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_BOOL32_KHR: return "VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_BOOL32_KHR";
@@ -3487,7 +3487,7 @@ template <> std::string ToString<VkPipelineExecutableStatisticFormatKHR>(const V
     return "Unhandled VkPipelineExecutableStatisticFormatKHR";
 }
 
-template <> std::string ToString<VkDebugReportFlagBitsEXT>(const VkDebugReportFlagBitsEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDebugReportFlagBitsEXT& value)
 {
     switch (value) {
     case VK_DEBUG_REPORT_INFORMATION_BIT_EXT: return "VK_DEBUG_REPORT_INFORMATION_BIT_EXT";
@@ -3505,7 +3505,7 @@ template <> std::string ToString<VkDebugReportFlagBitsEXT>(VkFlags vkFlags, ToSt
     return BitmaskToString<VkDebugReportFlagBitsEXT>(vkFlags);
 }
 
-template <> std::string ToString<VkDebugReportObjectTypeEXT>(const VkDebugReportObjectTypeEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDebugReportObjectTypeEXT& value)
 {
     switch (value) {
     case VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT: return "VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT";
@@ -3552,7 +3552,7 @@ template <> std::string ToString<VkDebugReportObjectTypeEXT>(const VkDebugReport
     return "Unhandled VkDebugReportObjectTypeEXT";
 }
 
-template <> std::string ToString<VkRasterizationOrderAMD>(const VkRasterizationOrderAMD& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkRasterizationOrderAMD& value)
 {
     switch (value) {
     case VK_RASTERIZATION_ORDER_STRICT_AMD: return "VK_RASTERIZATION_ORDER_STRICT_AMD";
@@ -3562,7 +3562,7 @@ template <> std::string ToString<VkRasterizationOrderAMD>(const VkRasterizationO
     return "Unhandled VkRasterizationOrderAMD";
 }
 
-template <> std::string ToString<VkShaderInfoTypeAMD>(const VkShaderInfoTypeAMD& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkShaderInfoTypeAMD& value)
 {
     switch (value) {
     case VK_SHADER_INFO_TYPE_STATISTICS_AMD: return "VK_SHADER_INFO_TYPE_STATISTICS_AMD";
@@ -3573,7 +3573,7 @@ template <> std::string ToString<VkShaderInfoTypeAMD>(const VkShaderInfoTypeAMD&
     return "Unhandled VkShaderInfoTypeAMD";
 }
 
-template <> std::string ToString<VkExternalMemoryFeatureFlagBitsNV>(const VkExternalMemoryFeatureFlagBitsNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkExternalMemoryFeatureFlagBitsNV& value)
 {
     switch (value) {
     case VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_NV: return "VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_NV";
@@ -3589,7 +3589,7 @@ template <> std::string ToString<VkExternalMemoryFeatureFlagBitsNV>(VkFlags vkFl
     return BitmaskToString<VkExternalMemoryFeatureFlagBitsNV>(vkFlags);
 }
 
-template <> std::string ToString<VkExternalMemoryHandleTypeFlagBitsNV>(const VkExternalMemoryHandleTypeFlagBitsNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkExternalMemoryHandleTypeFlagBitsNV& value)
 {
     switch (value) {
     case VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV: return "VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV";
@@ -3606,7 +3606,7 @@ template <> std::string ToString<VkExternalMemoryHandleTypeFlagBitsNV>(VkFlags v
     return BitmaskToString<VkExternalMemoryHandleTypeFlagBitsNV>(vkFlags);
 }
 
-template <> std::string ToString<VkValidationCheckEXT>(const VkValidationCheckEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkValidationCheckEXT& value)
 {
     switch (value) {
     case VK_VALIDATION_CHECK_ALL_EXT: return "VK_VALIDATION_CHECK_ALL_EXT";
@@ -3616,7 +3616,7 @@ template <> std::string ToString<VkValidationCheckEXT>(const VkValidationCheckEX
     return "Unhandled VkValidationCheckEXT";
 }
 
-template <> std::string ToString<VkPipelineRobustnessBufferBehaviorEXT>(const VkPipelineRobustnessBufferBehaviorEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPipelineRobustnessBufferBehaviorEXT& value)
 {
     switch (value) {
     case VK_PIPELINE_ROBUSTNESS_BUFFER_BEHAVIOR_DEVICE_DEFAULT_EXT: return "VK_PIPELINE_ROBUSTNESS_BUFFER_BEHAVIOR_DEVICE_DEFAULT_EXT";
@@ -3628,7 +3628,7 @@ template <> std::string ToString<VkPipelineRobustnessBufferBehaviorEXT>(const Vk
     return "Unhandled VkPipelineRobustnessBufferBehaviorEXT";
 }
 
-template <> std::string ToString<VkPipelineRobustnessImageBehaviorEXT>(const VkPipelineRobustnessImageBehaviorEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPipelineRobustnessImageBehaviorEXT& value)
 {
     switch (value) {
     case VK_PIPELINE_ROBUSTNESS_IMAGE_BEHAVIOR_DEVICE_DEFAULT_EXT: return "VK_PIPELINE_ROBUSTNESS_IMAGE_BEHAVIOR_DEVICE_DEFAULT_EXT";
@@ -3640,7 +3640,7 @@ template <> std::string ToString<VkPipelineRobustnessImageBehaviorEXT>(const VkP
     return "Unhandled VkPipelineRobustnessImageBehaviorEXT";
 }
 
-template <> std::string ToString<VkConditionalRenderingFlagBitsEXT>(const VkConditionalRenderingFlagBitsEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkConditionalRenderingFlagBitsEXT& value)
 {
     switch (value) {
     case VK_CONDITIONAL_RENDERING_INVERTED_BIT_EXT: return "VK_CONDITIONAL_RENDERING_INVERTED_BIT_EXT";
@@ -3654,7 +3654,7 @@ template <> std::string ToString<VkConditionalRenderingFlagBitsEXT>(VkFlags vkFl
     return BitmaskToString<VkConditionalRenderingFlagBitsEXT>(vkFlags);
 }
 
-template <> std::string ToString<VkSurfaceCounterFlagBitsEXT>(const VkSurfaceCounterFlagBitsEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSurfaceCounterFlagBitsEXT& value)
 {
     switch (value) {
     case VK_SURFACE_COUNTER_VBLANK_BIT_EXT: return "VK_SURFACE_COUNTER_VBLANK_BIT_EXT";
@@ -3668,7 +3668,7 @@ template <> std::string ToString<VkSurfaceCounterFlagBitsEXT>(VkFlags vkFlags, T
     return BitmaskToString<VkSurfaceCounterFlagBitsEXT>(vkFlags);
 }
 
-template <> std::string ToString<VkDeviceEventTypeEXT>(const VkDeviceEventTypeEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDeviceEventTypeEXT& value)
 {
     switch (value) {
     case VK_DEVICE_EVENT_TYPE_DISPLAY_HOTPLUG_EXT: return "VK_DEVICE_EVENT_TYPE_DISPLAY_HOTPLUG_EXT";
@@ -3677,7 +3677,7 @@ template <> std::string ToString<VkDeviceEventTypeEXT>(const VkDeviceEventTypeEX
     return "Unhandled VkDeviceEventTypeEXT";
 }
 
-template <> std::string ToString<VkDisplayEventTypeEXT>(const VkDisplayEventTypeEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDisplayEventTypeEXT& value)
 {
     switch (value) {
     case VK_DISPLAY_EVENT_TYPE_FIRST_PIXEL_OUT_EXT: return "VK_DISPLAY_EVENT_TYPE_FIRST_PIXEL_OUT_EXT";
@@ -3686,7 +3686,7 @@ template <> std::string ToString<VkDisplayEventTypeEXT>(const VkDisplayEventType
     return "Unhandled VkDisplayEventTypeEXT";
 }
 
-template <> std::string ToString<VkDisplayPowerStateEXT>(const VkDisplayPowerStateEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDisplayPowerStateEXT& value)
 {
     switch (value) {
     case VK_DISPLAY_POWER_STATE_OFF_EXT: return "VK_DISPLAY_POWER_STATE_OFF_EXT";
@@ -3697,7 +3697,7 @@ template <> std::string ToString<VkDisplayPowerStateEXT>(const VkDisplayPowerSta
     return "Unhandled VkDisplayPowerStateEXT";
 }
 
-template <> std::string ToString<VkViewportCoordinateSwizzleNV>(const VkViewportCoordinateSwizzleNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkViewportCoordinateSwizzleNV& value)
 {
     switch (value) {
     case VK_VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_X_NV: return "VK_VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_X_NV";
@@ -3713,7 +3713,7 @@ template <> std::string ToString<VkViewportCoordinateSwizzleNV>(const VkViewport
     return "Unhandled VkViewportCoordinateSwizzleNV";
 }
 
-template <> std::string ToString<VkDiscardRectangleModeEXT>(const VkDiscardRectangleModeEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDiscardRectangleModeEXT& value)
 {
     switch (value) {
     case VK_DISCARD_RECTANGLE_MODE_INCLUSIVE_EXT: return "VK_DISCARD_RECTANGLE_MODE_INCLUSIVE_EXT";
@@ -3723,7 +3723,7 @@ template <> std::string ToString<VkDiscardRectangleModeEXT>(const VkDiscardRecta
     return "Unhandled VkDiscardRectangleModeEXT";
 }
 
-template <> std::string ToString<VkConservativeRasterizationModeEXT>(const VkConservativeRasterizationModeEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkConservativeRasterizationModeEXT& value)
 {
     switch (value) {
     case VK_CONSERVATIVE_RASTERIZATION_MODE_DISABLED_EXT: return "VK_CONSERVATIVE_RASTERIZATION_MODE_DISABLED_EXT";
@@ -3734,7 +3734,7 @@ template <> std::string ToString<VkConservativeRasterizationModeEXT>(const VkCon
     return "Unhandled VkConservativeRasterizationModeEXT";
 }
 
-template <> std::string ToString<VkDebugUtilsMessageSeverityFlagBitsEXT>(const VkDebugUtilsMessageSeverityFlagBitsEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDebugUtilsMessageSeverityFlagBitsEXT& value)
 {
     switch (value) {
     case VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT: return "VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT";
@@ -3751,7 +3751,7 @@ template <> std::string ToString<VkDebugUtilsMessageSeverityFlagBitsEXT>(VkFlags
     return BitmaskToString<VkDebugUtilsMessageSeverityFlagBitsEXT>(vkFlags);
 }
 
-template <> std::string ToString<VkDebugUtilsMessageTypeFlagBitsEXT>(const VkDebugUtilsMessageTypeFlagBitsEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDebugUtilsMessageTypeFlagBitsEXT& value)
 {
     switch (value) {
     case VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT: return "VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT";
@@ -3768,7 +3768,7 @@ template <> std::string ToString<VkDebugUtilsMessageTypeFlagBitsEXT>(VkFlags vkF
     return BitmaskToString<VkDebugUtilsMessageTypeFlagBitsEXT>(vkFlags);
 }
 
-template <> std::string ToString<VkBlendOverlapEXT>(const VkBlendOverlapEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkBlendOverlapEXT& value)
 {
     switch (value) {
     case VK_BLEND_OVERLAP_UNCORRELATED_EXT: return "VK_BLEND_OVERLAP_UNCORRELATED_EXT";
@@ -3779,7 +3779,7 @@ template <> std::string ToString<VkBlendOverlapEXT>(const VkBlendOverlapEXT& val
     return "Unhandled VkBlendOverlapEXT";
 }
 
-template <> std::string ToString<VkCoverageModulationModeNV>(const VkCoverageModulationModeNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkCoverageModulationModeNV& value)
 {
     switch (value) {
     case VK_COVERAGE_MODULATION_MODE_NONE_NV: return "VK_COVERAGE_MODULATION_MODE_NONE_NV";
@@ -3791,7 +3791,7 @@ template <> std::string ToString<VkCoverageModulationModeNV>(const VkCoverageMod
     return "Unhandled VkCoverageModulationModeNV";
 }
 
-template <> std::string ToString<VkValidationCacheHeaderVersionEXT>(const VkValidationCacheHeaderVersionEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkValidationCacheHeaderVersionEXT& value)
 {
     switch (value) {
     case VK_VALIDATION_CACHE_HEADER_VERSION_ONE_EXT: return "VK_VALIDATION_CACHE_HEADER_VERSION_ONE_EXT";
@@ -3800,7 +3800,7 @@ template <> std::string ToString<VkValidationCacheHeaderVersionEXT>(const VkVali
     return "Unhandled VkValidationCacheHeaderVersionEXT";
 }
 
-template <> std::string ToString<VkCoarseSampleOrderTypeNV>(const VkCoarseSampleOrderTypeNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkCoarseSampleOrderTypeNV& value)
 {
     switch (value) {
     case VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV: return "VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV";
@@ -3812,7 +3812,7 @@ template <> std::string ToString<VkCoarseSampleOrderTypeNV>(const VkCoarseSample
     return "Unhandled VkCoarseSampleOrderTypeNV";
 }
 
-template <> std::string ToString<VkShadingRatePaletteEntryNV>(const VkShadingRatePaletteEntryNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkShadingRatePaletteEntryNV& value)
 {
     switch (value) {
     case VK_SHADING_RATE_PALETTE_ENTRY_NO_INVOCATIONS_NV: return "VK_SHADING_RATE_PALETTE_ENTRY_NO_INVOCATIONS_NV";
@@ -3832,7 +3832,7 @@ template <> std::string ToString<VkShadingRatePaletteEntryNV>(const VkShadingRat
     return "Unhandled VkShadingRatePaletteEntryNV";
 }
 
-template <> std::string ToString<VkAccelerationStructureMemoryRequirementsTypeNV>(const VkAccelerationStructureMemoryRequirementsTypeNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkAccelerationStructureMemoryRequirementsTypeNV& value)
 {
     switch (value) {
     case VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV: return "VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV";
@@ -3843,7 +3843,7 @@ template <> std::string ToString<VkAccelerationStructureMemoryRequirementsTypeNV
     return "Unhandled VkAccelerationStructureMemoryRequirementsTypeNV";
 }
 
-template <> std::string ToString<VkAccelerationStructureTypeKHR>(const VkAccelerationStructureTypeKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkAccelerationStructureTypeKHR& value)
 {
     switch (value) {
     case VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR: return "VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR";
@@ -3854,7 +3854,7 @@ template <> std::string ToString<VkAccelerationStructureTypeKHR>(const VkAcceler
     return "Unhandled VkAccelerationStructureTypeKHR";
 }
 
-template <> std::string ToString<VkBuildAccelerationStructureFlagBitsKHR>(const VkBuildAccelerationStructureFlagBitsKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkBuildAccelerationStructureFlagBitsKHR& value)
 {
     switch (value) {
     case VK_BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_KHR: return "VK_BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_KHR";
@@ -3876,7 +3876,7 @@ template <> std::string ToString<VkBuildAccelerationStructureFlagBitsKHR>(VkFlag
     return BitmaskToString<VkBuildAccelerationStructureFlagBitsKHR>(vkFlags);
 }
 
-template <> std::string ToString<VkCopyAccelerationStructureModeKHR>(const VkCopyAccelerationStructureModeKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkCopyAccelerationStructureModeKHR& value)
 {
     switch (value) {
     case VK_COPY_ACCELERATION_STRUCTURE_MODE_CLONE_KHR: return "VK_COPY_ACCELERATION_STRUCTURE_MODE_CLONE_KHR";
@@ -3888,7 +3888,7 @@ template <> std::string ToString<VkCopyAccelerationStructureModeKHR>(const VkCop
     return "Unhandled VkCopyAccelerationStructureModeKHR";
 }
 
-template <> std::string ToString<VkGeometryFlagBitsKHR>(const VkGeometryFlagBitsKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkGeometryFlagBitsKHR& value)
 {
     switch (value) {
     case VK_GEOMETRY_OPAQUE_BIT_KHR: return "VK_GEOMETRY_OPAQUE_BIT_KHR";
@@ -3903,7 +3903,7 @@ template <> std::string ToString<VkGeometryFlagBitsKHR>(VkFlags vkFlags, ToStrin
     return BitmaskToString<VkGeometryFlagBitsKHR>(vkFlags);
 }
 
-template <> std::string ToString<VkGeometryInstanceFlagBitsKHR>(const VkGeometryInstanceFlagBitsKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkGeometryInstanceFlagBitsKHR& value)
 {
     switch (value) {
     case VK_GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR: return "VK_GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR";
@@ -3922,7 +3922,7 @@ template <> std::string ToString<VkGeometryInstanceFlagBitsKHR>(VkFlags vkFlags,
     return BitmaskToString<VkGeometryInstanceFlagBitsKHR>(vkFlags);
 }
 
-template <> std::string ToString<VkGeometryTypeKHR>(const VkGeometryTypeKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkGeometryTypeKHR& value)
 {
     switch (value) {
     case VK_GEOMETRY_TYPE_TRIANGLES_KHR: return "VK_GEOMETRY_TYPE_TRIANGLES_KHR";
@@ -3933,7 +3933,7 @@ template <> std::string ToString<VkGeometryTypeKHR>(const VkGeometryTypeKHR& val
     return "Unhandled VkGeometryTypeKHR";
 }
 
-template <> std::string ToString<VkRayTracingShaderGroupTypeKHR>(const VkRayTracingShaderGroupTypeKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkRayTracingShaderGroupTypeKHR& value)
 {
     switch (value) {
     case VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR: return "VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR";
@@ -3944,7 +3944,7 @@ template <> std::string ToString<VkRayTracingShaderGroupTypeKHR>(const VkRayTrac
     return "Unhandled VkRayTracingShaderGroupTypeKHR";
 }
 
-template <> std::string ToString<VkPipelineCompilerControlFlagBitsAMD>(const VkPipelineCompilerControlFlagBitsAMD& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPipelineCompilerControlFlagBitsAMD& value)
 {
     return "Unhandled VkPipelineCompilerControlFlagBitsAMD";
 }
@@ -3954,7 +3954,7 @@ template <> std::string ToString<VkPipelineCompilerControlFlagBitsAMD>(VkFlags v
     return BitmaskToString<VkPipelineCompilerControlFlagBitsAMD>(vkFlags);
 }
 
-template <> std::string ToString<VkTimeDomainEXT>(const VkTimeDomainEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkTimeDomainEXT& value)
 {
     switch (value) {
     case VK_TIME_DOMAIN_DEVICE_EXT: return "VK_TIME_DOMAIN_DEVICE_EXT";
@@ -3966,7 +3966,7 @@ template <> std::string ToString<VkTimeDomainEXT>(const VkTimeDomainEXT& value, 
     return "Unhandled VkTimeDomainEXT";
 }
 
-template <> std::string ToString<VkMemoryOverallocationBehaviorAMD>(const VkMemoryOverallocationBehaviorAMD& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkMemoryOverallocationBehaviorAMD& value)
 {
     switch (value) {
     case VK_MEMORY_OVERALLOCATION_BEHAVIOR_DEFAULT_AMD: return "VK_MEMORY_OVERALLOCATION_BEHAVIOR_DEFAULT_AMD";
@@ -3977,7 +3977,7 @@ template <> std::string ToString<VkMemoryOverallocationBehaviorAMD>(const VkMemo
     return "Unhandled VkMemoryOverallocationBehaviorAMD";
 }
 
-template <> std::string ToString<VkPerformanceConfigurationTypeINTEL>(const VkPerformanceConfigurationTypeINTEL& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPerformanceConfigurationTypeINTEL& value)
 {
     switch (value) {
     case VK_PERFORMANCE_CONFIGURATION_TYPE_COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL: return "VK_PERFORMANCE_CONFIGURATION_TYPE_COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL";
@@ -3986,7 +3986,7 @@ template <> std::string ToString<VkPerformanceConfigurationTypeINTEL>(const VkPe
     return "Unhandled VkPerformanceConfigurationTypeINTEL";
 }
 
-template <> std::string ToString<VkPerformanceOverrideTypeINTEL>(const VkPerformanceOverrideTypeINTEL& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPerformanceOverrideTypeINTEL& value)
 {
     switch (value) {
     case VK_PERFORMANCE_OVERRIDE_TYPE_NULL_HARDWARE_INTEL: return "VK_PERFORMANCE_OVERRIDE_TYPE_NULL_HARDWARE_INTEL";
@@ -3996,7 +3996,7 @@ template <> std::string ToString<VkPerformanceOverrideTypeINTEL>(const VkPerform
     return "Unhandled VkPerformanceOverrideTypeINTEL";
 }
 
-template <> std::string ToString<VkPerformanceParameterTypeINTEL>(const VkPerformanceParameterTypeINTEL& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPerformanceParameterTypeINTEL& value)
 {
     switch (value) {
     case VK_PERFORMANCE_PARAMETER_TYPE_HW_COUNTERS_SUPPORTED_INTEL: return "VK_PERFORMANCE_PARAMETER_TYPE_HW_COUNTERS_SUPPORTED_INTEL";
@@ -4006,7 +4006,7 @@ template <> std::string ToString<VkPerformanceParameterTypeINTEL>(const VkPerfor
     return "Unhandled VkPerformanceParameterTypeINTEL";
 }
 
-template <> std::string ToString<VkPerformanceValueTypeINTEL>(const VkPerformanceValueTypeINTEL& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkPerformanceValueTypeINTEL& value)
 {
     switch (value) {
     case VK_PERFORMANCE_VALUE_TYPE_UINT32_INTEL: return "VK_PERFORMANCE_VALUE_TYPE_UINT32_INTEL";
@@ -4019,7 +4019,7 @@ template <> std::string ToString<VkPerformanceValueTypeINTEL>(const VkPerformanc
     return "Unhandled VkPerformanceValueTypeINTEL";
 }
 
-template <> std::string ToString<VkQueryPoolSamplingModeINTEL>(const VkQueryPoolSamplingModeINTEL& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkQueryPoolSamplingModeINTEL& value)
 {
     switch (value) {
     case VK_QUERY_POOL_SAMPLING_MODE_MANUAL_INTEL: return "VK_QUERY_POOL_SAMPLING_MODE_MANUAL_INTEL";
@@ -4028,7 +4028,7 @@ template <> std::string ToString<VkQueryPoolSamplingModeINTEL>(const VkQueryPool
     return "Unhandled VkQueryPoolSamplingModeINTEL";
 }
 
-template <> std::string ToString<VkShaderCorePropertiesFlagBitsAMD>(const VkShaderCorePropertiesFlagBitsAMD& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkShaderCorePropertiesFlagBitsAMD& value)
 {
     return "Unhandled VkShaderCorePropertiesFlagBitsAMD";
 }
@@ -4038,7 +4038,7 @@ template <> std::string ToString<VkShaderCorePropertiesFlagBitsAMD>(VkFlags vkFl
     return BitmaskToString<VkShaderCorePropertiesFlagBitsAMD>(vkFlags);
 }
 
-template <> std::string ToString<VkValidationFeatureDisableEXT>(const VkValidationFeatureDisableEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkValidationFeatureDisableEXT& value)
 {
     switch (value) {
     case VK_VALIDATION_FEATURE_DISABLE_ALL_EXT: return "VK_VALIDATION_FEATURE_DISABLE_ALL_EXT";
@@ -4054,7 +4054,7 @@ template <> std::string ToString<VkValidationFeatureDisableEXT>(const VkValidati
     return "Unhandled VkValidationFeatureDisableEXT";
 }
 
-template <> std::string ToString<VkValidationFeatureEnableEXT>(const VkValidationFeatureEnableEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkValidationFeatureEnableEXT& value)
 {
     switch (value) {
     case VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT: return "VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT";
@@ -4067,7 +4067,7 @@ template <> std::string ToString<VkValidationFeatureEnableEXT>(const VkValidatio
     return "Unhandled VkValidationFeatureEnableEXT";
 }
 
-template <> std::string ToString<VkComponentTypeNV>(const VkComponentTypeNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkComponentTypeNV& value)
 {
     switch (value) {
     case VK_COMPONENT_TYPE_FLOAT16_NV: return "VK_COMPONENT_TYPE_FLOAT16_NV";
@@ -4086,7 +4086,7 @@ template <> std::string ToString<VkComponentTypeNV>(const VkComponentTypeNV& val
     return "Unhandled VkComponentTypeNV";
 }
 
-template <> std::string ToString<VkScopeNV>(const VkScopeNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkScopeNV& value)
 {
     switch (value) {
     case VK_SCOPE_DEVICE_NV: return "VK_SCOPE_DEVICE_NV";
@@ -4098,7 +4098,7 @@ template <> std::string ToString<VkScopeNV>(const VkScopeNV& value, ToStringFlag
     return "Unhandled VkScopeNV";
 }
 
-template <> std::string ToString<VkCoverageReductionModeNV>(const VkCoverageReductionModeNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkCoverageReductionModeNV& value)
 {
     switch (value) {
     case VK_COVERAGE_REDUCTION_MODE_MERGE_NV: return "VK_COVERAGE_REDUCTION_MODE_MERGE_NV";
@@ -4108,7 +4108,7 @@ template <> std::string ToString<VkCoverageReductionModeNV>(const VkCoverageRedu
     return "Unhandled VkCoverageReductionModeNV";
 }
 
-template <> std::string ToString<VkProvokingVertexModeEXT>(const VkProvokingVertexModeEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkProvokingVertexModeEXT& value)
 {
     switch (value) {
     case VK_PROVOKING_VERTEX_MODE_FIRST_VERTEX_EXT: return "VK_PROVOKING_VERTEX_MODE_FIRST_VERTEX_EXT";
@@ -4118,7 +4118,7 @@ template <> std::string ToString<VkProvokingVertexModeEXT>(const VkProvokingVert
     return "Unhandled VkProvokingVertexModeEXT";
 }
 
-template <> std::string ToString<VkFullScreenExclusiveEXT>(const VkFullScreenExclusiveEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkFullScreenExclusiveEXT& value)
 {
     switch (value) {
     case VK_FULL_SCREEN_EXCLUSIVE_DEFAULT_EXT: return "VK_FULL_SCREEN_EXCLUSIVE_DEFAULT_EXT";
@@ -4130,7 +4130,7 @@ template <> std::string ToString<VkFullScreenExclusiveEXT>(const VkFullScreenExc
     return "Unhandled VkFullScreenExclusiveEXT";
 }
 
-template <> std::string ToString<VkLineRasterizationModeEXT>(const VkLineRasterizationModeEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkLineRasterizationModeEXT& value)
 {
     switch (value) {
     case VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT: return "VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT";
@@ -4142,7 +4142,7 @@ template <> std::string ToString<VkLineRasterizationModeEXT>(const VkLineRasteri
     return "Unhandled VkLineRasterizationModeEXT";
 }
 
-template <> std::string ToString<VkIndirectCommandsLayoutUsageFlagBitsNV>(const VkIndirectCommandsLayoutUsageFlagBitsNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkIndirectCommandsLayoutUsageFlagBitsNV& value)
 {
     switch (value) {
     case VK_INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV: return "VK_INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV";
@@ -4158,7 +4158,7 @@ template <> std::string ToString<VkIndirectCommandsLayoutUsageFlagBitsNV>(VkFlag
     return BitmaskToString<VkIndirectCommandsLayoutUsageFlagBitsNV>(vkFlags);
 }
 
-template <> std::string ToString<VkIndirectCommandsTokenTypeNV>(const VkIndirectCommandsTokenTypeNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkIndirectCommandsTokenTypeNV& value)
 {
     switch (value) {
     case VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV: return "VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV";
@@ -4175,7 +4175,7 @@ template <> std::string ToString<VkIndirectCommandsTokenTypeNV>(const VkIndirect
     return "Unhandled VkIndirectCommandsTokenTypeNV";
 }
 
-template <> std::string ToString<VkIndirectStateFlagBitsNV>(const VkIndirectStateFlagBitsNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkIndirectStateFlagBitsNV& value)
 {
     switch (value) {
     case VK_INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV: return "VK_INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV";
@@ -4189,7 +4189,7 @@ template <> std::string ToString<VkIndirectStateFlagBitsNV>(VkFlags vkFlags, ToS
     return BitmaskToString<VkIndirectStateFlagBitsNV>(vkFlags);
 }
 
-template <> std::string ToString<VkDeviceMemoryReportEventTypeEXT>(const VkDeviceMemoryReportEventTypeEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDeviceMemoryReportEventTypeEXT& value)
 {
     switch (value) {
     case VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATE_EXT: return "VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATE_EXT";
@@ -4202,7 +4202,7 @@ template <> std::string ToString<VkDeviceMemoryReportEventTypeEXT>(const VkDevic
     return "Unhandled VkDeviceMemoryReportEventTypeEXT";
 }
 
-template <> std::string ToString<VkDeviceDiagnosticsConfigFlagBitsNV>(const VkDeviceDiagnosticsConfigFlagBitsNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDeviceDiagnosticsConfigFlagBitsNV& value)
 {
     switch (value) {
     case VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV: return "VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV";
@@ -4219,7 +4219,7 @@ template <> std::string ToString<VkDeviceDiagnosticsConfigFlagBitsNV>(VkFlags vk
     return BitmaskToString<VkDeviceDiagnosticsConfigFlagBitsNV>(vkFlags);
 }
 
-template <> std::string ToString<VkGraphicsPipelineLibraryFlagBitsEXT>(const VkGraphicsPipelineLibraryFlagBitsEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkGraphicsPipelineLibraryFlagBitsEXT& value)
 {
     switch (value) {
     case VK_GRAPHICS_PIPELINE_LIBRARY_VERTEX_INPUT_INTERFACE_BIT_EXT: return "VK_GRAPHICS_PIPELINE_LIBRARY_VERTEX_INPUT_INTERFACE_BIT_EXT";
@@ -4236,7 +4236,7 @@ template <> std::string ToString<VkGraphicsPipelineLibraryFlagBitsEXT>(VkFlags v
     return BitmaskToString<VkGraphicsPipelineLibraryFlagBitsEXT>(vkFlags);
 }
 
-template <> std::string ToString<VkFragmentShadingRateNV>(const VkFragmentShadingRateNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkFragmentShadingRateNV& value)
 {
     switch (value) {
     case VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_PIXEL_NV: return "VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_PIXEL_NV";
@@ -4256,7 +4256,7 @@ template <> std::string ToString<VkFragmentShadingRateNV>(const VkFragmentShadin
     return "Unhandled VkFragmentShadingRateNV";
 }
 
-template <> std::string ToString<VkFragmentShadingRateTypeNV>(const VkFragmentShadingRateTypeNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkFragmentShadingRateTypeNV& value)
 {
     switch (value) {
     case VK_FRAGMENT_SHADING_RATE_TYPE_FRAGMENT_SIZE_NV: return "VK_FRAGMENT_SHADING_RATE_TYPE_FRAGMENT_SIZE_NV";
@@ -4266,7 +4266,7 @@ template <> std::string ToString<VkFragmentShadingRateTypeNV>(const VkFragmentSh
     return "Unhandled VkFragmentShadingRateTypeNV";
 }
 
-template <> std::string ToString<VkAccelerationStructureMotionInstanceTypeNV>(const VkAccelerationStructureMotionInstanceTypeNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkAccelerationStructureMotionInstanceTypeNV& value)
 {
     switch (value) {
     case VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_STATIC_NV: return "VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_STATIC_NV";
@@ -4277,7 +4277,7 @@ template <> std::string ToString<VkAccelerationStructureMotionInstanceTypeNV>(co
     return "Unhandled VkAccelerationStructureMotionInstanceTypeNV";
 }
 
-template <> std::string ToString<VkImageCompressionFixedRateFlagBitsEXT>(const VkImageCompressionFixedRateFlagBitsEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkImageCompressionFixedRateFlagBitsEXT& value)
 {
     switch (value) {
     case VK_IMAGE_COMPRESSION_FIXED_RATE_NONE_EXT: return "VK_IMAGE_COMPRESSION_FIXED_RATE_NONE_EXT";
@@ -4315,7 +4315,7 @@ template <> std::string ToString<VkImageCompressionFixedRateFlagBitsEXT>(VkFlags
     return BitmaskToString<VkImageCompressionFixedRateFlagBitsEXT>(vkFlags);
 }
 
-template <> std::string ToString<VkImageCompressionFlagBitsEXT>(const VkImageCompressionFlagBitsEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkImageCompressionFlagBitsEXT& value)
 {
     switch (value) {
     case VK_IMAGE_COMPRESSION_DEFAULT_EXT: return "VK_IMAGE_COMPRESSION_DEFAULT_EXT";
@@ -4332,7 +4332,7 @@ template <> std::string ToString<VkImageCompressionFlagBitsEXT>(VkFlags vkFlags,
     return BitmaskToString<VkImageCompressionFlagBitsEXT>(vkFlags);
 }
 
-template <> std::string ToString<VkDeviceFaultAddressTypeEXT>(const VkDeviceFaultAddressTypeEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDeviceFaultAddressTypeEXT& value)
 {
     switch (value) {
     case VK_DEVICE_FAULT_ADDRESS_TYPE_NONE_EXT: return "VK_DEVICE_FAULT_ADDRESS_TYPE_NONE_EXT";
@@ -4347,7 +4347,7 @@ template <> std::string ToString<VkDeviceFaultAddressTypeEXT>(const VkDeviceFaul
     return "Unhandled VkDeviceFaultAddressTypeEXT";
 }
 
-template <> std::string ToString<VkDeviceFaultVendorBinaryHeaderVersionEXT>(const VkDeviceFaultVendorBinaryHeaderVersionEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDeviceFaultVendorBinaryHeaderVersionEXT& value)
 {
     switch (value) {
     case VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_ONE_EXT: return "VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_ONE_EXT";
@@ -4356,7 +4356,7 @@ template <> std::string ToString<VkDeviceFaultVendorBinaryHeaderVersionEXT>(cons
     return "Unhandled VkDeviceFaultVendorBinaryHeaderVersionEXT";
 }
 
-template <> std::string ToString<VkDeviceAddressBindingFlagBitsEXT>(const VkDeviceAddressBindingFlagBitsEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDeviceAddressBindingFlagBitsEXT& value)
 {
     switch (value) {
     case VK_DEVICE_ADDRESS_BINDING_INTERNAL_OBJECT_BIT_EXT: return "VK_DEVICE_ADDRESS_BINDING_INTERNAL_OBJECT_BIT_EXT";
@@ -4370,7 +4370,7 @@ template <> std::string ToString<VkDeviceAddressBindingFlagBitsEXT>(VkFlags vkFl
     return BitmaskToString<VkDeviceAddressBindingFlagBitsEXT>(vkFlags);
 }
 
-template <> std::string ToString<VkDeviceAddressBindingTypeEXT>(const VkDeviceAddressBindingTypeEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkDeviceAddressBindingTypeEXT& value)
 {
     switch (value) {
     case VK_DEVICE_ADDRESS_BINDING_TYPE_BIND_EXT: return "VK_DEVICE_ADDRESS_BINDING_TYPE_BIND_EXT";
@@ -4380,7 +4380,7 @@ template <> std::string ToString<VkDeviceAddressBindingTypeEXT>(const VkDeviceAd
     return "Unhandled VkDeviceAddressBindingTypeEXT";
 }
 
-template <> std::string ToString<VkAccelerationStructureBuildTypeKHR>(const VkAccelerationStructureBuildTypeKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkAccelerationStructureBuildTypeKHR& value)
 {
     switch (value) {
     case VK_ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_KHR: return "VK_ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_KHR";
@@ -4391,7 +4391,7 @@ template <> std::string ToString<VkAccelerationStructureBuildTypeKHR>(const VkAc
     return "Unhandled VkAccelerationStructureBuildTypeKHR";
 }
 
-template <> std::string ToString<VkAccelerationStructureCompatibilityKHR>(const VkAccelerationStructureCompatibilityKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkAccelerationStructureCompatibilityKHR& value)
 {
     switch (value) {
     case VK_ACCELERATION_STRUCTURE_COMPATIBILITY_COMPATIBLE_KHR: return "VK_ACCELERATION_STRUCTURE_COMPATIBILITY_COMPATIBLE_KHR";
@@ -4401,7 +4401,7 @@ template <> std::string ToString<VkAccelerationStructureCompatibilityKHR>(const 
     return "Unhandled VkAccelerationStructureCompatibilityKHR";
 }
 
-template <> std::string ToString<VkBuildMicromapFlagBitsEXT>(const VkBuildMicromapFlagBitsEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkBuildMicromapFlagBitsEXT& value)
 {
     switch (value) {
     case VK_BUILD_MICROMAP_PREFER_FAST_TRACE_BIT_EXT: return "VK_BUILD_MICROMAP_PREFER_FAST_TRACE_BIT_EXT";
@@ -4417,7 +4417,7 @@ template <> std::string ToString<VkBuildMicromapFlagBitsEXT>(VkFlags vkFlags, To
     return BitmaskToString<VkBuildMicromapFlagBitsEXT>(vkFlags);
 }
 
-template <> std::string ToString<VkBuildMicromapModeEXT>(const VkBuildMicromapModeEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkBuildMicromapModeEXT& value)
 {
     switch (value) {
     case VK_BUILD_MICROMAP_MODE_BUILD_EXT: return "VK_BUILD_MICROMAP_MODE_BUILD_EXT";
@@ -4426,7 +4426,7 @@ template <> std::string ToString<VkBuildMicromapModeEXT>(const VkBuildMicromapMo
     return "Unhandled VkBuildMicromapModeEXT";
 }
 
-template <> std::string ToString<VkCopyMicromapModeEXT>(const VkCopyMicromapModeEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkCopyMicromapModeEXT& value)
 {
     switch (value) {
     case VK_COPY_MICROMAP_MODE_CLONE_EXT: return "VK_COPY_MICROMAP_MODE_CLONE_EXT";
@@ -4438,7 +4438,7 @@ template <> std::string ToString<VkCopyMicromapModeEXT>(const VkCopyMicromapMode
     return "Unhandled VkCopyMicromapModeEXT";
 }
 
-template <> std::string ToString<VkMicromapCreateFlagBitsEXT>(const VkMicromapCreateFlagBitsEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkMicromapCreateFlagBitsEXT& value)
 {
     switch (value) {
     case VK_MICROMAP_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT: return "VK_MICROMAP_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT";
@@ -4452,7 +4452,7 @@ template <> std::string ToString<VkMicromapCreateFlagBitsEXT>(VkFlags vkFlags, T
     return BitmaskToString<VkMicromapCreateFlagBitsEXT>(vkFlags);
 }
 
-template <> std::string ToString<VkMicromapTypeEXT>(const VkMicromapTypeEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkMicromapTypeEXT& value)
 {
     switch (value) {
     case VK_MICROMAP_TYPE_OPACITY_MICROMAP_EXT: return "VK_MICROMAP_TYPE_OPACITY_MICROMAP_EXT";
@@ -4461,7 +4461,7 @@ template <> std::string ToString<VkMicromapTypeEXT>(const VkMicromapTypeEXT& val
     return "Unhandled VkMicromapTypeEXT";
 }
 
-template <> std::string ToString<VkOpacityMicromapFormatEXT>(const VkOpacityMicromapFormatEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkOpacityMicromapFormatEXT& value)
 {
     switch (value) {
     case VK_OPACITY_MICROMAP_FORMAT_2_STATE_EXT: return "VK_OPACITY_MICROMAP_FORMAT_2_STATE_EXT";
@@ -4471,7 +4471,7 @@ template <> std::string ToString<VkOpacityMicromapFormatEXT>(const VkOpacityMicr
     return "Unhandled VkOpacityMicromapFormatEXT";
 }
 
-template <> std::string ToString<VkOpacityMicromapSpecialIndexEXT>(const VkOpacityMicromapSpecialIndexEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkOpacityMicromapSpecialIndexEXT& value)
 {
     switch (value) {
     case VK_OPACITY_MICROMAP_SPECIAL_INDEX_FULLY_TRANSPARENT_EXT: return "VK_OPACITY_MICROMAP_SPECIAL_INDEX_FULLY_TRANSPARENT_EXT";
@@ -4483,7 +4483,7 @@ template <> std::string ToString<VkOpacityMicromapSpecialIndexEXT>(const VkOpaci
     return "Unhandled VkOpacityMicromapSpecialIndexEXT";
 }
 
-template <> std::string ToString<VkSubpassMergeStatusEXT>(const VkSubpassMergeStatusEXT& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkSubpassMergeStatusEXT& value)
 {
     switch (value) {
     case VK_SUBPASS_MERGE_STATUS_MERGED_EXT: return "VK_SUBPASS_MERGE_STATUS_MERGED_EXT";
@@ -4505,7 +4505,7 @@ template <> std::string ToString<VkSubpassMergeStatusEXT>(const VkSubpassMergeSt
     return "Unhandled VkSubpassMergeStatusEXT";
 }
 
-template <> std::string ToString<VkOpticalFlowExecuteFlagBitsNV>(const VkOpticalFlowExecuteFlagBitsNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkOpticalFlowExecuteFlagBitsNV& value)
 {
     switch (value) {
     case VK_OPTICAL_FLOW_EXECUTE_DISABLE_TEMPORAL_HINTS_BIT_NV: return "VK_OPTICAL_FLOW_EXECUTE_DISABLE_TEMPORAL_HINTS_BIT_NV";
@@ -4519,7 +4519,7 @@ template <> std::string ToString<VkOpticalFlowExecuteFlagBitsNV>(VkFlags vkFlags
     return BitmaskToString<VkOpticalFlowExecuteFlagBitsNV>(vkFlags);
 }
 
-template <> std::string ToString<VkOpticalFlowGridSizeFlagBitsNV>(const VkOpticalFlowGridSizeFlagBitsNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkOpticalFlowGridSizeFlagBitsNV& value)
 {
     switch (value) {
     case VK_OPTICAL_FLOW_GRID_SIZE_UNKNOWN_NV: return "VK_OPTICAL_FLOW_GRID_SIZE_UNKNOWN_NV";
@@ -4537,7 +4537,7 @@ template <> std::string ToString<VkOpticalFlowGridSizeFlagBitsNV>(VkFlags vkFlag
     return BitmaskToString<VkOpticalFlowGridSizeFlagBitsNV>(vkFlags);
 }
 
-template <> std::string ToString<VkOpticalFlowPerformanceLevelNV>(const VkOpticalFlowPerformanceLevelNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkOpticalFlowPerformanceLevelNV& value)
 {
     switch (value) {
     case VK_OPTICAL_FLOW_PERFORMANCE_LEVEL_UNKNOWN_NV: return "VK_OPTICAL_FLOW_PERFORMANCE_LEVEL_UNKNOWN_NV";
@@ -4549,7 +4549,7 @@ template <> std::string ToString<VkOpticalFlowPerformanceLevelNV>(const VkOptica
     return "Unhandled VkOpticalFlowPerformanceLevelNV";
 }
 
-template <> std::string ToString<VkOpticalFlowSessionBindingPointNV>(const VkOpticalFlowSessionBindingPointNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkOpticalFlowSessionBindingPointNV& value)
 {
     switch (value) {
     case VK_OPTICAL_FLOW_SESSION_BINDING_POINT_UNKNOWN_NV: return "VK_OPTICAL_FLOW_SESSION_BINDING_POINT_UNKNOWN_NV";
@@ -4566,7 +4566,7 @@ template <> std::string ToString<VkOpticalFlowSessionBindingPointNV>(const VkOpt
     return "Unhandled VkOpticalFlowSessionBindingPointNV";
 }
 
-template <> std::string ToString<VkOpticalFlowSessionCreateFlagBitsNV>(const VkOpticalFlowSessionCreateFlagBitsNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkOpticalFlowSessionCreateFlagBitsNV& value)
 {
     switch (value) {
     case VK_OPTICAL_FLOW_SESSION_CREATE_ENABLE_HINT_BIT_NV: return "VK_OPTICAL_FLOW_SESSION_CREATE_ENABLE_HINT_BIT_NV";
@@ -4584,7 +4584,7 @@ template <> std::string ToString<VkOpticalFlowSessionCreateFlagBitsNV>(VkFlags v
     return BitmaskToString<VkOpticalFlowSessionCreateFlagBitsNV>(vkFlags);
 }
 
-template <> std::string ToString<VkOpticalFlowUsageFlagBitsNV>(const VkOpticalFlowUsageFlagBitsNV& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkOpticalFlowUsageFlagBitsNV& value)
 {
     switch (value) {
     case VK_OPTICAL_FLOW_USAGE_UNKNOWN_NV: return "VK_OPTICAL_FLOW_USAGE_UNKNOWN_NV";
@@ -4603,7 +4603,7 @@ template <> std::string ToString<VkOpticalFlowUsageFlagBitsNV>(VkFlags vkFlags, 
     return BitmaskToString<VkOpticalFlowUsageFlagBitsNV>(vkFlags);
 }
 
-template <> std::string ToString<VkAccelerationStructureCreateFlagBitsKHR>(const VkAccelerationStructureCreateFlagBitsKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkAccelerationStructureCreateFlagBitsKHR& value)
 {
     switch (value) {
     case VK_ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR: return "VK_ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR";
@@ -4618,7 +4618,7 @@ template <> std::string ToString<VkAccelerationStructureCreateFlagBitsKHR>(VkFla
     return BitmaskToString<VkAccelerationStructureCreateFlagBitsKHR>(vkFlags);
 }
 
-template <> std::string ToString<VkBuildAccelerationStructureModeKHR>(const VkBuildAccelerationStructureModeKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkBuildAccelerationStructureModeKHR& value)
 {
     switch (value) {
     case VK_BUILD_ACCELERATION_STRUCTURE_MODE_BUILD_KHR: return "VK_BUILD_ACCELERATION_STRUCTURE_MODE_BUILD_KHR";
@@ -4628,7 +4628,7 @@ template <> std::string ToString<VkBuildAccelerationStructureModeKHR>(const VkBu
     return "Unhandled VkBuildAccelerationStructureModeKHR";
 }
 
-template <> std::string ToString<VkShaderGroupShaderKHR>(const VkShaderGroupShaderKHR& value, ToStringFlags, uint32_t, uint32_t)
+std::string ToString(const VkShaderGroupShaderKHR& value)
 {
     switch (value) {
     case VK_SHADER_GROUP_SHADER_GENERAL_KHR: return "VK_SHADER_GROUP_SHADER_GENERAL_KHR";
