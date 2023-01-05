@@ -243,7 +243,8 @@ class VulkanAsciiConsumerBodyGenerator(BaseGenerator):
                         # @note This never happens, as we don't pass structs into Vulkan by value.
                         toString = 'ToString({0}, toStringFlags, tabCount, tabSize)'
                     elif self.is_enum(value.base_type):
-                        toString = 'Quote(ToString({0}, toStringFlags, tabCount, tabSize))'
+                        #toString = 'Quote(ToString({0}, toStringFlags, tabCount, tabSize))'
+                        toString = 'Quote(ToString({0}))'
                     
                     # Some simple scalar data like an int or a float, or a 32 bit or 64 bit flag set typedef:
                     else:

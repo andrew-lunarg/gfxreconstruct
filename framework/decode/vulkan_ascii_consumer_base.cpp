@@ -141,7 +141,7 @@ void VulkanAsciiConsumerBase::Process_vkAllocateCommandBuffers(
 
         FieldToString(strStrm, false, "pCommandBuffers", toStringFlags, tabCount, tabSize, HandlePointerDecoderArrayToString(commandBufferCount, pCommandBuffers, toStringFlags, tabCount, tabSize));
     };
-    const auto return_val = ToString(returnValue, toStringFlags, tabCount, tabSize);
+    const auto return_val = ToString(returnValue);
     WriteApiCallToFile(call_info, "vkAllocateCommandBuffers", toStringFlags, tabCount, tabSize, createString, return_val);
 }
 
@@ -168,7 +168,7 @@ void VulkanAsciiConsumerBase::Process_vkAllocateDescriptorSets(
 
         FieldToString(strStrm, false, "pDescriptorSets", toStringFlags, tabCount, tabSize, HandlePointerDecoderArrayToString(descriptorSetCount, pDescriptorSets, toStringFlags, tabCount, tabSize));
     };
-    const auto return_val = ToString(returnValue, toStringFlags, tabCount, tabSize);
+    const auto return_val = ToString(returnValue);
     WriteApiCallToFile(call_info, "vkAllocateDescriptorSets", toStringFlags, tabCount, tabSize, createString, return_val);
 }
 
@@ -270,7 +270,7 @@ void VulkanAsciiConsumerBase::Process_vkGetAccelerationStructureBuildSizesKHR(
 
     auto createString = [&](std::stringstream& strStrm) {
         FieldToString(strStrm, true, "device", toStringFlags, tabCount, tabSize, HandleIdToString(device));
-        FieldToString(strStrm, false, "buildType", toStringFlags, tabCount, tabSize, Quote(ToString(buildType, toStringFlags, tabCount, tabSize)));
+        FieldToString(strStrm, false, "buildType", toStringFlags, tabCount, tabSize, Quote(ToString(buildType)));
         FieldToString(strStrm, false, "pBuildInfo", toStringFlags, tabCount, tabSize, PointerDecoderToString(pBuildInfo, toStringFlags, tabCount, tabSize));
 
         auto pDecodedBuildInfo          = pBuildInfo ? pBuildInfo -> GetPointer() : nullptr;

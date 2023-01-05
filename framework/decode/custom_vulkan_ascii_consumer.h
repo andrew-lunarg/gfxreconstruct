@@ -320,9 +320,7 @@ inline std::string EnumPointerDecoderArrayToString(const CountType&    countObj,
         tabCount,
         tabSize,
         [&]() { return pObjs && !pObjs->IsNull(); },
-        [&](uint32_t i) {
-            return util::Quote(ToString(pObjs->GetPointer()[i], toStringFlags, tabCount + 1, tabSize));
-        });
+        [&](uint32_t i) { return util::Quote(ToString(pObjs->GetPointer()[i])); });
 }
 
 GFXRECON_END_NAMESPACE(decode)

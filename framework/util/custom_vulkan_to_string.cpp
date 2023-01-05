@@ -54,9 +54,9 @@ std::string ToString<VkAccelerationStructureGeometryKHR>(const VkAccelerationStr
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, Quote(ToString(obj.sType, toStringFlags, tabCount, tabSize)));
+            FieldToString(strStrm, true, "sType", toStringFlags, tabCount, tabSize, Quote(ToString(obj.sType)));
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, PNextToString(obj.pNext, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "geometryType", toStringFlags, tabCount, tabSize, Quote(ToString(obj.geometryType, toStringFlags, tabCount, tabSize)));
+            FieldToString(strStrm, false, "geometryType", toStringFlags, tabCount, tabSize, Quote(ToString(obj.geometryType)));
             FieldToString(strStrm, false, "geometry", toStringFlags, tabCount, tabSize,
                 ObjectToString(toStringFlags, tabCount, tabSize,
                     [&](std::stringstream& subStrStrm)
@@ -93,7 +93,7 @@ std::string ToString<VkAccelerationStructureMotionInstanceNV>(const VkAccelerati
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "type", toStringFlags, tabCount, tabSize, Quote(ToString(obj.type, toStringFlags, tabCount, tabSize)));
+            FieldToString(strStrm, true, "type", toStringFlags, tabCount, tabSize, Quote(ToString(obj.type)));
             FieldToString(strStrm, false, "flags", toStringFlags, tabCount, tabSize, ToString(obj.flags, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "data", toStringFlags, tabCount, tabSize,
                 ObjectToString(toStringFlags, tabCount, tabSize,
@@ -157,7 +157,7 @@ std::string ToString<VkDescriptorImageInfo>(const VkDescriptorImageInfo& obj, To
         {
             FieldToString(strStrm, true, "sampler", toStringFlags, tabCount, tabSize, Quote(VkHandleToString(obj.sampler)));
             FieldToString(strStrm, false, "imageView", toStringFlags, tabCount, tabSize, Quote(VkHandleToString(obj.imageView)));
-            FieldToString(strStrm, false, "imageLayout", toStringFlags, tabCount, tabSize, Quote(ToString(obj.imageLayout, toStringFlags, tabCount, tabSize)));
+            FieldToString(strStrm, false, "imageLayout", toStringFlags, tabCount, tabSize, Quote(ToString(obj.imageLayout)));
         }
     );
 }
