@@ -109,8 +109,28 @@ def BitsEnumToFlagsTypedef(enum):
     flags = removesuffix(enum, 'Bits2')
     if flags != enum:
         flags = flags + 's2'
-    # Gods preserve us from Bits 3, 4, 5, etc.
+        return flags
+    flags = removesuffix(enum, 'BitsKHR')
+    if flags != enum:
+        flags = flags + 'sKHR'
+        return flags
+    flags = removesuffix(enum, 'BitsEXT')
+    if flags != enum:
+        flags = flags + 'sEXT'
+        return flags
+    flags = removesuffix(enum, 'BitsAMD')
+    if flags != enum:
+        flags = flags + 'sAMD'
+        return flags
+    flags = removesuffix(enum, 'BitsNV')
+    if flags != enum:
+        flags = flags + 'sNV'
+        return flags
     return flags
+
+# suffix is EXT, KHR, AMD, ARM, etc.
+def extension_flag_type_to_bits_enum(flag_type, suffix):
+    return removesuffix(flag_type, 's' + suffix) + 'Bits' + suffix
 
 class ValueInfo():
     """ValueInfo - Class to store parameter/struct member information.
@@ -1406,6 +1426,17 @@ class BaseGenerator(OutputGenerator):
                 return True
         return False
 
+    def is_32bit_flags(self, flag_type):
+        if flag_type in self.flags_types:
+            if self.flags_types[flag_type] == 'VkFlags':
+                return True
+        return False
+
+    def is_flags(self, flag_type):
+        if flag_type in self.flags_types:
+            return True
+        return False
+
     # Return true if the enum or 64 bit pseudo enum passed-in represents a set
     # of bitwise flags.
     # Note, all 64 bit pseudo-enums represent flags since the only reason to go to
@@ -1413,3 +1444,37 @@ class BaseGenerator(OutputGenerator):
     def is_flags_enum_64bit(self, enum):
         flag_type = BitsEnumToFlagsTypedef(enum)
         return self.is_64bit_flags(flag_type)
+
+    # Test whether flags type has an associated set of flags defined by an enum.
+    # Many flags types are associated with reserved fields in structs which must
+    # be zero and those do not have an associated enum.
+    # suffix is EXT, KHR, AMD, ARM, etc.
+    def extension_flag_type_has_enum(self, flag_type, suffix):
+        return extension_flag_type_to_bits_enum(flag_type, suffix) in self.enum_names
+
+    # Checks whether the typedef of VkFlags or VkFlags64 passed in has an associated
+    # enum which defines the meaning of each bit position in the flags.
+    # Note, most of the vendor suffixes tested have no types defined yet, but if
+    # they ever do, this should handle them gracefully.
+    def flag_type_has_enum(self, flag_type):
+        return ((removesuffix(flag_type, 's') + 'Bits') in self.enum_names) \
+            or ((removesuffix(flag_type, 's2') + 'Bits2') in self.enum_names) \
+            or self.extension_flag_type_has_enum(flag_type, 'EXT') \
+            or self.extension_flag_type_has_enum(flag_type, 'KHR') \
+            or self.extension_flag_type_has_enum(flag_type, 'AMD') \
+            or self.extension_flag_type_has_enum(flag_type, 'ANDROID') \
+            or self.extension_flag_type_has_enum(flag_type, 'ARM') \
+            or self.extension_flag_type_has_enum(flag_type, 'FUCHSIA') \
+            or self.extension_flag_type_has_enum(flag_type, 'GGP') \
+            or self.extension_flag_type_has_enum(flag_type, 'GOOGLE') \
+            or self.extension_flag_type_has_enum(flag_type, 'HUAWEI') \
+            or self.extension_flag_type_has_enum(flag_type, 'IMG') \
+            or self.extension_flag_type_has_enum(flag_type, 'INTEL') \
+            or self.extension_flag_type_has_enum(flag_type, 'LUNARG') \
+            or self.extension_flag_type_has_enum(flag_type, 'NN') \
+            or self.extension_flag_type_has_enum(flag_type, 'NV') \
+            or self.extension_flag_type_has_enum(flag_type, 'NVX') \
+            or self.extension_flag_type_has_enum(flag_type, 'GCOM') \
+            or self.extension_flag_type_has_enum(flag_type, 'QNX') \
+            or self.extension_flag_type_has_enum(flag_type, 'SEC') \
+            or self.extension_flag_type_has_enum(flag_type, 'VALVE')

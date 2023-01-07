@@ -215,7 +215,13 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         toString = 'VkEnumArrayToString({1}, obj.{0})'
                     else:
                         # Pointer to array of anything else case can access the raw vulkan struct:
-                        toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        # Check whether we have a set of bit flags:
+                        if self.is_flags(value.base_type) and self.flag_type_has_enum(value.base_type):
+                            # Synthesize the name of the function to call for this set of flags:
+                            toString = 'ArrayToString({1}, obj.{0}, [](const {2} mask){{ return Quote({2}ToString(mask));}})'
+                        else:
+                            toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+
                 # Pointer, not array:
                 else:
                     if self.is_handle(value.base_type):
@@ -227,7 +233,14 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         toString = 'static_assert(false, "Unhandled pointer to VkEnum in `vulkan_struct_decoders_to_string_body_generator.py`")'
                     else:
                         # Pointer to single anything else case.
-                        toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "null")'
+                        # Check whether we have a set of bit flags:
+                        if self.is_flags(value.base_type) and self.flag_type_has_enum(value.base_type):
+                            # Synthesize the name of the function to call for this set of flags:
+                            # Note: never used as of 2023-01-07
+                            toString = '(obj.{0} ? Quote({2}ToString(mask)) : "null")'
+                        else:
+                            # ToDo: remove toStringFlags, tabCount, tabSize
+                            toString = '(obj.{0} ? ToString(*obj.{0}, toStringFlags, tabCount, tabSize) : "null")'
             # Not pointer:
             else:
                 if value.is_array:
@@ -249,7 +262,14 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         toString = 'Quote(UIDToString({1}, obj.{0}))'
                     else:
                         # Embedded array of misc other stuff (ints, masks, floats, etc.):
-                        toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        # Check whether we have a set of bit flags:
+                        if self.is_flags(value.base_type) and self.flag_type_has_enum(value.base_type):
+                            # Synthesize the name of the function to call for this set of flags:
+                            # Note, not used, only the pointer to array and scalar forms are used.
+                            toString = 'ArrayToString({1}, obj.{0}, [](const {2} mask){{ return Quote({2}ToString(mask));}})'
+                        else:
+                            toString = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
+                        
                 # Not pointer, not array:
                 else:
                     if self.is_handle(value.base_type):
@@ -261,13 +281,13 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
                         toString = 'Quote(ToString(obj.{0}))'
                     # Some simple scalar data like an int or a float, or a 32 bit or 64 bit flag set typedef:
                     else:
-                        # Check whether we have a set of 64 bit flags:
-                        if self.is_64bit_flags(value.base_type):
+                        # Check whether we have a set of bit flags:
+                        if self.is_flags(value.base_type) and self.flag_type_has_enum(value.base_type):
                             # Synthesize the name of the function to call for this set of flags:
                             toString = 'Quote({2}ToString(obj.{0}))'
-                        # ToDo: if self.is_32bit_flags(enum): dispatch the correct call to fix Issue #620
                         else:
                             toString = 'ToString(obj.{0}, toStringFlags, tabCount, tabSize)'
+                            # ToDo: Change to this shorter form: toString = 'ToString(obj.{0})'
 
             firstField = 'true' if not body else 'false'
 
@@ -276,7 +296,12 @@ class VulkanStructDecodersToStringBodyGenerator(BaseGenerator):
             if length_expr and ('value' in length_expr):
                 length_expr.replace('value', 'obj')
 
-            toString = toString.format(value.name, length_expr, value.base_type)
+            # translate typedefs:
+            base_type = value.base_type
+            if base_type == 'VkBuildAccelerationStructureFlagsNV':
+                base_type = 'VkBuildAccelerationStructureFlagsKHR'
+
+            toString = toString.format(value.name, length_expr, base_type)
             body += '            FieldToString(strStrm, {0}, "{1}", toStringFlags, tabCount, tabSize, {2});\n'.format(firstField, value.name, toString)
         return body
     # yapf: enable

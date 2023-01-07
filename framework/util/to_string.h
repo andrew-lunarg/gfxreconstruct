@@ -168,19 +168,38 @@ inline std::string ArrayToString(size_t                    count,
         return "null";
     }
 
-    std::stringstream strStrm;
+    std::ostringstream strStrm;
     strStrm << '[';
-    strStrm << GetNewlineString(toStringFlags);
     for (uint32_t i = 0; i < count; ++i)
     {
         if (i)
         {
-            strStrm << ',' << GetNewlineString(toStringFlags);
+            strStrm << ',';
         }
-        strStrm << GetTabString(toStringFlags, tabCount + 1, tabSize);
         strStrm << toStringFunction(i);
     }
-    strStrm << GetNewlineString(toStringFlags) << GetTabString(toStringFlags, tabCount, tabSize);
+    strStrm << ']';
+    return strStrm.str();
+}
+
+template <typename ObjectType, typename ToStringFunctionType>
+inline std::string ArrayToString(size_t count, const ObjectType* pObjs, ToStringFunctionType toStringFunction)
+{
+    if (!(count && (pObjs != nullptr)))
+    {
+        return "null";
+    }
+
+    std::ostringstream strStrm;
+    strStrm << '[';
+    for (uint32_t i = 0; i < count; ++i)
+    {
+        if (i)
+        {
+            strStrm << ',';
+        }
+        strStrm << toStringFunction(i);
+    }
     strStrm << ']';
     return strStrm.str();
 }
