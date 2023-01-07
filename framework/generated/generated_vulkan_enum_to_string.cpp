@@ -65,10 +65,11 @@ std::string ToString(const VkAccessFlagBits& value)
     case VK_ACCESS_COMMAND_PREPROCESS_WRITE_BIT_NV: return "VK_ACCESS_COMMAND_PREPROCESS_WRITE_BIT_NV";
     default: break;
     }
-    return "Unhandled VkAccessFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkAccessFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkAccessFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkAccessFlagsToString(const VkAccessFlags vkFlags)
 {
     return BitmaskToString<VkAccessFlagBits>(vkFlags);
 }
@@ -79,10 +80,11 @@ std::string ToString(const VkAttachmentDescriptionFlagBits& value)
     case VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT: return "VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT";
     default: break;
     }
-    return "Unhandled VkAttachmentDescriptionFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkAttachmentDescriptionFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkAttachmentDescriptionFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkAttachmentDescriptionFlagsToString(const VkAttachmentDescriptionFlags vkFlags)
 {
     return BitmaskToString<VkAttachmentDescriptionFlagBits>(vkFlags);
 }
@@ -96,7 +98,8 @@ std::string ToString(const VkAttachmentLoadOp& value)
     case VK_ATTACHMENT_LOAD_OP_NONE_EXT: return "VK_ATTACHMENT_LOAD_OP_NONE_EXT";
     default: break;
     }
-    return "Unhandled VkAttachmentLoadOp";
+    if(value  == 0) return "0";
+    return "Unhandled VkAttachmentLoadOp: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkAttachmentStoreOp& value)
@@ -107,7 +110,8 @@ std::string ToString(const VkAttachmentStoreOp& value)
     case VK_ATTACHMENT_STORE_OP_NONE: return "VK_ATTACHMENT_STORE_OP_NONE";
     default: break;
     }
-    return "Unhandled VkAttachmentStoreOp";
+    if(value  == 0) return "0";
+    return "Unhandled VkAttachmentStoreOp: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkBlendFactor& value)
@@ -134,7 +138,8 @@ std::string ToString(const VkBlendFactor& value)
     case VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA: return "VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA";
     default: break;
     }
-    return "Unhandled VkBlendFactor";
+    if(value  == 0) return "0";
+    return "Unhandled VkBlendFactor: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkBlendOp& value)
@@ -193,7 +198,8 @@ std::string ToString(const VkBlendOp& value)
     case VK_BLEND_OP_BLUE_EXT: return "VK_BLEND_OP_BLUE_EXT";
     default: break;
     }
-    return "Unhandled VkBlendOp";
+    if(value  == 0) return "0";
+    return "Unhandled VkBlendOp: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkBorderColor& value)
@@ -209,7 +215,8 @@ std::string ToString(const VkBorderColor& value)
     case VK_BORDER_COLOR_INT_CUSTOM_EXT: return "VK_BORDER_COLOR_INT_CUSTOM_EXT";
     default: break;
     }
-    return "Unhandled VkBorderColor";
+    if(value  == 0) return "0";
+    return "Unhandled VkBorderColor: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkBufferCreateFlagBits& value)
@@ -223,10 +230,11 @@ std::string ToString(const VkBufferCreateFlagBits& value)
     case VK_BUFFER_CREATE_DESCRIPTOR_BUFFER_CAPTURE_REPLAY_BIT_EXT: return "VK_BUFFER_CREATE_DESCRIPTOR_BUFFER_CAPTURE_REPLAY_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkBufferCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkBufferCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkBufferCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkBufferCreateFlagsToString(const VkBufferCreateFlags vkFlags)
 {
     return BitmaskToString<VkBufferCreateFlagBits>(vkFlags);
 }
@@ -261,10 +269,11 @@ std::string ToString(const VkBufferUsageFlagBits& value)
     case VK_BUFFER_USAGE_MICROMAP_STORAGE_BIT_EXT: return "VK_BUFFER_USAGE_MICROMAP_STORAGE_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkBufferUsageFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkBufferUsageFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkBufferUsageFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkBufferUsageFlagsToString(const VkBufferUsageFlags vkFlags)
 {
     return BitmaskToString<VkBufferUsageFlagBits>(vkFlags);
 }
@@ -278,10 +287,11 @@ std::string ToString(const VkColorComponentFlagBits& value)
     case VK_COLOR_COMPONENT_A_BIT: return "VK_COLOR_COMPONENT_A_BIT";
     default: break;
     }
-    return "Unhandled VkColorComponentFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkColorComponentFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkColorComponentFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkColorComponentFlagsToString(const VkColorComponentFlags vkFlags)
 {
     return BitmaskToString<VkColorComponentFlagBits>(vkFlags);
 }
@@ -293,7 +303,8 @@ std::string ToString(const VkCommandBufferLevel& value)
     case VK_COMMAND_BUFFER_LEVEL_SECONDARY: return "VK_COMMAND_BUFFER_LEVEL_SECONDARY";
     default: break;
     }
-    return "Unhandled VkCommandBufferLevel";
+    if(value  == 0) return "0";
+    return "Unhandled VkCommandBufferLevel: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkCommandBufferResetFlagBits& value)
@@ -302,10 +313,11 @@ std::string ToString(const VkCommandBufferResetFlagBits& value)
     case VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT: return "VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT";
     default: break;
     }
-    return "Unhandled VkCommandBufferResetFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkCommandBufferResetFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkCommandBufferResetFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkCommandBufferResetFlagsToString(const VkCommandBufferResetFlags vkFlags)
 {
     return BitmaskToString<VkCommandBufferResetFlagBits>(vkFlags);
 }
@@ -318,10 +330,11 @@ std::string ToString(const VkCommandBufferUsageFlagBits& value)
     case VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT: return "VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT";
     default: break;
     }
-    return "Unhandled VkCommandBufferUsageFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkCommandBufferUsageFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkCommandBufferUsageFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkCommandBufferUsageFlagsToString(const VkCommandBufferUsageFlags vkFlags)
 {
     return BitmaskToString<VkCommandBufferUsageFlagBits>(vkFlags);
 }
@@ -334,10 +347,11 @@ std::string ToString(const VkCommandPoolCreateFlagBits& value)
     case VK_COMMAND_POOL_CREATE_PROTECTED_BIT: return "VK_COMMAND_POOL_CREATE_PROTECTED_BIT";
     default: break;
     }
-    return "Unhandled VkCommandPoolCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkCommandPoolCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkCommandPoolCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkCommandPoolCreateFlagsToString(const VkCommandPoolCreateFlags vkFlags)
 {
     return BitmaskToString<VkCommandPoolCreateFlagBits>(vkFlags);
 }
@@ -348,10 +362,11 @@ std::string ToString(const VkCommandPoolResetFlagBits& value)
     case VK_COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT: return "VK_COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT";
     default: break;
     }
-    return "Unhandled VkCommandPoolResetFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkCommandPoolResetFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkCommandPoolResetFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkCommandPoolResetFlagsToString(const VkCommandPoolResetFlags vkFlags)
 {
     return BitmaskToString<VkCommandPoolResetFlagBits>(vkFlags);
 }
@@ -369,7 +384,8 @@ std::string ToString(const VkCompareOp& value)
     case VK_COMPARE_OP_ALWAYS: return "VK_COMPARE_OP_ALWAYS";
     default: break;
     }
-    return "Unhandled VkCompareOp";
+    if(value  == 0) return "0";
+    return "Unhandled VkCompareOp: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkComponentSwizzle& value)
@@ -384,7 +400,8 @@ std::string ToString(const VkComponentSwizzle& value)
     case VK_COMPONENT_SWIZZLE_A: return "VK_COMPONENT_SWIZZLE_A";
     default: break;
     }
-    return "Unhandled VkComponentSwizzle";
+    if(value  == 0) return "0";
+    return "Unhandled VkComponentSwizzle: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkCullModeFlagBits& value)
@@ -396,10 +413,11 @@ std::string ToString(const VkCullModeFlagBits& value)
     case VK_CULL_MODE_FRONT_AND_BACK: return "VK_CULL_MODE_FRONT_AND_BACK";
     default: break;
     }
-    return "Unhandled VkCullModeFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkCullModeFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkCullModeFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkCullModeFlagsToString(const VkCullModeFlags vkFlags)
 {
     return BitmaskToString<VkCullModeFlagBits>(vkFlags);
 }
@@ -413,10 +431,11 @@ std::string ToString(const VkDependencyFlagBits& value)
     case VK_DEPENDENCY_FEEDBACK_LOOP_BIT_EXT: return "VK_DEPENDENCY_FEEDBACK_LOOP_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkDependencyFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkDependencyFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkDependencyFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkDependencyFlagsToString(const VkDependencyFlags vkFlags)
 {
     return BitmaskToString<VkDependencyFlagBits>(vkFlags);
 }
@@ -429,10 +448,11 @@ std::string ToString(const VkDescriptorPoolCreateFlagBits& value)
     case VK_DESCRIPTOR_POOL_CREATE_HOST_ONLY_BIT_EXT: return "VK_DESCRIPTOR_POOL_CREATE_HOST_ONLY_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkDescriptorPoolCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkDescriptorPoolCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkDescriptorPoolCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkDescriptorPoolCreateFlagsToString(const VkDescriptorPoolCreateFlags vkFlags)
 {
     return BitmaskToString<VkDescriptorPoolCreateFlagBits>(vkFlags);
 }
@@ -447,10 +467,11 @@ std::string ToString(const VkDescriptorSetLayoutCreateFlagBits& value)
     case VK_DESCRIPTOR_SET_LAYOUT_CREATE_HOST_ONLY_POOL_BIT_EXT: return "VK_DESCRIPTOR_SET_LAYOUT_CREATE_HOST_ONLY_POOL_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkDescriptorSetLayoutCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkDescriptorSetLayoutCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkDescriptorSetLayoutCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkDescriptorSetLayoutCreateFlagsToString(const VkDescriptorSetLayoutCreateFlags vkFlags)
 {
     return BitmaskToString<VkDescriptorSetLayoutCreateFlagBits>(vkFlags);
 }
@@ -477,7 +498,8 @@ std::string ToString(const VkDescriptorType& value)
     case VK_DESCRIPTOR_TYPE_MUTABLE_EXT: return "VK_DESCRIPTOR_TYPE_MUTABLE_EXT";
     default: break;
     }
-    return "Unhandled VkDescriptorType";
+    if(value  == 0) return "0";
+    return "Unhandled VkDescriptorType: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkDeviceQueueCreateFlagBits& value)
@@ -486,10 +508,11 @@ std::string ToString(const VkDeviceQueueCreateFlagBits& value)
     case VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT: return "VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT";
     default: break;
     }
-    return "Unhandled VkDeviceQueueCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkDeviceQueueCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkDeviceQueueCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkDeviceQueueCreateFlagsToString(const VkDeviceQueueCreateFlags vkFlags)
 {
     return BitmaskToString<VkDeviceQueueCreateFlagBits>(vkFlags);
 }
@@ -567,7 +590,8 @@ std::string ToString(const VkDynamicState& value)
     case VK_DYNAMIC_STATE_COVERAGE_REDUCTION_MODE_NV: return "VK_DYNAMIC_STATE_COVERAGE_REDUCTION_MODE_NV";
     default: break;
     }
-    return "Unhandled VkDynamicState";
+    if(value  == 0) return "0";
+    return "Unhandled VkDynamicState: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkEventCreateFlagBits& value)
@@ -576,10 +600,11 @@ std::string ToString(const VkEventCreateFlagBits& value)
     case VK_EVENT_CREATE_DEVICE_ONLY_BIT: return "VK_EVENT_CREATE_DEVICE_ONLY_BIT";
     default: break;
     }
-    return "Unhandled VkEventCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkEventCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkEventCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkEventCreateFlagsToString(const VkEventCreateFlags vkFlags)
 {
     return BitmaskToString<VkEventCreateFlagBits>(vkFlags);
 }
@@ -590,10 +615,11 @@ std::string ToString(const VkFenceCreateFlagBits& value)
     case VK_FENCE_CREATE_SIGNALED_BIT: return "VK_FENCE_CREATE_SIGNALED_BIT";
     default: break;
     }
-    return "Unhandled VkFenceCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkFenceCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkFenceCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkFenceCreateFlagsToString(const VkFenceCreateFlags vkFlags)
 {
     return BitmaskToString<VkFenceCreateFlagBits>(vkFlags);
 }
@@ -606,7 +632,8 @@ std::string ToString(const VkFilter& value)
     case VK_FILTER_CUBIC_EXT: return "VK_FILTER_CUBIC_EXT";
     default: break;
     }
-    return "Unhandled VkFilter";
+    if(value  == 0) return "0";
+    return "Unhandled VkFilter: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkFormat& value)
@@ -862,7 +889,8 @@ std::string ToString(const VkFormat& value)
     case VK_FORMAT_R16G16_S10_5_NV: return "VK_FORMAT_R16G16_S10_5_NV";
     default: break;
     }
-    return "Unhandled VkFormat";
+    if(value  == 0) return "0";
+    return "Unhandled VkFormat: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkFormatFeatureFlagBits& value)
@@ -901,10 +929,11 @@ std::string ToString(const VkFormatFeatureFlagBits& value)
     case VK_FORMAT_FEATURE_VIDEO_ENCODE_DPB_BIT_KHR: return "VK_FORMAT_FEATURE_VIDEO_ENCODE_DPB_BIT_KHR";
     default: break;
     }
-    return "Unhandled VkFormatFeatureFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkFormatFeatureFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkFormatFeatureFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkFormatFeatureFlagsToString(const VkFormatFeatureFlags vkFlags)
 {
     return BitmaskToString<VkFormatFeatureFlagBits>(vkFlags);
 }
@@ -915,10 +944,11 @@ std::string ToString(const VkFramebufferCreateFlagBits& value)
     case VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT: return "VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT";
     default: break;
     }
-    return "Unhandled VkFramebufferCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkFramebufferCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkFramebufferCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkFramebufferCreateFlagsToString(const VkFramebufferCreateFlags vkFlags)
 {
     return BitmaskToString<VkFramebufferCreateFlagBits>(vkFlags);
 }
@@ -930,7 +960,8 @@ std::string ToString(const VkFrontFace& value)
     case VK_FRONT_FACE_CLOCKWISE: return "VK_FRONT_FACE_CLOCKWISE";
     default: break;
     }
-    return "Unhandled VkFrontFace";
+    if(value  == 0) return "0";
+    return "Unhandled VkFrontFace: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkImageAspectFlagBits& value)
@@ -950,10 +981,11 @@ std::string ToString(const VkImageAspectFlagBits& value)
     case VK_IMAGE_ASPECT_MEMORY_PLANE_3_BIT_EXT: return "VK_IMAGE_ASPECT_MEMORY_PLANE_3_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkImageAspectFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkImageAspectFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkImageAspectFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkImageAspectFlagsToString(const VkImageAspectFlags vkFlags)
 {
     return BitmaskToString<VkImageAspectFlagBits>(vkFlags);
 }
@@ -982,10 +1014,11 @@ std::string ToString(const VkImageCreateFlagBits& value)
     case VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM: return "VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM";
     default: break;
     }
-    return "Unhandled VkImageCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkImageCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkImageCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkImageCreateFlagsToString(const VkImageCreateFlags vkFlags)
 {
     return BitmaskToString<VkImageCreateFlagBits>(vkFlags);
 }
@@ -1023,7 +1056,8 @@ std::string ToString(const VkImageLayout& value)
     case VK_IMAGE_LAYOUT_ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT: return "VK_IMAGE_LAYOUT_ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT";
     default: break;
     }
-    return "Unhandled VkImageLayout";
+    if(value  == 0) return "0";
+    return "Unhandled VkImageLayout: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkImageTiling& value)
@@ -1034,7 +1068,8 @@ std::string ToString(const VkImageTiling& value)
     case VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT: return "VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT";
     default: break;
     }
-    return "Unhandled VkImageTiling";
+    if(value  == 0) return "0";
+    return "Unhandled VkImageTiling: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkImageType& value)
@@ -1045,7 +1080,8 @@ std::string ToString(const VkImageType& value)
     case VK_IMAGE_TYPE_3D: return "VK_IMAGE_TYPE_3D";
     default: break;
     }
-    return "Unhandled VkImageType";
+    if(value  == 0) return "0";
+    return "Unhandled VkImageType: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkImageUsageFlagBits& value)
@@ -1073,10 +1109,11 @@ std::string ToString(const VkImageUsageFlagBits& value)
     case VK_IMAGE_USAGE_SAMPLE_BLOCK_MATCH_BIT_QCOM: return "VK_IMAGE_USAGE_SAMPLE_BLOCK_MATCH_BIT_QCOM";
     default: break;
     }
-    return "Unhandled VkImageUsageFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkImageUsageFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkImageUsageFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkImageUsageFlagsToString(const VkImageUsageFlags vkFlags)
 {
     return BitmaskToString<VkImageUsageFlagBits>(vkFlags);
 }
@@ -1089,10 +1126,11 @@ std::string ToString(const VkImageViewCreateFlagBits& value)
     case VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DEFERRED_BIT_EXT: return "VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DEFERRED_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkImageViewCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkImageViewCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkImageViewCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkImageViewCreateFlagsToString(const VkImageViewCreateFlags vkFlags)
 {
     return BitmaskToString<VkImageViewCreateFlagBits>(vkFlags);
 }
@@ -1109,7 +1147,8 @@ std::string ToString(const VkImageViewType& value)
     case VK_IMAGE_VIEW_TYPE_CUBE_ARRAY: return "VK_IMAGE_VIEW_TYPE_CUBE_ARRAY";
     default: break;
     }
-    return "Unhandled VkImageViewType";
+    if(value  == 0) return "0";
+    return "Unhandled VkImageViewType: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkIndexType& value)
@@ -1121,7 +1160,8 @@ std::string ToString(const VkIndexType& value)
     case VK_INDEX_TYPE_UINT8_EXT: return "VK_INDEX_TYPE_UINT8_EXT";
     default: break;
     }
-    return "Unhandled VkIndexType";
+    if(value  == 0) return "0";
+    return "Unhandled VkIndexType: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkInstanceCreateFlagBits& value)
@@ -1130,10 +1170,11 @@ std::string ToString(const VkInstanceCreateFlagBits& value)
     case VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR: return "VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR";
     default: break;
     }
-    return "Unhandled VkInstanceCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkInstanceCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkInstanceCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkInstanceCreateFlagsToString(const VkInstanceCreateFlags vkFlags)
 {
     return BitmaskToString<VkInstanceCreateFlagBits>(vkFlags);
 }
@@ -1144,7 +1185,8 @@ std::string ToString(const VkInternalAllocationType& value)
     case VK_INTERNAL_ALLOCATION_TYPE_EXECUTABLE: return "VK_INTERNAL_ALLOCATION_TYPE_EXECUTABLE";
     default: break;
     }
-    return "Unhandled VkInternalAllocationType";
+    if(value  == 0) return "0";
+    return "Unhandled VkInternalAllocationType: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkLogicOp& value)
@@ -1168,7 +1210,8 @@ std::string ToString(const VkLogicOp& value)
     case VK_LOGIC_OP_SET: return "VK_LOGIC_OP_SET";
     default: break;
     }
-    return "Unhandled VkLogicOp";
+    if(value  == 0) return "0";
+    return "Unhandled VkLogicOp: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkMemoryHeapFlagBits& value)
@@ -1178,10 +1221,11 @@ std::string ToString(const VkMemoryHeapFlagBits& value)
     case VK_MEMORY_HEAP_MULTI_INSTANCE_BIT: return "VK_MEMORY_HEAP_MULTI_INSTANCE_BIT";
     default: break;
     }
-    return "Unhandled VkMemoryHeapFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkMemoryHeapFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkMemoryHeapFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkMemoryHeapFlagsToString(const VkMemoryHeapFlags vkFlags)
 {
     return BitmaskToString<VkMemoryHeapFlagBits>(vkFlags);
 }
@@ -1200,10 +1244,11 @@ std::string ToString(const VkMemoryPropertyFlagBits& value)
     case VK_MEMORY_PROPERTY_RDMA_CAPABLE_BIT_NV: return "VK_MEMORY_PROPERTY_RDMA_CAPABLE_BIT_NV";
     default: break;
     }
-    return "Unhandled VkMemoryPropertyFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkMemoryPropertyFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkMemoryPropertyFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkMemoryPropertyFlagsToString(const VkMemoryPropertyFlags vkFlags)
 {
     return BitmaskToString<VkMemoryPropertyFlagBits>(vkFlags);
 }
@@ -1261,7 +1306,8 @@ std::string ToString(const VkObjectType& value)
     case VK_OBJECT_TYPE_OPTICAL_FLOW_SESSION_NV: return "VK_OBJECT_TYPE_OPTICAL_FLOW_SESSION_NV";
     default: break;
     }
-    return "Unhandled VkObjectType";
+    if(value  == 0) return "0";
+    return "Unhandled VkObjectType: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPhysicalDeviceType& value)
@@ -1274,7 +1320,8 @@ std::string ToString(const VkPhysicalDeviceType& value)
     case VK_PHYSICAL_DEVICE_TYPE_CPU: return "VK_PHYSICAL_DEVICE_TYPE_CPU";
     default: break;
     }
-    return "Unhandled VkPhysicalDeviceType";
+    if(value  == 0) return "0";
+    return "Unhandled VkPhysicalDeviceType: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPipelineBindPoint& value)
@@ -1286,7 +1333,8 @@ std::string ToString(const VkPipelineBindPoint& value)
     case VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI: return "VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI";
     default: break;
     }
-    return "Unhandled VkPipelineBindPoint";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineBindPoint: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPipelineCacheCreateFlagBits& value)
@@ -1295,10 +1343,11 @@ std::string ToString(const VkPipelineCacheCreateFlagBits& value)
     case VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT: return "VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT";
     default: break;
     }
-    return "Unhandled VkPipelineCacheCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineCacheCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkPipelineCacheCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkPipelineCacheCreateFlagsToString(const VkPipelineCacheCreateFlags vkFlags)
 {
     return BitmaskToString<VkPipelineCacheCreateFlagBits>(vkFlags);
 }
@@ -1309,7 +1358,8 @@ std::string ToString(const VkPipelineCacheHeaderVersion& value)
     case VK_PIPELINE_CACHE_HEADER_VERSION_ONE: return "VK_PIPELINE_CACHE_HEADER_VERSION_ONE";
     default: break;
     }
-    return "Unhandled VkPipelineCacheHeaderVersion";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineCacheHeaderVersion: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPipelineColorBlendStateCreateFlagBits& value)
@@ -1318,10 +1368,11 @@ std::string ToString(const VkPipelineColorBlendStateCreateFlagBits& value)
     case VK_PIPELINE_COLOR_BLEND_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_BIT_EXT: return "VK_PIPELINE_COLOR_BLEND_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkPipelineColorBlendStateCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineColorBlendStateCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkPipelineColorBlendStateCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkPipelineColorBlendStateCreateFlagsToString(const VkPipelineColorBlendStateCreateFlags vkFlags)
 {
     return BitmaskToString<VkPipelineColorBlendStateCreateFlagBits>(vkFlags);
 }
@@ -1361,10 +1412,11 @@ std::string ToString(const VkPipelineCreateFlagBits& value)
     case VK_PIPELINE_CREATE_PROTECTED_ACCESS_ONLY_BIT_EXT: return "VK_PIPELINE_CREATE_PROTECTED_ACCESS_ONLY_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkPipelineCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkPipelineCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkPipelineCreateFlagsToString(const VkPipelineCreateFlags vkFlags)
 {
     return BitmaskToString<VkPipelineCreateFlagBits>(vkFlags);
 }
@@ -1376,10 +1428,11 @@ std::string ToString(const VkPipelineDepthStencilStateCreateFlagBits& value)
     case VK_PIPELINE_DEPTH_STENCIL_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_BIT_EXT: return "VK_PIPELINE_DEPTH_STENCIL_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkPipelineDepthStencilStateCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineDepthStencilStateCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkPipelineDepthStencilStateCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkPipelineDepthStencilStateCreateFlagsToString(const VkPipelineDepthStencilStateCreateFlags vkFlags)
 {
     return BitmaskToString<VkPipelineDepthStencilStateCreateFlagBits>(vkFlags);
 }
@@ -1390,10 +1443,11 @@ std::string ToString(const VkPipelineLayoutCreateFlagBits& value)
     case VK_PIPELINE_LAYOUT_CREATE_INDEPENDENT_SETS_BIT_EXT: return "VK_PIPELINE_LAYOUT_CREATE_INDEPENDENT_SETS_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkPipelineLayoutCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineLayoutCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkPipelineLayoutCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkPipelineLayoutCreateFlagsToString(const VkPipelineLayoutCreateFlags vkFlags)
 {
     return BitmaskToString<VkPipelineLayoutCreateFlagBits>(vkFlags);
 }
@@ -1405,10 +1459,11 @@ std::string ToString(const VkPipelineShaderStageCreateFlagBits& value)
     case VK_PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT: return "VK_PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT";
     default: break;
     }
-    return "Unhandled VkPipelineShaderStageCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineShaderStageCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkPipelineShaderStageCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkPipelineShaderStageCreateFlagsToString(const VkPipelineShaderStageCreateFlags vkFlags)
 {
     return BitmaskToString<VkPipelineShaderStageCreateFlagBits>(vkFlags);
 }
@@ -1445,10 +1500,11 @@ std::string ToString(const VkPipelineStageFlagBits& value)
     case VK_PIPELINE_STAGE_MESH_SHADER_BIT_EXT: return "VK_PIPELINE_STAGE_MESH_SHADER_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkPipelineStageFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineStageFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkPipelineStageFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkPipelineStageFlagsToString(const VkPipelineStageFlags vkFlags)
 {
     return BitmaskToString<VkPipelineStageFlagBits>(vkFlags);
 }
@@ -1462,7 +1518,8 @@ std::string ToString(const VkPolygonMode& value)
     case VK_POLYGON_MODE_FILL_RECTANGLE_NV: return "VK_POLYGON_MODE_FILL_RECTANGLE_NV";
     default: break;
     }
-    return "Unhandled VkPolygonMode";
+    if(value  == 0) return "0";
+    return "Unhandled VkPolygonMode: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPrimitiveTopology& value)
@@ -1481,7 +1538,8 @@ std::string ToString(const VkPrimitiveTopology& value)
     case VK_PRIMITIVE_TOPOLOGY_PATCH_LIST: return "VK_PRIMITIVE_TOPOLOGY_PATCH_LIST";
     default: break;
     }
-    return "Unhandled VkPrimitiveTopology";
+    if(value  == 0) return "0";
+    return "Unhandled VkPrimitiveTopology: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkQueryControlFlagBits& value)
@@ -1490,10 +1548,11 @@ std::string ToString(const VkQueryControlFlagBits& value)
     case VK_QUERY_CONTROL_PRECISE_BIT: return "VK_QUERY_CONTROL_PRECISE_BIT";
     default: break;
     }
-    return "Unhandled VkQueryControlFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkQueryControlFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkQueryControlFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkQueryControlFlagsToString(const VkQueryControlFlags vkFlags)
 {
     return BitmaskToString<VkQueryControlFlagBits>(vkFlags);
 }
@@ -1516,10 +1575,11 @@ std::string ToString(const VkQueryPipelineStatisticFlagBits& value)
     case VK_QUERY_PIPELINE_STATISTIC_MESH_SHADER_INVOCATIONS_BIT_EXT: return "VK_QUERY_PIPELINE_STATISTIC_MESH_SHADER_INVOCATIONS_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkQueryPipelineStatisticFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkQueryPipelineStatisticFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkQueryPipelineStatisticFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkQueryPipelineStatisticFlagsToString(const VkQueryPipelineStatisticFlags vkFlags)
 {
     return BitmaskToString<VkQueryPipelineStatisticFlagBits>(vkFlags);
 }
@@ -1534,10 +1594,11 @@ std::string ToString(const VkQueryResultFlagBits& value)
     case VK_QUERY_RESULT_WITH_STATUS_BIT_KHR: return "VK_QUERY_RESULT_WITH_STATUS_BIT_KHR";
     default: break;
     }
-    return "Unhandled VkQueryResultFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkQueryResultFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkQueryResultFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkQueryResultFlagsToString(const VkQueryResultFlags vkFlags)
 {
     return BitmaskToString<VkQueryResultFlagBits>(vkFlags);
 }
@@ -1564,7 +1625,8 @@ std::string ToString(const VkQueryType& value)
     case VK_QUERY_TYPE_MICROMAP_COMPACTED_SIZE_EXT: return "VK_QUERY_TYPE_MICROMAP_COMPACTED_SIZE_EXT";
     default: break;
     }
-    return "Unhandled VkQueryType";
+    if(value  == 0) return "0";
+    return "Unhandled VkQueryType: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkQueueFlagBits& value)
@@ -1580,10 +1642,11 @@ std::string ToString(const VkQueueFlagBits& value)
     case VK_QUEUE_OPTICAL_FLOW_BIT_NV: return "VK_QUEUE_OPTICAL_FLOW_BIT_NV";
     default: break;
     }
-    return "Unhandled VkQueueFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkQueueFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkQueueFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkQueueFlagsToString(const VkQueueFlags vkFlags)
 {
     return BitmaskToString<VkQueueFlagBits>(vkFlags);
 }
@@ -1594,10 +1657,11 @@ std::string ToString(const VkRenderPassCreateFlagBits& value)
     case VK_RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM: return "VK_RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM";
     default: break;
     }
-    return "Unhandled VkRenderPassCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkRenderPassCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkRenderPassCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkRenderPassCreateFlagsToString(const VkRenderPassCreateFlags vkFlags)
 {
     return BitmaskToString<VkRenderPassCreateFlagBits>(vkFlags);
 }
@@ -1652,7 +1716,8 @@ std::string ToString(const VkResult& value)
     case VK_ERROR_COMPRESSION_EXHAUSTED_EXT: return "VK_ERROR_COMPRESSION_EXHAUSTED_EXT";
     default: break;
     }
-    return "Unhandled VkResult";
+    if(value  == 0) return "0";
+    return "Unhandled VkResult: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkSampleCountFlagBits& value)
@@ -1667,10 +1732,11 @@ std::string ToString(const VkSampleCountFlagBits& value)
     case VK_SAMPLE_COUNT_64_BIT: return "VK_SAMPLE_COUNT_64_BIT";
     default: break;
     }
-    return "Unhandled VkSampleCountFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkSampleCountFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkSampleCountFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkSampleCountFlagsToString(const VkSampleCountFlags vkFlags)
 {
     return BitmaskToString<VkSampleCountFlagBits>(vkFlags);
 }
@@ -1685,7 +1751,8 @@ std::string ToString(const VkSamplerAddressMode& value)
     case VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE: return "VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE";
     default: break;
     }
-    return "Unhandled VkSamplerAddressMode";
+    if(value  == 0) return "0";
+    return "Unhandled VkSamplerAddressMode: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkSamplerCreateFlagBits& value)
@@ -1698,10 +1765,11 @@ std::string ToString(const VkSamplerCreateFlagBits& value)
     case VK_SAMPLER_CREATE_IMAGE_PROCESSING_BIT_QCOM: return "VK_SAMPLER_CREATE_IMAGE_PROCESSING_BIT_QCOM";
     default: break;
     }
-    return "Unhandled VkSamplerCreateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkSamplerCreateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkSamplerCreateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkSamplerCreateFlagsToString(const VkSamplerCreateFlags vkFlags)
 {
     return BitmaskToString<VkSamplerCreateFlagBits>(vkFlags);
 }
@@ -1713,7 +1781,8 @@ std::string ToString(const VkSamplerMipmapMode& value)
     case VK_SAMPLER_MIPMAP_MODE_LINEAR: return "VK_SAMPLER_MIPMAP_MODE_LINEAR";
     default: break;
     }
-    return "Unhandled VkSamplerMipmapMode";
+    if(value  == 0) return "0";
+    return "Unhandled VkSamplerMipmapMode: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkShaderStageFlagBits& value)
@@ -1738,10 +1807,11 @@ std::string ToString(const VkShaderStageFlagBits& value)
     case VK_SHADER_STAGE_SUBPASS_SHADING_BIT_HUAWEI: return "VK_SHADER_STAGE_SUBPASS_SHADING_BIT_HUAWEI";
     default: break;
     }
-    return "Unhandled VkShaderStageFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkShaderStageFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkShaderStageFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkShaderStageFlagsToString(const VkShaderStageFlags vkFlags)
 {
     return BitmaskToString<VkShaderStageFlagBits>(vkFlags);
 }
@@ -1753,7 +1823,8 @@ std::string ToString(const VkSharingMode& value)
     case VK_SHARING_MODE_CONCURRENT: return "VK_SHARING_MODE_CONCURRENT";
     default: break;
     }
-    return "Unhandled VkSharingMode";
+    if(value  == 0) return "0";
+    return "Unhandled VkSharingMode: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkSparseImageFormatFlagBits& value)
@@ -1764,10 +1835,11 @@ std::string ToString(const VkSparseImageFormatFlagBits& value)
     case VK_SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT: return "VK_SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT";
     default: break;
     }
-    return "Unhandled VkSparseImageFormatFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkSparseImageFormatFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkSparseImageFormatFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkSparseImageFormatFlagsToString(const VkSparseImageFormatFlags vkFlags)
 {
     return BitmaskToString<VkSparseImageFormatFlagBits>(vkFlags);
 }
@@ -1778,10 +1850,11 @@ std::string ToString(const VkSparseMemoryBindFlagBits& value)
     case VK_SPARSE_MEMORY_BIND_METADATA_BIT: return "VK_SPARSE_MEMORY_BIND_METADATA_BIT";
     default: break;
     }
-    return "Unhandled VkSparseMemoryBindFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkSparseMemoryBindFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkSparseMemoryBindFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkSparseMemoryBindFlagsToString(const VkSparseMemoryBindFlags vkFlags)
 {
     return BitmaskToString<VkSparseMemoryBindFlagBits>(vkFlags);
 }
@@ -1794,10 +1867,11 @@ std::string ToString(const VkStencilFaceFlagBits& value)
     case VK_STENCIL_FACE_FRONT_AND_BACK: return "VK_STENCIL_FACE_FRONT_AND_BACK";
     default: break;
     }
-    return "Unhandled VkStencilFaceFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkStencilFaceFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkStencilFaceFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkStencilFaceFlagsToString(const VkStencilFaceFlags vkFlags)
 {
     return BitmaskToString<VkStencilFaceFlagBits>(vkFlags);
 }
@@ -1815,7 +1889,8 @@ std::string ToString(const VkStencilOp& value)
     case VK_STENCIL_OP_DECREMENT_AND_WRAP: return "VK_STENCIL_OP_DECREMENT_AND_WRAP";
     default: break;
     }
-    return "Unhandled VkStencilOp";
+    if(value  == 0) return "0";
+    return "Unhandled VkStencilOp: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkStructureType& value)
@@ -2561,7 +2636,8 @@ std::string ToString(const VkStructureType& value)
     case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_BUILTINS_PROPERTIES_ARM: return "VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_BUILTINS_PROPERTIES_ARM";
     default: break;
     }
-    return "Unhandled VkStructureType";
+    if(value  == 0) return "0";
+    return "Unhandled VkStructureType: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkSubpassContents& value)
@@ -2571,7 +2647,8 @@ std::string ToString(const VkSubpassContents& value)
     case VK_SUBPASS_CONTENTS_SECONDARY_COMMAND_BUFFERS: return "VK_SUBPASS_CONTENTS_SECONDARY_COMMAND_BUFFERS";
     default: break;
     }
-    return "Unhandled VkSubpassContents";
+    if(value  == 0) return "0";
+    return "Unhandled VkSubpassContents: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkSubpassDescriptionFlagBits& value)
@@ -2587,10 +2664,11 @@ std::string ToString(const VkSubpassDescriptionFlagBits& value)
     case VK_SUBPASS_DESCRIPTION_ENABLE_LEGACY_DITHERING_BIT_EXT: return "VK_SUBPASS_DESCRIPTION_ENABLE_LEGACY_DITHERING_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkSubpassDescriptionFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkSubpassDescriptionFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkSubpassDescriptionFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkSubpassDescriptionFlagsToString(const VkSubpassDescriptionFlags vkFlags)
 {
     return BitmaskToString<VkSubpassDescriptionFlagBits>(vkFlags);
 }
@@ -2605,7 +2683,8 @@ std::string ToString(const VkSystemAllocationScope& value)
     case VK_SYSTEM_ALLOCATION_SCOPE_INSTANCE: return "VK_SYSTEM_ALLOCATION_SCOPE_INSTANCE";
     default: break;
     }
-    return "Unhandled VkSystemAllocationScope";
+    if(value  == 0) return "0";
+    return "Unhandled VkSystemAllocationScope: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkVendorId& value)
@@ -2619,7 +2698,8 @@ std::string ToString(const VkVendorId& value)
     case VK_VENDOR_ID_POCL: return "VK_VENDOR_ID_POCL";
     default: break;
     }
-    return "Unhandled VkVendorId";
+    if(value  == 0) return "0";
+    return "Unhandled VkVendorId: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkVertexInputRate& value)
@@ -2629,7 +2709,8 @@ std::string ToString(const VkVertexInputRate& value)
     case VK_VERTEX_INPUT_RATE_INSTANCE: return "VK_VERTEX_INPUT_RATE_INSTANCE";
     default: break;
     }
-    return "Unhandled VkVertexInputRate";
+    if(value  == 0) return "0";
+    return "Unhandled VkVertexInputRate: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkChromaLocation& value)
@@ -2639,7 +2720,8 @@ std::string ToString(const VkChromaLocation& value)
     case VK_CHROMA_LOCATION_MIDPOINT: return "VK_CHROMA_LOCATION_MIDPOINT";
     default: break;
     }
-    return "Unhandled VkChromaLocation";
+    if(value  == 0) return "0";
+    return "Unhandled VkChromaLocation: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkDescriptorUpdateTemplateType& value)
@@ -2649,7 +2731,8 @@ std::string ToString(const VkDescriptorUpdateTemplateType& value)
     case VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR: return "VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR";
     default: break;
     }
-    return "Unhandled VkDescriptorUpdateTemplateType";
+    if(value  == 0) return "0";
+    return "Unhandled VkDescriptorUpdateTemplateType: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkExternalFenceFeatureFlagBits& value)
@@ -2659,10 +2742,11 @@ std::string ToString(const VkExternalFenceFeatureFlagBits& value)
     case VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT: return "VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT";
     default: break;
     }
-    return "Unhandled VkExternalFenceFeatureFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkExternalFenceFeatureFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkExternalFenceFeatureFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkExternalFenceFeatureFlagsToString(const VkExternalFenceFeatureFlags vkFlags)
 {
     return BitmaskToString<VkExternalFenceFeatureFlagBits>(vkFlags);
 }
@@ -2676,10 +2760,11 @@ std::string ToString(const VkExternalFenceHandleTypeFlagBits& value)
     case VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT: return "VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT";
     default: break;
     }
-    return "Unhandled VkExternalFenceHandleTypeFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkExternalFenceHandleTypeFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkExternalFenceHandleTypeFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkExternalFenceHandleTypeFlagsToString(const VkExternalFenceHandleTypeFlags vkFlags)
 {
     return BitmaskToString<VkExternalFenceHandleTypeFlagBits>(vkFlags);
 }
@@ -2692,10 +2777,11 @@ std::string ToString(const VkExternalMemoryFeatureFlagBits& value)
     case VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT: return "VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT";
     default: break;
     }
-    return "Unhandled VkExternalMemoryFeatureFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkExternalMemoryFeatureFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkExternalMemoryFeatureFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkExternalMemoryFeatureFlagsToString(const VkExternalMemoryFeatureFlags vkFlags)
 {
     return BitmaskToString<VkExternalMemoryFeatureFlagBits>(vkFlags);
 }
@@ -2718,10 +2804,11 @@ std::string ToString(const VkExternalMemoryHandleTypeFlagBits& value)
     case VK_EXTERNAL_MEMORY_HANDLE_TYPE_RDMA_ADDRESS_BIT_NV: return "VK_EXTERNAL_MEMORY_HANDLE_TYPE_RDMA_ADDRESS_BIT_NV";
     default: break;
     }
-    return "Unhandled VkExternalMemoryHandleTypeFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkExternalMemoryHandleTypeFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkExternalMemoryHandleTypeFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkExternalMemoryHandleTypeFlagsToString(const VkExternalMemoryHandleTypeFlags vkFlags)
 {
     return BitmaskToString<VkExternalMemoryHandleTypeFlagBits>(vkFlags);
 }
@@ -2733,10 +2820,11 @@ std::string ToString(const VkExternalSemaphoreFeatureFlagBits& value)
     case VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT: return "VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT";
     default: break;
     }
-    return "Unhandled VkExternalSemaphoreFeatureFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkExternalSemaphoreFeatureFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkExternalSemaphoreFeatureFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkExternalSemaphoreFeatureFlagsToString(const VkExternalSemaphoreFeatureFlags vkFlags)
 {
     return BitmaskToString<VkExternalSemaphoreFeatureFlagBits>(vkFlags);
 }
@@ -2752,10 +2840,11 @@ std::string ToString(const VkExternalSemaphoreHandleTypeFlagBits& value)
     case VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_ZIRCON_EVENT_BIT_FUCHSIA: return "VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_ZIRCON_EVENT_BIT_FUCHSIA";
     default: break;
     }
-    return "Unhandled VkExternalSemaphoreHandleTypeFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkExternalSemaphoreHandleTypeFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkExternalSemaphoreHandleTypeFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkExternalSemaphoreHandleTypeFlagsToString(const VkExternalSemaphoreHandleTypeFlags vkFlags)
 {
     return BitmaskToString<VkExternalSemaphoreHandleTypeFlagBits>(vkFlags);
 }
@@ -2766,10 +2855,11 @@ std::string ToString(const VkFenceImportFlagBits& value)
     case VK_FENCE_IMPORT_TEMPORARY_BIT: return "VK_FENCE_IMPORT_TEMPORARY_BIT";
     default: break;
     }
-    return "Unhandled VkFenceImportFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkFenceImportFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkFenceImportFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkFenceImportFlagsToString(const VkFenceImportFlags vkFlags)
 {
     return BitmaskToString<VkFenceImportFlagBits>(vkFlags);
 }
@@ -2782,10 +2872,11 @@ std::string ToString(const VkMemoryAllocateFlagBits& value)
     case VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT: return "VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT";
     default: break;
     }
-    return "Unhandled VkMemoryAllocateFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkMemoryAllocateFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkMemoryAllocateFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkMemoryAllocateFlagsToString(const VkMemoryAllocateFlags vkFlags)
 {
     return BitmaskToString<VkMemoryAllocateFlagBits>(vkFlags);
 }
@@ -2799,10 +2890,11 @@ std::string ToString(const VkPeerMemoryFeatureFlagBits& value)
     case VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT: return "VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT";
     default: break;
     }
-    return "Unhandled VkPeerMemoryFeatureFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkPeerMemoryFeatureFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkPeerMemoryFeatureFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkPeerMemoryFeatureFlagsToString(const VkPeerMemoryFeatureFlags vkFlags)
 {
     return BitmaskToString<VkPeerMemoryFeatureFlagBits>(vkFlags);
 }
@@ -2814,7 +2906,8 @@ std::string ToString(const VkPointClippingBehavior& value)
     case VK_POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY: return "VK_POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY";
     default: break;
     }
-    return "Unhandled VkPointClippingBehavior";
+    if(value  == 0) return "0";
+    return "Unhandled VkPointClippingBehavior: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkSamplerYcbcrModelConversion& value)
@@ -2827,7 +2920,8 @@ std::string ToString(const VkSamplerYcbcrModelConversion& value)
     case VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020: return "VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020";
     default: break;
     }
-    return "Unhandled VkSamplerYcbcrModelConversion";
+    if(value  == 0) return "0";
+    return "Unhandled VkSamplerYcbcrModelConversion: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkSamplerYcbcrRange& value)
@@ -2837,7 +2931,8 @@ std::string ToString(const VkSamplerYcbcrRange& value)
     case VK_SAMPLER_YCBCR_RANGE_ITU_NARROW: return "VK_SAMPLER_YCBCR_RANGE_ITU_NARROW";
     default: break;
     }
-    return "Unhandled VkSamplerYcbcrRange";
+    if(value  == 0) return "0";
+    return "Unhandled VkSamplerYcbcrRange: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkSemaphoreImportFlagBits& value)
@@ -2846,10 +2941,11 @@ std::string ToString(const VkSemaphoreImportFlagBits& value)
     case VK_SEMAPHORE_IMPORT_TEMPORARY_BIT: return "VK_SEMAPHORE_IMPORT_TEMPORARY_BIT";
     default: break;
     }
-    return "Unhandled VkSemaphoreImportFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkSemaphoreImportFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkSemaphoreImportFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkSemaphoreImportFlagsToString(const VkSemaphoreImportFlags vkFlags)
 {
     return BitmaskToString<VkSemaphoreImportFlagBits>(vkFlags);
 }
@@ -2868,10 +2964,11 @@ std::string ToString(const VkSubgroupFeatureFlagBits& value)
     case VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV: return "VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV";
     default: break;
     }
-    return "Unhandled VkSubgroupFeatureFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkSubgroupFeatureFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkSubgroupFeatureFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkSubgroupFeatureFlagsToString(const VkSubgroupFeatureFlags vkFlags)
 {
     return BitmaskToString<VkSubgroupFeatureFlagBits>(vkFlags);
 }
@@ -2883,7 +2980,8 @@ std::string ToString(const VkTessellationDomainOrigin& value)
     case VK_TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT: return "VK_TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT";
     default: break;
     }
-    return "Unhandled VkTessellationDomainOrigin";
+    if(value  == 0) return "0";
+    return "Unhandled VkTessellationDomainOrigin: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkDescriptorBindingFlagBits& value)
@@ -2895,10 +2993,11 @@ std::string ToString(const VkDescriptorBindingFlagBits& value)
     case VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT: return "VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT";
     default: break;
     }
-    return "Unhandled VkDescriptorBindingFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkDescriptorBindingFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkDescriptorBindingFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkDescriptorBindingFlagsToString(const VkDescriptorBindingFlags vkFlags)
 {
     return BitmaskToString<VkDescriptorBindingFlagBits>(vkFlags);
 }
@@ -2932,7 +3031,8 @@ std::string ToString(const VkDriverId& value)
     case VK_DRIVER_ID_MESA_NVK: return "VK_DRIVER_ID_MESA_NVK";
     default: break;
     }
-    return "Unhandled VkDriverId";
+    if(value  == 0) return "0";
+    return "Unhandled VkDriverId: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkResolveModeFlagBits& value)
@@ -2945,10 +3045,11 @@ std::string ToString(const VkResolveModeFlagBits& value)
     case VK_RESOLVE_MODE_MAX_BIT: return "VK_RESOLVE_MODE_MAX_BIT";
     default: break;
     }
-    return "Unhandled VkResolveModeFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkResolveModeFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkResolveModeFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkResolveModeFlagsToString(const VkResolveModeFlags vkFlags)
 {
     return BitmaskToString<VkResolveModeFlagBits>(vkFlags);
 }
@@ -2961,7 +3062,8 @@ std::string ToString(const VkSamplerReductionMode& value)
     case VK_SAMPLER_REDUCTION_MODE_MAX: return "VK_SAMPLER_REDUCTION_MODE_MAX";
     default: break;
     }
-    return "Unhandled VkSamplerReductionMode";
+    if(value  == 0) return "0";
+    return "Unhandled VkSamplerReductionMode: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkSemaphoreType& value)
@@ -2971,7 +3073,8 @@ std::string ToString(const VkSemaphoreType& value)
     case VK_SEMAPHORE_TYPE_TIMELINE: return "VK_SEMAPHORE_TYPE_TIMELINE";
     default: break;
     }
-    return "Unhandled VkSemaphoreType";
+    if(value  == 0) return "0";
+    return "Unhandled VkSemaphoreType: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkSemaphoreWaitFlagBits& value)
@@ -2980,10 +3083,11 @@ std::string ToString(const VkSemaphoreWaitFlagBits& value)
     case VK_SEMAPHORE_WAIT_ANY_BIT: return "VK_SEMAPHORE_WAIT_ANY_BIT";
     default: break;
     }
-    return "Unhandled VkSemaphoreWaitFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkSemaphoreWaitFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkSemaphoreWaitFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkSemaphoreWaitFlagsToString(const VkSemaphoreWaitFlags vkFlags)
 {
     return BitmaskToString<VkSemaphoreWaitFlagBits>(vkFlags);
 }
@@ -2996,7 +3100,8 @@ std::string ToString(const VkShaderFloatControlsIndependence& value)
     case VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE: return "VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE";
     default: break;
     }
-    return "Unhandled VkShaderFloatControlsIndependence";
+    if(value  == 0) return "0";
+    return "Unhandled VkShaderFloatControlsIndependence: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string VkAccessFlagBits2ToString(const VkAccessFlagBits2 value)
@@ -3047,13 +3152,14 @@ std::string VkAccessFlagBits2ToString(const VkAccessFlagBits2 value)
     case VK_ACCESS_2_OPTICAL_FLOW_WRITE_BIT_NV: return "VK_ACCESS_2_OPTICAL_FLOW_WRITE_BIT_NV";
     default: break;
     }
-    return "Unhandled VkAccessFlagBits2";
+    if(value  == 0) return "0";
+    return "Unhandled VkAccessFlagBits2: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-std::string VkAccessFlags2ToString(VkFlags64 vkFlags)
+std::string VkAccessFlags2ToString(VkAccessFlags2 vkFlags)
 {
-    std::string   str;
-    VkFlags64     index = 0U;
+    std::string    str;
+    VkAccessFlags2 index = 0U;
     while (vkFlags)
     {
         if (vkFlags & 1U)
@@ -3121,13 +3227,14 @@ std::string VkFormatFeatureFlagBits2ToString(const VkFormatFeatureFlagBits2 valu
     case VK_FORMAT_FEATURE_2_OPTICAL_FLOW_COST_BIT_NV: return "VK_FORMAT_FEATURE_2_OPTICAL_FLOW_COST_BIT_NV";
     default: break;
     }
-    return "Unhandled VkFormatFeatureFlagBits2";
+    if(value  == 0) return "0";
+    return "Unhandled VkFormatFeatureFlagBits2: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-std::string VkFormatFeatureFlags2ToString(VkFlags64 vkFlags)
+std::string VkFormatFeatureFlags2ToString(VkFormatFeatureFlags2 vkFlags)
 {
-    std::string   str;
-    VkFlags64     index = 0U;
+    std::string    str;
+    VkFormatFeatureFlags2 index = 0U;
     while (vkFlags)
     {
         if (vkFlags & 1U)
@@ -3156,10 +3263,11 @@ std::string ToString(const VkPipelineCreationFeedbackFlagBits& value)
     case VK_PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT: return "VK_PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT";
     default: break;
     }
-    return "Unhandled VkPipelineCreationFeedbackFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineCreationFeedbackFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkPipelineCreationFeedbackFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkPipelineCreationFeedbackFlagsToString(const VkPipelineCreationFeedbackFlags vkFlags)
 {
     return BitmaskToString<VkPipelineCreationFeedbackFlagBits>(vkFlags);
 }
@@ -3210,13 +3318,14 @@ std::string VkPipelineStageFlagBits2ToString(const VkPipelineStageFlagBits2 valu
     case VK_PIPELINE_STAGE_2_OPTICAL_FLOW_BIT_NV: return "VK_PIPELINE_STAGE_2_OPTICAL_FLOW_BIT_NV";
     default: break;
     }
-    return "Unhandled VkPipelineStageFlagBits2";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineStageFlagBits2: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-std::string VkPipelineStageFlags2ToString(VkFlags64 vkFlags)
+std::string VkPipelineStageFlags2ToString(VkPipelineStageFlags2 vkFlags)
 {
-    std::string   str;
-    VkFlags64     index = 0U;
+    std::string    str;
+    VkPipelineStageFlags2 index = 0U;
     while (vkFlags)
     {
         if (vkFlags & 1U)
@@ -3246,10 +3355,11 @@ std::string ToString(const VkRenderingFlagBits& value)
     case VK_RENDERING_ENABLE_LEGACY_DITHERING_BIT_EXT: return "VK_RENDERING_ENABLE_LEGACY_DITHERING_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkRenderingFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkRenderingFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkRenderingFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkRenderingFlagsToString(const VkRenderingFlags vkFlags)
 {
     return BitmaskToString<VkRenderingFlagBits>(vkFlags);
 }
@@ -3260,10 +3370,11 @@ std::string ToString(const VkSubmitFlagBits& value)
     case VK_SUBMIT_PROTECTED_BIT: return "VK_SUBMIT_PROTECTED_BIT";
     default: break;
     }
-    return "Unhandled VkSubmitFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkSubmitFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkSubmitFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkSubmitFlagsToString(const VkSubmitFlags vkFlags)
 {
     return BitmaskToString<VkSubmitFlagBits>(vkFlags);
 }
@@ -3280,10 +3391,11 @@ std::string ToString(const VkToolPurposeFlagBits& value)
     case VK_TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT: return "VK_TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkToolPurposeFlagBits";
+    if(value  == 0) return "0";
+    return "Unhandled VkToolPurposeFlagBits: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkToolPurposeFlagBits>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkToolPurposeFlagsToString(const VkToolPurposeFlags vkFlags)
 {
     return BitmaskToString<VkToolPurposeFlagBits>(vkFlags);
 }
@@ -3309,7 +3421,8 @@ std::string ToString(const VkColorSpaceKHR& value)
     case VK_COLOR_SPACE_DISPLAY_NATIVE_AMD: return "VK_COLOR_SPACE_DISPLAY_NATIVE_AMD";
     default: break;
     }
-    return "Unhandled VkColorSpaceKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkColorSpaceKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkCompositeAlphaFlagBitsKHR& value)
@@ -3321,10 +3434,11 @@ std::string ToString(const VkCompositeAlphaFlagBitsKHR& value)
     case VK_COMPOSITE_ALPHA_INHERIT_BIT_KHR: return "VK_COMPOSITE_ALPHA_INHERIT_BIT_KHR";
     default: break;
     }
-    return "Unhandled VkCompositeAlphaFlagBitsKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkCompositeAlphaFlagBitsKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkCompositeAlphaFlagBitsKHR>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkCompositeAlphaFlagsKHRToString(const VkCompositeAlphaFlagsKHR vkFlags)
 {
     return BitmaskToString<VkCompositeAlphaFlagBitsKHR>(vkFlags);
 }
@@ -3340,7 +3454,8 @@ std::string ToString(const VkPresentModeKHR& value)
     case VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR: return "VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR";
     default: break;
     }
-    return "Unhandled VkPresentModeKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkPresentModeKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkSurfaceTransformFlagBitsKHR& value)
@@ -3357,10 +3472,11 @@ std::string ToString(const VkSurfaceTransformFlagBitsKHR& value)
     case VK_SURFACE_TRANSFORM_INHERIT_BIT_KHR: return "VK_SURFACE_TRANSFORM_INHERIT_BIT_KHR";
     default: break;
     }
-    return "Unhandled VkSurfaceTransformFlagBitsKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkSurfaceTransformFlagBitsKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkSurfaceTransformFlagBitsKHR>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkSurfaceTransformFlagsKHRToString(const VkSurfaceTransformFlagsKHR vkFlags)
 {
     return BitmaskToString<VkSurfaceTransformFlagBitsKHR>(vkFlags);
 }
@@ -3374,10 +3490,11 @@ std::string ToString(const VkDeviceGroupPresentModeFlagBitsKHR& value)
     case VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR: return "VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR";
     default: break;
     }
-    return "Unhandled VkDeviceGroupPresentModeFlagBitsKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkDeviceGroupPresentModeFlagBitsKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkDeviceGroupPresentModeFlagBitsKHR>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkDeviceGroupPresentModeFlagsKHRToString(const VkDeviceGroupPresentModeFlagsKHR vkFlags)
 {
     return BitmaskToString<VkDeviceGroupPresentModeFlagBitsKHR>(vkFlags);
 }
@@ -3390,10 +3507,11 @@ std::string ToString(const VkSwapchainCreateFlagBitsKHR& value)
     case VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR: return "VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR";
     default: break;
     }
-    return "Unhandled VkSwapchainCreateFlagBitsKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkSwapchainCreateFlagBitsKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkSwapchainCreateFlagBitsKHR>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkSwapchainCreateFlagsKHRToString(const VkSwapchainCreateFlagsKHR vkFlags)
 {
     return BitmaskToString<VkSwapchainCreateFlagBitsKHR>(vkFlags);
 }
@@ -3407,20 +3525,22 @@ std::string ToString(const VkDisplayPlaneAlphaFlagBitsKHR& value)
     case VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR: return "VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR";
     default: break;
     }
-    return "Unhandled VkDisplayPlaneAlphaFlagBitsKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkDisplayPlaneAlphaFlagBitsKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkDisplayPlaneAlphaFlagBitsKHR>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkDisplayPlaneAlphaFlagsKHRToString(const VkDisplayPlaneAlphaFlagsKHR vkFlags)
 {
     return BitmaskToString<VkDisplayPlaneAlphaFlagBitsKHR>(vkFlags);
 }
 
 std::string ToString(const VkAcquireProfilingLockFlagBitsKHR& value)
 {
-    return "Unhandled VkAcquireProfilingLockFlagBitsKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkAcquireProfilingLockFlagBitsKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkAcquireProfilingLockFlagBitsKHR>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkAcquireProfilingLockFlagsKHRToString(const VkAcquireProfilingLockFlagsKHR vkFlags)
 {
     return BitmaskToString<VkAcquireProfilingLockFlagBitsKHR>(vkFlags);
 }
@@ -3432,10 +3552,11 @@ std::string ToString(const VkPerformanceCounterDescriptionFlagBitsKHR& value)
     case VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR: return "VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR";
     default: break;
     }
-    return "Unhandled VkPerformanceCounterDescriptionFlagBitsKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkPerformanceCounterDescriptionFlagBitsKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkPerformanceCounterDescriptionFlagBitsKHR>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkPerformanceCounterDescriptionFlagsKHRToString(const VkPerformanceCounterDescriptionFlagsKHR vkFlags)
 {
     return BitmaskToString<VkPerformanceCounterDescriptionFlagBitsKHR>(vkFlags);
 }
@@ -3448,7 +3569,8 @@ std::string ToString(const VkPerformanceCounterScopeKHR& value)
     case VK_PERFORMANCE_COUNTER_SCOPE_COMMAND_KHR: return "VK_PERFORMANCE_COUNTER_SCOPE_COMMAND_KHR";
     default: break;
     }
-    return "Unhandled VkPerformanceCounterScopeKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkPerformanceCounterScopeKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPerformanceCounterStorageKHR& value)
@@ -3462,7 +3584,8 @@ std::string ToString(const VkPerformanceCounterStorageKHR& value)
     case VK_PERFORMANCE_COUNTER_STORAGE_FLOAT64_KHR: return "VK_PERFORMANCE_COUNTER_STORAGE_FLOAT64_KHR";
     default: break;
     }
-    return "Unhandled VkPerformanceCounterStorageKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkPerformanceCounterStorageKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPerformanceCounterUnitKHR& value)
@@ -3481,7 +3604,8 @@ std::string ToString(const VkPerformanceCounterUnitKHR& value)
     case VK_PERFORMANCE_COUNTER_UNIT_CYCLES_KHR: return "VK_PERFORMANCE_COUNTER_UNIT_CYCLES_KHR";
     default: break;
     }
-    return "Unhandled VkPerformanceCounterUnitKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkPerformanceCounterUnitKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkQueueGlobalPriorityKHR& value)
@@ -3493,7 +3617,8 @@ std::string ToString(const VkQueueGlobalPriorityKHR& value)
     case VK_QUEUE_GLOBAL_PRIORITY_REALTIME_KHR: return "VK_QUEUE_GLOBAL_PRIORITY_REALTIME_KHR";
     default: break;
     }
-    return "Unhandled VkQueueGlobalPriorityKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkQueueGlobalPriorityKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkFragmentShadingRateCombinerOpKHR& value)
@@ -3506,7 +3631,8 @@ std::string ToString(const VkFragmentShadingRateCombinerOpKHR& value)
     case VK_FRAGMENT_SHADING_RATE_COMBINER_OP_MUL_KHR: return "VK_FRAGMENT_SHADING_RATE_COMBINER_OP_MUL_KHR";
     default: break;
     }
-    return "Unhandled VkFragmentShadingRateCombinerOpKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkFragmentShadingRateCombinerOpKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPipelineExecutableStatisticFormatKHR& value)
@@ -3518,7 +3644,8 @@ std::string ToString(const VkPipelineExecutableStatisticFormatKHR& value)
     case VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_FLOAT64_KHR: return "VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_FLOAT64_KHR";
     default: break;
     }
-    return "Unhandled VkPipelineExecutableStatisticFormatKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineExecutableStatisticFormatKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkDebugReportFlagBitsEXT& value)
@@ -3531,10 +3658,11 @@ std::string ToString(const VkDebugReportFlagBitsEXT& value)
     case VK_DEBUG_REPORT_DEBUG_BIT_EXT: return "VK_DEBUG_REPORT_DEBUG_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkDebugReportFlagBitsEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkDebugReportFlagBitsEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkDebugReportFlagBitsEXT>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkDebugReportFlagsEXTToString(const VkDebugReportFlagsEXT vkFlags)
 {
     return BitmaskToString<VkDebugReportFlagBitsEXT>(vkFlags);
 }
@@ -3583,7 +3711,8 @@ std::string ToString(const VkDebugReportObjectTypeEXT& value)
     case VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA_EXT: return "VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA_EXT";
     default: break;
     }
-    return "Unhandled VkDebugReportObjectTypeEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkDebugReportObjectTypeEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkRasterizationOrderAMD& value)
@@ -3593,7 +3722,8 @@ std::string ToString(const VkRasterizationOrderAMD& value)
     case VK_RASTERIZATION_ORDER_RELAXED_AMD: return "VK_RASTERIZATION_ORDER_RELAXED_AMD";
     default: break;
     }
-    return "Unhandled VkRasterizationOrderAMD";
+    if(value  == 0) return "0";
+    return "Unhandled VkRasterizationOrderAMD: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkShaderInfoTypeAMD& value)
@@ -3604,7 +3734,8 @@ std::string ToString(const VkShaderInfoTypeAMD& value)
     case VK_SHADER_INFO_TYPE_DISASSEMBLY_AMD: return "VK_SHADER_INFO_TYPE_DISASSEMBLY_AMD";
     default: break;
     }
-    return "Unhandled VkShaderInfoTypeAMD";
+    if(value  == 0) return "0";
+    return "Unhandled VkShaderInfoTypeAMD: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkExternalMemoryFeatureFlagBitsNV& value)
@@ -3615,10 +3746,11 @@ std::string ToString(const VkExternalMemoryFeatureFlagBitsNV& value)
     case VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_NV: return "VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_NV";
     default: break;
     }
-    return "Unhandled VkExternalMemoryFeatureFlagBitsNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkExternalMemoryFeatureFlagBitsNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkExternalMemoryFeatureFlagBitsNV>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkExternalMemoryFeatureFlagsNVToString(const VkExternalMemoryFeatureFlagsNV vkFlags)
 {
     return BitmaskToString<VkExternalMemoryFeatureFlagBitsNV>(vkFlags);
 }
@@ -3632,10 +3764,11 @@ std::string ToString(const VkExternalMemoryHandleTypeFlagBitsNV& value)
     case VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_KMT_BIT_NV: return "VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_KMT_BIT_NV";
     default: break;
     }
-    return "Unhandled VkExternalMemoryHandleTypeFlagBitsNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkExternalMemoryHandleTypeFlagBitsNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkExternalMemoryHandleTypeFlagBitsNV>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkExternalMemoryHandleTypeFlagsNVToString(const VkExternalMemoryHandleTypeFlagsNV vkFlags)
 {
     return BitmaskToString<VkExternalMemoryHandleTypeFlagBitsNV>(vkFlags);
 }
@@ -3647,7 +3780,8 @@ std::string ToString(const VkValidationCheckEXT& value)
     case VK_VALIDATION_CHECK_SHADERS_EXT: return "VK_VALIDATION_CHECK_SHADERS_EXT";
     default: break;
     }
-    return "Unhandled VkValidationCheckEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkValidationCheckEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPipelineRobustnessBufferBehaviorEXT& value)
@@ -3659,7 +3793,8 @@ std::string ToString(const VkPipelineRobustnessBufferBehaviorEXT& value)
     case VK_PIPELINE_ROBUSTNESS_BUFFER_BEHAVIOR_ROBUST_BUFFER_ACCESS_2_EXT: return "VK_PIPELINE_ROBUSTNESS_BUFFER_BEHAVIOR_ROBUST_BUFFER_ACCESS_2_EXT";
     default: break;
     }
-    return "Unhandled VkPipelineRobustnessBufferBehaviorEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineRobustnessBufferBehaviorEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPipelineRobustnessImageBehaviorEXT& value)
@@ -3671,7 +3806,8 @@ std::string ToString(const VkPipelineRobustnessImageBehaviorEXT& value)
     case VK_PIPELINE_ROBUSTNESS_IMAGE_BEHAVIOR_ROBUST_IMAGE_ACCESS_2_EXT: return "VK_PIPELINE_ROBUSTNESS_IMAGE_BEHAVIOR_ROBUST_IMAGE_ACCESS_2_EXT";
     default: break;
     }
-    return "Unhandled VkPipelineRobustnessImageBehaviorEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineRobustnessImageBehaviorEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkConditionalRenderingFlagBitsEXT& value)
@@ -3680,10 +3816,11 @@ std::string ToString(const VkConditionalRenderingFlagBitsEXT& value)
     case VK_CONDITIONAL_RENDERING_INVERTED_BIT_EXT: return "VK_CONDITIONAL_RENDERING_INVERTED_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkConditionalRenderingFlagBitsEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkConditionalRenderingFlagBitsEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkConditionalRenderingFlagBitsEXT>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkConditionalRenderingFlagsEXTToString(const VkConditionalRenderingFlagsEXT vkFlags)
 {
     return BitmaskToString<VkConditionalRenderingFlagBitsEXT>(vkFlags);
 }
@@ -3694,10 +3831,11 @@ std::string ToString(const VkSurfaceCounterFlagBitsEXT& value)
     case VK_SURFACE_COUNTER_VBLANK_BIT_EXT: return "VK_SURFACE_COUNTER_VBLANK_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkSurfaceCounterFlagBitsEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkSurfaceCounterFlagBitsEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkSurfaceCounterFlagBitsEXT>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkSurfaceCounterFlagsEXTToString(const VkSurfaceCounterFlagsEXT vkFlags)
 {
     return BitmaskToString<VkSurfaceCounterFlagBitsEXT>(vkFlags);
 }
@@ -3708,7 +3846,8 @@ std::string ToString(const VkDeviceEventTypeEXT& value)
     case VK_DEVICE_EVENT_TYPE_DISPLAY_HOTPLUG_EXT: return "VK_DEVICE_EVENT_TYPE_DISPLAY_HOTPLUG_EXT";
     default: break;
     }
-    return "Unhandled VkDeviceEventTypeEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkDeviceEventTypeEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkDisplayEventTypeEXT& value)
@@ -3717,7 +3856,8 @@ std::string ToString(const VkDisplayEventTypeEXT& value)
     case VK_DISPLAY_EVENT_TYPE_FIRST_PIXEL_OUT_EXT: return "VK_DISPLAY_EVENT_TYPE_FIRST_PIXEL_OUT_EXT";
     default: break;
     }
-    return "Unhandled VkDisplayEventTypeEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkDisplayEventTypeEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkDisplayPowerStateEXT& value)
@@ -3728,7 +3868,8 @@ std::string ToString(const VkDisplayPowerStateEXT& value)
     case VK_DISPLAY_POWER_STATE_ON_EXT: return "VK_DISPLAY_POWER_STATE_ON_EXT";
     default: break;
     }
-    return "Unhandled VkDisplayPowerStateEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkDisplayPowerStateEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkViewportCoordinateSwizzleNV& value)
@@ -3744,7 +3885,8 @@ std::string ToString(const VkViewportCoordinateSwizzleNV& value)
     case VK_VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_W_NV: return "VK_VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_W_NV";
     default: break;
     }
-    return "Unhandled VkViewportCoordinateSwizzleNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkViewportCoordinateSwizzleNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkDiscardRectangleModeEXT& value)
@@ -3754,7 +3896,8 @@ std::string ToString(const VkDiscardRectangleModeEXT& value)
     case VK_DISCARD_RECTANGLE_MODE_EXCLUSIVE_EXT: return "VK_DISCARD_RECTANGLE_MODE_EXCLUSIVE_EXT";
     default: break;
     }
-    return "Unhandled VkDiscardRectangleModeEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkDiscardRectangleModeEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkConservativeRasterizationModeEXT& value)
@@ -3765,7 +3908,8 @@ std::string ToString(const VkConservativeRasterizationModeEXT& value)
     case VK_CONSERVATIVE_RASTERIZATION_MODE_UNDERESTIMATE_EXT: return "VK_CONSERVATIVE_RASTERIZATION_MODE_UNDERESTIMATE_EXT";
     default: break;
     }
-    return "Unhandled VkConservativeRasterizationModeEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkConservativeRasterizationModeEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkDebugUtilsMessageSeverityFlagBitsEXT& value)
@@ -3777,10 +3921,11 @@ std::string ToString(const VkDebugUtilsMessageSeverityFlagBitsEXT& value)
     case VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT: return "VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkDebugUtilsMessageSeverityFlagBitsEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkDebugUtilsMessageSeverityFlagBitsEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkDebugUtilsMessageSeverityFlagBitsEXT>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkDebugUtilsMessageSeverityFlagsEXTToString(const VkDebugUtilsMessageSeverityFlagsEXT vkFlags)
 {
     return BitmaskToString<VkDebugUtilsMessageSeverityFlagBitsEXT>(vkFlags);
 }
@@ -3794,10 +3939,11 @@ std::string ToString(const VkDebugUtilsMessageTypeFlagBitsEXT& value)
     case VK_DEBUG_UTILS_MESSAGE_TYPE_DEVICE_ADDRESS_BINDING_BIT_EXT: return "VK_DEBUG_UTILS_MESSAGE_TYPE_DEVICE_ADDRESS_BINDING_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkDebugUtilsMessageTypeFlagBitsEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkDebugUtilsMessageTypeFlagBitsEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkDebugUtilsMessageTypeFlagBitsEXT>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkDebugUtilsMessageTypeFlagsEXTToString(const VkDebugUtilsMessageTypeFlagsEXT vkFlags)
 {
     return BitmaskToString<VkDebugUtilsMessageTypeFlagBitsEXT>(vkFlags);
 }
@@ -3810,7 +3956,8 @@ std::string ToString(const VkBlendOverlapEXT& value)
     case VK_BLEND_OVERLAP_CONJOINT_EXT: return "VK_BLEND_OVERLAP_CONJOINT_EXT";
     default: break;
     }
-    return "Unhandled VkBlendOverlapEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkBlendOverlapEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkCoverageModulationModeNV& value)
@@ -3822,7 +3969,8 @@ std::string ToString(const VkCoverageModulationModeNV& value)
     case VK_COVERAGE_MODULATION_MODE_RGBA_NV: return "VK_COVERAGE_MODULATION_MODE_RGBA_NV";
     default: break;
     }
-    return "Unhandled VkCoverageModulationModeNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkCoverageModulationModeNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkValidationCacheHeaderVersionEXT& value)
@@ -3831,7 +3979,8 @@ std::string ToString(const VkValidationCacheHeaderVersionEXT& value)
     case VK_VALIDATION_CACHE_HEADER_VERSION_ONE_EXT: return "VK_VALIDATION_CACHE_HEADER_VERSION_ONE_EXT";
     default: break;
     }
-    return "Unhandled VkValidationCacheHeaderVersionEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkValidationCacheHeaderVersionEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkCoarseSampleOrderTypeNV& value)
@@ -3843,7 +3992,8 @@ std::string ToString(const VkCoarseSampleOrderTypeNV& value)
     case VK_COARSE_SAMPLE_ORDER_TYPE_SAMPLE_MAJOR_NV: return "VK_COARSE_SAMPLE_ORDER_TYPE_SAMPLE_MAJOR_NV";
     default: break;
     }
-    return "Unhandled VkCoarseSampleOrderTypeNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkCoarseSampleOrderTypeNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkShadingRatePaletteEntryNV& value)
@@ -3863,7 +4013,8 @@ std::string ToString(const VkShadingRatePaletteEntryNV& value)
     case VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_4X4_PIXELS_NV: return "VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_4X4_PIXELS_NV";
     default: break;
     }
-    return "Unhandled VkShadingRatePaletteEntryNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkShadingRatePaletteEntryNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkAccelerationStructureMemoryRequirementsTypeNV& value)
@@ -3874,7 +4025,8 @@ std::string ToString(const VkAccelerationStructureMemoryRequirementsTypeNV& valu
     case VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_UPDATE_SCRATCH_NV: return "VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_UPDATE_SCRATCH_NV";
     default: break;
     }
-    return "Unhandled VkAccelerationStructureMemoryRequirementsTypeNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkAccelerationStructureMemoryRequirementsTypeNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkAccelerationStructureTypeKHR& value)
@@ -3885,7 +4037,8 @@ std::string ToString(const VkAccelerationStructureTypeKHR& value)
     case VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR: return "VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR";
     default: break;
     }
-    return "Unhandled VkAccelerationStructureTypeKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkAccelerationStructureTypeKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkBuildAccelerationStructureFlagBitsKHR& value)
@@ -3902,10 +4055,11 @@ std::string ToString(const VkBuildAccelerationStructureFlagBitsKHR& value)
     case VK_BUILD_ACCELERATION_STRUCTURE_ALLOW_OPACITY_MICROMAP_DATA_UPDATE_EXT: return "VK_BUILD_ACCELERATION_STRUCTURE_ALLOW_OPACITY_MICROMAP_DATA_UPDATE_EXT";
     default: break;
     }
-    return "Unhandled VkBuildAccelerationStructureFlagBitsKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkBuildAccelerationStructureFlagBitsKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkBuildAccelerationStructureFlagBitsKHR>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkBuildAccelerationStructureFlagsKHRToString(const VkBuildAccelerationStructureFlagsKHR vkFlags)
 {
     return BitmaskToString<VkBuildAccelerationStructureFlagBitsKHR>(vkFlags);
 }
@@ -3919,7 +4073,8 @@ std::string ToString(const VkCopyAccelerationStructureModeKHR& value)
     case VK_COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE_KHR: return "VK_COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE_KHR";
     default: break;
     }
-    return "Unhandled VkCopyAccelerationStructureModeKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkCopyAccelerationStructureModeKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkGeometryFlagBitsKHR& value)
@@ -3929,10 +4084,11 @@ std::string ToString(const VkGeometryFlagBitsKHR& value)
     case VK_GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_KHR: return "VK_GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_KHR";
     default: break;
     }
-    return "Unhandled VkGeometryFlagBitsKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkGeometryFlagBitsKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkGeometryFlagBitsKHR>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkGeometryFlagsKHRToString(const VkGeometryFlagsKHR vkFlags)
 {
     return BitmaskToString<VkGeometryFlagBitsKHR>(vkFlags);
 }
@@ -3948,10 +4104,11 @@ std::string ToString(const VkGeometryInstanceFlagBitsKHR& value)
     case VK_GEOMETRY_INSTANCE_DISABLE_OPACITY_MICROMAPS_EXT: return "VK_GEOMETRY_INSTANCE_DISABLE_OPACITY_MICROMAPS_EXT";
     default: break;
     }
-    return "Unhandled VkGeometryInstanceFlagBitsKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkGeometryInstanceFlagBitsKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkGeometryInstanceFlagBitsKHR>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkGeometryInstanceFlagsKHRToString(const VkGeometryInstanceFlagsKHR vkFlags)
 {
     return BitmaskToString<VkGeometryInstanceFlagBitsKHR>(vkFlags);
 }
@@ -3964,7 +4121,8 @@ std::string ToString(const VkGeometryTypeKHR& value)
     case VK_GEOMETRY_TYPE_INSTANCES_KHR: return "VK_GEOMETRY_TYPE_INSTANCES_KHR";
     default: break;
     }
-    return "Unhandled VkGeometryTypeKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkGeometryTypeKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkRayTracingShaderGroupTypeKHR& value)
@@ -3975,15 +4133,17 @@ std::string ToString(const VkRayTracingShaderGroupTypeKHR& value)
     case VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR: return "VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR";
     default: break;
     }
-    return "Unhandled VkRayTracingShaderGroupTypeKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkRayTracingShaderGroupTypeKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPipelineCompilerControlFlagBitsAMD& value)
 {
-    return "Unhandled VkPipelineCompilerControlFlagBitsAMD";
+    if(value  == 0) return "0";
+    return "Unhandled VkPipelineCompilerControlFlagBitsAMD: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkPipelineCompilerControlFlagBitsAMD>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkPipelineCompilerControlFlagsAMDToString(const VkPipelineCompilerControlFlagsAMD vkFlags)
 {
     return BitmaskToString<VkPipelineCompilerControlFlagBitsAMD>(vkFlags);
 }
@@ -3997,7 +4157,8 @@ std::string ToString(const VkTimeDomainEXT& value)
     case VK_TIME_DOMAIN_QUERY_PERFORMANCE_COUNTER_EXT: return "VK_TIME_DOMAIN_QUERY_PERFORMANCE_COUNTER_EXT";
     default: break;
     }
-    return "Unhandled VkTimeDomainEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkTimeDomainEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkMemoryOverallocationBehaviorAMD& value)
@@ -4008,7 +4169,8 @@ std::string ToString(const VkMemoryOverallocationBehaviorAMD& value)
     case VK_MEMORY_OVERALLOCATION_BEHAVIOR_DISALLOWED_AMD: return "VK_MEMORY_OVERALLOCATION_BEHAVIOR_DISALLOWED_AMD";
     default: break;
     }
-    return "Unhandled VkMemoryOverallocationBehaviorAMD";
+    if(value  == 0) return "0";
+    return "Unhandled VkMemoryOverallocationBehaviorAMD: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPerformanceConfigurationTypeINTEL& value)
@@ -4017,7 +4179,8 @@ std::string ToString(const VkPerformanceConfigurationTypeINTEL& value)
     case VK_PERFORMANCE_CONFIGURATION_TYPE_COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL: return "VK_PERFORMANCE_CONFIGURATION_TYPE_COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL";
     default: break;
     }
-    return "Unhandled VkPerformanceConfigurationTypeINTEL";
+    if(value  == 0) return "0";
+    return "Unhandled VkPerformanceConfigurationTypeINTEL: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPerformanceOverrideTypeINTEL& value)
@@ -4027,7 +4190,8 @@ std::string ToString(const VkPerformanceOverrideTypeINTEL& value)
     case VK_PERFORMANCE_OVERRIDE_TYPE_FLUSH_GPU_CACHES_INTEL: return "VK_PERFORMANCE_OVERRIDE_TYPE_FLUSH_GPU_CACHES_INTEL";
     default: break;
     }
-    return "Unhandled VkPerformanceOverrideTypeINTEL";
+    if(value  == 0) return "0";
+    return "Unhandled VkPerformanceOverrideTypeINTEL: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPerformanceParameterTypeINTEL& value)
@@ -4037,7 +4201,8 @@ std::string ToString(const VkPerformanceParameterTypeINTEL& value)
     case VK_PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS_INTEL: return "VK_PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS_INTEL";
     default: break;
     }
-    return "Unhandled VkPerformanceParameterTypeINTEL";
+    if(value  == 0) return "0";
+    return "Unhandled VkPerformanceParameterTypeINTEL: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkPerformanceValueTypeINTEL& value)
@@ -4050,7 +4215,8 @@ std::string ToString(const VkPerformanceValueTypeINTEL& value)
     case VK_PERFORMANCE_VALUE_TYPE_STRING_INTEL: return "VK_PERFORMANCE_VALUE_TYPE_STRING_INTEL";
     default: break;
     }
-    return "Unhandled VkPerformanceValueTypeINTEL";
+    if(value  == 0) return "0";
+    return "Unhandled VkPerformanceValueTypeINTEL: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkQueryPoolSamplingModeINTEL& value)
@@ -4059,15 +4225,17 @@ std::string ToString(const VkQueryPoolSamplingModeINTEL& value)
     case VK_QUERY_POOL_SAMPLING_MODE_MANUAL_INTEL: return "VK_QUERY_POOL_SAMPLING_MODE_MANUAL_INTEL";
     default: break;
     }
-    return "Unhandled VkQueryPoolSamplingModeINTEL";
+    if(value  == 0) return "0";
+    return "Unhandled VkQueryPoolSamplingModeINTEL: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkShaderCorePropertiesFlagBitsAMD& value)
 {
-    return "Unhandled VkShaderCorePropertiesFlagBitsAMD";
+    if(value  == 0) return "0";
+    return "Unhandled VkShaderCorePropertiesFlagBitsAMD: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkShaderCorePropertiesFlagBitsAMD>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkShaderCorePropertiesFlagsAMDToString(const VkShaderCorePropertiesFlagsAMD vkFlags)
 {
     return BitmaskToString<VkShaderCorePropertiesFlagBitsAMD>(vkFlags);
 }
@@ -4085,7 +4253,8 @@ std::string ToString(const VkValidationFeatureDisableEXT& value)
     case VK_VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE_EXT: return "VK_VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE_EXT";
     default: break;
     }
-    return "Unhandled VkValidationFeatureDisableEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkValidationFeatureDisableEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkValidationFeatureEnableEXT& value)
@@ -4098,7 +4267,8 @@ std::string ToString(const VkValidationFeatureEnableEXT& value)
     case VK_VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION_EXT: return "VK_VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION_EXT";
     default: break;
     }
-    return "Unhandled VkValidationFeatureEnableEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkValidationFeatureEnableEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkComponentTypeNV& value)
@@ -4117,7 +4287,8 @@ std::string ToString(const VkComponentTypeNV& value)
     case VK_COMPONENT_TYPE_UINT64_NV: return "VK_COMPONENT_TYPE_UINT64_NV";
     default: break;
     }
-    return "Unhandled VkComponentTypeNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkComponentTypeNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkScopeNV& value)
@@ -4129,7 +4300,8 @@ std::string ToString(const VkScopeNV& value)
     case VK_SCOPE_QUEUE_FAMILY_NV: return "VK_SCOPE_QUEUE_FAMILY_NV";
     default: break;
     }
-    return "Unhandled VkScopeNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkScopeNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkCoverageReductionModeNV& value)
@@ -4139,7 +4311,8 @@ std::string ToString(const VkCoverageReductionModeNV& value)
     case VK_COVERAGE_REDUCTION_MODE_TRUNCATE_NV: return "VK_COVERAGE_REDUCTION_MODE_TRUNCATE_NV";
     default: break;
     }
-    return "Unhandled VkCoverageReductionModeNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkCoverageReductionModeNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkProvokingVertexModeEXT& value)
@@ -4149,7 +4322,8 @@ std::string ToString(const VkProvokingVertexModeEXT& value)
     case VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT: return "VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT";
     default: break;
     }
-    return "Unhandled VkProvokingVertexModeEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkProvokingVertexModeEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkFullScreenExclusiveEXT& value)
@@ -4161,7 +4335,8 @@ std::string ToString(const VkFullScreenExclusiveEXT& value)
     case VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT: return "VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT";
     default: break;
     }
-    return "Unhandled VkFullScreenExclusiveEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkFullScreenExclusiveEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkLineRasterizationModeEXT& value)
@@ -4173,7 +4348,8 @@ std::string ToString(const VkLineRasterizationModeEXT& value)
     case VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT: return "VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT";
     default: break;
     }
-    return "Unhandled VkLineRasterizationModeEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkLineRasterizationModeEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkIndirectCommandsLayoutUsageFlagBitsNV& value)
@@ -4184,10 +4360,11 @@ std::string ToString(const VkIndirectCommandsLayoutUsageFlagBitsNV& value)
     case VK_INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV: return "VK_INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV";
     default: break;
     }
-    return "Unhandled VkIndirectCommandsLayoutUsageFlagBitsNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkIndirectCommandsLayoutUsageFlagBitsNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkIndirectCommandsLayoutUsageFlagBitsNV>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkIndirectCommandsLayoutUsageFlagsNVToString(const VkIndirectCommandsLayoutUsageFlagsNV vkFlags)
 {
     return BitmaskToString<VkIndirectCommandsLayoutUsageFlagBitsNV>(vkFlags);
 }
@@ -4206,7 +4383,8 @@ std::string ToString(const VkIndirectCommandsTokenTypeNV& value)
     case VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_MESH_TASKS_NV: return "VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_MESH_TASKS_NV";
     default: break;
     }
-    return "Unhandled VkIndirectCommandsTokenTypeNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkIndirectCommandsTokenTypeNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkIndirectStateFlagBitsNV& value)
@@ -4215,10 +4393,11 @@ std::string ToString(const VkIndirectStateFlagBitsNV& value)
     case VK_INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV: return "VK_INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV";
     default: break;
     }
-    return "Unhandled VkIndirectStateFlagBitsNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkIndirectStateFlagBitsNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkIndirectStateFlagBitsNV>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkIndirectStateFlagsNVToString(const VkIndirectStateFlagsNV vkFlags)
 {
     return BitmaskToString<VkIndirectStateFlagBitsNV>(vkFlags);
 }
@@ -4233,7 +4412,8 @@ std::string ToString(const VkDeviceMemoryReportEventTypeEXT& value)
     case VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT: return "VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT";
     default: break;
     }
-    return "Unhandled VkDeviceMemoryReportEventTypeEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkDeviceMemoryReportEventTypeEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkDeviceDiagnosticsConfigFlagBitsNV& value)
@@ -4245,10 +4425,11 @@ std::string ToString(const VkDeviceDiagnosticsConfigFlagBitsNV& value)
     case VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_ERROR_REPORTING_BIT_NV: return "VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_ERROR_REPORTING_BIT_NV";
     default: break;
     }
-    return "Unhandled VkDeviceDiagnosticsConfigFlagBitsNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkDeviceDiagnosticsConfigFlagBitsNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkDeviceDiagnosticsConfigFlagBitsNV>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkDeviceDiagnosticsConfigFlagsNVToString(const VkDeviceDiagnosticsConfigFlagsNV vkFlags)
 {
     return BitmaskToString<VkDeviceDiagnosticsConfigFlagBitsNV>(vkFlags);
 }
@@ -4262,10 +4443,11 @@ std::string ToString(const VkGraphicsPipelineLibraryFlagBitsEXT& value)
     case VK_GRAPHICS_PIPELINE_LIBRARY_FRAGMENT_OUTPUT_INTERFACE_BIT_EXT: return "VK_GRAPHICS_PIPELINE_LIBRARY_FRAGMENT_OUTPUT_INTERFACE_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkGraphicsPipelineLibraryFlagBitsEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkGraphicsPipelineLibraryFlagBitsEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkGraphicsPipelineLibraryFlagBitsEXT>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkGraphicsPipelineLibraryFlagsEXTToString(const VkGraphicsPipelineLibraryFlagsEXT vkFlags)
 {
     return BitmaskToString<VkGraphicsPipelineLibraryFlagBitsEXT>(vkFlags);
 }
@@ -4287,7 +4469,8 @@ std::string ToString(const VkFragmentShadingRateNV& value)
     case VK_FRAGMENT_SHADING_RATE_NO_INVOCATIONS_NV: return "VK_FRAGMENT_SHADING_RATE_NO_INVOCATIONS_NV";
     default: break;
     }
-    return "Unhandled VkFragmentShadingRateNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkFragmentShadingRateNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkFragmentShadingRateTypeNV& value)
@@ -4297,7 +4480,8 @@ std::string ToString(const VkFragmentShadingRateTypeNV& value)
     case VK_FRAGMENT_SHADING_RATE_TYPE_ENUMS_NV: return "VK_FRAGMENT_SHADING_RATE_TYPE_ENUMS_NV";
     default: break;
     }
-    return "Unhandled VkFragmentShadingRateTypeNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkFragmentShadingRateTypeNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkAccelerationStructureMotionInstanceTypeNV& value)
@@ -4308,7 +4492,8 @@ std::string ToString(const VkAccelerationStructureMotionInstanceTypeNV& value)
     case VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_SRT_MOTION_NV: return "VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_SRT_MOTION_NV";
     default: break;
     }
-    return "Unhandled VkAccelerationStructureMotionInstanceTypeNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkAccelerationStructureMotionInstanceTypeNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkImageCompressionFixedRateFlagBitsEXT& value)
@@ -4341,10 +4526,11 @@ std::string ToString(const VkImageCompressionFixedRateFlagBitsEXT& value)
     case VK_IMAGE_COMPRESSION_FIXED_RATE_24BPC_BIT_EXT: return "VK_IMAGE_COMPRESSION_FIXED_RATE_24BPC_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkImageCompressionFixedRateFlagBitsEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkImageCompressionFixedRateFlagBitsEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkImageCompressionFixedRateFlagBitsEXT>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkImageCompressionFixedRateFlagsEXTToString(const VkImageCompressionFixedRateFlagsEXT vkFlags)
 {
     return BitmaskToString<VkImageCompressionFixedRateFlagBitsEXT>(vkFlags);
 }
@@ -4358,10 +4544,11 @@ std::string ToString(const VkImageCompressionFlagBitsEXT& value)
     case VK_IMAGE_COMPRESSION_DISABLED_EXT: return "VK_IMAGE_COMPRESSION_DISABLED_EXT";
     default: break;
     }
-    return "Unhandled VkImageCompressionFlagBitsEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkImageCompressionFlagBitsEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkImageCompressionFlagBitsEXT>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkImageCompressionFlagsEXTToString(const VkImageCompressionFlagsEXT vkFlags)
 {
     return BitmaskToString<VkImageCompressionFlagBitsEXT>(vkFlags);
 }
@@ -4378,7 +4565,8 @@ std::string ToString(const VkDeviceFaultAddressTypeEXT& value)
     case VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_FAULT_EXT: return "VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_FAULT_EXT";
     default: break;
     }
-    return "Unhandled VkDeviceFaultAddressTypeEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkDeviceFaultAddressTypeEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkDeviceFaultVendorBinaryHeaderVersionEXT& value)
@@ -4387,7 +4575,8 @@ std::string ToString(const VkDeviceFaultVendorBinaryHeaderVersionEXT& value)
     case VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_ONE_EXT: return "VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_ONE_EXT";
     default: break;
     }
-    return "Unhandled VkDeviceFaultVendorBinaryHeaderVersionEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkDeviceFaultVendorBinaryHeaderVersionEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkDeviceAddressBindingFlagBitsEXT& value)
@@ -4396,10 +4585,11 @@ std::string ToString(const VkDeviceAddressBindingFlagBitsEXT& value)
     case VK_DEVICE_ADDRESS_BINDING_INTERNAL_OBJECT_BIT_EXT: return "VK_DEVICE_ADDRESS_BINDING_INTERNAL_OBJECT_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkDeviceAddressBindingFlagBitsEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkDeviceAddressBindingFlagBitsEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkDeviceAddressBindingFlagBitsEXT>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkDeviceAddressBindingFlagsEXTToString(const VkDeviceAddressBindingFlagsEXT vkFlags)
 {
     return BitmaskToString<VkDeviceAddressBindingFlagBitsEXT>(vkFlags);
 }
@@ -4411,7 +4601,8 @@ std::string ToString(const VkDeviceAddressBindingTypeEXT& value)
     case VK_DEVICE_ADDRESS_BINDING_TYPE_UNBIND_EXT: return "VK_DEVICE_ADDRESS_BINDING_TYPE_UNBIND_EXT";
     default: break;
     }
-    return "Unhandled VkDeviceAddressBindingTypeEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkDeviceAddressBindingTypeEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkAccelerationStructureBuildTypeKHR& value)
@@ -4422,7 +4613,8 @@ std::string ToString(const VkAccelerationStructureBuildTypeKHR& value)
     case VK_ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_OR_DEVICE_KHR: return "VK_ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_OR_DEVICE_KHR";
     default: break;
     }
-    return "Unhandled VkAccelerationStructureBuildTypeKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkAccelerationStructureBuildTypeKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkAccelerationStructureCompatibilityKHR& value)
@@ -4432,7 +4624,8 @@ std::string ToString(const VkAccelerationStructureCompatibilityKHR& value)
     case VK_ACCELERATION_STRUCTURE_COMPATIBILITY_INCOMPATIBLE_KHR: return "VK_ACCELERATION_STRUCTURE_COMPATIBILITY_INCOMPATIBLE_KHR";
     default: break;
     }
-    return "Unhandled VkAccelerationStructureCompatibilityKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkAccelerationStructureCompatibilityKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkBuildMicromapFlagBitsEXT& value)
@@ -4443,10 +4636,11 @@ std::string ToString(const VkBuildMicromapFlagBitsEXT& value)
     case VK_BUILD_MICROMAP_ALLOW_COMPACTION_BIT_EXT: return "VK_BUILD_MICROMAP_ALLOW_COMPACTION_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkBuildMicromapFlagBitsEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkBuildMicromapFlagBitsEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkBuildMicromapFlagBitsEXT>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkBuildMicromapFlagsEXTToString(const VkBuildMicromapFlagsEXT vkFlags)
 {
     return BitmaskToString<VkBuildMicromapFlagBitsEXT>(vkFlags);
 }
@@ -4457,7 +4651,8 @@ std::string ToString(const VkBuildMicromapModeEXT& value)
     case VK_BUILD_MICROMAP_MODE_BUILD_EXT: return "VK_BUILD_MICROMAP_MODE_BUILD_EXT";
     default: break;
     }
-    return "Unhandled VkBuildMicromapModeEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkBuildMicromapModeEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkCopyMicromapModeEXT& value)
@@ -4469,7 +4664,8 @@ std::string ToString(const VkCopyMicromapModeEXT& value)
     case VK_COPY_MICROMAP_MODE_COMPACT_EXT: return "VK_COPY_MICROMAP_MODE_COMPACT_EXT";
     default: break;
     }
-    return "Unhandled VkCopyMicromapModeEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkCopyMicromapModeEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkMicromapCreateFlagBitsEXT& value)
@@ -4478,10 +4674,11 @@ std::string ToString(const VkMicromapCreateFlagBitsEXT& value)
     case VK_MICROMAP_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT: return "VK_MICROMAP_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT";
     default: break;
     }
-    return "Unhandled VkMicromapCreateFlagBitsEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkMicromapCreateFlagBitsEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkMicromapCreateFlagBitsEXT>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkMicromapCreateFlagsEXTToString(const VkMicromapCreateFlagsEXT vkFlags)
 {
     return BitmaskToString<VkMicromapCreateFlagBitsEXT>(vkFlags);
 }
@@ -4492,7 +4689,8 @@ std::string ToString(const VkMicromapTypeEXT& value)
     case VK_MICROMAP_TYPE_OPACITY_MICROMAP_EXT: return "VK_MICROMAP_TYPE_OPACITY_MICROMAP_EXT";
     default: break;
     }
-    return "Unhandled VkMicromapTypeEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkMicromapTypeEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkOpacityMicromapFormatEXT& value)
@@ -4502,7 +4700,8 @@ std::string ToString(const VkOpacityMicromapFormatEXT& value)
     case VK_OPACITY_MICROMAP_FORMAT_4_STATE_EXT: return "VK_OPACITY_MICROMAP_FORMAT_4_STATE_EXT";
     default: break;
     }
-    return "Unhandled VkOpacityMicromapFormatEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkOpacityMicromapFormatEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkOpacityMicromapSpecialIndexEXT& value)
@@ -4514,7 +4713,8 @@ std::string ToString(const VkOpacityMicromapSpecialIndexEXT& value)
     case VK_OPACITY_MICROMAP_SPECIAL_INDEX_FULLY_UNKNOWN_OPAQUE_EXT: return "VK_OPACITY_MICROMAP_SPECIAL_INDEX_FULLY_UNKNOWN_OPAQUE_EXT";
     default: break;
     }
-    return "Unhandled VkOpacityMicromapSpecialIndexEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkOpacityMicromapSpecialIndexEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkSubpassMergeStatusEXT& value)
@@ -4536,7 +4736,8 @@ std::string ToString(const VkSubpassMergeStatusEXT& value)
     case VK_SUBPASS_MERGE_STATUS_NOT_MERGED_UNSPECIFIED_EXT: return "VK_SUBPASS_MERGE_STATUS_NOT_MERGED_UNSPECIFIED_EXT";
     default: break;
     }
-    return "Unhandled VkSubpassMergeStatusEXT";
+    if(value  == 0) return "0";
+    return "Unhandled VkSubpassMergeStatusEXT: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkDirectDriverLoadingModeLUNARG& value)
@@ -4546,7 +4747,8 @@ std::string ToString(const VkDirectDriverLoadingModeLUNARG& value)
     case VK_DIRECT_DRIVER_LOADING_MODE_INCLUSIVE_LUNARG: return "VK_DIRECT_DRIVER_LOADING_MODE_INCLUSIVE_LUNARG";
     default: break;
     }
-    return "Unhandled VkDirectDriverLoadingModeLUNARG";
+    if(value  == 0) return "0";
+    return "Unhandled VkDirectDriverLoadingModeLUNARG: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkOpticalFlowExecuteFlagBitsNV& value)
@@ -4555,10 +4757,11 @@ std::string ToString(const VkOpticalFlowExecuteFlagBitsNV& value)
     case VK_OPTICAL_FLOW_EXECUTE_DISABLE_TEMPORAL_HINTS_BIT_NV: return "VK_OPTICAL_FLOW_EXECUTE_DISABLE_TEMPORAL_HINTS_BIT_NV";
     default: break;
     }
-    return "Unhandled VkOpticalFlowExecuteFlagBitsNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkOpticalFlowExecuteFlagBitsNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkOpticalFlowExecuteFlagBitsNV>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkOpticalFlowExecuteFlagsNVToString(const VkOpticalFlowExecuteFlagsNV vkFlags)
 {
     return BitmaskToString<VkOpticalFlowExecuteFlagBitsNV>(vkFlags);
 }
@@ -4573,10 +4776,11 @@ std::string ToString(const VkOpticalFlowGridSizeFlagBitsNV& value)
     case VK_OPTICAL_FLOW_GRID_SIZE_8X8_BIT_NV: return "VK_OPTICAL_FLOW_GRID_SIZE_8X8_BIT_NV";
     default: break;
     }
-    return "Unhandled VkOpticalFlowGridSizeFlagBitsNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkOpticalFlowGridSizeFlagBitsNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkOpticalFlowGridSizeFlagBitsNV>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkOpticalFlowGridSizeFlagsNVToString(const VkOpticalFlowGridSizeFlagsNV vkFlags)
 {
     return BitmaskToString<VkOpticalFlowGridSizeFlagBitsNV>(vkFlags);
 }
@@ -4590,7 +4794,8 @@ std::string ToString(const VkOpticalFlowPerformanceLevelNV& value)
     case VK_OPTICAL_FLOW_PERFORMANCE_LEVEL_FAST_NV: return "VK_OPTICAL_FLOW_PERFORMANCE_LEVEL_FAST_NV";
     default: break;
     }
-    return "Unhandled VkOpticalFlowPerformanceLevelNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkOpticalFlowPerformanceLevelNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkOpticalFlowSessionBindingPointNV& value)
@@ -4607,7 +4812,8 @@ std::string ToString(const VkOpticalFlowSessionBindingPointNV& value)
     case VK_OPTICAL_FLOW_SESSION_BINDING_POINT_GLOBAL_FLOW_NV: return "VK_OPTICAL_FLOW_SESSION_BINDING_POINT_GLOBAL_FLOW_NV";
     default: break;
     }
-    return "Unhandled VkOpticalFlowSessionBindingPointNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkOpticalFlowSessionBindingPointNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkOpticalFlowSessionCreateFlagBitsNV& value)
@@ -4620,10 +4826,11 @@ std::string ToString(const VkOpticalFlowSessionCreateFlagBitsNV& value)
     case VK_OPTICAL_FLOW_SESSION_CREATE_BOTH_DIRECTIONS_BIT_NV: return "VK_OPTICAL_FLOW_SESSION_CREATE_BOTH_DIRECTIONS_BIT_NV";
     default: break;
     }
-    return "Unhandled VkOpticalFlowSessionCreateFlagBitsNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkOpticalFlowSessionCreateFlagBitsNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkOpticalFlowSessionCreateFlagBitsNV>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkOpticalFlowSessionCreateFlagsNVToString(const VkOpticalFlowSessionCreateFlagsNV vkFlags)
 {
     return BitmaskToString<VkOpticalFlowSessionCreateFlagBitsNV>(vkFlags);
 }
@@ -4639,10 +4846,11 @@ std::string ToString(const VkOpticalFlowUsageFlagBitsNV& value)
     case VK_OPTICAL_FLOW_USAGE_GLOBAL_FLOW_BIT_NV: return "VK_OPTICAL_FLOW_USAGE_GLOBAL_FLOW_BIT_NV";
     default: break;
     }
-    return "Unhandled VkOpticalFlowUsageFlagBitsNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkOpticalFlowUsageFlagBitsNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkOpticalFlowUsageFlagBitsNV>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkOpticalFlowUsageFlagsNVToString(const VkOpticalFlowUsageFlagsNV vkFlags)
 {
     return BitmaskToString<VkOpticalFlowUsageFlagBitsNV>(vkFlags);
 }
@@ -4654,7 +4862,8 @@ std::string ToString(const VkRayTracingInvocationReorderModeNV& value)
     case VK_RAY_TRACING_INVOCATION_REORDER_MODE_REORDER_NV: return "VK_RAY_TRACING_INVOCATION_REORDER_MODE_REORDER_NV";
     default: break;
     }
-    return "Unhandled VkRayTracingInvocationReorderModeNV";
+    if(value  == 0) return "0";
+    return "Unhandled VkRayTracingInvocationReorderModeNV: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkAccelerationStructureCreateFlagBitsKHR& value)
@@ -4665,10 +4874,11 @@ std::string ToString(const VkAccelerationStructureCreateFlagBitsKHR& value)
     case VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV: return "VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV";
     default: break;
     }
-    return "Unhandled VkAccelerationStructureCreateFlagBitsKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkAccelerationStructureCreateFlagBitsKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
-template <> std::string ToString<VkAccelerationStructureCreateFlagBitsKHR>(VkFlags vkFlags, ToStringFlags, uint32_t, uint32_t)
+std::string VkAccelerationStructureCreateFlagsKHRToString(const VkAccelerationStructureCreateFlagsKHR vkFlags)
 {
     return BitmaskToString<VkAccelerationStructureCreateFlagBitsKHR>(vkFlags);
 }
@@ -4680,7 +4890,8 @@ std::string ToString(const VkBuildAccelerationStructureModeKHR& value)
     case VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR: return "VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR";
     default: break;
     }
-    return "Unhandled VkBuildAccelerationStructureModeKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkBuildAccelerationStructureModeKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 std::string ToString(const VkShaderGroupShaderKHR& value)
@@ -4692,7 +4903,8 @@ std::string ToString(const VkShaderGroupShaderKHR& value)
     case VK_SHADER_GROUP_SHADER_INTERSECTION_KHR: return "VK_SHADER_GROUP_SHADER_INTERSECTION_KHR";
     default: break;
     }
-    return "Unhandled VkShaderGroupShaderKHR";
+    if(value  == 0) return "0";
+    return "Unhandled VkShaderGroupShaderKHR: " + std::to_string(static_cast<const uint64_t>(value));
 }
 
 GFXRECON_END_NAMESPACE(util)
