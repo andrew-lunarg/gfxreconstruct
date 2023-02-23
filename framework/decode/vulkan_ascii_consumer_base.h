@@ -65,6 +65,12 @@ class VulkanAsciiConsumerBase : public VulkanConsumer, public AnnotationHandler
                                    const std::string&     label,
                                    const std::string&     data) override;
 
+    // Convert MetaBlocks, which are are commands injected between API calls by the capture layer:
+
+    virtual void ProcessDisplayMessageCommand(const std::string& message) override;
+
+    // Convert Vulkan Calls that need manual handling:
+
     virtual void
     Process_vkAllocateCommandBuffers(const ApiCallInfo&                                         call_info,
                                      VkResult                                                   returnValue,

@@ -112,6 +112,14 @@ void VulkanAsciiConsumerBase::ProcessAnnotation(uint64_t               block_ind
             util::JSONEscape(data).c_str());
 }
 
+/// @note It would be nice to have the block index and thread id to output too.
+void VulkanAsciiConsumerBase::ProcessDisplayMessageCommand(const std::string& message)
+{
+    fprintf(file_,
+            "{\"meta\":{\"name\":\"DisplayMessageCommand\",\"args\":{\"message\":\"%s\"}}}\n",
+            util::JSONEscape(message).c_str());
+}
+
 // clang-format off
 
 // NOTE : The following functions' Process_ functions aren't generated due
