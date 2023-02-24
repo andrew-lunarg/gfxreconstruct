@@ -161,8 +161,8 @@ inline std::string Bool32ToString(const /* Don't take the header dependency for 
 template <typename T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr>
 std::string to_hex_string(T value)
 {
-    std::stringstream stream;
-    stream << "0x" << std::setfill('0') << std::setw(sizeof(T) * 2) << std::hex << value;
+    std::ostringstream stream;
+    stream << "0x" << std::hex << value;
     return stream.str();
 }
 
