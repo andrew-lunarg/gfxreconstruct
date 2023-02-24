@@ -29,6 +29,8 @@
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(decode)
 
+static const int kJsonIndentWidth = 2;
+
 VulkanExportJsonConsumerBase::VulkanExportJsonConsumerBase() : file_(nullptr) {}
 
 VulkanExportJsonConsumerBase::~VulkanExportJsonConsumerBase()
@@ -556,7 +558,7 @@ void VulkanExportJsonConsumerBase::WriteBlockEnd()
     {
         fputs(json_options_.format == JsonFormat::JSONL ? "\n" : ",\n", file_);
     }
-    fputs(json_data_.dump(json_options_.format == JsonFormat::JSONL ? -1 : 4).c_str(), file_);
+    fputs(json_data_.dump(json_options_.format == JsonFormat::JSONL ? -1 : kJsonIndentWidth).c_str(), file_);
 }
 
 GFXRECON_END_NAMESPACE(decode)
