@@ -37,43 +37,32 @@
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(decode)
 
-inline void FieldToJson(nlohmann::ordered_json& jdata, short data, const JsonOptions& options = JsonOptions())
+inline void FieldToJson(nlohmann::ordered_json& jdata, int16_t data, const JsonOptions& options = JsonOptions())
 {
     jdata = data;
 }
 
-inline void FieldToJson(nlohmann::ordered_json& jdata, int data, const JsonOptions& options = JsonOptions())
+inline void FieldToJson(nlohmann::ordered_json& jdata, int32_t data, const JsonOptions& options = JsonOptions())
 {
     jdata = data;
 }
 
-inline void FieldToJson(nlohmann::ordered_json& jdata, long data, const JsonOptions& options = JsonOptions())
+inline void FieldToJson(nlohmann::ordered_json& jdata, int64_t data, const JsonOptions& options = JsonOptions())
 {
     jdata = data;
 }
 
-inline void FieldToJson(nlohmann::ordered_json& jdata, long long data, const JsonOptions& options = JsonOptions())
+inline void FieldToJson(nlohmann::ordered_json& jdata, uint16_t data, const JsonOptions& options = JsonOptions())
 {
     jdata = data;
 }
 
-inline void FieldToJson(nlohmann::ordered_json& jdata, unsigned short data, const JsonOptions& options = JsonOptions())
+inline void FieldToJson(nlohmann::ordered_json& jdata, uint32_t data, const JsonOptions& options = JsonOptions())
 {
     jdata = data;
 }
 
-inline void FieldToJson(nlohmann::ordered_json& jdata, unsigned int data, const JsonOptions& options = JsonOptions())
-{
-    jdata = data;
-}
-
-inline void FieldToJson(nlohmann::ordered_json& jdata, unsigned long data, const JsonOptions& options = JsonOptions())
-{
-    jdata = data;
-}
-
-inline void
-FieldToJson(nlohmann::ordered_json& jdata, unsigned long long data, const JsonOptions& options = JsonOptions())
+inline void FieldToJson(nlohmann::ordered_json& jdata, uint64_t data, const JsonOptions& options = JsonOptions())
 {
     jdata = data;
 }
