@@ -192,8 +192,6 @@ class VulkanExportJsonConsumerBodyGenerator(BaseGenerator):
             body += '            FieldToJson(jdata[NameReturn()], returnValue, json_options_);\n'.format(return_type)
         elif not 'void' in return_type:
             body += '            FieldToJson(jdata[NameReturn()], returnValue, json_options_);\n'
-        elif return_type == 'void':
-            body += '            FieldToJson(jdata[NameReturn()], "void", json_options_);\n'
 
         if len(values) > 0:
             body += '            auto parameters = jdata[NameArgs()];\n'
