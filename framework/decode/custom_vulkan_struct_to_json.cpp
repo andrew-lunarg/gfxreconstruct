@@ -199,7 +199,7 @@ void FieldToJson(nlohmann::ordered_json&                              jdata,
         switch (discriminant)
         {
             case VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_BOOL32_KHR:
-                jdata["b32"] = decoded_value.b32;
+                jdata["b32"] = static_cast<bool>(decoded_value.b32);
                 break;
             case VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_INT64_KHR:
                 jdata["i64"] = decoded_value.i64;
@@ -237,7 +237,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_SECURITY_ATTRIBUTE
     {
         const auto& decoded_value = *data->decoded_value;
         const auto& meta_struct   = *data;
-        FieldToJson(jdata["bInheritHandle"], decoded_value.bInheritHandle, options);
+        jdata["bInheritHandle"]   = static_cast<bool>(decoded_value.bInheritHandle);
         FieldToJson(jdata["nLength"], decoded_value.nLength, options);
         FieldToJson(jdata["lpSecurityDescriptor"], meta_struct.lpSecurityDescriptor->GetAddress(), options);
     }
