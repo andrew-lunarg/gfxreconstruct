@@ -345,7 +345,7 @@ void VulkanExportJsonConsumerBase::ProcessInitImageCommand(format::HandleId     
         FieldToJson(jdata["data_size"], data_size, json_options_);
         FieldToJson(jdata["aspect"], aspect, json_options_);
         FieldToJson(jdata["layout"], layout, json_options_);
-        FieldToJson(jdata["level_sizez"], "not available", json_options_);
+        FieldToJson(jdata["level_sizez"], "not available", json_options_); /// @todo Typo: level_sizes
 
         if (json_options_.dump_binaries)
         {
@@ -487,7 +487,7 @@ void VulkanExportJsonConsumerBase::Process_vkCreatePipelineCache(
         if (json_options_.dump_binaries)
         {
             auto        decoded_data = pCreateInfo->GetPointer();
-            std::string filename     = GenerateFilename("pipeilne_cache_data.bin");
+            std::string filename     = GenerateFilename("pipeilne_cache_data.bin"); /// @todo Typo
             std::string basename     = gfxrecon::util::filepath::Join(json_options_.data_sub_dir, filename);
             std::string filepath     = gfxrecon::util::filepath::Join(json_options_.root_dir, basename);
             if (WriteBinaryFile(filepath, decoded_data->initialDataSize, (uint8_t*)decoded_data->pInitialData))
@@ -550,7 +550,7 @@ void VulkanExportJsonConsumerBase::Process_vkCmdPushConstants(const ApiCallInfo&
 
 void VulkanExportJsonConsumerBase::WriteBlockStart()
 {
-    json_data_.clear(); // < Dominates Export profiling.
+    json_data_.clear(); // < Dominates Export profiling (1/2).
     num_objects_++;
 }
 
@@ -560,6 +560,7 @@ void VulkanExportJsonConsumerBase::WriteBlockEnd()
     {
         fputs(json_options_.format == JsonFormat::JSONL ? "\n" : ",\n", file_);
     }
+    // Dominates Export profiling (2/2):
     fputs(json_data_.dump(json_options_.format == JsonFormat::JSONL ? -1 : kJsonIndentWidth).c_str(), file_);
 }
 
