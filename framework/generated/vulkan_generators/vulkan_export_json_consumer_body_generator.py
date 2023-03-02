@@ -189,7 +189,10 @@ class VulkanExportJsonConsumerBodyGenerator(BaseGenerator):
         if return_type in self.formatAsHex:
             body += '            FieldToJson(jdata[NameReturn()], to_hex_variable_width(returnValue), json_options_);\n'
         elif self.is_enum(return_type):
-            body += '            FieldToJson(jdata[NameReturn()], returnValue, json_options_);\n'.format(return_type)
+            body += '            FieldToJson(jdata[NameReturn()], returnValue, json_options_);\n'
+        elif 'VkBool32' == return_type:
+            # Output as JSON boolean type true/false without quotes:
+            body += '            jdata[NameReturn()] = static_cast<bool>(returnValue);\n'
         elif not 'void' in return_type:
             body += '            FieldToJson(jdata[NameReturn()], returnValue, json_options_);\n'
 
@@ -199,6 +202,8 @@ class VulkanExportJsonConsumerBodyGenerator(BaseGenerator):
             for value in values:
                 flagsEnumType = value.base_type
                 to_json = 'FieldToJson(parameters["{0}"], {0}, json_options_)'
+                if 'VkBool32' == value.base_type:
+                    to_json = 'FieldToJsonVkBool32(parameters["{0}"], {0})'
                 if not value.is_pointer:
                     if not value.is_array:
                         if self.is_handle(value.base_type):
@@ -211,6 +216,8 @@ class VulkanExportJsonConsumerBodyGenerator(BaseGenerator):
                             to_json = 'FieldToJson({2}_t(), parameters["{0}"], {0}, json_options_)'
                         elif self.is_enum(value.base_type):
                             to_json = 'FieldToJson(parameters["{0}"], {0}, json_options_)'
+                        elif 'VkBool32' == value.base_type:
+                            to_json = 'parameters["{0}"] = static_cast<bool>({0})'
 
                 to_json = to_json.format(value.name, value.base_type, flagsEnumType)
                 body += '            {0};\n'.format(to_json)
