@@ -42,10 +42,11 @@ enum class JsonFormat
 struct JsonOptions
 {
     JsonFormat  format        = JsonFormat::JSON;
-    bool        dump_binaries = false;
-    bool        expand_flags  = false;
     std::string root_dir;
     std::string data_sub_dir;
+    bool        dump_binaries = false;
+    bool        expand_flags  = false;
+    bool        hex_handles = false;
 };
 
 template<typename T>
@@ -77,10 +78,20 @@ inline std::string uuid_to_string(uint32_t size, const uint8_t* uuid)
 }
 
 /// @brief Convert the integer representation of a handle in capture files into
-/// a string.
-inline std::string handle_to_string(const gfxrecon::format::HandleId value)
+/// either a JSON number or a JSON string with the number represented in
+/// hexadecimal.
+inline void HandleToJson(nlohmann::ordered_json& jdata, const format::HandleId handle, const JsonOptions& options)
 {
-    return to_hex_variable_width(value);
+    if (options.hex_handles)
+    {
+        // A JSON string
+        jdata = to_hex_variable_width(handle);
+    }
+    else
+    {
+        // A JSON number
+        jdata = handle;
+    }
 }
 
 GFXRECON_END_NAMESPACE(decode)

@@ -307,12 +307,12 @@ void FieldToJson(nlohmann::ordered_json&              jdata,
         {
             for (size_t i = 0; i < length; ++i)
             {
-                FieldToJson(jdata[i], handle_to_string(decoded_value[i]), options);
+                HandleToJson(jdata[i], decoded_value[i], options);
             }
         }
         else if (length == 1)
         {
-            FieldToJson(jdata, handle_to_string(*decoded_value), options);
+            HandleToJson(jdata, *decoded_value, options);
         }
     }
 }
