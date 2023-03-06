@@ -193,6 +193,8 @@ class VulkanExportJsonConsumerBodyGenerator(BaseGenerator):
         elif 'VkBool32' == return_type:
             # Output as JSON boolean type true/false without quotes:
             body += '            jdata[NameReturn()] = static_cast<bool>(returnValue);\n'
+        elif self.is_handle(return_type):
+            body += '            HandleToJson(jdata[NameReturn()], returnValue, json_options_);\n'
         elif not 'void' in return_type:
             body += '            FieldToJson(jdata[NameReturn()], returnValue, json_options_);\n'
 
@@ -207,7 +209,7 @@ class VulkanExportJsonConsumerBodyGenerator(BaseGenerator):
                 if not value.is_pointer:
                     if not value.is_array:
                         if self.is_handle(value.base_type):
-                            to_json = 'FieldToJson(parameters["{0}"], handle_to_string({0}), json_options_)'
+                            to_json = 'HandleToJson(parameters["{0}"], {0}, json_options_)'
                         elif value.base_type in self.formatAsHex:
                             to_json = 'FieldToJson(parameters["{0}"], to_hex_variable_width({0}), json_options_)'
                         elif self.is_flags(value.base_type):
