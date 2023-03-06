@@ -191,7 +191,7 @@ class VulkanExportJsonConsumerBase : public VulkanConsumer, public AnnotationHan
   protected:
     // Wrappers for json field names allowing change without code gen and
     // leaving door open for switching output based on internal state.
-    constexpr const char* NameVkFunc() const { return "vkFunc"; }
+    constexpr const char* NameFunction() const { return "function"; }
     constexpr const char* NameMeta() const { return "meta"; }
     constexpr const char* NameState() const { return "state"; }
     constexpr const char* NameName() const { return "name"; }
@@ -210,10 +210,10 @@ class VulkanExportJsonConsumerBase : public VulkanConsumer, public AnnotationHan
 
         json_data_[NameIndex()] = call_info.index;
 
-        nlohmann::ordered_json& vkFunc = json_data_[NameVkFunc()];
-        vkFunc[NameName()]             = command_name;
-        vkFunc[NameThread()]           = call_info.thread_id;
-        toJsonFunction(vkFunc);
+        nlohmann::ordered_json& function = json_data_[NameFunction()];
+        function[NameName()]             = command_name;
+        function[NameThread()]           = call_info.thread_id;
+        toJsonFunction(function);
 
         WriteBlockEnd();
     }
