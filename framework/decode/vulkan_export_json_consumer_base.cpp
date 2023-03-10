@@ -28,6 +28,7 @@
 
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(decode)
+using namespace util::platform;
 
 static const int kJsonIndentWidth = 2;
 
@@ -95,7 +96,7 @@ void VulkanExportJsonConsumerBase::StartFile(FILE* file)
     num_objects_ = 0;
     if (json_options_.format == JsonFormat::JSON)
     {
-        fputs("[\n", file_);
+        FilePuts("[\n", file_);
     }
 
     // Emit the header object as the first line of the file:
@@ -110,11 +111,11 @@ void VulkanExportJsonConsumerBase::EndFile()
     {
         if (json_options_.format == JsonFormat::JSON)
         {
-            fputs("\n]\n", file_);
+            FilePuts("\n]\n", file_);
         }
         else
         {
-            fputs("\n", file_);
+            FilePuts("\n", file_);
         }
         file_ = nullptr;
     }
