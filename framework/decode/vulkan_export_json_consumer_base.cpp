@@ -611,9 +611,9 @@ void VulkanExportJsonConsumerBase::WriteBlockEnd()
         FilePuts(json_options_.format == JsonFormat::JSONL ? "\n" : ",\n", file_);
     }
     // Dominates Export profiling (2/2):
-    std::string block = json_data_.dump(json_options_.format == JsonFormat::JSONL ? -1 : kJsonIndentWidth);
-    FilePuts(block.c_str(), file_);
-    FileFlush(file_);
+    const std::string block = json_data_.dump(json_options_.format == JsonFormat::JSONL ? -1 : kJsonIndentWidth);
+    FileWriteNoLock(block.data(), sizeof(std::string::value_type), block.length(), file_);
+    FileFlush(file_); /// @todo Implement a FileFlushNoLock() for all platforms.
 }
 
 void VulkanExportJsonConsumerBase::ProcessAnnotation(uint64_t               block_index,
