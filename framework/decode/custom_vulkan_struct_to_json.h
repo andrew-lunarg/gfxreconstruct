@@ -81,21 +81,9 @@ FieldToJson(nlohmann::ordered_json& jdata, unsigned long long data, const JsonOp
 }
 
 /// Convert floats to JSON, logging information loss when floats with no JSON
-/// number type representation will be adjusted.
-inline void FieldToJson(nlohmann::ordered_json& jdata, float data, const JsonOptions& options = JsonOptions())
-{
-    if (std::isnan(data))
-    {
-        GFXRECON_LOG_WARNING_ONCE("Converting a NAN.");
-    }
-    else if (std::isinf(data))
-    {
-        GFXRECON_LOG_WARNING_ONCE("Converting an infinity.");
-    }
-    // Normal and denormal/subnormal numbers pass through unremarked.
-
-    jdata = data;
-}
+/// number type representation are adjusted. The JSON library turns these numbers
+/// into JSON nulls otherwise.
+void FieldToJson(nlohmann::ordered_json& jdata, float data, const JsonOptions& options = JsonOptions());
 
 /// @note This is unused dead code currently (try placing a breakpoint on it).
 inline void FieldToJson(nlohmann::ordered_json& jdata, double data, const JsonOptions& options = JsonOptions())
