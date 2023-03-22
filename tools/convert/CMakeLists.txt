@@ -1,6 +1,6 @@
-add_executable(gfxrecon-export "")
+add_executable(gfxrecon-convert "")
 
-target_sources(gfxrecon-export
+target_sources(gfxrecon-convert
                PRIVATE
                     ${CMAKE_CURRENT_LIST_DIR}/../tool_settings.h
                     ${CMAKE_CURRENT_LIST_DIR}/main.cpp
@@ -17,10 +17,10 @@ if (MSVC)
       endif()
 endif()
 
-target_include_directories(gfxrecon-export PUBLIC ${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_LIST_DIR}/..)
+target_include_directories(gfxrecon-convert PUBLIC ${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_LIST_DIR}/..)
 
-target_link_libraries(gfxrecon-export gfxrecon_decode gfxrecon_graphics gfxrecon_format gfxrecon_util platform_specific)
+target_link_libraries(gfxrecon-convert gfxrecon_decode gfxrecon_graphics gfxrecon_format gfxrecon_util platform_specific)
 
-common_build_directives(gfxrecon-export)
+common_build_directives(gfxrecon-convert)
 
-install(TARGETS gfxrecon-export RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(TARGETS gfxrecon-convert RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

@@ -45,7 +45,7 @@ static void PrintUsage(const char* exe_name)
     {
         app_name.replace(0, dir_location + 1, "");
     }
-    GFXRECON_WRITE_CONSOLE("\n%s - A tool to export contents of GFXReconstruct capture files to JSON.\n",
+    GFXRECON_WRITE_CONSOLE("\n%s - A tool to convert the contents of GFXReconstruct capture files to JSON.\n",
                            app_name.c_str());
     GFXRECON_WRITE_CONSOLE("Usage:");
     GFXRECON_WRITE_CONSOLE("  %s [-h | --help] [--version] <file>\n", app_name.c_str());
@@ -57,19 +57,19 @@ static void PrintUsage(const char* exe_name)
     GFXRECON_WRITE_CONSOLE("  --version\t\tPrint version information and exit.");
     GFXRECON_WRITE_CONSOLE("  --output file\t\t'stdout' or a path to a file to write JSON output");
     GFXRECON_WRITE_CONSOLE("        \t\tto. Default is the input filepath with \"gfxr\" replaced by \"json\".");
-    GFXRECON_WRITE_CONSOLE("  --format <format>\t\t'JSON format to write.");
-    GFXRECON_WRITE_CONSOLE("         json   Standard JSON format (indented)");
-    GFXRECON_WRITE_CONSOLE("         jsonl  JSON lines format (every object in a single line)");
+    GFXRECON_WRITE_CONSOLE("  --format <format>\tJSON format to write.");
+    GFXRECON_WRITE_CONSOLE("           json\t\tStandard JSON format (indented)");
+    GFXRECON_WRITE_CONSOLE("           jsonl\tJSON lines format (every object in a single line)");
+    GFXRECON_WRITE_CONSOLE("  --include-binaries\tDump binaries from Vulkan traces in a separate file with an unique "
+                           "name. The main JSON file");
+    GFXRECON_WRITE_CONSOLE("                    \twill include a reference with the file name. The binary files are "
+                           "dumped in a subdirectory");
+    GFXRECON_WRITE_CONSOLE("  --expand-flags\tPrint flags values from Vulkan traces with its correspondent symbolic "
+                           "representation. Otherwise,");
+    GFXRECON_WRITE_CONSOLE("                \tthe flags are printed as hexadecimal value.");
     GFXRECON_WRITE_CONSOLE(
-        "  --include-binaries\t\t'Dump binaries from Vulkan traces in a separate file with an unique name. The main JSON file");
-    GFXRECON_WRITE_CONSOLE(
-        "         will include a reference with the file name. The binary files are dumped in a subdirectory");
-    GFXRECON_WRITE_CONSOLE(
-        "  --expand-flags\t\t'Print flags values from Vulkan traces with its correspondent symbolic representation. Otherwise,");
-    GFXRECON_WRITE_CONSOLE("         the flags are printed as hexadecimal value.");
-    GFXRECON_WRITE_CONSOLE(
-        "  --file-per-frame\t\t'Creates a new file for every frame processed. Frame number is added as a suffix");
-    GFXRECON_WRITE_CONSOLE("         to the output file name.");
+        "  --file-per-frame\tCreates a new file for every frame processed. Frame number is added as a suffix");
+    GFXRECON_WRITE_CONSOLE("                  \tto the output file name.");
 
 #if defined(WIN32) && defined(_DEBUG)
     GFXRECON_WRITE_CONSOLE("  --no-debug-popup\tDisable the 'Abort, Retry, Ignore' message box");
@@ -196,7 +196,6 @@ int main(int argc, const char** argv)
     }
 #endif
 
-
     if (file_per_frame && output_to_stdout)
     {
         GFXRECON_LOG_WARNING("Outputting a file per frame is not consistent with outputting to stdout.");
@@ -251,7 +250,7 @@ int main(int argc, const char** argv)
             json_options.dump_binaries = dump_binaries;
             json_options.expand_flags  = expand_flags;
 
-            bool success = true;
+            bool              success = true;
             const std::string vulkan_version{ std::to_string(VK_VERSION_MAJOR(VK_HEADER_VERSION_COMPLETE)) + "." +
                                               std::to_string(VK_VERSION_MINOR(VK_HEADER_VERSION_COMPLETE)) + "." +
                                               std::to_string(VK_VERSION_PATCH(VK_HEADER_VERSION_COMPLETE)) };
