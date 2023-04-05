@@ -42,7 +42,6 @@ TEST_CASE("Quote", "[to_string]")
     using namespace gfxrecon::util;
     gfxrecon::util::Log::Init(gfxrecon::util::Log::kDebugSeverity);
 
-    REQUIRE(gfxrecon::util::Quote(nullptr) == "\"\"");
     REQUIRE(gfxrecon::util::Quote("") == "\"\"");
     REQUIRE(gfxrecon::util::Quote(std::string("")) == "\"\"");
 

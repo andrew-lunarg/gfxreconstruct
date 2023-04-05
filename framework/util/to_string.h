@@ -60,37 +60,6 @@ ToString(const T& obj, ToStringFlags toStringFlags = kToString_Default, uint32_t
     return std::to_string(obj);
 }
 
-/// A conversion function for floats which modifies values that are not representable
-/// in JSON. Examples that hit this are usually from uninitialized data.
-inline std::string
-ToString(float data, ToStringFlags toStringFlags = kToString_Default, uint32_t tabCount = 0, uint32_t tabSize = 4)
-{
-    GFXRECON_UNREFERENCED_PARAMETER(toStringFlags);
-    GFXRECON_UNREFERENCED_PARAMETER(tabCount);
-    GFXRECON_UNREFERENCED_PARAMETER(tabSize);
-
-    if (std::isnan(data))
-    {
-        GFXRECON_LOG_WARNING_ONCE("Converting a NAN to zero.");
-        data = 0.0f;
-    }
-    else if (std::isinf(data))
-    {
-        GFXRECON_LOG_WARNING_ONCE("Converting an infinity to max or min.");
-        if (data < 0)
-        {
-            data = std::numeric_limits<float>::min();
-        }
-        else
-        {
-            data = std::numeric_limits<float>::max();
-        }
-    }
-    // Normal and denormal/subnormal numbers pass through unchanged.
-
-    return std::to_string(data);
-}
-
 /// @brief A template that exists only to allow the ToStrings for 32 bit sets of
 /// flags to be template specializations.
 /// It is never called and its return value of "0" is a meaningless placeholder
@@ -323,18 +292,6 @@ inline std::string Quote(const std::string& str)
 {
     std::string quoted{ '"' };
     quoted += str;
-    quoted += '"';
-    return quoted;
-}
-
-/// @brief Make a copy of the input string with double quotes at start and end.
-inline std::string Quote(const char* const str)
-{
-    std::string quoted{ '"' };
-    if (str != nullptr)
-    {
-        quoted += str;
-    }
     quoted += '"';
     return quoted;
 }
