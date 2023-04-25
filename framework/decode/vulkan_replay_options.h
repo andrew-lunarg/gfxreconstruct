@@ -56,6 +56,10 @@ struct VulkanReplayOptions : public ReplayOptions
     std::string                  screenshot_dir;
     std::string                  screenshot_file_prefix{ kDefaultScreenshotFilePrefix };
     std::string                  replace_dir;
+
+    /// Toggles whether to dump draw resources and identifies submit, cmd_buffer,
+    /// draw to have resources dumped.
+    std::tuple<bool, uint64_t, uint64_t, uint64_t> dump_draw{ false, 0, 0, 0 };
 };
 
 GFXRECON_END_NAMESPACE(decode)
