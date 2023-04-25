@@ -35,7 +35,8 @@ const char kOptions[] =
 const char kArguments[] =
     "--log-level,--log-file,--gpu,--gpu-group,--pause-frame,--wsi,--surface-index,-m|--memory-translation,"
     "--replace-shaders,--screenshots,--denied-messages,--allowed-messages,--screenshot-format,--"
-    "screenshot-dir,--screenshot-prefix,--mfr|--measurement-frame-range,--fw|--force-windowed";
+    "screenshot-dir,--screenshot-prefix,--mfr|--measurement-frame-range,--fw|--force-windowed,--dump-draw-cmd-"
+    "resources";
 
 static void PrintUsage(const char* exe_name)
 {
@@ -61,6 +62,7 @@ static void PrintUsage(const char* exe_name)
     GFXRECON_WRITE_CONSOLE("\t\t\t[-m <mode> | --memory-translation <mode>]");
     GFXRECON_WRITE_CONSOLE("\t\t\t[--use-captured-swapchain-indices]");
     GFXRECON_WRITE_CONSOLE("\t\t\t[--fw <width,height> | --force-windowed <width,height>]");
+    GFXRECON_WRITE_CONSOLE("\t\t\t[--dump-draw-cmd-resources <submit.buffer.draw>]");
 #if defined(WIN32)
     GFXRECON_WRITE_CONSOLE("\t\t\t[--log-level <level>] [--log-file <file>] [--log-debugview]");
 #if defined(_DEBUG)
@@ -196,7 +198,10 @@ static void PrintUsage(const char* exe_name)
     GFXRECON_WRITE_CONSOLE("          \t\treturned by vkEnumeratePhysicalDeviceGroups.  Replay may fail");
     GFXRECON_WRITE_CONSOLE("          \t\tif the specified device group is not compatible with the");
     GFXRECON_WRITE_CONSOLE("          \t\toriginal capture device group.");
-
+    GFXRECON_WRITE_CONSOLE("  --dump-draw-cmd-resources <submit.buffer.draw>");
+    GFXRECON_WRITE_CONSOLE("          \t\tDump resources at the given draw command specified by index of the submit,");
+    GFXRECON_WRITE_CONSOLE("          \t\tindex of the command buffer within the submit, and by index of the draw");
+    GFXRECON_WRITE_CONSOLE("          \t\tcommand within the command buffer.");
 #if defined(WIN32)
     GFXRECON_WRITE_CONSOLE("")
     GFXRECON_WRITE_CONSOLE("D3D12-only:")

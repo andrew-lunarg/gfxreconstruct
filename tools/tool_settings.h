@@ -104,11 +104,14 @@ const char kFormatArgument[]                     = "--format";
 const char kIncludeBinariesOption[]              = "--include-binaries";
 const char kExpandFlagsOption[]                  = "--expand-flags";
 const char kFilePerFrameOption[]                 = "--file-per-frame";
+const char kDumpDrawCmdResourcesArgument[]       = "--dump-draw-cmd-resources";
 #if defined(WIN32)
 const char kApiFamilyOption[]       = "--api";
 const char kDxTwoPassReplay[]       = "--dx12-two-pass-replay";
 const char kDxOverrideObjectNames[] = "--dx12-override-object-names";
 #endif
+
+const char kScopeSeparator = '.';
 
 enum class WsiPlatform
 {
@@ -264,6 +267,35 @@ static uint32_t GetPauseFrame(const gfxrecon::util::ArgumentParser& arg_parser)
     }
 
     return pause_frame;
+}
+
+static std::tuple<bool, uint64_t, uint64_t, uint64_t>
+GetDumpDrawCmdResources(const gfxrecon::util::ArgumentParser& arg_parser)
+{
+    const auto& value      = arg_parser.GetArgumentValue(kDumpDrawCmdResourcesArgument);
+    uint64_t    submit     = 0;
+    uint64_t    cmd_buffer = 0;
+    uint64_t    draw       = 0;
+    bool        success    = false;
+
+    if (!value.empty())
+    {
+        const auto values = gfxrecon::util::strings::SplitString(value, kScopeSeparator);
+        if (values.size() > 2)
+        {
+            submit     = std::stoull(values[0]);
+            cmd_buffer = std::stoull(values[1]);
+            draw       = std::stoull(values[2]);
+            success    = true;
+        }
+    }
+    if (!success)
+    {
+        GFXRECON_LOG_ERROR("Failed to get argument for %s from \"%s\". defaulting to [0, 0, 0].",
+                           kDumpDrawCmdResourcesArgument,
+                           value.c_str());
+    }
+    return { success, submit, cmd_buffer, draw };
 }
 
 static WsiPlatform GetWsiPlatform(const gfxrecon::util::ArgumentParser& arg_parser)
@@ -784,6 +816,8 @@ GetVulkanReplayOptions(const gfxrecon::util::ArgumentParser&           arg_parse
     {
         replay_options.surface_index = std::stoi(surface_index);
     }
+
+    replay_options.dump_draw = GetDumpDrawCmdResources(arg_parser);
 
     return replay_options;
 }

@@ -180,6 +180,8 @@ class VulkanReplayConsumerBase : public VulkanConsumer
                                                               DescriptorUpdateTemplateDecoder* pData) override;
 
   protected:
+    const VulkanReplayOptions& GetCreationOptions() const { return options_; }
+
     const VulkanObjectInfoTable& GetObjectInfoTable() const { return object_info_table_; }
 
     VulkanObjectInfoTable& GetObjectInfoTable() { return object_info_table_; }
@@ -1094,6 +1096,13 @@ class VulkanReplayConsumerBase : public VulkanConsumer
 
     // Used to track allocated external memory if replay uses VkImportMemoryHostPointerInfoEXT
     std::unordered_map<VkDeviceMemory, std::pair<void*, size_t>> external_memory_;
+
+  protected:
+    // Generated code will use these to count to the draw call to dump resources
+    // for specified in options_
+    uint64_t submit_count_     = 0;
+    uint64_t cmd_buffer_count_ = 0;
+    uint64_t draw_count_       = 0;
 };
 
 GFXRECON_END_NAMESPACE(decode)
