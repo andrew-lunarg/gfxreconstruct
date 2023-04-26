@@ -41,6 +41,10 @@ class ReferencedResourceTable
   public:
     void AddResource(format::HandleId resource_id);
 
+    /// Add a resource that was created from the parent resource such as an
+    /// image view from an image, tracking that parent/child relationship.
+    /// @param parent_id For example, an image.
+    /// @param resource_id For example an image view.
     void AddResource(format::HandleId parent_id, format::HandleId resource_id);
 
     void AddResource(size_t parent_id_count, const format::HandleId* parent_ids, format::HandleId resource_id);
@@ -58,6 +62,10 @@ class ReferencedResourceTable
 
     void AddContainer(format::HandleId pool_id, format::HandleId container_id);
 
+    /// Track that one resource is a user of another, for example a command buffer
+    /// is the user of its command buffer pool.
+    /// @param pool_id E.g. a command pool.
+    /// @param user_id E.g. a command buffer.
     void AddUser(format::HandleId pool_id, format::HandleId user_id);
 
     void RemoveContainer(format::HandleId container_id);
