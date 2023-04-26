@@ -22,7 +22,7 @@
 
 #include "decode/referenced_resource_table.h"
 
-#include <cassert>
+#include "util/logging.h"
 
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(decode)
@@ -44,7 +44,7 @@ void ReferencedResourceTable::AddResource(format::HandleId parent_id, format::Ha
         if (parent_entry != resources_.end())
         {
             auto& parent_info = parent_entry->second;
-            assert(parent_info != nullptr);
+            GFXRECON_ASSERT(parent_info != nullptr);
 
             auto resource_entry = resources_.find(resource_id);
             if (resource_entry == resources_.end())
@@ -95,7 +95,7 @@ void ReferencedResourceTable::AddResourceToContainer(format::HandleId container_
             if (resource_entry != resources_.end())
             {
                 auto& resource_info = resource_entry->second;
-                assert((container_info != nullptr) && (resource_info != nullptr));
+                GFXRECON_ASSERT((container_info != nullptr) && (resource_info != nullptr));
 
                 container_info->resource_infos.emplace(resource_id, std::weak_ptr<ResourceInfo>{ resource_info });
                 container_info->resource_bindings[binding].insert(std::make_pair(element, resource_id));
@@ -117,7 +117,7 @@ void ReferencedResourceTable::AddResourceToUser(format::HandleId user_id, format
             if (resource_entry != resources_.end())
             {
                 auto& resource_info = resource_entry->second;
-                assert((user_info != nullptr) && (resource_info != nullptr));
+                GFXRECON_ASSERT((user_info != nullptr) && (resource_info != nullptr));
 
                 user_info->resource_infos.emplace(resource_id, std::weak_ptr<ResourceInfo>{ resource_info });
             }
@@ -138,7 +138,7 @@ void ReferencedResourceTable::AddContainerToUser(format::HandleId user_id, forma
             if (container_entry != containers_.end())
             {
                 auto& container_info = container_entry->second;
-                assert((user_info != nullptr) && (container_info != nullptr));
+                GFXRECON_ASSERT((user_info != nullptr) && (container_info != nullptr));
 
                 user_info->container_infos.emplace(container_id,
                                                    std::weak_ptr<ResourceContainerInfo>{ container_info });
@@ -160,7 +160,7 @@ void ReferencedResourceTable::AddUserToUser(format::HandleId user_id, format::Ha
             if (source_user_entry != users_.end())
             {
                 auto& source_user_info = source_user_entry->second;
-                assert((user_info != nullptr) && (source_user_info != nullptr));
+                GFXRECON_ASSERT((user_info != nullptr) && (source_user_info != nullptr));
 
                 // Copy resource and container info from source user to destination user.
                 auto&       resource_infos         = user_info->resource_infos;
@@ -218,7 +218,7 @@ void ReferencedResourceTable::RemoveContainer(format::HandleId container_id)
         if (container_entry != containers_.end())
         {
             auto& container_info = container_entry->second;
-            assert(container_info != nullptr);
+            GFXRECON_ASSERT(container_info != nullptr);
 
             container_pool_handles_[container_info->pool_id].erase(container_id);
             containers_.erase(container_entry);
@@ -234,7 +234,7 @@ void ReferencedResourceTable::RemoveUser(format::HandleId user_id)
         if (user_entry != users_.end())
         {
             auto& user_info = user_entry->second;
-            assert(user_info != nullptr);
+            GFXRECON_ASSERT(user_info != nullptr);
 
             user_pool_handles_[user_info->pool_id].erase(user_id);
             users_.erase(user_entry);
@@ -250,7 +250,7 @@ void ReferencedResourceTable::ResetContainer(format::HandleId container_id)
         if (container_entry != containers_.end())
         {
             auto& container_info = container_entry->second;
-            assert(container_info != nullptr);
+            GFXRECON_ASSERT(container_info != nullptr);
 
             container_info->resource_infos.clear();
             container_info->resource_bindings.clear();
@@ -266,7 +266,7 @@ void ReferencedResourceTable::ResetUser(format::HandleId user_id)
         if (user_entry != users_.end())
         {
             auto& user_info = user_entry->second;
-            assert(user_info != nullptr);
+            GFXRECON_ASSERT(user_info != nullptr);
 
             user_info->resource_infos.clear();
             user_info->container_infos.clear();
@@ -362,7 +362,7 @@ void ReferencedResourceTable::ProcessUserSubmission(format::HandleId user_id)
         if (user_entry != users_.end())
         {
             auto& user_info = user_entry->second;
-            assert(user_info != nullptr);
+            GFXRECON_ASSERT(user_info != nullptr);
 
             auto& resource_infos  = user_info->resource_infos;
             auto& container_infos = user_info->container_infos;
@@ -420,7 +420,7 @@ void ReferencedResourceTable::GetReferencedResourceIds(std::unordered_set<format
 
 bool ReferencedResourceTable::IsUsed(const ResourceInfo* resource_info) const
 {
-    assert(resource_info != nullptr);
+    GFXRECON_ASSERT(resource_info != nullptr);
 
     if (resource_info->used)
     {
