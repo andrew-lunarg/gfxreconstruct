@@ -114,7 +114,7 @@ void VulkanReferencedResourceConsumerBase::Process_vkCreateBuffer(
     assert(pBuffer != nullptr);
 
     // Only track buffers that were created by the trimmed file state snapshot.
-    if (IsStateLoading())
+    if (IsStateLoading() || tracking_all_state_)
     {
         if (!pBuffer->IsNull() && pBuffer->HasData())
         {
@@ -170,7 +170,7 @@ void VulkanReferencedResourceConsumerBase::Process_vkCreateImage(
     assert(pImage != nullptr);
 
     // Only track images that were created by the trimmed file state snapshot.
-    if (IsStateLoading())
+    if (IsStateLoading() || tracking_all_state_)
     {
         if (!pImage->IsNull() && pImage->HasData())
         {

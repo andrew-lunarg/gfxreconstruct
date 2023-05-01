@@ -34,6 +34,7 @@
 #include "decode/vulkan_replay_options.h"
 #include "decode/vulkan_resource_allocator.h"
 #include "decode/vulkan_resource_tracking_consumer.h"
+#include "decode/referenced_resource_table.h"
 #include "decode/vulkan_resource_initializer.h"
 #include "decode/vulkan_swapchain.h"
 #include "decode/window.h"
@@ -70,6 +71,8 @@ class VulkanReplayConsumerBase : public VulkanConsumer
 {
   public:
     VulkanReplayConsumerBase(std::shared_ptr<application::Application> application, const VulkanReplayOptions& options);
+
+    void SetReferencedResourceTable(const ReferencedResourceTable& table) { table_ = &table; }
 
     virtual ~VulkanReplayConsumerBase() override;
 
@@ -1103,6 +1106,7 @@ class VulkanReplayConsumerBase : public VulkanConsumer
     uint64_t submit_count_     = 0;
     uint64_t cmd_buffer_count_ = 0;
     uint64_t draw_count_       = 0;
+    const ReferencedResourceTable* table_{ nullptr };
 };
 
 GFXRECON_END_NAMESPACE(decode)

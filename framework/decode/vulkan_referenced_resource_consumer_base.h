@@ -42,6 +42,9 @@ class VulkanReferencedResourceConsumerBase : public VulkanConsumer
   public:
     VulkanReferencedResourceConsumerBase();
 
+    /// @todo Rename this: It isn't all state.it
+    void TrackAllState() { tracking_all_state_ = true; }
+
     void GetReferencedResourceIds(std::unordered_set<format::HandleId>* referenced_ids,
                                   std::unordered_set<format::HandleId>* unreferenced_ids) const
     {
@@ -217,10 +220,12 @@ class VulkanReferencedResourceConsumerBase : public VulkanConsumer
                                               format::HandleId          commandBuffer,
                                               VkCommandBufferResetFlags flags) override;
 
-  protected:
-    bool IsStateLoading() const { return loading_state_; }
+    const ReferencedResourceTable& GetConstTable() const { return table_; }
 
+  protected:
     ReferencedResourceTable& GetTable() { return table_; }
+
+    bool IsStateLoading() const { return loading_state_; }
 
   private:
     struct UpdateTemplateEntryInfo
@@ -298,6 +303,7 @@ class VulkanReferencedResourceConsumerBase : public VulkanConsumer
   private:
     bool                    loading_state_;
     bool                    loaded_state_;
+    bool                    tracking_all_state_{ false };
     ReferencedResourceTable table_;
     LayoutBindingCounts     layout_binding_counts_;
     SetLayouts              set_layouts_;

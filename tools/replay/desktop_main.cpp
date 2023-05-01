@@ -29,6 +29,7 @@
 #include "decode/vulkan_replay_options.h"
 #include "decode/vulkan_tracked_object_info_table.h"
 #include "generated/generated_vulkan_decoder.h"
+#include "generated/generated_vulkan_referenced_resource_consumer.h"
 #include "generated/generated_vulkan_replay_consumer.h"
 #include "graphics/fps_info.h"
 #include "util/argument_parser.h"
@@ -155,11 +156,19 @@ int main(int argc, const char** argv)
                                                  quit_after_measurement_frame_range,
                                                  flush_measurement_frame_range);
 
+            /// A consumer that builds a tree of references between vulkan objects.
+            gfxrecon::decode::VulkanReferencedResourceConsumer vulkan_resource_reference_consumer;
+            vulkan_resource_reference_consumer.TrackAllState();
             gfxrecon::decode::VulkanReplayConsumer vulkan_replay_consumer(application, vulkan_replay_options);
+            vulkan_replay_consumer.SetReferencedResourceTable(vulkan_resource_reference_consumer.GetConstTable());
             gfxrecon::decode::VulkanDecoder        vulkan_decoder;
 
             if (vulkan_replay_options.enable_vulkan)
             {
+                if (std::get<0>(vulkan_replay_options.dump_draw))
+                {
+                    vulkan_decoder.AddConsumer(&vulkan_resource_reference_consumer);
+                }
                 vulkan_replay_consumer.SetFatalErrorHandler(
                     [](const char* message) { throw std::runtime_error(message); });
                 vulkan_replay_consumer.SetFpsInfo(&fps_info);
