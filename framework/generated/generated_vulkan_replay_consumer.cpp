@@ -1604,8 +1604,24 @@ void VulkanReplayConsumer::Process_vkCmdDraw(
     uint32_t                                    firstInstance)
 {
     VkCommandBuffer in_commandBuffer = MapHandle<CommandBufferInfo>(commandBuffer, &VulkanObjectInfoTable::GetCommandBufferInfo);
+    
+    const auto [dump, sub, cmd, draw] = GetCreationOptions().dump_draw;
+    if (dump)
+    {
+        if(submit_count_ == sub && cmd_buffer_count_ == cmd && draw_count_ == draw)
+        {
+            /// table_->
+            /// @todo This:
+            /// * table_->GetBound[Resources|Framebuffer]()
+            /// * switch over to finishing the 
+            /// @todo <<----------------------------------------------------------------------------------------------------------------------[BOOKMARK]
+            GFXRECON_LOG_DEBUG("Dumping draw %u.", (uint32_t) draw);
+        }        
+    }
 
-    GetDeviceTable(in_commandBuffer)->CmdDraw(in_commandBuffer, vertexCount, instanceCount, firstVertex, firstInstance);
+    const auto fptr = GetDeviceTable(in_commandBuffer);
+    fptr->CmdDraw(in_commandBuffer, vertexCount, instanceCount, firstVertex, firstInstance);
+    ++draw_count_;
 }
 
 void VulkanReplayConsumer::Process_vkCmdDrawIndexed(
