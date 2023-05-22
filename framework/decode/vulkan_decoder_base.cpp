@@ -495,5 +495,13 @@ void VulkanDecoderBase::DecodeFunctionCall(format::ApiCallId  call_id,
     }
 }
 
+void VulkanDecoderBase::SetCurrentBlockIndex(uint64_t block_index)
+{
+    for (auto consumer : consumers_)
+    {
+        consumer->SetCurrentBlockIndex(block_index);
+    }
+}
+
 GFXRECON_END_NAMESPACE(decode)
 GFXRECON_END_NAMESPACE(gfxrecon)

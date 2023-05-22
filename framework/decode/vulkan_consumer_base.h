@@ -51,6 +51,8 @@ class VulkanConsumerBase
 
     virtual bool IsComplete(uint64_t block_index) { return false; }
 
+    void SetCurrentBlockIndex(uint64_t block_index) { current_block_index_ = block_index; };
+
     virtual void Process_ExeFileInfo(util::filepath::FileInfo& info_record) {}
 
     virtual void ProcessStateBeginMarker(uint64_t frame_number) {}
@@ -170,6 +172,9 @@ class VulkanConsumerBase
                                                               format::HandleId                 descriptorUpdateTemplate,
                                                               DescriptorUpdateTemplateDecoder* pData)
     {}
+
+  protected:
+    uint64_t current_block_index_{ 0 };
 };
 
 GFXRECON_END_NAMESPACE(decode)
