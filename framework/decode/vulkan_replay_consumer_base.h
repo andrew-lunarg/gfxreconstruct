@@ -1123,34 +1123,30 @@ class VulkanReplayConsumerBase : public VulkanConsumer
         bool enabled_{ true };
 
         // Definition:
-        uint64_t dump_draw_cmd_create_renderpass_index_{ 88 };        // handle 38
-        uint64_t dump_draw_cmd_create_graphics_pipeline_index_{ 92 }; // handle 42 (refers to rp 38)
+        uint64_t create_renderpass_index_{ 88 };        // handle 38
+        uint64_t create_graphics_pipeline_index_{ 92 }; // handle 42 (refers to rp 38)
         // Below should be a list of all ds allocations used by the command buffer we will rewrite. Then any time it
         // sees one of these ds used between cb record begin and the draw dump with cb of interest as target, it can
         // duplicate the work.
-        uint64_t dump_draw_cmd_descriptor_set_allocate_{
+        uint64_t descriptor_set_allocate_{
             99
         }; // Allocate 2 descriptor set alternatives to set 47 with the same layout 36 as that one (this might have to
            // be an array of descriptor sets, each of which needs two identical copies)
         // uint64_t dump_draw_cmd_descriptor_set_update_{ 100 }; // Update the 2 copies of the set as well as the
         // original uint64_t dump_draw_cmd_descriptor_set_bind_{ 111 }; // Can avoid this by remembering the descriptor
-        uint64_t dump_draw_cmd_create_framebuffer_index_{
-            105
-        }; // fb handle 50 (refers to rp 38, used for begin rp at index 109)
-        uint64_t dump_draw_cmd_buffer_begin_index_{
+        uint64_t create_framebuffer_index_{ 105 }; // fb handle 50 (refers to rp 38, used for begin rp at index 109)
+        uint64_t cmd_buffer_begin_index_{
             108
         }; // needs to create (vkAllocateCommandBuffers) alternatives to handle 43 and begin them all here, switch to a
            // pre-dump cmd buffer record state.
-        uint64_t dump_draw_cmd_renderpass_begin_index_{ 109 }; // needs to start our alternate rp to 38
-        uint64_t dump_draw_cmd_bind_graphics_pipeline_index_{
-            110
-        }; // Needs to bind our alternative pipeline to handle 42
-        uint64_t dump_draw_cmd_buffer_draw_index_{ 114 };
+        uint64_t renderpass_begin_index_{ 109 };       // needs to start our alternate rp to 38
+        uint64_t bind_graphics_pipeline_index_{ 110 }; // Needs to bind our alternative pipeline to handle 42
+        uint64_t buffer_draw_index_{ 114 };
         // Invocation:
-        uint64_t dump_draw_cmd_submit_index_{ 148 };
-        uint64_t dump_draw_cmd_primary_cmd_buffer_index_{ 0 };
+        uint64_t submit_index_{ 148 };
+        uint64_t primary_cmd_buffer_index_{ 0 };
         /// Index of secondary buffer within all commands of the primary command.
-        uint64_t dump_draw_cmd_secondary_cmd_buffer_index_{ kNoSecondaryCmdBuffer };
+        uint64_t secondary_cmd_buffer_index_{ kNoSecondaryCmdBuffer };
         /// @todo write a C++ tool over binary or a python script over json to emit above indexes given
         /// (submit,primary_cb,secondary_cb,draw_cmd)
 
@@ -1159,6 +1155,10 @@ class VulkanReplayConsumerBase : public VulkanConsumer
         // Tracking these would let us avoid having to know ahead of time the indexes
         // of some the blocks above where tracking them during replay is considered cheaper than the external pre-pass.
         // std::unordered_map<vkHandleX, CreationParamsX> ...
+
+        /// Allocation callbacks used for extra Vulkan objects created to enable the dump.
+        VkAllocationCallbacks* allocator_{ nullptr };
+
     } dump_draw_;
 };
 
