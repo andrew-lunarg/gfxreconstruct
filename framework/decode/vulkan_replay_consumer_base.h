@@ -1150,6 +1150,9 @@ class VulkanReplayConsumerBase : public VulkanConsumer
         /// @todo write a C++ tool over binary or a python script over json to emit above indexes given
         /// (submit,primary_cb,secondary_cb,draw_cmd)
 
+        /// The index within the renderpass' subpasses array of the subpass containing the draw to be dumped.
+        uint32_t subpass_{ 0 };
+
         // Maps from Vulkan handles to the parameters used to create them:
         // These can all be cleared to save memory once dumping is complete.
         // Tracking these would let us avoid having to know ahead of time the indexes
