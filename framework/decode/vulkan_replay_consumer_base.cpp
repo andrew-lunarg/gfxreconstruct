@@ -4371,6 +4371,93 @@ void VulkanReplayConsumerBase::OverrideGetImageSubresourceLayout(
                                          image_info->allocator_data);
 }
 
+namespace
+{
+
+struct MemoryDeleter
+{
+    MemoryDeleter() {}
+    ~MemoryDeleter() { freeAll(); }
+
+    /// Get your memory here to be sure it will be deleted later.
+    /// @return The allocation or null. The caller does not own this memory and
+    /// should not free it.
+    void* allocate(const size_t size)
+    {
+        // Make sure the push_back will not throw and lose the malloc:
+        allocations_.reserve(allocations_.size() + 1);
+        void* voidp{ malloc(size) };
+        if (voidp != nullptr)
+        {
+            allocations_.push_back(voidp);
+        }
+        else
+        {
+            GFXRECON_LOG_ERROR("malloc() returned a null.")
+        }
+        return voidp;
+    }
+
+    /// Free all memory allocated since the last freeAll call.
+    void freeAll()
+    {
+        for (void* pvoid : allocations_)
+        {
+            free(pvoid);
+        }
+        allocations_.resize(0);
+        allocations_.shrink_to_fit();
+    }
+
+    // Delete copy constructor and operator to avoid double frees.
+    MemoryDeleter(const MemoryDeleter& rhs)            = delete;
+    MemoryDeleter& operator=(const MemoryDeleter& rhs) = delete;
+
+  private:
+    /// An collection of mallocs that we can free in a batch later.
+    std::vector<void*> allocations_;
+};
+
+/**
+ * Turn subpass that will contain a dump into five subpasses: pre, dump1, draw, dump2, post.
+ * @note We need to work out the execution order of the subpasses by looking
+ * at the dependencies to determine which subpasses to cull.
+ * @note Subpasses might not have a defined order.
+ * @param containing_subpass The index in the subpasses array of the create info
+ * of the subpass that should write to an image that we then dump.
+ */
+VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
+                                              const uint32_t                containing_subpass,
+                                              MemoryDeleter&                memory_deleter)
+{
+    GFXRECON_ASSERT(oci.subpassCount > 0 && containing_subpass < oci.subpassCount);
+
+    VkRenderPassCreateInfo ci{ oci };
+    if (oci.subpassCount > 0 && containing_subpass < oci.subpassCount)
+    {
+        GFXRECON_ASSERT(nullptr == "We need to modify the render pass create info to be suitable for dumping from.")
+        /// @todo See line above.
+
+        // Allocate a new
+    }
+    return ci;
+}
+
+/// Call freeAll() on this once the dump has happened.
+MemoryDeleter g_draw_dump_deleter;
+} // namespace
+
+/**
+ * # The dumping renderpass
+ *
+ * ## Convert the subpass containing the dump into:
+ * * Subpass containing everything up to the draw.
+ * *
+ *
+ * @note We need to respect whether subpasses are done as
+ * *
+ */
+
 VkResult VulkanReplayConsumerBase::OverrideCreateRenderPass(
     PFN_vkCreateRenderPass                                      func,
     VkResult                                                    original_result,
@@ -4381,11 +4468,20 @@ VkResult VulkanReplayConsumerBase::OverrideCreateRenderPass(
 {
     GFXRECON_UNREFERENCED_PARAMETER(original_result);
 
-    return swapchain_->CreateRenderPass(func,
-                                        device_info,
-                                        pCreateInfo->GetPointer(),
-                                        GetAllocationCallbacks(pAllocator),
-                                        pRenderPass->GetHandlePointer());
+    const VkRenderPassCreateInfo* pCreateInfo2{ pCreateInfo->GetPointer() };
+    VkRenderPassCreateInfo        moddedCi;
+
+    if (dump_draw_.enabled_ && dump_draw_.create_renderpass_index_ == current_block_index_)
+    {
+        GFXRECON_LOG_DEBUG("Reached renderpass to modify at block %u.", (unsigned)current_block_index_);
+        // Create the up to but not including dumped draw renderpass:
+        moddedCi     = InjectDumpingSubpasses(*pCreateInfo->GetPointer(), dump_draw_.subpass_, g_draw_dump_deleter);
+        pCreateInfo2 = &moddedCi;
+        // <----------------------------------------------------------------[BOOKMARK]
+    }
+
+    return swapchain_->CreateRenderPass(
+        func, device_info, pCreateInfo2, GetAllocationCallbacks(pAllocator), pRenderPass->GetHandlePointer());
 }
 
 VkResult VulkanReplayConsumerBase::OverrideCreateRenderPass2(
