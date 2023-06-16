@@ -4397,6 +4397,11 @@ struct MemoryDeleter
         }
         return voidp;
     }
+    template <typename T>
+    T* allocateN(uint32_t n)
+    {
+        return reinterpret_cast<T*>(allocate(n * sizeof(T)));
+    }
 
     /// Free all memory allocated since the last freeAll call.
     void freeAll()
@@ -4418,13 +4423,81 @@ struct MemoryDeleter
     std::vector<void*> allocations_;
 };
 
+std::pair<uint32_t, VkAttachmentReference*> ConsolidateAttachmentReferences(const uint32_t referencesCount1,
+                                                                            const VkAttachmentReference* pReferences1,
+                                                                            const uint32_t referencesCount2,
+                                                                            const VkAttachmentReference* pReferences2,
+                                                                            MemoryDeleter&               memory_deleter)
+{
+    VkAttachmentReference* consolidated =
+        memory_deleter.allocateN<VkAttachmentReference>(referencesCount1 + referencesCount2);
+    std::copy(pReferences1, pReferences1 + referencesCount1, consolidated);
+    std::copy(pReferences2, pReferences2 + referencesCount2, consolidated + referencesCount1);
+
+    return { referencesCount1 + referencesCount2, consolidated };
+}
+
+uint32_t * ExtractAttachmentIndexes(const uint32_t               referencesCount,
+                                    const VkAttachmentReference* pReferences,
+                                    MemoryDeleter&               memory_deleter)
+{
+    uint32_t* indexes = memory_deleter.allocateN<uint32_t>(referencesCount);
+    std::transform(pReferences, pReferences + referencesCount, indexes,
+        [](const VkAttachmentReference& ref) {return ref.attachment;});
+    return indexes;
+}
 /**
- * Turn subpass that will contain a dump into five subpasses: pre, dump1, draw, dump2, post.
- * @note We need to work out the execution order of the subpasses by looking
+ * Turn a subpass that will contain a dump into five subpasses: pre, dump1, draw, dump2, post.
+ * The subpasses before the one containing the dump prefix these five and the subpasses after
+ * it postfix them.
+ * @note "Execution of subpasses may overlap or execute out of order with regards to other
+ * subpasses, unless otherwise enforced by an execution dependency. Each subpass only respects
+ * submission order for commands recorded in the same subpass, and the vkCmdBeginRenderPass and
+ * vkCmdEndRenderPass commands that delimit the render pass - commands within other subpasses
+ * are not included. This affects most other implicit ordering guarantees."
+ * We need to work out the execution order of the subpasses by looking
  * at the dependencies to determine which subpasses to cull.
  * @note Subpasses might not have a defined order.
  * @param containing_subpass The index in the subpasses array of the create info
  * of the subpass that should write to an image that we then dump.
+ *
+ * ## Implementation Notes
+ *
+ * An attachment may be both input and output in same subpass:
+ * "VUID-VkSubpassDescription-loadOp-00846 If the first use of an attachment in this render pass is as an input
+ * attachment, and the attachment is not also used as a color or depth/stencil attachment in the same subpass, then
+ * loadOp must not be VK_ATTACHMENT_LOAD_OP_CLEAR"
+ * <file:///home/andrew/personal/Dropbox/data/docs/vulkan/vkspec.1.3.250-html/registry.khronos.org/vulkan/specs/1.3-extensions/html/chap8.html#VUID-VkSubpassDescription-loadOp-00846>
+ *
+ * ## Version 1
+ * Lets just make it work when there is a single subpass.
+ * * Make the 5 subpasses:
+ *   1. Same attachments as original subpass
+ *   2. Dump 1: All original attachments are now inputs
+ *      They are also one of:
+ *      * preserved so the next subpass sees them unchanged without us needing to copy them.
+ *      * Bound as outputs. Our full-screen tri will copy all inputs to outputs.
+ *      Can an attachment be bound in two ways in one subpass? Yes
+ *   3. Draw: Same as original attachments
+ *   4. Dump 2: Same as for dump 1.
+ *   5. Same as original original subpass.
+ * * OR:
+ *   1. Same as original.
+ *   2. Dump 1 All originals are inputs. Dump resource holders are outputs.
+ *   3. Restore originals pass: original attachments are as original. dumped resources are inputs. shader copies dumped
+ * back into originals.
+ *   4. The draw subpass.
+ *   5. Dump 2.
+ *   6. Restore 2.
+ *   7. Same as original.
+ *   Dump and restore could be optimised into one by having the key draw write into the dump resources...???
+ * * Make the dependencies: Linear sequence from first to last.
+ *   ? How can I pass on to the next
+ * * What happens if the subpass already has inputs?
+ *   * Doesn't make sense for single subpass case.
+ *   * E.g. we are dumping a draw cmd that reads from a g-buffer in tile memory.
+ * * Worst-case I end up implementing the multiple renderpass approach too as a fallback
+ *   which runs slower than this.
  */
 VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
                                               const uint32_t                containing_subpass,
@@ -4433,15 +4506,145 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
     GFXRECON_ASSERT(oci.subpassCount > 0 && containing_subpass < oci.subpassCount);
 
     VkRenderPassCreateInfo ci{ oci };
-    if (oci.subpassCount > 0 && containing_subpass < oci.subpassCount)
+    if (oci.subpassCount == 1 && containing_subpass < oci.subpassCount)
+    {
+        GFXRECON_ASSERT(nullptr == "We need to modify the render pass create info to be suitable for dumping from.")
+        GFXRECON_ASSERT(
+            nullptr !=
+            oci.pSubpasses); /// @todo Actually chack and handle this: the pointer is from the app or an upstream layer.
+        /// @todo See line above.
+        GFXRECON_ASSERT((oci.pSubpasses[0].pResolveAttachments == nullptr) && "Multisample attachments not handled yet.");
+        
+
+        // Make a new subpasses array with 5 of them:
+        const auto            new_subpass_count = oci.subpassCount + 4u;
+        VkSubpassDescription* subpasses         = reinterpret_cast<VkSubpassDescription*>(
+            memory_deleter.allocate(sizeof(VkSubpassDescription) * new_subpass_count));
+        if (subpasses == nullptr)
+            goto exit;
+
+        // The first subpass, with all commands up to the draw will have the same inputs
+        // and outputs as the original subpass:
+        subpasses[0] = oci.pSubpasses[0];
+        // (later, we'll note all state-related commands that are added to the command
+        // buffer inside this subpass, and add them to the single-draw subpass and to
+        // the front of the post-dump-2-subpass. Later, later we'll optimise to not set
+        // the state after the final draw of this one, to only set the newest state in
+        // the single draw one, etc.)
+
+        // The second subpass, with the dumping commands like the full-screen tri which
+        // will dump framebuffers uses the colour attachments as inputs and preserves them:
+        subpasses[1] = oci.pSubpasses[0]; // Copying VkSubpassDescriptionFlags too. Good/bad idea?
+        auto [attachCount, consolidated] =
+            ConsolidateAttachmentReferences(oci.pSubpasses[0].colorAttachmentCount,
+                                            oci.pSubpasses[0].pColorAttachments,
+                                            (oci.pSubpasses[0].pDepthStencilAttachment != nullptr),
+                                            oci.pSubpasses[0].pDepthStencilAttachment,
+                                            memory_deleter);
+        subpasses[1].inputAttachmentCount = attachCount;
+        subpasses[1].pInputAttachments = consolidated;
+        subpasses[1].preserveAttachmentCount = attachCount;
+        subpasses[1].pPreserveAttachments = ExtractAttachmentIndexes(attachCount, consolidated, memory_deleter);
+        // This subpass has no colour output attachments since it only dumps:
+        subpasses[1].colorAttachmentCount = 0;
+        subpasses[1].pColorAttachments = nullptr;
+        subpasses[1].pResolveAttachments = nullptr;
+        subpasses[1].pDepthStencilAttachment = nullptr;
+
+        // The third subpass contains the draw that we are dumping before and after so
+        // we need to use the original attachment configuration.
+        subpasses[2] = oci.pSubpasses[0];
+
+        // The fourth subpass is another dumping one:
+        subpasses[3] = oci.pSubpasses[0]; // Copying VkSubpassDescriptionFlags too. Good/bad idea?
+        subpasses[3].inputAttachmentCount = attachCount;
+        subpasses[3].pInputAttachments = consolidated;
+        subpasses[3].preserveAttachmentCount = attachCount;
+        subpasses[3].pPreserveAttachments = ExtractAttachmentIndexes(attachCount, consolidated, memory_deleter);
+        // This subpass has no colour output attachments since it only dumps:
+        subpasses[3].colorAttachmentCount = 0;
+        subpasses[3].pColorAttachments = nullptr;
+        subpasses[3].pResolveAttachments = nullptr;
+        subpasses[3].pDepthStencilAttachment = nullptr;
+
+        // The fifth pass just finishes off the rest of the rendering using the original setup:
+        subpasses[4] = oci.pSubpasses[0];
+
+        ci.subpassCount = 5;
+        ci.pSubpasses = subpasses;
+
+        // Copy in the original dependencies and then add a chain of additional
+        // dependencies which enforce subpasses to execute in numerical order: 
+        ci.dependencyCount = 4+oci.dependencyCount;
+        VkSubpassDependency* const dependencies = memory_deleter.allocateN<VkSubpassDependency>(ci.dependencyCount); ///@todo handle the null malloc that will never happen.
+        std::copy(oci.pDependencies, oci.pDependencies + oci.dependencyCount, dependencies);
+        ci.pDependencies = dependencies;
+        
+
+        /// @todo Are there going to be dependencies between the subpass and end of renderpass (VK_SUBPASS_EXTERNAL as the .dstSubpass) sometimes and thus a need to remove those here?
+        /// @todo BOOKMARK ------------------------------------------------------------ oci.dependencyCount
+        /// @todo Adjust the VkImageLayout in each attachment reference?
+        /// @todo pResolveAttachments need handling: find a multisample, single subpass capture
+        /// to work with. A couple of small file examples:
+        ///   "/depot/gfxr-traces/from_nas/smb_traces/vulkan/GFXR/tcubumes-mesa/commandos2-20220705T144522-2151-2161/commandos2_frames_2151_through_2161_20220706T135631-optimized.gfxr"
+        ///   "/depot/gfxr-traces/from_nas/smb_traces/vulkan/GFXR/android/mali/unrealactionrpg/UnrealActionRPG.gfxr"
+        /// This has two subpasses: "GFXR/android/S22/scorehero2022-20221206T131615/scorehero2022_20221206T131615.gfxr"
+    }
+    // Later:
+    else if (oci.subpassCount > 0 && containing_subpass < oci.subpassCount)
     {
         GFXRECON_ASSERT(nullptr == "We need to modify the render pass create info to be suitable for dumping from.")
         /// @todo See line above.
 
-        // Allocate a new
+        // Copy the subpasses into a new array with expanded space:
+        const auto            new_subpass_count = oci.subpassCount + 4u;
+        VkSubpassDescription* subpasses         = reinterpret_cast<VkSubpassDescription*>(
+            memory_deleter.allocate(sizeof(VkSubpassDescription) * new_subpass_count));
+        /*std::copy(oci.pSubpasses + 0u, oci.pSubpasses + containing_subpass, subpasses);
+        subpasses[containing_subpass + 2] = oci.pSubpasses[containing_subpass];
+        std::copy(oci.pSubpasses + containing_subpass + 1, oci.pSubpasses + oci.subpassCount, subpasses +
+        containing_subpass + 5);*/
+        const auto p_containing_subpass = oci.pSubpasses + containing_subpass;
+        const auto p_subpasses_end      = oci.pSubpasses + oci.subpassCount;
+        std::copy(oci.pSubpasses + 0u, p_containing_subpass, subpasses);
+        std::copy(p_containing_subpass + 1, p_subpasses_end, subpasses);
+
+        // Add the s
+
+        // Fix the
+
+        /// @todo Impose an order on subpasses which are mutually unordered, defaulting
+        /// to the order they appear in the subpasses list.
+        /// @todo It may be too complex to intermesh with the existing dependencies (e.g.
+        /// two subpasses may have multiple dependencies between them with differing
+        /// stage and access masks as vkcube uses to differentiate the single shared
+        /// depth buffer from the colour buffers gotten from the WSI mechanism)
     }
+exit:
+    /// @todo We need to pass back the error state if a malloc fails (which it won't but urgh).
     return ci;
 }
+
+/// temp reminder of what I'm dealing with
+typedef struct VkSubpassDescriptionRef
+{
+    VkSubpassDescriptionFlags    flags;
+    VkPipelineBindPoint          pipelineBindPoint; /// Enum: graphics, compute, ray, subpass_shading
+    uint32_t                     inputAttachmentCount;
+    const VkAttachmentReference* pInputAttachments;
+    uint32_t                     colorAttachmentCount;
+    const VkAttachmentReference* pColorAttachments;
+    const VkAttachmentReference* pResolveAttachments;
+    const VkAttachmentReference* pDepthStencilAttachment;
+    uint32_t                     preserveAttachmentCount;
+    const uint32_t*              pPreserveAttachments;
+} VkSubpassDescriptionRef;
+
+typedef struct VkAttachmentReferenceRef
+{
+    uint32_t      attachment;
+    VkImageLayout layout;
+} VkAttachmentReferenceRef;
 
 /// Call freeAll() on this once the dump has happened.
 MemoryDeleter g_draw_dump_deleter;
