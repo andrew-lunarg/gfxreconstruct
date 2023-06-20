@@ -4374,6 +4374,7 @@ void VulkanReplayConsumerBase::OverrideGetImageSubresourceLayout(
 namespace
 {
 
+/// @todo Move this somewhere under util.
 struct MemoryDeleter
 {
     MemoryDeleter() {}
@@ -4437,6 +4438,44 @@ std::pair<uint32_t, VkAttachmentReference*> ConsolidateAttachmentReferences(cons
     return { referencesCount1 + referencesCount2, consolidated };
 }
 
+/// Turn an image layout into one suitable to used as an input attachment.
+VkImageLayout TransformImageLayoutToInput(const VkImageLayout layout)
+{
+    VkImageLayout modified{ VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL };
+
+    switch (layout)
+    {
+        default:
+            GFXRECON_LOG_INFO("No explicit handling for layout %u.", unsigned(layout));
+        case VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL:
+        case VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL:
+            modified = VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL;
+            break;
+        case VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL:
+        case VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL:
+        case VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL:
+            modified = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
+            break;
+        case VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL:
+            modified = VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL;
+            break;
+        case VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL:
+            modified = VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL;
+            break;
+    };
+    return modified;
+}
+
+/// Set all attachment references to the closest input-optimal layout.
+void TransformAttachmentReferenceLayoutsToInputs(const uint32_t               referencesCount,
+                                                 VkAttachmentReference* const pReferences)
+{
+    for (uint32_t ref = 0; ref < referencesCount; ++ref)
+    {
+        pReferences[ref].layout = TransformImageLayoutToInput(pReferences[ref].layout);
+    }
+}
+
 /// @todo Move to some generic util/algorithm_ext.h
 /// @param member A pointer to the struct/class member like `&VkAttachmentReference::attachment`.
 /// Note this is a pointer to the member in the class, not a pointer to an instance of it
@@ -4474,7 +4513,7 @@ constexpr VkSubpassDependency CreateConservativeDependency(const uint32_t src, c
                              VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT,
                              VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT,
                              VK_ACCESS_MEMORY_WRITE_BIT | // All writes are waited-on (overkill?)
-                                 // A less-conservative subset of above:
+                                                          // A less-conservative subset of above:
                                  VK_ACCESS_SHADER_WRITE_BIT | VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT |
                                  VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT,
                              VK_ACCESS_MEMORY_READ_BIT, // All reads wait (overkill?)
@@ -4505,7 +4544,7 @@ constexpr VkSubpassDependency CreateConservativeDependency(const uint32_t src, c
  * "VUID-VkSubpassDescription-loadOp-00846 If the first use of an attachment in this render pass is as an input
  * attachment, and the attachment is not also used as a color or depth/stencil attachment in the same subpass, then
  * loadOp must not be VK_ATTACHMENT_LOAD_OP_CLEAR"
- * <file:///home/andrew/personal/Dropbox/data/docs/vulkan/vkspec.1.3.250-html/registry.khronos.org/vulkan/specs/1.3-extensions/html/chap8.html#VUID-VkSubpassDescription-loadOp-00846>
+ * <vkspec.1.3.250-html/registry.khronos.org/vulkan/specs/1.3-extensions/html/chap8.html#VUID-VkSubpassDescription-loadOp-00846>
  *
  * ## Version 1
  * Lets just make it work when there is a single subpass.
@@ -4546,20 +4585,29 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
     VkRenderPassCreateInfo ci{ oci };
     if (oci.subpassCount == 1 && containing_subpass < oci.subpassCount)
     {
-        GFXRECON_ASSERT(nullptr == "We need to modify the render pass create info to be suitable for dumping from.")
-        GFXRECON_ASSERT(
-            nullptr !=
-            oci.pSubpasses); /// @todo Actually chack and handle this: the pointer is from the app or an upstream layer.
-        /// @todo See line above.
+        GFXRECON_ASSERT(nullptr != oci.pSubpasses);
+        /// @todo Actually chack and handle this: the pointer is from the app or an upstream layer.
         GFXRECON_ASSERT((oci.pSubpasses[0].pResolveAttachments == nullptr) &&
                         "Multisample attachments not handled yet.");
 
         // Make a new subpasses array with 5 of them:
         const auto            new_subpass_count = oci.subpassCount + 4u;
-        VkSubpassDescription* subpasses         = reinterpret_cast<VkSubpassDescription*>(
-            memory_deleter.allocate(sizeof(VkSubpassDescription) * new_subpass_count));
+        VkSubpassDescription* subpasses         = memory_deleter.allocateN<VkSubpassDescription>(new_subpass_count);
         if (subpasses == nullptr)
+        {
             goto exit;
+        }
+
+        // Work out the attachments that will be used as inputs and will be preserved
+        // by the two dumping subpasses:
+        auto [attachCount, consolidated] =
+            ConsolidateAttachmentReferences(oci.pSubpasses[0].colorAttachmentCount,
+                                            oci.pSubpasses[0].pColorAttachments,
+                                            (oci.pSubpasses[0].pDepthStencilAttachment != nullptr),
+                                            oci.pSubpasses[0].pDepthStencilAttachment,
+                                            memory_deleter);
+        TransformAttachmentReferenceLayoutsToInputs(attachCount, consolidated);
+        const uint32_t* const reffed_attachments = ExtractAttachmentIndexes(attachCount, consolidated, memory_deleter);
 
         // The first subpass, with all commands up to the draw will have the same inputs
         // and outputs as the original subpass:
@@ -4572,21 +4620,11 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
 
         // The second subpass, with the dumping commands like the full-screen tri which
         // will dump framebuffers uses the colour attachments as inputs and preserves them:
-        subpasses[1] = oci.pSubpasses[0]; // Copying VkSubpassDescriptionFlags too. Good/bad idea?
-        auto [attachCount, consolidated] =
-            ConsolidateAttachmentReferences(oci.pSubpasses[0].colorAttachmentCount,
-                                            oci.pSubpasses[0].pColorAttachments,
-                                            (oci.pSubpasses[0].pDepthStencilAttachment != nullptr),
-                                            oci.pSubpasses[0].pDepthStencilAttachment,
-                                            memory_deleter);
-
-        /// @todo Make multiple copies of consolidated so that .layout can be set appropriately for each subpass.
-        /// @todo BOOKMARK ------------------------------------------------------------ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-        subpasses[1].inputAttachmentCount    = attachCount;
-        subpasses[1].pInputAttachments       = consolidated;
+        subpasses[1]                      = oci.pSubpasses[0]; // Copying VkSubpassDescriptionFlags too. Good/bad idea?
+        subpasses[1].inputAttachmentCount = attachCount;
+        subpasses[1].pInputAttachments    = consolidated;
         subpasses[1].preserveAttachmentCount = attachCount;
-        subpasses[1].pPreserveAttachments    = ExtractAttachmentIndexes(attachCount, consolidated, memory_deleter);
+        subpasses[1].pPreserveAttachments    = reffed_attachments;
         // This subpass has no colour output attachments since it only dumps:
         subpasses[1].colorAttachmentCount    = 0;
         subpasses[1].pColorAttachments       = nullptr;
@@ -4598,11 +4636,11 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
         subpasses[2] = oci.pSubpasses[0];
 
         // The fourth subpass is another dumping one:
-        subpasses[3]                      = oci.pSubpasses[0]; // Copying VkSubpassDescriptionFlags too. Good/bad idea?
-        subpasses[3].inputAttachmentCount = attachCount;
-        subpasses[3].pInputAttachments    = consolidated;
+        subpasses[3]                         = oci.pSubpasses[0];
+        subpasses[3].inputAttachmentCount    = attachCount;
+        subpasses[3].pInputAttachments       = consolidated;
         subpasses[3].preserveAttachmentCount = attachCount;
-        subpasses[3].pPreserveAttachments    = ExtractAttachmentIndexes(attachCount, consolidated, memory_deleter);
+        subpasses[3].pPreserveAttachments    = reffed_attachments;
         // This subpass has no colour output attachments since it only dumps:
         subpasses[3].colorAttachmentCount    = 0;
         subpasses[3].pColorAttachments       = nullptr;
@@ -4641,11 +4679,11 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
             else if (dependencies[dep].dstSubpass == dependencies[dep].srcSubpass)
             {
                 auto cp1                     = insert++;
-                auto cp2                     = insert++;
                 dependencies[cp1]            = dependencies[dep];
-                dependencies[cp2]            = dependencies[dep];
                 dependencies[cp1].srcSubpass = 2;
                 dependencies[cp1].dstSubpass = 2;
+                auto cp2                     = insert++;
+                dependencies[cp2]            = dependencies[dep];
                 dependencies[cp2].srcSubpass = 4;
                 dependencies[cp2].dstSubpass = 4;
             }
@@ -4657,9 +4695,10 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
         dependencies[insert++] = CreateConservativeDependency(1, 2);
         dependencies[insert++] = CreateConservativeDependency(2, 3);
         dependencies[insert++] = CreateConservativeDependency(3, 4);
-        GFXRECON_ASSERT(insert == oci.dependencyCount);
+        GFXRECON_ASSERT(insert == ci.dependencyCount);
 
-        /// @todo Adjust the VkImageLayout in each attachment reference?
+        /// @todo Communicate to the point that dumping commands are being inserted which inputs are available and what
+        /// their types are.
         /// @todo pResolveAttachments need handling: find a multisample, single subpass capture
         /// to work with. A couple of small file examples:
         ///   "/depot/gfxr-traces/from_nas/smb_traces/vulkan/GFXR/tcubumes-mesa/commandos2-20220705T144522-2151-2161/commandos2_frames_2151_through_2161_20220706T135631-optimized.gfxr"
@@ -4700,36 +4739,6 @@ exit:
     /// @todo We need to pass back the error state if a malloc fails (which it won't but urgh).
     return ci;
 }
-/// temp reminder of what I'm dealing with
-typedef struct RefVkSubpassDependency
-{
-    uint32_t             srcSubpass;
-    uint32_t             dstSubpass;
-    VkPipelineStageFlags srcStageMask;
-    VkPipelineStageFlags dstStageMask;
-    VkAccessFlags        srcAccessMask;
-    VkAccessFlags        dstAccessMask;
-    VkDependencyFlags    dependencyFlags;
-} RefVkSubpassDependency;
-typedef struct VkSubpassDescriptionRef
-{
-    VkSubpassDescriptionFlags    flags;
-    VkPipelineBindPoint          pipelineBindPoint; /// Enum: graphics, compute, ray, subpass_shading
-    uint32_t                     inputAttachmentCount;
-    const VkAttachmentReference* pInputAttachments;
-    uint32_t                     colorAttachmentCount;
-    const VkAttachmentReference* pColorAttachments;
-    const VkAttachmentReference* pResolveAttachments;
-    const VkAttachmentReference* pDepthStencilAttachment;
-    uint32_t                     preserveAttachmentCount;
-    const uint32_t*              pPreserveAttachments;
-} VkSubpassDescriptionRef;
-
-typedef struct VkAttachmentReferenceRef
-{
-    uint32_t      attachment;
-    VkImageLayout layout;
-} VkAttachmentReferenceRef;
 
 /// Call freeAll() on this once the dump has happened.
 MemoryDeleter g_draw_dump_deleter;
