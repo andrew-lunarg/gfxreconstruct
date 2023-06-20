@@ -4437,15 +4437,52 @@ std::pair<uint32_t, VkAttachmentReference*> ConsolidateAttachmentReferences(cons
     return { referencesCount1 + referencesCount2, consolidated };
 }
 
-uint32_t * ExtractAttachmentIndexes(const uint32_t               referencesCount,
-                                    const VkAttachmentReference* pReferences,
-                                    MemoryDeleter&               memory_deleter)
+/// @todo Move to some generic util/algorithm_ext.h
+/// @param member A pointer to the struct/class member like `&VkAttachmentReference::attachment`.
+/// Note this is a pointer to the member in the class, not a pointer to an instance of it
+/// in an instance of the the class.
+template <typename InputIterator, typename OutputIterator, typename MemberType, typename StructType>
+void extract_member(const InputIterator input,
+                    const InputIterator end,
+                    OutputIterator      output,
+                    MemberType StructType::*member)
+{
+    std::transform(input, end, output, [member](const StructType& obj) { return obj.*member; });
+}
+
+uint32_t* ExtractAttachmentIndexes(const uint32_t               referencesCount,
+                                   const VkAttachmentReference* pReferences,
+                                   MemoryDeleter&               memory_deleter)
 {
     uint32_t* indexes = memory_deleter.allocateN<uint32_t>(referencesCount);
-    std::transform(pReferences, pReferences + referencesCount, indexes,
-        [](const VkAttachmentReference& ref) {return ref.attachment;});
+    extract_member(pReferences, pReferences + referencesCount, indexes, &VkAttachmentReference::attachment);
     return indexes;
 }
+
+uint32_t CountSelfDependencies(const uint32_t dependencyCount, const VkSubpassDependency* const pDependencies)
+{
+    const VkSubpassDependency* const pDependenciesEnd = pDependencies + dependencyCount;
+    const auto pred  = [](const VkSubpassDependency& dep) { return dep.srcSubpass == dep.dstSubpass; };
+    const auto count = std::count_if(pDependencies, pDependenciesEnd, pred);
+    return count;
+}
+
+constexpr VkSubpassDependency CreateConservativeDependency(const uint32_t src, const uint32_t dst)
+{
+    VkSubpassDependency dep{ src,
+                             dst,
+                             VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT,
+                             VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT,
+                             VK_ACCESS_MEMORY_WRITE_BIT | // All writes are waited-on (overkill?)
+                                 // A less-conservative subset of above:
+                                 VK_ACCESS_SHADER_WRITE_BIT | VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT |
+                                 VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT,
+                             VK_ACCESS_MEMORY_READ_BIT, // All reads wait (overkill?)
+                             // We still want to be fast so don't try to sync across tiles:
+                             VK_DEPENDENCY_BY_REGION_BIT };
+    return dep;
+}
+
 /**
  * Turn a subpass that will contain a dump into five subpasses: pre, dump1, draw, dump2, post.
  * The subpasses before the one containing the dump prefix these five and the subpasses after
@@ -4457,7 +4494,8 @@ uint32_t * ExtractAttachmentIndexes(const uint32_t               referencesCount
  * are not included. This affects most other implicit ordering guarantees."
  * We need to work out the execution order of the subpasses by looking
  * at the dependencies to determine which subpasses to cull.
- * @note Subpasses might not have a defined order.
+ * @note Subpasses might not have a defined order. This simplest solution is to enforce
+ * the natural order when dumping is enabled.
  * @param containing_subpass The index in the subpasses array of the create info
  * of the subpass that should write to an image that we then dump.
  *
@@ -4513,8 +4551,8 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
             nullptr !=
             oci.pSubpasses); /// @todo Actually chack and handle this: the pointer is from the app or an upstream layer.
         /// @todo See line above.
-        GFXRECON_ASSERT((oci.pSubpasses[0].pResolveAttachments == nullptr) && "Multisample attachments not handled yet.");
-        
+        GFXRECON_ASSERT((oci.pSubpasses[0].pResolveAttachments == nullptr) &&
+                        "Multisample attachments not handled yet.");
 
         // Make a new subpasses array with 5 of them:
         const auto            new_subpass_count = oci.subpassCount + 4u;
@@ -4541,14 +4579,18 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
                                             (oci.pSubpasses[0].pDepthStencilAttachment != nullptr),
                                             oci.pSubpasses[0].pDepthStencilAttachment,
                                             memory_deleter);
-        subpasses[1].inputAttachmentCount = attachCount;
-        subpasses[1].pInputAttachments = consolidated;
+
+        /// @todo Make multiple copies of consolidated so that .layout can be set appropriately for each subpass.
+        /// @todo BOOKMARK ------------------------------------------------------------ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+        subpasses[1].inputAttachmentCount    = attachCount;
+        subpasses[1].pInputAttachments       = consolidated;
         subpasses[1].preserveAttachmentCount = attachCount;
-        subpasses[1].pPreserveAttachments = ExtractAttachmentIndexes(attachCount, consolidated, memory_deleter);
+        subpasses[1].pPreserveAttachments    = ExtractAttachmentIndexes(attachCount, consolidated, memory_deleter);
         // This subpass has no colour output attachments since it only dumps:
-        subpasses[1].colorAttachmentCount = 0;
-        subpasses[1].pColorAttachments = nullptr;
-        subpasses[1].pResolveAttachments = nullptr;
+        subpasses[1].colorAttachmentCount    = 0;
+        subpasses[1].pColorAttachments       = nullptr;
+        subpasses[1].pResolveAttachments     = nullptr;
         subpasses[1].pDepthStencilAttachment = nullptr;
 
         // The third subpass contains the draw that we are dumping before and after so
@@ -4556,33 +4598,67 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
         subpasses[2] = oci.pSubpasses[0];
 
         // The fourth subpass is another dumping one:
-        subpasses[3] = oci.pSubpasses[0]; // Copying VkSubpassDescriptionFlags too. Good/bad idea?
+        subpasses[3]                      = oci.pSubpasses[0]; // Copying VkSubpassDescriptionFlags too. Good/bad idea?
         subpasses[3].inputAttachmentCount = attachCount;
-        subpasses[3].pInputAttachments = consolidated;
+        subpasses[3].pInputAttachments    = consolidated;
         subpasses[3].preserveAttachmentCount = attachCount;
-        subpasses[3].pPreserveAttachments = ExtractAttachmentIndexes(attachCount, consolidated, memory_deleter);
+        subpasses[3].pPreserveAttachments    = ExtractAttachmentIndexes(attachCount, consolidated, memory_deleter);
         // This subpass has no colour output attachments since it only dumps:
-        subpasses[3].colorAttachmentCount = 0;
-        subpasses[3].pColorAttachments = nullptr;
-        subpasses[3].pResolveAttachments = nullptr;
+        subpasses[3].colorAttachmentCount    = 0;
+        subpasses[3].pColorAttachments       = nullptr;
+        subpasses[3].pResolveAttachments     = nullptr;
         subpasses[3].pDepthStencilAttachment = nullptr;
 
         // The fifth pass just finishes off the rest of the rendering using the original setup:
         subpasses[4] = oci.pSubpasses[0];
 
         ci.subpassCount = 5;
-        ci.pSubpasses = subpasses;
+        ci.pSubpasses   = subpasses;
 
         // Copy in the original dependencies and then add a chain of additional
-        // dependencies which enforce subpasses to execute in numerical order: 
-        ci.dependencyCount = 4+oci.dependencyCount;
-        VkSubpassDependency* const dependencies = memory_deleter.allocateN<VkSubpassDependency>(ci.dependencyCount); ///@todo handle the null malloc that will never happen.
-        std::copy(oci.pDependencies, oci.pDependencies + oci.dependencyCount, dependencies);
+        // dependencies which enforce subpasses to execute in numerical order:
+        // We want all the dependencies from external(src) to zero(dst) to be the same,
+        // all dependencies from zero to external to be modified to be from the last subpass
+        // to external, and all self-dependencies from zero to zero to be duplicated for
+        // subpasses two and four.
+        const uint32_t num_self_dependencies    = CountSelfDependencies(oci.dependencyCount, oci.pDependencies);
+        ci.dependencyCount                      = 4 + oci.dependencyCount + num_self_dependencies;
+        VkSubpassDependency* const dependencies = memory_deleter.allocateN<VkSubpassDependency>(ci.dependencyCount);
+        ///@todo handle the null malloc that will never happen.
         ci.pDependencies = dependencies;
-        
+        std::copy(oci.pDependencies, oci.pDependencies + oci.dependencyCount, dependencies);
+        uint32_t insert = oci.dependencyCount;
+        for (uint32_t dep = 0; dep < oci.dependencyCount; ++dep)
+        {
+            // Adjust the dependencies to external to be sourced from the new final subpass:
+            if (dependencies[dep].dstSubpass == VK_SUBPASS_EXTERNAL)
+            {
+                GFXRECON_ASSERT(dependencies[dep].srcSubpass == 0);
+                dependencies[dep].srcSubpass = ci.dependencyCount - 1;
+            }
+            // Duplicate self dependencies for the subpass containing the dumped draw
+            // and for the subpass containing everything after the dumped draw.
+            else if (dependencies[dep].dstSubpass == dependencies[dep].srcSubpass)
+            {
+                auto cp1                     = insert++;
+                auto cp2                     = insert++;
+                dependencies[cp1]            = dependencies[dep];
+                dependencies[cp2]            = dependencies[dep];
+                dependencies[cp1].srcSubpass = 2;
+                dependencies[cp1].dstSubpass = 2;
+                dependencies[cp2].srcSubpass = 4;
+                dependencies[cp2].dstSubpass = 4;
+            }
+        }
 
-        /// @todo Are there going to be dependencies between the subpass and end of renderpass (VK_SUBPASS_EXTERNAL as the .dstSubpass) sometimes and thus a need to remove those here?
-        /// @todo BOOKMARK ------------------------------------------------------------ oci.dependencyCount
+        // Add conservative dependencies between all of the subpasses. It may be
+        // possible to loosen these later.
+        dependencies[insert++] = CreateConservativeDependency(0, 1);
+        dependencies[insert++] = CreateConservativeDependency(1, 2);
+        dependencies[insert++] = CreateConservativeDependency(2, 3);
+        dependencies[insert++] = CreateConservativeDependency(3, 4);
+        GFXRECON_ASSERT(insert == oci.dependencyCount);
+
         /// @todo Adjust the VkImageLayout in each attachment reference?
         /// @todo pResolveAttachments need handling: find a multisample, single subpass capture
         /// to work with. A couple of small file examples:
@@ -4590,7 +4666,7 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
         ///   "/depot/gfxr-traces/from_nas/smb_traces/vulkan/GFXR/android/mali/unrealactionrpg/UnrealActionRPG.gfxr"
         /// This has two subpasses: "GFXR/android/S22/scorehero2022-20221206T131615/scorehero2022_20221206T131615.gfxr"
     }
-    // Later:
+    /// @todo Later:
     else if (oci.subpassCount > 0 && containing_subpass < oci.subpassCount)
     {
         GFXRECON_ASSERT(nullptr == "We need to modify the render pass create info to be suitable for dumping from.")
@@ -4624,8 +4700,17 @@ exit:
     /// @todo We need to pass back the error state if a malloc fails (which it won't but urgh).
     return ci;
 }
-
 /// temp reminder of what I'm dealing with
+typedef struct RefVkSubpassDependency
+{
+    uint32_t             srcSubpass;
+    uint32_t             dstSubpass;
+    VkPipelineStageFlags srcStageMask;
+    VkPipelineStageFlags dstStageMask;
+    VkAccessFlags        srcAccessMask;
+    VkAccessFlags        dstAccessMask;
+    VkDependencyFlags    dependencyFlags;
+} RefVkSubpassDependency;
 typedef struct VkSubpassDescriptionRef
 {
     VkSubpassDescriptionFlags    flags;
