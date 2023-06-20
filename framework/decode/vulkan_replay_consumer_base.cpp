@@ -4449,18 +4449,19 @@ VkImageLayout TransformImageLayoutToInput(const VkImageLayout layout)
             GFXRECON_LOG_INFO("No explicit handling for layout %u.", unsigned(layout));
         case VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL:
         case VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL:
-            modified = VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL;
+            modified = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL; // Requires synchronisation 2:
+                                                                 // VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL;
             break;
         case VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL:
         case VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL:
         case VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL:
-            modified = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
+            modified = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL; // VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
             break;
         case VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL:
-            modified = VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL;
+            modified = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL; // VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL;
             break;
         case VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL:
-            modified = VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL;
+            modified = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL; // VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL;
             break;
     };
     return modified;
@@ -4575,6 +4576,11 @@ constexpr VkSubpassDependency CreateConservativeDependency(const uint32_t src, c
  *   * E.g. we are dumping a draw cmd that reads from a g-buffer in tile memory.
  * * Worst-case I end up implementing the multiple renderpass approach too as a fallback
  *   which runs slower than this.
+ *
+ * # ToDos
+ * @todo Create all the images bound as attachments with the VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT
+ *       Simply add the bit to every image in virtual swapchain or otherwise if the dumping
+ *       draws feature is enabled.
  */
 VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
                                               const uint32_t                containing_subpass,
@@ -4607,7 +4613,10 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
                                             oci.pSubpasses[0].pDepthStencilAttachment,
                                             memory_deleter);
         TransformAttachmentReferenceLayoutsToInputs(attachCount, consolidated);
-        const uint32_t* const reffed_attachments = ExtractAttachmentIndexes(attachCount, consolidated, memory_deleter);
+        // We can't preserve our inputs according to 00854:
+        // <https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#VUID-VkSubpassDescription-pPreserveAttachments-00854>
+        // const uint32_t* const reffed_attachments = ExtractAttachmentIndexes(attachCount, consolidated,
+        // memory_deleter);
 
         // The first subpass, with all commands up to the draw will have the same inputs
         // and outputs as the original subpass:
@@ -4623,8 +4632,8 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
         subpasses[1]                      = oci.pSubpasses[0]; // Copying VkSubpassDescriptionFlags too. Good/bad idea?
         subpasses[1].inputAttachmentCount = attachCount;
         subpasses[1].pInputAttachments    = consolidated;
-        subpasses[1].preserveAttachmentCount = attachCount;
-        subpasses[1].pPreserveAttachments    = reffed_attachments;
+        // subpasses[1].preserveAttachmentCount = attachCount;
+        // subpasses[1].pPreserveAttachments    = reffed_attachments;
         // This subpass has no colour output attachments since it only dumps:
         subpasses[1].colorAttachmentCount    = 0;
         subpasses[1].pColorAttachments       = nullptr;
@@ -4636,11 +4645,11 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
         subpasses[2] = oci.pSubpasses[0];
 
         // The fourth subpass is another dumping one:
-        subpasses[3]                         = oci.pSubpasses[0];
-        subpasses[3].inputAttachmentCount    = attachCount;
-        subpasses[3].pInputAttachments       = consolidated;
-        subpasses[3].preserveAttachmentCount = attachCount;
-        subpasses[3].pPreserveAttachments    = reffed_attachments;
+        subpasses[3]                      = oci.pSubpasses[0];
+        subpasses[3].inputAttachmentCount = attachCount;
+        subpasses[3].pInputAttachments    = consolidated;
+        // subpasses[3].preserveAttachmentCount = attachCount;
+        // subpasses[3].pPreserveAttachments    = reffed_attachments;
         // This subpass has no colour output attachments since it only dumps:
         subpasses[3].colorAttachmentCount    = 0;
         subpasses[3].pColorAttachments       = nullptr;
