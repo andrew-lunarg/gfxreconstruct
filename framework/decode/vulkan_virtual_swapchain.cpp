@@ -221,8 +221,9 @@ VkResult VulkanVirtualSwapchain::GetSwapchainImagesKHR(PFN_vkGetSwapchainImagesK
                 image_create_info.arrayLayers       = swapchain_info->image_array_layers;
                 image_create_info.samples           = VK_SAMPLE_COUNT_1_BIT;
                 image_create_info.tiling            = VK_IMAGE_TILING_OPTIMAL;
-                image_create_info.usage             = swapchain_info->image_usage | VK_IMAGE_USAGE_TRANSFER_SRC_BIT;
-                image_create_info.sharingMode       = swapchain_info->image_sharing_mode;
+                image_create_info.usage =
+                    swapchain_info->image_usage | VK_IMAGE_USAGE_TRANSFER_SRC_BIT | GetExtraImageUsageBits();
+                image_create_info.sharingMode = swapchain_info->image_sharing_mode;
                 image_create_info.queueFamilyIndexCount =
                     static_cast<uint32_t>(swapchain_info->queue_family_indices.size());
                 image_create_info.pQueueFamilyIndices = swapchain_info->queue_family_indices.data();

@@ -127,6 +127,18 @@ class VulkanVirtualSwapchain : public VulkanSwapchain
     int32_t FindFirstPresentSrcLayout(const VkRenderPassCreateInfo2* create_info) const;
 
     int32_t FindFirstPresentSrcLayout(uint32_t count, const VkImageMemoryBarrier* barriers) const;
+
+    VkImageUsageFlags GetExtraImageUsageBits()
+    {
+        if (dumping_draws_)
+        {
+            return VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT;
+        }
+        return 0;
+    }
+
+    /// @todo Set this during init, defaulted to false.
+    bool dumping_draws_{ true };
 };
 
 GFXRECON_END_NAMESPACE(decode)

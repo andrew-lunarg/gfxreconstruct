@@ -4581,6 +4581,7 @@ constexpr VkSubpassDependency CreateConservativeDependency(const uint32_t src, c
  * @todo Create all the images bound as attachments with the VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT
  *       Simply add the bit to every image in virtual swapchain or otherwise if the dumping
  *       draws feature is enabled.
+ * BOOKMARK <<---------------------------------------------------------------------<<<<<<<<<<
  */
 VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
                                               const uint32_t                containing_subpass,
