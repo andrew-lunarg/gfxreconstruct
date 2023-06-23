@@ -45,6 +45,7 @@
 #include <limits>
 #include <unordered_set>
 #include <future>
+#include "vulkan_replay_consumer_base.h"
 
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(decode)
@@ -4318,6 +4319,29 @@ VulkanReplayConsumerBase::OverrideCreateImage(PFN_vkCreateImage                 
         }
     }
 
+    return result;
+}
+
+VkResult
+VulkanReplayConsumerBase::OverrideCreateFramebuffer(PFN_vkCreateFramebuffer func,
+                                                    VkResult                original_result,
+                                                    const DeviceInfo*       device_info,
+                                                    StructPointerDecoder<Decoded_VkFramebufferCreateInfo>* pCreateInfo,
+                                                    StructPointerDecoder<Decoded_VkAllocationCallbacks>*   pAllocator,
+                                                    HandlePointerDecoder<VkFramebuffer>*                   pFramebuffer)
+{
+    VkDevice                     device      = device_info->handle;
+    VkFramebufferCreateInfo*     createInfo  = pCreateInfo->GetPointer();
+    const VkAllocationCallbacks* allocator   = GetAllocationCallbacks(pAllocator);
+    VkFramebuffer*               framebuffer = pFramebuffer->GetHandlePointer();
+
+    if (dump_draw_.enabled_ && current_block_index_ == dump_draw_.create_framebuffer_index_)
+    {
+        /// @todo Turn the above into a scan of a list of framebuffer indexes
+        GFXRECON_LOG_DEBUG("OverrideCreateFramebuffer for block index %llu", current_block_index_);
+    }
+
+    const VkResult result = func(device, createInfo, allocator, framebuffer);
     return result;
 }
 

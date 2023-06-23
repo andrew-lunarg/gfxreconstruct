@@ -21,6 +21,7 @@
     "vkCreateDescriptorUpdateTemplateKHR": "OverrideCreateDescriptorUpdateTemplate",
     "vkCreateDescriptorUpdateTemplate": "OverrideCreateDescriptorUpdateTemplate",
     "vkCreateDevice": "OverrideCreateDevice",
+    "vkCreateFramebuffer": "OverrideCreateFramebuffer",
     "vkCreateImage": "OverrideCreateImage",
     "vkCreateInstance": "OverrideCreateInstance",
     "vkCreatePipelineCache": "OverrideCreatePipelineCache",

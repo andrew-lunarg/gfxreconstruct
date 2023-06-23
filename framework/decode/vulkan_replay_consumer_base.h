@@ -643,6 +643,13 @@ class VulkanReplayConsumerBase : public VulkanConsumer
                                  const StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator,
                                  HandlePointerDecoder<VkImage>*                             pImage);
 
+    VkResult OverrideCreateFramebuffer(PFN_vkCreateFramebuffer                                func,
+                                       VkResult                                               original_result,
+                                       const DeviceInfo*                                      device_info,
+                                       StructPointerDecoder<Decoded_VkFramebufferCreateInfo>* pCreateInfo,
+                                       StructPointerDecoder<Decoded_VkAllocationCallbacks>*   pAllocator,
+                                       HandlePointerDecoder<VkFramebuffer>*                   pFramebuffer);
+
     void OverrideDestroyImage(PFN_vkDestroyImage                                         func,
                               const DeviceInfo*                                          device_info,
                               ImageInfo*                                                 image_info,
