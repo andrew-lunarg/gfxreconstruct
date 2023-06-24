@@ -4267,35 +4267,64 @@ void VulkanReplayConsumerBase::OverrideDestroyBuffer(
     allocator->DestroyBuffer(buffer, GetAllocationCallbacks(pAllocator), allocator_data);
 }
 
-VkResult
-VulkanReplayConsumerBase::OverrideCreateImage(PFN_vkCreateImage                                      func,
-                                              VkResult                                               original_result,
-                                              const DeviceInfo*                                      device_info,
-                                              const StructPointerDecoder<Decoded_VkImageCreateInfo>* pCreateInfo,
-                                              const StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator,
-                                              HandlePointerDecoder<VkImage>*                             pImage)
+/// @return True if one of the usages specified is as an attachment to a renderpass.
+static constexpr bool HasAttachmentImageUsage(const VkImageUsageFlags usages)
+{
+    bool result =
+        ((usages & VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT) | (usages & VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT) |
+         (usages & VK_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT) |
+         (usages & VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT) | // Err, sort-of.
+         (usages & VK_IMAGE_USAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR) |
+         (usages & VK_IMAGE_USAGE_ATTACHMENT_FEEDBACK_LOOP_BIT_EXT)) !=
+        0; /// @todo Double-check VK_IMAGE_USAGE_ATTACHMENT_FEEDBACK_LOOP_BIT_EXT
+    return result;
+}
+
+VkResult VulkanReplayConsumerBase::OverrideCreateImage(
+    PFN_vkCreateImage                                          func,
+    VkResult                                                   original_result,
+    const DeviceInfo*                                          device_info,
+    const StructPointerDecoder<Decoded_VkImageCreateInfo>*     pOriginalCreateInfo,
+    const StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator,
+    HandlePointerDecoder<VkImage>*                             pImage)
 {
     GFXRECON_UNREFERENCED_PARAMETER(original_result);
 
-    assert((device_info != nullptr) && (pCreateInfo != nullptr) && (pImage != nullptr) &&
-           (pImage->GetHandlePointer() != nullptr));
+    GFXRECON_ASSERT((device_info != nullptr) && (pOriginalCreateInfo != nullptr) && (pImage != nullptr) &&
+                    (pImage->GetHandlePointer() != nullptr));
 
     auto allocator = device_info->allocator.get();
-    assert(allocator != nullptr);
+    GFXRECON_ASSERT(allocator != nullptr);
 
     VulkanResourceAllocator::ResourceData allocator_data;
     auto                                  replay_image = pImage->GetHandlePointer();
     auto                                  capture_id   = (*pImage->GetPointer());
 
-    VkResult result = allocator->CreateImage(
-        pCreateInfo->GetPointer(), GetAllocationCallbacks(pAllocator), capture_id, replay_image, &allocator_data);
+    VkImageCreateInfo        modifiedCreateInfo;
+    const VkImageCreateInfo* pCreateInfo{ pOriginalCreateInfo->GetPointer() };
+    // Add the input usage for the pre and post draw dumping if the image is to be used
+    // as an attachment:
+    if (dump_draw_.enabled_)
+    {
+        if (HasAttachmentImageUsage(pCreateInfo->usage))
+        {
+            GFXRECON_LOG_DEBUG("Adding VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT to image usage at block %llu,",
+                               current_block_index_);
+            modifiedCreateInfo = *pCreateInfo;
+            pCreateInfo        = &modifiedCreateInfo;
+            modifiedCreateInfo.usage |= VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT;
+        }
+    }
 
-    auto replay_create_info = pCreateInfo->GetPointer();
+    VkResult result = allocator->CreateImage(
+        pCreateInfo, GetAllocationCallbacks(pAllocator), capture_id, replay_image, &allocator_data);
+
+    auto replay_create_info = pCreateInfo;
 
     if ((result == VK_SUCCESS) && (replay_create_info != nullptr) && ((*replay_image) != VK_NULL_HANDLE))
     {
         auto image_info = reinterpret_cast<ImageInfo*>(pImage->GetConsumerData(0));
-        assert(image_info != nullptr);
+        GFXRECON_ASSERT(image_info != nullptr);
 
         image_info->allocator_data = allocator_data;
         image_info->usage          = replay_create_info->usage;
