@@ -4587,8 +4587,8 @@ constexpr VkSubpassDependency CreateConservativeDependency(const uint32_t src, c
  * are not included. This affects most other implicit ordering guarantees."
  * We need to work out the execution order of the subpasses by looking
  * at the dependencies to determine which subpasses to cull.
- * @note Subpasses might not have a defined order. This simplest solution is to enforce
- * the natural order when dumping is enabled.
+ * @note Subpasses might not have a defined order. This simplest solution is to add
+ * dependencies to enforce the natural order when dumping is enabled.
  * @param containing_subpass The index in the subpasses array of the create info
  * of the subpass that should write to an image that we then dump.
  *
@@ -4612,29 +4612,13 @@ constexpr VkSubpassDependency CreateConservativeDependency(const uint32_t src, c
  *   3. Draw: Same as original attachments
  *   4. Dump 2: Same as for dump 1.
  *   5. Same as original original subpass.
- * * OR:
- *   1. Same as original.
- *   2. Dump 1 All originals are inputs. Dump resource holders are outputs.
- *   3. Restore originals pass: original attachments are as original. dumped resources are inputs. shader copies dumped
- * back into originals.
- *   4. The draw subpass.
- *   5. Dump 2.
- *   6. Restore 2.
- *   7. Same as original.
- *   Dump and restore could be optimised into one by having the key draw write into the dump resources...???
+ *
  * * Make the dependencies: Linear sequence from first to last.
- *   ? How can I pass on to the next
  * * What happens if the subpass already has inputs?
  *   * Doesn't make sense for single subpass case.
  *   * E.g. we are dumping a draw cmd that reads from a g-buffer in tile memory.
  * * Worst-case I end up implementing the multiple renderpass approach too as a fallback
  *   which runs slower than this.
- *
- * # ToDos
- * @todo Create all the images bound as attachments with the VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT
- *       Simply add the bit to every image in virtual swapchain or otherwise if the dumping
- *       draws feature is enabled.
- * BOOKMARK <<---------------------------------------------------------------------<<<<<<<<<<
  */
 VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
                                               const uint32_t                containing_subpass,
@@ -4660,6 +4644,8 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
 
         // Work out the attachments that will be used as inputs and will be preserved
         // by the two dumping subpasses:
+        /// @todo Keep the inputs defined by upstream (the app and any layers before us)
+        /// at the front of the inputs list or preserve them in the pPreserveAttachments.
         auto [attachCount, consolidated] =
             ConsolidateAttachmentReferences(oci.pSubpasses[0].colorAttachmentCount,
                                             oci.pSubpasses[0].pColorAttachments,
@@ -4668,6 +4654,7 @@ VkRenderPassCreateInfo InjectDumpingSubpasses(const VkRenderPassCreateInfo& oci,
                                             memory_deleter);
         TransformAttachmentReferenceLayoutsToInputs(attachCount, consolidated);
         // We can't preserve our inputs according to 00854:
+        // (but hopefully using them as inputs preserves them too)
         // <https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#VUID-VkSubpassDescription-pPreserveAttachments-00854>
         // const uint32_t* const reffed_attachments = ExtractAttachmentIndexes(attachCount, consolidated,
         // memory_deleter);
@@ -4808,14 +4795,8 @@ MemoryDeleter g_draw_dump_deleter;
 } // namespace
 
 /**
- * # The dumping renderpass
- *
- * ## Convert the subpass containing the dump into:
- * * Subpass containing everything up to the draw.
- * *
- *
- * @note We need to respect whether subpasses are done as
- * *
+ * @todo Make two versions: with and without the dumping support so that a renderpass
+ * which is used many times in a capture can run faster when the dumping is not enabled.
  */
 
 VkResult VulkanReplayConsumerBase::OverrideCreateRenderPass(
@@ -4837,7 +4818,6 @@ VkResult VulkanReplayConsumerBase::OverrideCreateRenderPass(
         // Create the up to but not including dumped draw renderpass:
         moddedCi     = InjectDumpingSubpasses(*pCreateInfo->GetPointer(), dump_draw_.subpass_, g_draw_dump_deleter);
         pCreateInfo2 = &moddedCi;
-        // <----------------------------------------------------------------[BOOKMARK]
     }
 
     return swapchain_->CreateRenderPass(
