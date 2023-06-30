@@ -11,6 +11,7 @@
     "vkBindImageMemory2KHR": "OverrideBindImageMemory2",
     "vkBindImageMemory2": "OverrideBindImageMemory2",
     "vkBindImageMemory": "OverrideBindImageMemory",
+    "vkCmdBeginRenderPass": "OverrideCmdBeginRenderPass",
     "vkCmdPipelineBarrier": "OverrideCmdPipelineBarrier",
     "vkCreateAccelerationStructureKHR": "OverrideCreateAccelerationStructureKHR",
     "vkCreateAndroidSurfaceKHR": "OverrideCreateAndroidSurfaceKHR",

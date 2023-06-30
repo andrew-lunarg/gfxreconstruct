@@ -4841,6 +4841,24 @@ VkResult VulkanReplayConsumerBase::OverrideCreateRenderPass2(
                                          pRenderPass->GetHandlePointer());
 }
 
+void VulkanReplayConsumerBase::OverrideCmdBeginRenderPass(
+    PFN_vkCmdBeginRenderPass                                   func,
+    const CommandBufferInfo*                                   command_buffer_info,
+    const StructPointerDecoder<Decoded_VkRenderPassBeginInfo>* pRenderPassBegin,
+    VkSubpassContents                                          contents)
+{
+    func(command_buffer_info->handle, pRenderPassBegin->GetPointer(), contents);
+
+    // Handle any work needed when dumping draws is enabled inside this renderpass:
+    if (dump_draw_.enabled_ && dump_draw_.renderpass_begin_index_ == current_block_index_)
+    {
+        GFXRECON_LOG_DEBUG("vkCmdBeginRenderPass() for renderpass containing draw to dump seen at block index %llu.",
+                           (uint64_t)current_block_index_);
+        /// @todo Make 2 versions of renderpass: one for dumping and one unmodified for
+        /// playing straight through (we may dump only in the n-thousandth frame).
+    }
+}
+
 void VulkanReplayConsumerBase::OverrideCmdPipelineBarrier(
     PFN_vkCmdPipelineBarrier                                   func,
     const CommandBufferInfo*                                   command_buffer_info,

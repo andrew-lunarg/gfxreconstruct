@@ -675,6 +675,11 @@ class VulkanReplayConsumerBase : public VulkanConsumer
                                        const StructPointerDecoder<Decoded_VkAllocationCallbacks>*   pAllocator,
                                        HandlePointerDecoder<VkRenderPass>*                          pRenderPass);
 
+    void OverrideCmdBeginRenderPass(PFN_vkCmdBeginRenderPass                                   func,
+                                    const CommandBufferInfo*                                   command_buffer_info,
+                                    const StructPointerDecoder<Decoded_VkRenderPassBeginInfo>* pRenderPassBegin,
+                                    VkSubpassContents                                          contents);
+
     void OverrideCmdPipelineBarrier(PFN_vkCmdPipelineBarrier                                   func,
                                     const CommandBufferInfo*                                   command_buffer_info,
                                     VkPipelineStageFlags                                       srcStageMask,
