@@ -4859,6 +4859,16 @@ void VulkanReplayConsumerBase::OverrideCmdBeginRenderPass(
     }
 }
 
+void VulkanReplayConsumerBase::OverrideCmdDraw(PFN_vkCmdDraw            func,
+                                               const CommandBufferInfo* command_buffer_info,
+                                               uint32_t                 vertexCount,
+                                               uint32_t                 instanceCount,
+                                               uint32_t                 firstVertex,
+                                               uint32_t                 firstInstance)
+{
+    func(command_buffer_info->handle, vertexCount, instanceCount, firstVertex, firstInstance);
+}
+
 void VulkanReplayConsumerBase::OverrideCmdPipelineBarrier(
     PFN_vkCmdPipelineBarrier                                   func,
     const CommandBufferInfo*                                   command_buffer_info,

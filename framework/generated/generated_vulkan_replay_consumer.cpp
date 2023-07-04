@@ -1603,9 +1603,9 @@ void VulkanReplayConsumer::Process_vkCmdDraw(
     uint32_t                                    firstVertex,
     uint32_t                                    firstInstance)
 {
-    VkCommandBuffer in_commandBuffer = MapHandle<CommandBufferInfo>(commandBuffer, &VulkanObjectInfoTable::GetCommandBufferInfo);
+    auto in_commandBuffer = GetObjectInfoTable().GetCommandBufferInfo(commandBuffer);
 
-    GetDeviceTable(in_commandBuffer)->CmdDraw(in_commandBuffer, vertexCount, instanceCount, firstVertex, firstInstance);
+    OverrideCmdDraw(GetDeviceTable(in_commandBuffer->handle)->CmdDraw, in_commandBuffer, vertexCount, instanceCount, firstVertex, firstInstance);
 }
 
 void VulkanReplayConsumer::Process_vkCmdDrawIndexed(

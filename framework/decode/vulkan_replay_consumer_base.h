@@ -680,6 +680,13 @@ class VulkanReplayConsumerBase : public VulkanConsumer
                                     const StructPointerDecoder<Decoded_VkRenderPassBeginInfo>* pRenderPassBegin,
                                     VkSubpassContents                                          contents);
 
+    void OverrideCmdDraw(PFN_vkCmdDraw            func,
+                         const CommandBufferInfo* command_buffer_info,
+                         uint32_t                 vertexCount,
+                         uint32_t                 instanceCount,
+                         uint32_t                 firstVertex,
+                         uint32_t                 firstInstance);
+
     void OverrideCmdPipelineBarrier(PFN_vkCmdPipelineBarrier                                   func,
                                     const CommandBufferInfo*                                   command_buffer_info,
                                     VkPipelineStageFlags                                       srcStageMask,
