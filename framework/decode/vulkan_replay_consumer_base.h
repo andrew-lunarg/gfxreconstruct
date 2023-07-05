@@ -1148,10 +1148,6 @@ class VulkanReplayConsumerBase : public VulkanConsumer
     // Currently hard-coded to a local capture of frame 1 of vkcube.
     struct DumpDraw
     {
-        /// Turn on draw dumnping.
-        bool enabled_{ true };
-
-        // Definition:
         uint64_t create_renderpass_index_{ 88 }; // handle 38
         /// @todo We need four versions of this as a pipeline bakes-in the subpass.
         uint64_t create_graphics_pipeline_index_{ 92 }; // handle 42 (refers to rp 38)
@@ -1180,6 +1176,9 @@ class VulkanReplayConsumerBase : public VulkanConsumer
         /// @todo write a C++ tool over binary or a python script over json to emit above indexes given
         /// (submit,primary_cb,secondary_cb,draw_cmd)
 
+        /// Allocation callbacks used for extra Vulkan objects created to enable the dump.
+        VkAllocationCallbacks* allocator_{ nullptr };
+
         /// The index within the renderpass' subpasses array of the subpass containing the draw to be dumped.
         uint32_t subpass_{ 0 };
 
@@ -1189,8 +1188,8 @@ class VulkanReplayConsumerBase : public VulkanConsumer
         // of some the blocks above where tracking them during replay is considered cheaper than the external pre-pass.
         // std::unordered_map<vkHandleX, CreationParamsX> ...
 
-        /// Allocation callbacks used for extra Vulkan objects created to enable the dump.
-        VkAllocationCallbacks* allocator_{ nullptr };
+        /// Turn on draw dumping.
+        bool enabled_{ true };
 
     } dump_draw_;
 };
