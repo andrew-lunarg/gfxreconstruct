@@ -650,6 +650,16 @@ class VulkanReplayConsumerBase : public VulkanConsumer
                                        StructPointerDecoder<Decoded_VkAllocationCallbacks>*   pAllocator,
                                        HandlePointerDecoder<VkFramebuffer>*                   pFramebuffer);
 
+    VkResult OverrideCreateGraphicsPipelines(
+        PFN_vkCreateGraphicsPipelines                               func,
+        VkResult                                                    original_result,
+        const DeviceInfo*                                           device_info,      //    VkDevice device,
+        const PipelineCacheInfo*                                    in_pipelineCache, // VkPipelineCache pipelineCache,
+        uint32_t                                                    createInfoCount,
+        StructPointerDecoder<Decoded_VkGraphicsPipelineCreateInfo>* pCreateInfos,
+        StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator, // const VkAllocationCallbacks* pAllocator,
+        HandlePointerDecoder<VkPipeline>*                    pPipelines);
+
     void OverrideDestroyImage(PFN_vkDestroyImage                                         func,
                               const DeviceInfo*                                          device_info,
                               ImageInfo*                                                 image_info,
@@ -1142,7 +1152,8 @@ class VulkanReplayConsumerBase : public VulkanConsumer
         bool enabled_{ true };
 
         // Definition:
-        uint64_t create_renderpass_index_{ 88 };        // handle 38
+        uint64_t create_renderpass_index_{ 88 }; // handle 38
+        /// @todo We need four versions of this as a pipeline bakes-in the subpass.
         uint64_t create_graphics_pipeline_index_{ 92 }; // handle 42 (refers to rp 38)
         // Below should be a list of all ds allocations used by the command buffer we will rewrite. Then any time it
         // sees one of these ds used between cb record begin and the draw dump with cb of interest as target, it can

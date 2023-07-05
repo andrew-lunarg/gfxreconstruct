@@ -4374,6 +4374,26 @@ VulkanReplayConsumerBase::OverrideCreateFramebuffer(PFN_vkCreateFramebuffer func
     return result;
 }
 
+VkResult VulkanReplayConsumerBase::OverrideCreateGraphicsPipelines(
+    PFN_vkCreateGraphicsPipelines                               func,
+    VkResult                                                    original_result,
+    const DeviceInfo*                                           device_info,
+    const PipelineCacheInfo*                                    in_pipelineCache,
+    uint32_t                                                    createInfoCount,
+    StructPointerDecoder<Decoded_VkGraphicsPipelineCreateInfo>* pCreateInfos,
+    StructPointerDecoder<Decoded_VkAllocationCallbacks>*        pAllocator,
+    HandlePointerDecoder<VkPipeline>*                           pPipelines)
+{
+    VkDevice                      device         = device_info->handle;
+    VkGraphicsPipelineCreateInfo* createInfos    = pCreateInfos->GetPointer();
+    const VkAllocationCallbacks*  allocator      = GetAllocationCallbacks(pAllocator);
+    VkPipeline*                   out_pPipelines = pPipelines->GetHandlePointer();
+
+    const VkResult result =
+        func(device, in_pipelineCache->handle, createInfoCount, createInfos, allocator, out_pPipelines);
+    return result;
+}
+
 void VulkanReplayConsumerBase::OverrideDestroyImage(
     PFN_vkDestroyImage                                         func,
     const DeviceInfo*                                          device_info,
