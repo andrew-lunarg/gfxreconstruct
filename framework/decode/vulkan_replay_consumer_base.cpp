@@ -4866,7 +4866,46 @@ void VulkanReplayConsumerBase::OverrideCmdDraw(PFN_vkCmdDraw            func,
                                                uint32_t                 firstVertex,
                                                uint32_t                 firstInstance)
 {
-    func(command_buffer_info->handle, vertexCount, instanceCount, firstVertex, firstInstance);
+    // Insert the two subpasses for the dumping subpass and the subpass for the
+    // single draw cmd:
+    if (dump_draw_.enabled_ && dump_draw_.draw_index_ == current_block_index_)
+    {
+        GFXRECON_LOG_DEBUG("vkCmdDraw() to dump seen at block index %llu.", (uint64_t)current_block_index_);
+        /*format::HandleId           device_id = command_buffer_info->parent_id;
+        VkDevice                   device    = MapHandle<DeviceInfo>(device_id, &VulkanObjectInfoTable::GetDeviceInfo);
+        const encode::DeviceTable* table     = GetDeviceTable(device);*/
+        const encode::DeviceTable* table = GetDeviceTable(command_buffer_info->handle);
+        GFXRECON_ASSERT(table != nullptr);
+
+        // Transition to dumping subpass:
+        table->CmdNextSubpass(command_buffer_info->handle, VK_SUBPASS_CONTENTS_INLINE);
+
+        // Transition to subpass drawing one cmd:
+        table->CmdNextSubpass(command_buffer_info->handle, VK_SUBPASS_CONTENTS_INLINE);
+
+        /// @todo Replicate the most recent state set in the first subpass in the
+        /// one holding the draw of interest.
+        /// Doing so requires having kept a note of current pipeline, descriptor set, etc.
+        /// from the creation of the command buffer referred to by command_buffer_info
+
+        func(command_buffer_info->handle, vertexCount, instanceCount, firstVertex, firstInstance);
+
+        /// @todo Add the draw to the straight-through non-dumping version of the
+        /// command buffer.
+
+        // Transition to second dumping subpass:
+        table->CmdNextSubpass(command_buffer_info->handle, VK_SUBPASS_CONTENTS_INLINE);
+
+        // Transition to subpass containing all commands after the draw of interest:
+        table->CmdNextSubpass(command_buffer_info->handle, VK_SUBPASS_CONTENTS_INLINE);
+
+        /// @todo Replicate the most recent state set in the first subpass in the
+        /// one that finishes-off what was the original subpass.
+    }
+    else
+    {
+        func(command_buffer_info->handle, vertexCount, instanceCount, firstVertex, firstInstance);
+    }
 }
 
 void VulkanReplayConsumerBase::OverrideCmdPipelineBarrier(

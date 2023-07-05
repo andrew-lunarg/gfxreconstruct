@@ -1160,7 +1160,7 @@ class VulkanReplayConsumerBase : public VulkanConsumer
            // pre-dump cmd buffer record state.
         uint64_t renderpass_begin_index_{ 109 };       // needs to start our alternate rp to 38
         uint64_t bind_graphics_pipeline_index_{ 110 }; // Needs to bind our alternative pipeline to handle 42
-        uint64_t buffer_draw_index_{ 114 };
+        uint64_t draw_index_{ 114 };
         // Invocation:
         uint64_t submit_index_{ 148 };
         uint64_t primary_cmd_buffer_index_{ 0 };
