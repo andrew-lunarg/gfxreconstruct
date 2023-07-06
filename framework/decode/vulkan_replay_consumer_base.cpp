@@ -4374,6 +4374,13 @@ VulkanReplayConsumerBase::OverrideCreateFramebuffer(PFN_vkCreateFramebuffer func
     return result;
 }
 
+static void
+RetargetGraphicsPipeline(VkGraphicsPipelineCreateInfo& ci, VkRenderPass new_render_pass, uint32_t new_subpass)
+{
+    ci.renderPass = new_render_pass;
+    ci.subpass    = new_subpass;
+}
+
 VkResult VulkanReplayConsumerBase::OverrideCreateGraphicsPipelines(
     PFN_vkCreateGraphicsPipelines                               func,
     VkResult                                                    original_result,
@@ -4391,6 +4398,67 @@ VkResult VulkanReplayConsumerBase::OverrideCreateGraphicsPipelines(
 
     const VkResult result =
         func(device, in_pipelineCache->handle, createInfoCount, createInfos, allocator, out_pPipelines);
+
+    if (dump_draw_.enabled_ && result == VK_SUCCESS && current_block_index_ > dump_draw_.create_renderpass_index_)
+    {
+        GFXRECON_LOG_DEBUG("Creating four versions of Graphics Pipelines at block index: %llu",
+                           (uint64_t)current_block_index_);
+        // For each pipeline that runs in the same subpass that our draw is in, make
+        // three additional versions of it.
+        // The default version will be used for the renderpass which doesn't dump and these
+        // dups will reference the dumping renderpass
+        // uint32_t                                  dup_count = 0;
+        std::vector<VkPipeline>                   duped_pipes;
+        std::vector<VkGraphicsPipelineCreateInfo> modded_creates;
+        for (uint32_t i = 0; i < createInfoCount; ++i)
+        {
+            if (createInfos[i].renderPass == dump_draw_.renderpass_ && createInfos[i].subpass == dump_draw_.subpass_)
+            {
+                duped_pipes.push_back(out_pPipelines[i]);
+                modded_creates.push_back(createInfos[i]);
+                RetargetGraphicsPipeline(modded_creates.back(), dump_draw_.renderpass_, dump_draw_.subpass_);
+                modded_creates.push_back(createInfos[i]);
+                RetargetGraphicsPipeline(modded_creates.back(), dump_draw_.renderpass_, dump_draw_.subpass_ + 2);
+                modded_creates.push_back(createInfos[i]);
+                RetargetGraphicsPipeline(modded_creates.back(), dump_draw_.renderpass_, dump_draw_.subpass_ + 4);
+                //++dup_count;
+            }
+        }
+        if (duped_pipes.size() > 0)
+        {
+            std::vector<VkPipeline> modded_pipes;
+            modded_pipes.resize(modded_creates.size());
+
+            const VkResult result = func(device,
+                                         in_pipelineCache->handle,
+                                         modded_creates.size(),
+                                         &modded_creates[0],
+                                         allocator,
+                                         &modded_pipes[0]);
+            if (result == VK_SUCCESS)
+            {
+                unsigned dup = 0;
+                for (const VkPipeline pH : duped_pipes)
+                {
+                    std::array<VkPipeline, 3> dups;
+                    for (unsigned d = 0; d < 3; ++d)
+                    {
+                        dups[d] = modded_pipes[dup++];
+                    }
+
+                    dump_draw_.pipeline_dups_[pH] = dups;
+                }
+                GFXRECON_ASSERT(dup == modded_pipes.size());
+            }
+            else
+            {
+                GFXRECON_LOG_ERROR("Failed to build extra pipelines for draw dumping.")
+            }
+        }
+        /// @todo Use the modified renderpass once there is both original and modified created.
+        /// @todo Get rid of all these heap-allocated containers.
+    }
+
     return result;
 }
 
@@ -4840,8 +4908,15 @@ VkResult VulkanReplayConsumerBase::OverrideCreateRenderPass(
         pCreateInfo2 = &moddedCi;
     }
 
-    return swapchain_->CreateRenderPass(
+    const VkResult result = swapchain_->CreateRenderPass(
         func, device_info, pCreateInfo2, GetAllocationCallbacks(pAllocator), pRenderPass->GetHandlePointer());
+
+    if (result == VK_SUCCESS && dump_draw_.enabled_ && dump_draw_.create_renderpass_index_ == current_block_index_)
+    {
+        dump_draw_.renderpass_ = *(pRenderPass->GetHandlePointer());
+    }
+
+    return result;
 }
 
 VkResult VulkanReplayConsumerBase::OverrideCreateRenderPass2(

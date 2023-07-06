@@ -1148,12 +1148,14 @@ class VulkanReplayConsumerBase : public VulkanConsumer
     // Currently hard-coded to a local capture of frame 1 of vkcube.
     struct DumpDraw
     {
+        /// The index of the block that creates the renderpass object which will be used
+        /// by the command buffer containing the dump and which will be saved into renderpass_.
         uint64_t create_renderpass_index_{ 88 }; // handle 38
-        /// @todo We need four versions of this as a pipeline bakes-in the subpass.
-        uint64_t create_graphics_pipeline_index_{ 92 }; // handle 42 (refers to rp 38)
-        // Below should be a list of all ds allocations used by the command buffer we will rewrite. Then any time it
-        // sees one of these ds used between cb record begin and the draw dump with cb of interest as target, it can
-        // duplicate the work.
+        /// @todo We need four versions of this as a pipeline bakes-in the renderpass and subpass.
+        // Shouldn't be needed and would be hard to determine: uint64_t create_graphics_pipeline_index_{ 92 }; // handle
+        // 42 (refers to rp 38) Below should be a list of all ds allocations used by the command buffer we will rewrite.
+        // Then any time it sees one of these ds used between cb record begin and the draw dump with cb of interest as
+        // target, it can duplicate the work.
         uint64_t descriptor_set_allocate_{
             99
         }; // Allocate 2 descriptor set alternatives to set 47 with the same layout 36 as that one (this might have to
@@ -1178,6 +1180,12 @@ class VulkanReplayConsumerBase : public VulkanConsumer
 
         /// Allocation callbacks used for extra Vulkan objects created to enable the dump.
         VkAllocationCallbacks* allocator_{ nullptr };
+
+        /// Duplicate Graphics Pipelines: three per original one:
+        std::unordered_map<VkPipeline, std::array<VkPipeline, 3>> pipeline_dups_;
+
+        /// The handle of the renderpass (once we dup renderpasses this will be the original one):
+        VkRenderPass renderpass_{ VK_NULL_HANDLE };
 
         /// The index within the renderpass' subpasses array of the subpass containing the draw to be dumped.
         uint32_t subpass_{ 0 };
