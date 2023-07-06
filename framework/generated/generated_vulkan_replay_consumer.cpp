@@ -1439,10 +1439,10 @@ void VulkanReplayConsumer::Process_vkCmdBindPipeline(
     VkPipelineBindPoint                         pipelineBindPoint,
     format::HandleId                            pipeline)
 {
-    VkCommandBuffer in_commandBuffer = MapHandle<CommandBufferInfo>(commandBuffer, &VulkanObjectInfoTable::GetCommandBufferInfo);
-    VkPipeline in_pipeline = MapHandle<PipelineInfo>(pipeline, &VulkanObjectInfoTable::GetPipelineInfo);
+    auto in_commandBuffer = GetObjectInfoTable().GetCommandBufferInfo(commandBuffer);
+    auto in_pipeline = GetObjectInfoTable().GetPipelineInfo(pipeline);
 
-    GetDeviceTable(in_commandBuffer)->CmdBindPipeline(in_commandBuffer, pipelineBindPoint, in_pipeline);
+    OverrideCmdBindPipeline(GetDeviceTable(in_commandBuffer->handle)->CmdBindPipeline, in_commandBuffer, pipelineBindPoint, in_pipeline);
 }
 
 void VulkanReplayConsumer::Process_vkCmdSetViewport(

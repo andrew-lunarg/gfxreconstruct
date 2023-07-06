@@ -690,6 +690,11 @@ class VulkanReplayConsumerBase : public VulkanConsumer
                                     const StructPointerDecoder<Decoded_VkRenderPassBeginInfo>* pRenderPassBegin,
                                     VkSubpassContents                                          contents);
 
+    void OverrideCmdBindPipeline(PFN_vkCmdBindPipeline    func,
+                                 const CommandBufferInfo* command_buffer_info,
+                                 VkPipelineBindPoint      pipelineBindPoint,
+                                 PipelineInfo*            in_pipeline);
+
     void OverrideCmdDraw(PFN_vkCmdDraw            func,
                          const CommandBufferInfo* command_buffer_info,
                          uint32_t                 vertexCount,

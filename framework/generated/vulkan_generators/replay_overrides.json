@@ -12,6 +12,7 @@
     "vkBindImageMemory2": "OverrideBindImageMemory2",
     "vkBindImageMemory": "OverrideBindImageMemory",
     "vkCmdBeginRenderPass": "OverrideCmdBeginRenderPass",
+    "vkCmdBindPipeline": "OverrideCmdBindPipeline",
     "vkCmdDraw": "OverrideCmdDraw",
     "vkCmdPipelineBarrier": "OverrideCmdPipelineBarrier",
     "vkCreateAccelerationStructureKHR": "OverrideCreateAccelerationStructureKHR",
