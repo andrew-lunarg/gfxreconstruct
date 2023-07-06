@@ -4936,6 +4936,19 @@ VkResult VulkanReplayConsumerBase::OverrideCreateRenderPass2(
                                          pRenderPass->GetHandlePointer());
 }
 
+VkResult VulkanReplayConsumerBase::OverrideBeginCommandBuffer(
+    PFN_vkBeginCommandBuffer                                      func,
+    VkResult                                                      original_result,
+    const CommandBufferInfo*                                      command_buffer_info,
+    const StructPointerDecoder<Decoded_VkCommandBufferBeginInfo>* pBeginInfo)
+{
+    GFXRECON_UNREFERENCED_PARAMETER(original_result);
+    VkResult result = func(command_buffer_info->handle, pBeginInfo->GetPointer());
+    return result;
+    /// @todo Create two command buffers if dumping draws and this buffer contains the draw to dump: non-dumping and
+    /// dumping.
+}
+
 void VulkanReplayConsumerBase::OverrideCmdBeginRenderPass(
     PFN_vkCmdBeginRenderPass                                   func,
     const CommandBufferInfo*                                   command_buffer_info,

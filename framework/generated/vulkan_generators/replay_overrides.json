@@ -5,6 +5,7 @@
     "vkAllocateCommandBuffers": "OverrideAllocateCommandBuffers",
     "vkAllocateDescriptorSets": "OverrideAllocateDescriptorSets",
     "vkAllocateMemory": "OverrideAllocateMemory",
+    "vkBeginCommandBuffer": "OverrideBeginCommandBuffer",
     "vkBindBufferMemory2KHR": "OverrideBindBufferMemory2",
     "vkBindBufferMemory2": "OverrideBindBufferMemory2",
     "vkBindBufferMemory": "OverrideBindBufferMemory",

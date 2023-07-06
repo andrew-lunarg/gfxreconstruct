@@ -671,6 +671,11 @@ class VulkanReplayConsumerBase : public VulkanConsumer
                                            const StructPointerDecoder<Decoded_VkImageSubresource>* pSubresource,
                                            StructPointerDecoder<Decoded_VkSubresourceLayout>*      pLayout);
 
+    VkResult OverrideBeginCommandBuffer(PFN_vkBeginCommandBuffer func,
+                                        VkResult                 original_result,
+                                        const CommandBufferInfo* command_buffer_info,
+                                        const StructPointerDecoder<Decoded_VkCommandBufferBeginInfo>* pBeginInfo);
+
     VkResult OverrideCreateRenderPass(PFN_vkCreateRenderPass                                      func,
                                       VkResult                                                    original_result,
                                       const DeviceInfo*                                           device_info,
