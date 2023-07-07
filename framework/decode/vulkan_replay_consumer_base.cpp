@@ -5335,6 +5335,15 @@ VkResult VulkanReplayConsumerBase::OverrideCreatePipelineCache(
     }
 }
 
+void VulkanReplayConsumerBase::OverrideCmdSetScissor(PFN_vkCmdSetScissor                           func,
+                                                     const CommandBufferInfo*                      command_buffer_info,
+                                                     uint32_t                                      firstScissor,
+                                                     uint32_t                                      scissorCount,
+                                                     const StructPointerDecoder<Decoded_VkRect2D>* pScissors)
+{
+    func(command_buffer_info->handle, firstScissor, scissorCount, pScissors->GetPointer());
+}
+
 void VulkanReplayConsumerBase::OverrideCmdSetViewport(PFN_vkCmdSetViewport     func,
                                                       const CommandBufferInfo* command_buffer_info,
                                                       uint32_t                 firstViewport,

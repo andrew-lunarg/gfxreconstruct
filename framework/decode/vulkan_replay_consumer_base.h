@@ -729,6 +729,12 @@ class VulkanReplayConsumerBase : public VulkanConsumer
                                     uint32_t                                                   imageMemoryBarrierCount,
                                     const StructPointerDecoder<Decoded_VkImageMemoryBarrier>*  pImageMemoryBarriers);
 
+    void OverrideCmdSetScissor(PFN_vkCmdSetScissor                           func,
+                               const CommandBufferInfo*                      command_buffer_info,
+                               uint32_t                                      firstScissor,
+                               uint32_t                                      scissorCount,
+                               const StructPointerDecoder<Decoded_VkRect2D>* pScissors);
+
     void OverrideCmdSetViewport(PFN_vkCmdSetViewport                            func,
                                 const CommandBufferInfo*                        command_buffer_info,
                                 uint32_t                                        firstViewport,

@@ -15,6 +15,7 @@
     "vkCmdBindDescriptorSets": "OverrideCmdBindDescriptorSets",
     "vkCmdBeginRenderPass": "OverrideCmdBeginRenderPass",
     "vkCmdBindPipeline": "OverrideCmdBindPipeline",
+    "vkCmdSetScissor": "OverrideCmdSetScissor",
     "vkCmdSetViewport": "OverrideCmdSetViewport",
     "vkCmdDraw": "OverrideCmdDraw",
     "vkCmdPipelineBarrier": "OverrideCmdPipelineBarrier",

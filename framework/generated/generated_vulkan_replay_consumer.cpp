@@ -1464,10 +1464,9 @@ void VulkanReplayConsumer::Process_vkCmdSetScissor(
     uint32_t                                    scissorCount,
     StructPointerDecoder<Decoded_VkRect2D>*     pScissors)
 {
-    VkCommandBuffer in_commandBuffer = MapHandle<CommandBufferInfo>(commandBuffer, &VulkanObjectInfoTable::GetCommandBufferInfo);
-    const VkRect2D* in_pScissors = pScissors->GetPointer();
+    auto in_commandBuffer = GetObjectInfoTable().GetCommandBufferInfo(commandBuffer);
 
-    GetDeviceTable(in_commandBuffer)->CmdSetScissor(in_commandBuffer, firstScissor, scissorCount, in_pScissors);
+    OverrideCmdSetScissor(GetDeviceTable(in_commandBuffer->handle)->CmdSetScissor, in_commandBuffer, firstScissor, scissorCount, pScissors);
 }
 
 void VulkanReplayConsumer::Process_vkCmdSetLineWidth(
