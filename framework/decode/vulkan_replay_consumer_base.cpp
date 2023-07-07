@@ -5050,6 +5050,30 @@ void VulkanReplayConsumerBase::OverrideCmdPipelineBarrier(
                                    pImageMemoryBarriers->GetPointer());
 }
 
+void VulkanReplayConsumerBase::OverrideCmdBindDescriptorSets(PFN_vkCmdBindDescriptorSets func,
+                                                             const CommandBufferInfo*    command_buffer_info,
+                                                             VkPipelineBindPoint         pipelineBindPoint,
+                                                             PipelineLayoutInfo*         layout,
+                                                             uint32_t                    firstSet,
+                                                             uint32_t                    descriptorSetCount,
+                                                             HandlePointerDecoder<VkDescriptorSet_T*>* pDescriptorSets,
+                                                             uint32_t                      dynamicOffsetCount,
+                                                             PointerDecoder<unsigned int>* pDynamicOffsets)
+{
+    func(command_buffer_info->handle,
+         pipelineBindPoint,
+         layout->handle,
+         firstSet,
+         descriptorSetCount,
+         pDescriptorSets->GetHandlePointer(),
+         dynamicOffsetCount,
+         pDynamicOffsets->GetPointer());
+
+    /// @todo Lookup the separate dumping command buffer and add this command to that one, and allso deep-copy the
+    /// parameters so we can add this cmd a second and third time to subpasses 2 and 4 when we hit the duraw to be
+    /// dumped.
+}
+
 VkResult VulkanReplayConsumerBase::OverrideCreateDescriptorUpdateTemplate(
     PFN_vkCreateDescriptorUpdateTemplate                                      func,
     VkResult                                                                  original_result,

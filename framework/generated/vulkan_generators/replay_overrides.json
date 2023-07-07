@@ -12,6 +12,7 @@
     "vkBindImageMemory2KHR": "OverrideBindImageMemory2",
     "vkBindImageMemory2": "OverrideBindImageMemory2",
     "vkBindImageMemory": "OverrideBindImageMemory",
+    "vkCmdBindDescriptorSets": "OverrideCmdBindDescriptorSets",
     "vkCmdBeginRenderPass": "OverrideCmdBeginRenderPass",
     "vkCmdBindPipeline": "OverrideCmdBindPipeline",
     "vkCmdDraw": "OverrideCmdDraw",
