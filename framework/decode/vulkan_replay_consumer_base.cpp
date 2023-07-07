@@ -5335,6 +5335,18 @@ VkResult VulkanReplayConsumerBase::OverrideCreatePipelineCache(
     }
 }
 
+void VulkanReplayConsumerBase::OverrideCmdSetViewport(PFN_vkCmdSetViewport     func,
+                                                      const CommandBufferInfo* command_buffer_info,
+                                                      uint32_t                 firstViewport,
+                                                      uint32_t                 viewportCount,
+                                                      const StructPointerDecoder<Decoded_VkViewport>* pViewports)
+{
+    func(command_buffer_info->handle, firstViewport, viewportCount, pViewports->GetPointer());
+    /// @todo Add to dumping and non-dumping command buffers and deep copy parameters to be able to add again to dumping
+    /// subpasses 2 and 4. We only need to remember latest call of this, not have a map from handles to params or a list
+    /// of many creation params.
+}
+
 VkResult VulkanReplayConsumerBase::OverrideResetDescriptorPool(PFN_vkResetDescriptorPool  func,
                                                                VkResult                   original_result,
                                                                const DeviceInfo*          device_info,

@@ -1452,10 +1452,9 @@ void VulkanReplayConsumer::Process_vkCmdSetViewport(
     uint32_t                                    viewportCount,
     StructPointerDecoder<Decoded_VkViewport>*   pViewports)
 {
-    VkCommandBuffer in_commandBuffer = MapHandle<CommandBufferInfo>(commandBuffer, &VulkanObjectInfoTable::GetCommandBufferInfo);
-    const VkViewport* in_pViewports = pViewports->GetPointer();
+    auto in_commandBuffer = GetObjectInfoTable().GetCommandBufferInfo(commandBuffer);
 
-    GetDeviceTable(in_commandBuffer)->CmdSetViewport(in_commandBuffer, firstViewport, viewportCount, in_pViewports);
+    OverrideCmdSetViewport(GetDeviceTable(in_commandBuffer->handle)->CmdSetViewport, in_commandBuffer, firstViewport, viewportCount, pViewports);
 }
 
 void VulkanReplayConsumer::Process_vkCmdSetScissor(
