@@ -4967,6 +4967,12 @@ void VulkanReplayConsumerBase::OverrideCmdBeginRenderPass(
     }
 }
 
+void VulkanReplayConsumerBase::OverrideCmdEndRenderPass(PFN_vkCmdEndRenderPass   func,
+                                                        const CommandBufferInfo* command_buffer_info)
+{
+    func(command_buffer_info->handle);
+}
+
 void VulkanReplayConsumerBase::OverrideCmdBindPipeline(PFN_vkCmdBindPipeline    func,
                                                        const CommandBufferInfo* command_buffer_info,
                                                        VkPipelineBindPoint      pipelineBindPoint,

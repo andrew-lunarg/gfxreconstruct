@@ -717,6 +717,8 @@ class VulkanReplayConsumerBase : public VulkanConsumer
                          uint32_t                 firstVertex,
                          uint32_t                 firstInstance);
 
+    void OverrideCmdEndRenderPass(PFN_vkCmdEndRenderPass func, const CommandBufferInfo* command_buffer_info);
+
     void OverrideCmdPipelineBarrier(PFN_vkCmdPipelineBarrier                                   func,
                                     const CommandBufferInfo*                                   command_buffer_info,
                                     VkPipelineStageFlags                                       srcStageMask,
