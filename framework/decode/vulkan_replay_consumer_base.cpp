@@ -4971,6 +4971,19 @@ void VulkanReplayConsumerBase::OverrideCmdEndRenderPass(PFN_vkCmdEndRenderPass  
                                                         const CommandBufferInfo* command_buffer_info)
 {
     func(command_buffer_info->handle);
+
+    /// @todo BOOKMARK <--------------------------------------------------------------------[PARKING]
+    /// @todo We need some sort of state machine to say: on thread x, we are before, inside, or after
+    /// the creation and definition of renderpass of interest y.
+    /// We also need to remember the handle of the commandbuffer that the renderpass is being recorded into
+    /// so that for each VkCmdX that we see, we can know whether it is a part of the same renderpass and so needs
+    /// special handling.
+    /// We can track that in these overriden calls.
+    if (dump_draw_.enabled_ && dump_draw_.renderpass_begin_index_ < current_block_index_) /// @todo someting more here.
+    {
+        GFXRECON_LOG_DEBUG("vkCmdEndRenderPass() for renderpass containing draw to dump seen at block index %llu.",
+                           (uint64_t)current_block_index_);
+    }
 }
 
 void VulkanReplayConsumerBase::OverrideCmdBindPipeline(PFN_vkCmdBindPipeline    func,
