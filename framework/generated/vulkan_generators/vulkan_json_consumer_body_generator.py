@@ -107,7 +107,7 @@ class VulkanExportJsonConsumerBodyGenerator(BaseGenerator):
         includes = inspect.cleandoc(
             '''
             #include "util/defines.h"
-            #include "generated/generated_vulkan_export_json_consumer.h"
+            #include "generated/generated_vulkan_json_consumer.h"
             #include "decode/custom_vulkan_struct_to_json.h"
             '''
         )
