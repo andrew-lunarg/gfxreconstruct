@@ -23,6 +23,7 @@
 #ifndef GFXRECON_DECODE_VULKAN_JSON_CONSUMER_BASE_H
 #define GFXRECON_DECODE_VULKAN_JSON_CONSUMER_BASE_H
 
+#include "util/output_stream.h"
 #include "util/defines.h"
 #include "annotation_handler.h"
 #include "format/platform_types.h"
@@ -50,7 +51,7 @@ class VulkanExportJsonConsumerBase : public VulkanConsumer, public AnnotationHan
 
     void Destroy();
 
-    void StartFile(FILE* file);
+    void StartFile(util::OutputStream* file);
 
     void EndFile();
 
@@ -286,7 +287,7 @@ class VulkanExportJsonConsumerBase : public VulkanConsumer, public AnnotationHan
     std::unordered_map<format::HandleId, uint32_t> rec_cmd_index_;
 
   private:
-    FILE*                  file_{ nullptr };
+    util::OutputStream*    file_{ nullptr };
     nlohmann::ordered_json header_;
     nlohmann::ordered_json json_data_;
     uint32_t               num_objects_{ 0 };
