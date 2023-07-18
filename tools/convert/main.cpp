@@ -25,6 +25,7 @@
 #include "tool_settings.h"
 #include "decode/decode_api_detection.h"
 #include "format/format.h"
+#include "util/file_output_stream.h"
 #include "util/file_path.h"
 #include "util/platform.h"
 
@@ -240,6 +241,7 @@ int main(int argc, const char** argv)
         }
         else
         {
+            gfxrecon::util::FileNoLockOutputStream     out_stream{ out_file_handle, false };
             gfxrecon::decode::VulkanExportJsonConsumer json_consumer;
             gfxrecon::decode::JsonOptions              json_options;
             gfxrecon::decode::VulkanDecoder            decoder;
@@ -258,7 +260,7 @@ int main(int argc, const char** argv)
                                               std::to_string(VK_VERSION_MINOR(VK_HEADER_VERSION_COMPLETE)) + "." +
                                               std::to_string(VK_VERSION_PATCH(VK_HEADER_VERSION_COMPLETE)) };
             json_consumer.Initialize(json_options, GFXRECON_PROJECT_VERSION_STRING, vulkan_version, input_filename);
-            json_consumer.StartFile(out_file_handle);
+            json_consumer.StartFile(&out_stream);
 
             // If CONVERT_EXPERIMENTAL_D3D12 was set, then add DX12 consumer/decoder
 #ifdef CONVERT_EXPERIMENTAL_D3D12
@@ -285,7 +287,8 @@ int main(int argc, const char** argv)
                     success = out_file_handle != nullptr;
                     if (success)
                     {
-                        json_consumer.StartFile(out_file_handle);
+                        out_stream.Reset(out_file_handle);
+                        json_consumer.StartFile(&out_stream);
                     }
                     else
                     {
