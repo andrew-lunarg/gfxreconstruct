@@ -89,14 +89,14 @@ void VulkanExportJsonConsumerBase::Destroy()
     EndFile();
 }
 
-void VulkanExportJsonConsumerBase::StartFile(FILE* file)
+void VulkanExportJsonConsumerBase::StartFile(util::OutputStream* file)
 {
-    assert(file);
+    GFXRECON_ASSERT(file);
     file_        = file;
     num_objects_ = 0;
     if (json_options_.format == JsonFormat::JSON)
     {
-        FilePuts("[\n", file_);
+        Write(*file_, "[\n");
     }
 
     // Emit the header object as the first line of the file:
@@ -111,11 +111,11 @@ void VulkanExportJsonConsumerBase::EndFile()
     {
         if (json_options_.format == JsonFormat::JSON)
         {
-            FilePuts("\n]\n", file_);
+            Write(*file_, "\n]\n");
         }
         else
         {
-            FilePuts("\n", file_);
+            Write(*file_, "\n");
         }
         file_ = nullptr;
     }
@@ -648,7 +648,7 @@ void VulkanExportJsonConsumerBase::WriteBlockEnd()
 
     if (num_objects_ > 1)
     {
-        FilePuts(json_options_.format == JsonFormat::JSONL ? "\n" : ",\n", file_);
+        Write(*file_, json_options_.format == JsonFormat::JSONL ? "\n" : ",\n");
     }
     // Dominates profiling (2/2):
     const std::string block = json_data_.dump(json_options_.format == JsonFormat::JSONL ? -1 : kJsonIndentWidth);
