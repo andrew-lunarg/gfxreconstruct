@@ -157,6 +157,7 @@ class VulkanExportJsonConsumerBodyGenerator(BaseGenerator):
                     '''
                     {{
                         nlohmann::ordered_json& jdata = WriteApiCallStart(call_info, "{0}");
+                        const JsonOptions& json_options = GetJsonOptions();
                     '''.format(cmd)
                 )
                 cmddef += '\n'
@@ -183,21 +184,21 @@ class VulkanExportJsonConsumerBodyGenerator(BaseGenerator):
         body = ''
 
         if name in self.queueSubmit:
-            body += '    FieldToJson(jdata[NameSubmitIndex()], ++submit_index_, json_options_);\n'
+            body += '    FieldToJson(jdata[NameSubmitIndex()], ++submit_index_, json_options);\n'
         elif self.is_command_buffer_cmd(name):
-            body += '    FieldToJson(jdata[NameCommandIndex()], GetCommandBufferRecordIndex(commandBuffer), json_options_);\n'
+            body += '    FieldToJson(jdata[NameCommandIndex()], GetCommandBufferRecordIndex(commandBuffer), json_options);\n'
 
         # Handle function return value
         if return_type in self.formatAsHex:
-            body += '    FieldToJsonAsHex(jdata[NameReturn()], returnValue, json_options_);\n'
+            body += '    FieldToJsonAsHex(jdata[NameReturn()], returnValue, json_options);\n'
         elif 'VkBool32' == return_type:
             # Output as JSON boolean type true/false without quotes:
-            body += '            VkBool32ToJson(jdata[NameReturn()], returnValue, json_options_);\n'
+            body += '            VkBool32ToJson(jdata[NameReturn()], returnValue, json_options);\n'
         elif self.is_handle(return_type):
-            body += '    HandleToJson(jdata[NameReturn()], returnValue, json_options_);\n'
+            body += '    HandleToJson(jdata[NameReturn()], returnValue, json_options);\n'
         # Enums, ints, etc. handled by default and static dispatch based on C++ type:
         elif not 'void' in return_type:
-            body += '    FieldToJson(jdata[NameReturn()], returnValue, json_options_);\n'
+            body += '    FieldToJson(jdata[NameReturn()], returnValue, json_options);\n'
 
         if len(values) > 0:
             body += '    auto& args = jdata[NameArgs()];\n'
@@ -208,20 +209,20 @@ class VulkanExportJsonConsumerBodyGenerator(BaseGenerator):
                 # Default to letting the right function overload to be resolved based on argument types,
                 # including enums, strings ints, floats etc.:
                 # Note there are overloads for scalars and pointers/arrays.
-                to_json = 'FieldToJson(args["{0}"], {0}, json_options_)'
+                to_json = 'FieldToJson(args["{0}"], {0}, json_options)'
 
                 # Special cases:
                 if 'VkBool32' == value.base_type:
-                    to_json = 'VkBool32ToJson(args["{0}"], {0}, json_options_)'
+                    to_json = 'VkBool32ToJson(args["{0}"], {0}, json_options)'
                 elif value.name == 'ppData' or (value.base_type in self.formatAsHex):
-                    to_json = 'FieldToJsonAsHex(args["{0}"], {0}, json_options_)'
+                    to_json = 'FieldToJsonAsHex(args["{0}"], {0}, json_options)'
                 elif self.is_handle(value.base_type) or value.name in self.formatAsHandle:
-                    to_json = 'HandleToJson(args["{0}"], {0}, json_options_)'
+                    to_json = 'HandleToJson(args["{0}"], {0}, json_options)'
                 elif self.is_flags(value.base_type):
                     if value.base_type in self.flagsTypeAlias:
                             flagsEnumType = self.flagsTypeAlias[value.base_type]
                     if not (value.is_pointer or value.is_array):
-                        to_json = 'FieldToJson({2}_t(), args["{0}"], {0}, json_options_)'
+                        to_json = 'FieldToJson({2}_t(), args["{0}"], {0}, json_options)'
                     else:
                         # Default to outputting as the raw type but warn:
                         print("Missing conversion of pointers to", flagsEnumType, "in", name,  file=sys.stderr)
