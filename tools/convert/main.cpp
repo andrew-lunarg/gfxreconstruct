@@ -23,6 +23,7 @@
 */
 #include "project_version.h"
 #include "tool_settings.h"
+#include "decode/json_writer.h" /// @todo move to util?
 #include "decode/decode_api_detection.h"
 #include "format/format.h"
 #include "util/file_output_stream.h"
@@ -255,12 +256,14 @@ int main(int argc, const char** argv)
             json_options.dump_binaries = dump_binaries;
             json_options.expand_flags  = expand_flags;
 
+            gfxrecon::decode::JsonWriter json_writer{ json_options, GFXRECON_PROJECT_VERSION_STRING, input_filename };
+
             bool              success = true;
             const std::string vulkan_version{ std::to_string(VK_VERSION_MAJOR(VK_HEADER_VERSION_COMPLETE)) + "." +
                                               std::to_string(VK_VERSION_MINOR(VK_HEADER_VERSION_COMPLETE)) + "." +
                                               std::to_string(VK_VERSION_PATCH(VK_HEADER_VERSION_COMPLETE)) };
-            json_consumer.Initialize(json_options, GFXRECON_PROJECT_VERSION_STRING, vulkan_version, input_filename);
-            json_consumer.StartFile(&out_stream);
+            json_consumer.Initialize(&json_writer, vulkan_version);
+            json_writer.StartStream(&out_stream);
 
             // If CONVERT_EXPERIMENTAL_D3D12 was set, then add DX12 consumer/decoder
 #ifdef CONVERT_EXPERIMENTAL_D3D12
@@ -279,7 +282,7 @@ int main(int argc, const char** argv)
                 success = file_processor.ProcessNextFrame();
                 if (success && file_per_frame)
                 {
-                    json_consumer.EndFile();
+                    json_writer.EndStream();
                     gfxrecon::util::platform::FileClose(out_file_handle);
                     json_filename = gfxrecon::util::filepath::InsertFilenamePostfix(
                         output_filename, +"_" + FormatFrameNumber(file_processor.GetCurrentFrameNumber()));
@@ -288,7 +291,7 @@ int main(int argc, const char** argv)
                     if (success)
                     {
                         out_stream.Reset(out_file_handle);
-                        json_consumer.StartFile(&out_stream);
+                        json_writer.StartStream(&out_stream);
                     }
                     else
                     {
