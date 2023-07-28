@@ -88,7 +88,7 @@ class VulkanEnumToJsonHeaderGenerator(BaseGenerator):
         includes = inspect.cleandoc(
             '''
             #include "format/platform_types.h"
-            #include "decode/vulkan_json_util.h"
+            #include "decode/json_util.h"
 
             '''
         )
