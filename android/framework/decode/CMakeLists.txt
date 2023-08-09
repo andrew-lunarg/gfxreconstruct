@@ -19,7 +19,6 @@ target_sources(gfxrecon_decode
                    ${GFXRECON_SOURCE_DIR}/framework/decode/file_transformer.h
                    ${GFXRECON_SOURCE_DIR}/framework/decode/file_transformer.cpp
                    ${GFXRECON_SOURCE_DIR}/framework/decode/handle_pointer_decoder.h
-                   ${GFXRECON_SOURCE_DIR}/framework/decode/json_writer.cpp
                    ${GFXRECON_SOURCE_DIR}/framework/decode/pnext_node.h
                    ${GFXRECON_SOURCE_DIR}/framework/decode/pnext_typed_node.h
                    ${GFXRECON_SOURCE_DIR}/framework/decode/pointer_decoder_base.h
