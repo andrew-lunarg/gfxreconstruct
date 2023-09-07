@@ -29,6 +29,7 @@
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(decode)
 using namespace util::platform;
+using util::JsonOptions;
 
 VulkanExportJsonConsumerBase::VulkanExportJsonConsumerBase() {}
 
@@ -221,7 +222,7 @@ void VulkanExportJsonConsumerBase::ProcessSetOpaqueAddressCommand(format::Handle
     WriteMetaCommandToFile("SetOpaqueAddressCommand", [&](auto& jdata) {
         HandleToJson(jdata["device_id"], device_id, json_options);
         HandleToJson(jdata["object_id"], object_id, json_options);
-        FieldToJson(jdata["address"], to_hex_variable_width(address), json_options);
+        FieldToJson(jdata["address"], util::to_hex_variable_width(address), json_options);
     });
 }
 
@@ -408,7 +409,7 @@ void VulkanExportJsonConsumerBase::Process_vkCreateShaderModule(
         if (json_options.dump_binaries)
         {
             uint64_t    handle_id     = *pShaderModule->GetPointer();
-            std::string filename      = GenerateFilename("shader_module_" + to_hex_fixed_width(handle_id) + ".bin");
+            std::string filename      = GenerateFilename("shader_module_" + util::to_hex_fixed_width(handle_id) + ".bin");
             std::string basename      = gfxrecon::util::filepath::Join(json_options.data_sub_dir, filename);
             std::string filepath      = gfxrecon::util::filepath::Join(json_options.root_dir, basename);
             auto        decoded_value = pCreateInfo->GetPointer();
