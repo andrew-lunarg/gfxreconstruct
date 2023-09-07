@@ -117,6 +117,8 @@ class VulkanExportJsonConsumerBodyGenerator(BaseGenerator):
             '''
             GFXRECON_BEGIN_NAMESPACE(gfxrecon)
             GFXRECON_BEGIN_NAMESPACE(decode)
+
+            using util::JsonOptions;
             '''
         )
         write(namespace, file=self.outFile)

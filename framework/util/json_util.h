@@ -23,8 +23,8 @@
 /// @file API-agnostic options and helpers for outputting JSON used by all
 /// the JSON-generating Consumers.
 
-#ifndef GFXRECON_DECODE_JSON_UTIL_H
-#define GFXRECON_DECODE_JSON_UTIL_H
+#ifndef GFXRECON_UTIL_JSON_UTIL_H
+#define GFXRECON_UTIL_JSON_UTIL_H
 
 #include "util/defines.h"
 #include "format/format.h"
@@ -33,7 +33,7 @@
 #include <sstream>
 
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
-GFXRECON_BEGIN_NAMESPACE(decode)
+GFXRECON_BEGIN_NAMESPACE(util)
 
 static const int kJsonIndentWidth = 2;
 
@@ -93,7 +93,7 @@ inline void HandleToJson(nlohmann::ordered_json& jdata, const format::HandleId h
     if (options.hex_handles)
     {
         // A JSON string
-        jdata = to_hex_variable_width(handle);
+        jdata = util::to_hex_variable_width(handle);
     }
     else
     {
@@ -102,7 +102,7 @@ inline void HandleToJson(nlohmann::ordered_json& jdata, const format::HandleId h
     }
 }
 
-GFXRECON_END_NAMESPACE(decode)
+GFXRECON_END_NAMESPACE(util)
 GFXRECON_END_NAMESPACE(gfxrecon)
 
-#endif // GFXRECON_DECODE_JSON_UTIL_H
+#endif // GFXRECON_UTIL_JSON_UTIL_H
