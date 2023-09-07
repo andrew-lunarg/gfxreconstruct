@@ -106,7 +106,12 @@ class VulkanStructToJsonBodyGenerator(BaseGenerator):
 
             GFXRECON_BEGIN_NAMESPACE(gfxrecon)
             GFXRECON_BEGIN_NAMESPACE(decode)
-            ''')
+
+            using util::JsonOptions;
+            using util::to_hex_variable_width;
+            using util::uuid_to_string;
+            ''') + '''\n'''
+
         write(body, file=self.outFile)
     # yapf: enable
 
