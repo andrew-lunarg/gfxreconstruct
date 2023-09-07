@@ -28,8 +28,10 @@
 
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(decode)
+
 using namespace util::platform;
 using util::JsonOptions;
+using util::uuid_to_string;
 
 VulkanExportJsonConsumerBase::VulkanExportJsonConsumerBase() {}
 
