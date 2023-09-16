@@ -90,7 +90,7 @@ class Dx12EnumToStringBodyGenerator(Dx12BaseGenerator):
                     if 'DEFINE_GUID' in m['type']:
                         index = m['type'].find(',')
                         iids.append(m['type'][len('DEFINE_GUID ( '):index])
-        body = 'template <> std::string ToString<IID>(const IID& iid, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)\n'
+        body = 'std::string ToString(const IID& iid, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)\n'
         body += '{\n'
         if not "IID_IUnknown" in iids:
             iids.append("IID_IUnknown")

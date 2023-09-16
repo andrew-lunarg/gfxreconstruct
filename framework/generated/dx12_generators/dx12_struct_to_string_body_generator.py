@@ -70,7 +70,7 @@ class Dx12StructToStringBodyGenerator(Dx12BaseGenerator):
         for k, v in struct_dict.items():
             if not self.is_struct_black_listed(k):
                 body = inspect.cleandoc('''
-                    template <> std::string ToString<{0}>(const {0}& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
+                    std::string ToString(const {0}& obj, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
                     {{
                         return ObjectToString(toStringFlags, tabCount, tabSize,
                             [&](std::stringstream& strStrm)

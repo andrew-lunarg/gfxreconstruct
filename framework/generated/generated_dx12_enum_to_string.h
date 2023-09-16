@@ -327,7 +327,7 @@ template <> std::string ToString<D3D12_MESSAGE_SEVERITY>(const D3D12_MESSAGE_SEV
 template <> std::string ToString<D3D12_MESSAGE_ID>(const D3D12_MESSAGE_ID& value, ToStringFlags to_string_flags, uint32_t tab_count, uint32_t tab_size);
 template <> std::string ToString<D3D12_MESSAGE_CALLBACK_FLAGS>(const D3D12_MESSAGE_CALLBACK_FLAGS& value, ToStringFlags to_string_flags, uint32_t tab_count, uint32_t tab_size);
 template <> std::string ToString<D3D12_MESSAGE_CALLBACK_FLAGS>(uint32_t flags, ToStringFlags to_string_flags, uint32_t tab_count, uint32_t tab_size);
-template <> std::string ToString<IID>(const IID& riid, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize);
+std::string ToString(const IID& riid, ToStringFlags toStringFlags = kToString_Default, uint32_t tabCount = kToStringDefaultTabCount, uint32_t tabSize = kToStringDefaultTabSize);
 
 GFXRECON_END_NAMESPACE(util)
 GFXRECON_END_NAMESPACE(gfxrecon)
