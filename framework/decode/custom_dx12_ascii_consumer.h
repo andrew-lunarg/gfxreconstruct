@@ -120,7 +120,7 @@ template <typename EnumType>
 inline std::string EnumPointerDecoderToString(PointerDecoder<EnumType>* pObj)
 {
     auto pDecodedObj = pObj ? pObj->GetPointer() : nullptr;
-    return pDecodedObj ? ('"' + util::ToString(*pDecodedObj) + '"') : "null";
+    return pDecodedObj ? (util::Quote(util::ToString(*pDecodedObj))) : "null";
 }
 
 template <typename DecodedType>
@@ -224,7 +224,7 @@ inline std::string EnumPointerDecoderArrayToString(const CountType&    countObj,
         tabCount,
         tabSize,
         [&]() { return pObjs && !pObjs->IsNull(); },
-        [&](size_t i) { return '"' + ToString(pObjs->GetPointer()[i], toStringFlags, tabCount + 1, tabSize) + '"'; });
+        [&](size_t i) { return util::Quote(ToString(pObjs->GetPointer()[i])); });
 }
 
 template <typename CountType, typename StructPointerDecoderType>

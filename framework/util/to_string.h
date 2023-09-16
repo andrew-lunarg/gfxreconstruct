@@ -192,6 +192,15 @@ GetTabString(ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize = 
     return GetWhitespaceString(toStringFlags, tabCount * tabSize);
 }
 
+/// @brief Make a copy of the input string with double quotes at start and end.
+inline std::string Quote(const std::string& str)
+{
+    std::string quoted{ '"' };
+    quoted += str;
+    quoted += '"';
+    return quoted;
+}
+
 template <typename ToStringFunctionType>
 inline std::string
 ObjectToString(ToStringFlags toStringFlags, uint32_t& tabCount, uint32_t tabSize, ToStringFunctionType toStringFunction)
@@ -289,16 +298,7 @@ inline std::string EnumArrayToString(size_t              count,
         tabCount,
         tabSize,
         [&]() { return pObjs != nullptr; },
-        [&](size_t i) { return '"' + ToString(pObjs[i], toStringFlags, tabCount + 1, tabSize) + '"'; });
-}
-
-/// @brief Make a copy of the input string with double quotes at start and end.
-inline std::string Quote(const std::string& str)
-{
-    std::string quoted{ '"' };
-    quoted += str;
-    quoted += '"';
-    return quoted;
+        [&](size_t i) { return Quote(ToString(pObjs[i])); });
 }
 
 GFXRECON_END_NAMESPACE(util)

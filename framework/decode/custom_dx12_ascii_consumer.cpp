@@ -219,7 +219,7 @@ void Dx12AsciiConsumer::Process_ID3D12Device_GetCustomHeapProperties(const ApiCa
         [&](std::stringstream& str_strm)
         {
             FieldToString(str_strm, true, "nodeMask", to_string_flags_, tab_count, tab_size, ToString(nodeMask, to_string_flags_, tab_count, tab_size));
-            FieldToString(str_strm, false, "heapType", to_string_flags_, tab_count, tab_size, '"' + ToString(heapType, to_string_flags_, tab_count, tab_size) + '"');
+            FieldToString(str_strm, false, "heapType", to_string_flags_, tab_count, tab_size, Quote(ToString(heapType)));
         }
     );
     // clang-format on
@@ -424,7 +424,7 @@ void Dx12AsciiConsumer::Process_ID3D12Device_CreateRootSignature(const ApiCallIn
             FieldToString(str_strm, true, "nodeMask", to_string_flags_, tab_count, tab_size, ToString(nodeMask, to_string_flags_, tab_count, tab_size));
             FieldToString(str_strm, false, "pBlobWithRootSignature", to_string_flags_, tab_count, tab_size, HandleIdToString(pBlobWithRootSignature));
             FieldToString(str_strm, false, "blobLengthInBytes", to_string_flags_, tab_count, tab_size, ToString(blobLengthInBytes, to_string_flags_, tab_count, tab_size));
-            FieldToString(str_strm, false, "riid", to_string_flags_, tab_count, tab_size, ToString(*riid.decoded_value, to_string_flags_, tab_count, tab_size));
+            FieldToString(str_strm, false, "riid", to_string_flags_, tab_count, tab_size, ToString(*riid.decoded_value));
             FieldToString(str_strm, false, "[out]ppvRootSignature", to_string_flags_, tab_count, tab_size, HandleIdToString(ppvRootSignature));
         }
     );
@@ -471,7 +471,7 @@ void Dx12AsciiConsumer::Process_ID3D12CommandList_GetType(const ApiCallInfo&    
     writeApiCallToFileInfo.pObjectTypeName = "ID3D12CommandList";
     writeApiCallToFileInfo.handleId = object_id;
     writeApiCallToFileInfo.pFunctionName = "GetType";
-    std::string returnValue = '"' + DX12ReturnValueToString(return_value, to_string_flags_, tab_count, tab_size) + '"';
+    std::string returnValue = Quote(DX12ReturnValueToString(return_value, to_string_flags_, tab_count, tab_size));
     writeApiCallToFileInfo.pReturnValue = !returnValue.empty() ? returnValue.c_str() : nullptr;
     WriteApiCallToFile(writeApiCallToFileInfo, tab_count, tab_size,
         [&](std::stringstream& str_strm)
@@ -505,7 +505,7 @@ void Dx12AsciiConsumer::Process_ID3D12Device1_CreatePipelineLibrary(const ApiCal
         {
             FieldToString(str_strm, true, "pLibraryBlob", to_string_flags_, tab_count, tab_size, "\"" + PtrToString(pLibraryBlob->GetPointer()) + "\"");
             FieldToString(str_strm, false, "BlobLength", to_string_flags_, tab_count, tab_size, ToString(BlobLength, to_string_flags_, tab_count, tab_size));
-            FieldToString(str_strm, false, "riid", to_string_flags_, tab_count, tab_size, ToString(*riid.decoded_value, to_string_flags_, tab_count, tab_size));
+            FieldToString(str_strm, false, "riid", to_string_flags_, tab_count, tab_size, ToString(*riid.decoded_value));
             FieldToString(str_strm, false, "[out]ppPipelineLibrary", to_string_flags_, tab_count, tab_size, HandleIdToString(ppPipelineLibrary));
         }
     );

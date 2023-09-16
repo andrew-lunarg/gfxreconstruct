@@ -132,7 +132,7 @@ class Dx12StructToStringBodyGenerator(Dx12BaseGenerator):
                         elif self.is_enum(value.base_type):
                             to_string = 'EnumArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                         elif 'wchar' in value.base_type:
-                            to_string = '\'"\' + WCharArrayToString(obj.{0}) + \'"\''
+                            to_string = 'Quote(WCharArrayToString(obj.{0}))'
                         else:
                             to_string = 'ArrayToString({1}, obj.{0}, toStringFlags, tabCount, tabSize)'
                     else:
@@ -141,7 +141,7 @@ class Dx12StructToStringBodyGenerator(Dx12BaseGenerator):
                         elif self.is_struct(value.base_type):
                             to_string = 'ToString(obj.{0}, toStringFlags, tabCount, tabSize)'
                         elif self.is_enum(value.base_type):
-                            to_string = '\'"\' + ToString(obj.{0}, toStringFlags, tabCount, tabSize) + \'"\''
+                            to_string = 'Quote(ToString(obj.{0}))'
                         else:
                             to_string = 'ToString(obj.{0}, toStringFlags, tabCount, tabSize)'
 
