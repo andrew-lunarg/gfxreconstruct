@@ -4497,7 +4497,7 @@ template <> std::string ToString<D3D12_MESSAGE_CALLBACK_FLAGS>(uint32_t flags, T
     return BitmaskToString<D3D12_MESSAGE_CALLBACK_FLAGS>(flags);
 }
 
-template <> std::string ToString<IID>(const IID& iid, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
+std::string ToString(const IID& iid, ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize)
 {
     if (iid == IID_IDXGIObject) return "\"IID_IDXGIObject\"";
     if (iid == IID_IDXGIDeviceSubObject) return "\"IID_IDXGIDeviceSubObject\"";
