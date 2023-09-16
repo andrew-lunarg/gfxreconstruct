@@ -74,7 +74,7 @@ std::string ToString(const DXGI_ADAPTER_DESC& obj, ToStringFlags toStringFlags, 
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Description", toStringFlags, tabCount, tabSize, '"' + WCharArrayToString(obj.Description) + '"');
+            FieldToString(strStrm, true, "Description", toStringFlags, tabCount, tabSize, Quote(WCharArrayToString(obj.Description)));
             FieldToString(strStrm, false, "VendorId", toStringFlags, tabCount, tabSize, ToString(obj.VendorId, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "DeviceId", toStringFlags, tabCount, tabSize, ToString(obj.DeviceId, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "SubSysId", toStringFlags, tabCount, tabSize, ToString(obj.SubSysId, toStringFlags, tabCount, tabSize));
@@ -92,10 +92,10 @@ std::string ToString(const DXGI_OUTPUT_DESC& obj, ToStringFlags toStringFlags, u
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "DeviceName", toStringFlags, tabCount, tabSize, '"' + WCharArrayToString(obj.DeviceName) + '"');
+            FieldToString(strStrm, true, "DeviceName", toStringFlags, tabCount, tabSize, Quote(WCharArrayToString(obj.DeviceName)));
             FieldToString(strStrm, false, "DesktopCoordinates", toStringFlags, tabCount, tabSize, ToString(obj.DesktopCoordinates, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "AttachedToDesktop", toStringFlags, tabCount, tabSize, ToString(obj.AttachedToDesktop, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Rotation", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Rotation, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Rotation", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Rotation)));
             FieldToString(strStrm, false, "Monitor", toStringFlags, tabCount, tabSize, HandleIdToString(obj.Monitor));
         }
     );
@@ -118,7 +118,7 @@ std::string ToString(const DXGI_SURFACE_DESC& obj, ToStringFlags toStringFlags, 
         {
             FieldToString(strStrm, true, "Width", toStringFlags, tabCount, tabSize, ToString(obj.Width, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Height", toStringFlags, tabCount, tabSize, ToString(obj.Height, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Format, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Format)));
             FieldToString(strStrm, false, "SampleDesc", toStringFlags, tabCount, tabSize, ToString(obj.SampleDesc, toStringFlags, tabCount, tabSize));
         }
     );
@@ -135,7 +135,7 @@ std::string ToString(const DXGI_SWAP_CHAIN_DESC& obj, ToStringFlags toStringFlag
             FieldToString(strStrm, false, "BufferCount", toStringFlags, tabCount, tabSize, ToString(obj.BufferCount, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "OutputWindow", toStringFlags, tabCount, tabSize, HandleIdToString(obj.OutputWindow));
             FieldToString(strStrm, false, "Windowed", toStringFlags, tabCount, tabSize, ToString(obj.Windowed, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "SwapEffect", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SwapEffect, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "SwapEffect", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SwapEffect)));
             FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, ToString(obj.Flags, toStringFlags, tabCount, tabSize));
         }
     );
@@ -146,7 +146,7 @@ std::string ToString(const DXGI_ADAPTER_DESC1& obj, ToStringFlags toStringFlags,
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Description", toStringFlags, tabCount, tabSize, '"' + WCharArrayToString(obj.Description) + '"');
+            FieldToString(strStrm, true, "Description", toStringFlags, tabCount, tabSize, Quote(WCharArrayToString(obj.Description)));
             FieldToString(strStrm, false, "VendorId", toStringFlags, tabCount, tabSize, ToString(obj.VendorId, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "DeviceId", toStringFlags, tabCount, tabSize, ToString(obj.DeviceId, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "SubSysId", toStringFlags, tabCount, tabSize, ToString(obj.SubSysId, toStringFlags, tabCount, tabSize));
@@ -177,7 +177,7 @@ std::string ToString(const DXGI_OUTDUPL_DESC& obj, ToStringFlags toStringFlags, 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "ModeDesc", toStringFlags, tabCount, tabSize, ToString(obj.ModeDesc, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Rotation", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Rotation, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Rotation", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Rotation)));
             FieldToString(strStrm, false, "DesktopImageInSystemMemory", toStringFlags, tabCount, tabSize, ToString(obj.DesktopImageInSystemMemory, toStringFlags, tabCount, tabSize));
         }
     );
@@ -233,9 +233,9 @@ std::string ToString(const DXGI_MODE_DESC1& obj, ToStringFlags toStringFlags, ui
             FieldToString(strStrm, true, "Width", toStringFlags, tabCount, tabSize, ToString(obj.Width, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Height", toStringFlags, tabCount, tabSize, ToString(obj.Height, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "RefreshRate", toStringFlags, tabCount, tabSize, ToString(obj.RefreshRate, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Format, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "ScanlineOrdering", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ScanlineOrdering, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "Scaling", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Scaling, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Format)));
+            FieldToString(strStrm, false, "ScanlineOrdering", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ScanlineOrdering)));
+            FieldToString(strStrm, false, "Scaling", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Scaling)));
             FieldToString(strStrm, false, "Stereo", toStringFlags, tabCount, tabSize, ToString(obj.Stereo, toStringFlags, tabCount, tabSize));
         }
     );
@@ -248,14 +248,14 @@ std::string ToString(const DXGI_SWAP_CHAIN_DESC1& obj, ToStringFlags toStringFla
         {
             FieldToString(strStrm, true, "Width", toStringFlags, tabCount, tabSize, ToString(obj.Width, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Height", toStringFlags, tabCount, tabSize, ToString(obj.Height, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Format, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Format)));
             FieldToString(strStrm, false, "Stereo", toStringFlags, tabCount, tabSize, ToString(obj.Stereo, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "SampleDesc", toStringFlags, tabCount, tabSize, ToString(obj.SampleDesc, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "BufferUsage", toStringFlags, tabCount, tabSize, ToString(obj.BufferUsage, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "BufferCount", toStringFlags, tabCount, tabSize, ToString(obj.BufferCount, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Scaling", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Scaling, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "SwapEffect", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SwapEffect, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "AlphaMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AlphaMode, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Scaling", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Scaling)));
+            FieldToString(strStrm, false, "SwapEffect", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SwapEffect)));
+            FieldToString(strStrm, false, "AlphaMode", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AlphaMode)));
             FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, ToString(obj.Flags, toStringFlags, tabCount, tabSize));
         }
     );
@@ -267,8 +267,8 @@ std::string ToString(const DXGI_SWAP_CHAIN_FULLSCREEN_DESC& obj, ToStringFlags t
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "RefreshRate", toStringFlags, tabCount, tabSize, ToString(obj.RefreshRate, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "ScanlineOrdering", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ScanlineOrdering, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "Scaling", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Scaling, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "ScanlineOrdering", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ScanlineOrdering)));
+            FieldToString(strStrm, false, "Scaling", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Scaling)));
             FieldToString(strStrm, false, "Windowed", toStringFlags, tabCount, tabSize, ToString(obj.Windowed, toStringFlags, tabCount, tabSize));
         }
     );
@@ -292,7 +292,7 @@ std::string ToString(const DXGI_ADAPTER_DESC2& obj, ToStringFlags toStringFlags,
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Description", toStringFlags, tabCount, tabSize, '"' + WCharArrayToString(obj.Description) + '"');
+            FieldToString(strStrm, true, "Description", toStringFlags, tabCount, tabSize, Quote(WCharArrayToString(obj.Description)));
             FieldToString(strStrm, false, "VendorId", toStringFlags, tabCount, tabSize, ToString(obj.VendorId, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "DeviceId", toStringFlags, tabCount, tabSize, ToString(obj.DeviceId, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "SubSysId", toStringFlags, tabCount, tabSize, ToString(obj.SubSysId, toStringFlags, tabCount, tabSize));
@@ -302,8 +302,8 @@ std::string ToString(const DXGI_ADAPTER_DESC2& obj, ToStringFlags toStringFlags,
             FieldToString(strStrm, false, "SharedSystemMemory", toStringFlags, tabCount, tabSize, ToString(obj.SharedSystemMemory, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "AdapterLuid", toStringFlags, tabCount, tabSize, ToString(obj.AdapterLuid, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, ToString(obj.Flags, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "GraphicsPreemptionGranularity", toStringFlags, tabCount, tabSize, '"' + ToString(obj.GraphicsPreemptionGranularity, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "ComputePreemptionGranularity", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ComputePreemptionGranularity, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "GraphicsPreemptionGranularity", toStringFlags, tabCount, tabSize, Quote(ToString(obj.GraphicsPreemptionGranularity)));
+            FieldToString(strStrm, false, "ComputePreemptionGranularity", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ComputePreemptionGranularity)));
         }
     );
 }
@@ -343,7 +343,7 @@ std::string ToString(const DXGI_FRAME_STATISTICS_MEDIA& obj, ToStringFlags toStr
             FieldToString(strStrm, false, "SyncRefreshCount", toStringFlags, tabCount, tabSize, ToString(obj.SyncRefreshCount, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "SyncQPCTime", toStringFlags, tabCount, tabSize, ToString(obj.SyncQPCTime, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "SyncGPUTime", toStringFlags, tabCount, tabSize, ToString(obj.SyncGPUTime, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "CompositionMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.CompositionMode, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "CompositionMode", toStringFlags, tabCount, tabSize, Quote(ToString(obj.CompositionMode)));
             FieldToString(strStrm, false, "ApprovedPresentDuration", toStringFlags, tabCount, tabSize, ToString(obj.ApprovedPresentDuration, toStringFlags, tabCount, tabSize));
         }
     );
@@ -394,7 +394,7 @@ std::string ToString(const DXGI_ADAPTER_DESC3& obj, ToStringFlags toStringFlags,
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Description", toStringFlags, tabCount, tabSize, '"' + WCharArrayToString(obj.Description) + '"');
+            FieldToString(strStrm, true, "Description", toStringFlags, tabCount, tabSize, Quote(WCharArrayToString(obj.Description)));
             FieldToString(strStrm, false, "VendorId", toStringFlags, tabCount, tabSize, ToString(obj.VendorId, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "DeviceId", toStringFlags, tabCount, tabSize, ToString(obj.DeviceId, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "SubSysId", toStringFlags, tabCount, tabSize, ToString(obj.SubSysId, toStringFlags, tabCount, tabSize));
@@ -403,9 +403,9 @@ std::string ToString(const DXGI_ADAPTER_DESC3& obj, ToStringFlags toStringFlags,
             FieldToString(strStrm, false, "DedicatedSystemMemory", toStringFlags, tabCount, tabSize, ToString(obj.DedicatedSystemMemory, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "SharedSystemMemory", toStringFlags, tabCount, tabSize, ToString(obj.SharedSystemMemory, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "AdapterLuid", toStringFlags, tabCount, tabSize, ToString(obj.AdapterLuid, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "GraphicsPreemptionGranularity", toStringFlags, tabCount, tabSize, '"' + ToString(obj.GraphicsPreemptionGranularity, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "ComputePreemptionGranularity", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ComputePreemptionGranularity, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
+            FieldToString(strStrm, false, "GraphicsPreemptionGranularity", toStringFlags, tabCount, tabSize, Quote(ToString(obj.GraphicsPreemptionGranularity)));
+            FieldToString(strStrm, false, "ComputePreemptionGranularity", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ComputePreemptionGranularity)));
         }
     );
 }
@@ -415,13 +415,13 @@ std::string ToString(const DXGI_OUTPUT_DESC1& obj, ToStringFlags toStringFlags, 
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "DeviceName", toStringFlags, tabCount, tabSize, '"' + WCharArrayToString(obj.DeviceName) + '"');
+            FieldToString(strStrm, true, "DeviceName", toStringFlags, tabCount, tabSize, Quote(WCharArrayToString(obj.DeviceName)));
             FieldToString(strStrm, false, "DesktopCoordinates", toStringFlags, tabCount, tabSize, ToString(obj.DesktopCoordinates, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "AttachedToDesktop", toStringFlags, tabCount, tabSize, ToString(obj.AttachedToDesktop, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Rotation", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Rotation, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Rotation", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Rotation)));
             FieldToString(strStrm, false, "Monitor", toStringFlags, tabCount, tabSize, HandleIdToString(obj.Monitor));
             FieldToString(strStrm, false, "BitsPerColor", toStringFlags, tabCount, tabSize, ToString(obj.BitsPerColor, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "ColorSpace", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ColorSpace, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "ColorSpace", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ColorSpace)));
             FieldToString(strStrm, false, "RedPrimary", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.RedPrimary, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "GreenPrimary", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.GreenPrimary, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "BluePrimary", toStringFlags, tabCount, tabSize, ArrayToString(2, obj.BluePrimary, toStringFlags, tabCount, tabSize));
@@ -514,9 +514,9 @@ std::string ToString(const DXGI_MODE_DESC& obj, ToStringFlags toStringFlags, uin
             FieldToString(strStrm, true, "Width", toStringFlags, tabCount, tabSize, ToString(obj.Width, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Height", toStringFlags, tabCount, tabSize, ToString(obj.Height, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "RefreshRate", toStringFlags, tabCount, tabSize, ToString(obj.RefreshRate, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Format, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "ScanlineOrdering", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ScanlineOrdering, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "Scaling", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Scaling, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Format)));
+            FieldToString(strStrm, false, "ScanlineOrdering", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ScanlineOrdering)));
+            FieldToString(strStrm, false, "Scaling", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Scaling)));
         }
     );
 }
@@ -558,9 +558,9 @@ std::string ToString(const D3D12_COMMAND_QUEUE_DESC& obj, ToStringFlags toString
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Type, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Type", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Type)));
             FieldToString(strStrm, false, "Priority", toStringFlags, tabCount, tabSize, ToString(obj.Priority, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
             FieldToString(strStrm, false, "NodeMask", toStringFlags, tabCount, tabSize, ToString(obj.NodeMask, toStringFlags, tabCount, tabSize));
         }
     );
@@ -573,10 +573,10 @@ std::string ToString(const D3D12_INPUT_ELEMENT_DESC& obj, ToStringFlags toString
         {
             FieldToString(strStrm, true, "SemanticName", toStringFlags, tabCount, tabSize, (obj.SemanticName ? ToString(*obj.SemanticName, toStringFlags, tabCount, tabSize) : "null"));
             FieldToString(strStrm, false, "SemanticIndex", toStringFlags, tabCount, tabSize, ToString(obj.SemanticIndex, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Format, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Format)));
             FieldToString(strStrm, false, "InputSlot", toStringFlags, tabCount, tabSize, ToString(obj.InputSlot, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "AlignedByteOffset", toStringFlags, tabCount, tabSize, ToString(obj.AlignedByteOffset, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "InputSlotClass", toStringFlags, tabCount, tabSize, '"' + ToString(obj.InputSlotClass, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "InputSlotClass", toStringFlags, tabCount, tabSize, Quote(ToString(obj.InputSlotClass)));
             FieldToString(strStrm, false, "InstanceDataStepRate", toStringFlags, tabCount, tabSize, ToString(obj.InstanceDataStepRate, toStringFlags, tabCount, tabSize));
         }
     );
@@ -632,10 +632,10 @@ std::string ToString(const D3D12_DEPTH_STENCILOP_DESC& obj, ToStringFlags toStri
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "StencilFailOp", toStringFlags, tabCount, tabSize, '"' + ToString(obj.StencilFailOp, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "StencilDepthFailOp", toStringFlags, tabCount, tabSize, '"' + ToString(obj.StencilDepthFailOp, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "StencilPassOp", toStringFlags, tabCount, tabSize, '"' + ToString(obj.StencilPassOp, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "StencilFunc", toStringFlags, tabCount, tabSize, '"' + ToString(obj.StencilFunc, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "StencilFailOp", toStringFlags, tabCount, tabSize, Quote(ToString(obj.StencilFailOp)));
+            FieldToString(strStrm, false, "StencilDepthFailOp", toStringFlags, tabCount, tabSize, Quote(ToString(obj.StencilDepthFailOp)));
+            FieldToString(strStrm, false, "StencilPassOp", toStringFlags, tabCount, tabSize, Quote(ToString(obj.StencilPassOp)));
+            FieldToString(strStrm, false, "StencilFunc", toStringFlags, tabCount, tabSize, Quote(ToString(obj.StencilFunc)));
         }
     );
 }
@@ -646,8 +646,8 @@ std::string ToString(const D3D12_DEPTH_STENCIL_DESC& obj, ToStringFlags toString
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "DepthEnable", toStringFlags, tabCount, tabSize, ToString(obj.DepthEnable, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "DepthWriteMask", toStringFlags, tabCount, tabSize, '"' + ToString(obj.DepthWriteMask, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "DepthFunc", toStringFlags, tabCount, tabSize, '"' + ToString(obj.DepthFunc, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "DepthWriteMask", toStringFlags, tabCount, tabSize, Quote(ToString(obj.DepthWriteMask)));
+            FieldToString(strStrm, false, "DepthFunc", toStringFlags, tabCount, tabSize, Quote(ToString(obj.DepthFunc)));
             FieldToString(strStrm, false, "StencilEnable", toStringFlags, tabCount, tabSize, ToString(obj.StencilEnable, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "StencilReadMask", toStringFlags, tabCount, tabSize, ToString(obj.StencilReadMask, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "StencilWriteMask", toStringFlags, tabCount, tabSize, ToString(obj.StencilWriteMask, toStringFlags, tabCount, tabSize));
@@ -663,8 +663,8 @@ std::string ToString(const D3D12_DEPTH_STENCIL_DESC1& obj, ToStringFlags toStrin
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "DepthEnable", toStringFlags, tabCount, tabSize, ToString(obj.DepthEnable, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "DepthWriteMask", toStringFlags, tabCount, tabSize, '"' + ToString(obj.DepthWriteMask, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "DepthFunc", toStringFlags, tabCount, tabSize, '"' + ToString(obj.DepthFunc, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "DepthWriteMask", toStringFlags, tabCount, tabSize, Quote(ToString(obj.DepthWriteMask)));
+            FieldToString(strStrm, false, "DepthFunc", toStringFlags, tabCount, tabSize, Quote(ToString(obj.DepthFunc)));
             FieldToString(strStrm, false, "StencilEnable", toStringFlags, tabCount, tabSize, ToString(obj.StencilEnable, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "StencilReadMask", toStringFlags, tabCount, tabSize, ToString(obj.StencilReadMask, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "StencilWriteMask", toStringFlags, tabCount, tabSize, ToString(obj.StencilWriteMask, toStringFlags, tabCount, tabSize));
@@ -680,10 +680,10 @@ std::string ToString(const D3D12_DEPTH_STENCILOP_DESC1& obj, ToStringFlags toStr
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "StencilFailOp", toStringFlags, tabCount, tabSize, '"' + ToString(obj.StencilFailOp, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "StencilDepthFailOp", toStringFlags, tabCount, tabSize, '"' + ToString(obj.StencilDepthFailOp, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "StencilPassOp", toStringFlags, tabCount, tabSize, '"' + ToString(obj.StencilPassOp, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "StencilFunc", toStringFlags, tabCount, tabSize, '"' + ToString(obj.StencilFunc, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "StencilFailOp", toStringFlags, tabCount, tabSize, Quote(ToString(obj.StencilFailOp)));
+            FieldToString(strStrm, false, "StencilDepthFailOp", toStringFlags, tabCount, tabSize, Quote(ToString(obj.StencilDepthFailOp)));
+            FieldToString(strStrm, false, "StencilPassOp", toStringFlags, tabCount, tabSize, Quote(ToString(obj.StencilPassOp)));
+            FieldToString(strStrm, false, "StencilFunc", toStringFlags, tabCount, tabSize, Quote(ToString(obj.StencilFunc)));
             FieldToString(strStrm, false, "StencilReadMask", toStringFlags, tabCount, tabSize, ToString(obj.StencilReadMask, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "StencilWriteMask", toStringFlags, tabCount, tabSize, ToString(obj.StencilWriteMask, toStringFlags, tabCount, tabSize));
         }
@@ -696,8 +696,8 @@ std::string ToString(const D3D12_DEPTH_STENCIL_DESC2& obj, ToStringFlags toStrin
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "DepthEnable", toStringFlags, tabCount, tabSize, ToString(obj.DepthEnable, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "DepthWriteMask", toStringFlags, tabCount, tabSize, '"' + ToString(obj.DepthWriteMask, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "DepthFunc", toStringFlags, tabCount, tabSize, '"' + ToString(obj.DepthFunc, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "DepthWriteMask", toStringFlags, tabCount, tabSize, Quote(ToString(obj.DepthWriteMask)));
+            FieldToString(strStrm, false, "DepthFunc", toStringFlags, tabCount, tabSize, Quote(ToString(obj.DepthFunc)));
             FieldToString(strStrm, false, "StencilEnable", toStringFlags, tabCount, tabSize, ToString(obj.StencilEnable, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "FrontFace", toStringFlags, tabCount, tabSize, ToString(obj.FrontFace, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "BackFace", toStringFlags, tabCount, tabSize, ToString(obj.BackFace, toStringFlags, tabCount, tabSize));
@@ -713,13 +713,13 @@ std::string ToString(const D3D12_RENDER_TARGET_BLEND_DESC& obj, ToStringFlags to
         {
             FieldToString(strStrm, true, "BlendEnable", toStringFlags, tabCount, tabSize, ToString(obj.BlendEnable, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "LogicOpEnable", toStringFlags, tabCount, tabSize, ToString(obj.LogicOpEnable, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "SrcBlend", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SrcBlend, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "DestBlend", toStringFlags, tabCount, tabSize, '"' + ToString(obj.DestBlend, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "BlendOp", toStringFlags, tabCount, tabSize, '"' + ToString(obj.BlendOp, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "SrcBlendAlpha", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SrcBlendAlpha, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "DestBlendAlpha", toStringFlags, tabCount, tabSize, '"' + ToString(obj.DestBlendAlpha, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "BlendOpAlpha", toStringFlags, tabCount, tabSize, '"' + ToString(obj.BlendOpAlpha, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "LogicOp", toStringFlags, tabCount, tabSize, '"' + ToString(obj.LogicOp, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "SrcBlend", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SrcBlend)));
+            FieldToString(strStrm, false, "DestBlend", toStringFlags, tabCount, tabSize, Quote(ToString(obj.DestBlend)));
+            FieldToString(strStrm, false, "BlendOp", toStringFlags, tabCount, tabSize, Quote(ToString(obj.BlendOp)));
+            FieldToString(strStrm, false, "SrcBlendAlpha", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SrcBlendAlpha)));
+            FieldToString(strStrm, false, "DestBlendAlpha", toStringFlags, tabCount, tabSize, Quote(ToString(obj.DestBlendAlpha)));
+            FieldToString(strStrm, false, "BlendOpAlpha", toStringFlags, tabCount, tabSize, Quote(ToString(obj.BlendOpAlpha)));
+            FieldToString(strStrm, false, "LogicOp", toStringFlags, tabCount, tabSize, Quote(ToString(obj.LogicOp)));
             FieldToString(strStrm, false, "RenderTargetWriteMask", toStringFlags, tabCount, tabSize, ToString(obj.RenderTargetWriteMask, toStringFlags, tabCount, tabSize));
         }
     );
@@ -742,8 +742,8 @@ std::string ToString(const D3D12_RASTERIZER_DESC& obj, ToStringFlags toStringFla
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "FillMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.FillMode, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "CullMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.CullMode, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "FillMode", toStringFlags, tabCount, tabSize, Quote(ToString(obj.FillMode)));
+            FieldToString(strStrm, false, "CullMode", toStringFlags, tabCount, tabSize, Quote(ToString(obj.CullMode)));
             FieldToString(strStrm, false, "FrontCounterClockwise", toStringFlags, tabCount, tabSize, ToString(obj.FrontCounterClockwise, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "DepthBias", toStringFlags, tabCount, tabSize, ToString(obj.DepthBias, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "DepthBiasClamp", toStringFlags, tabCount, tabSize, ToString(obj.DepthBiasClamp, toStringFlags, tabCount, tabSize));
@@ -752,7 +752,7 @@ std::string ToString(const D3D12_RASTERIZER_DESC& obj, ToStringFlags toStringFla
             FieldToString(strStrm, false, "MultisampleEnable", toStringFlags, tabCount, tabSize, ToString(obj.MultisampleEnable, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "AntialiasedLineEnable", toStringFlags, tabCount, tabSize, ToString(obj.AntialiasedLineEnable, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "ForcedSampleCount", toStringFlags, tabCount, tabSize, ToString(obj.ForcedSampleCount, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "ConservativeRaster", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ConservativeRaster, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "ConservativeRaster", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ConservativeRaster)));
         }
     );
 }
@@ -821,15 +821,15 @@ std::string ToString(const D3D12_GRAPHICS_PIPELINE_STATE_DESC& obj, ToStringFlag
             FieldToString(strStrm, false, "RasterizerState", toStringFlags, tabCount, tabSize, ToString(obj.RasterizerState, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "DepthStencilState", toStringFlags, tabCount, tabSize, ToString(obj.DepthStencilState, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "InputLayout", toStringFlags, tabCount, tabSize, ToString(obj.InputLayout, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "IBStripCutValue", toStringFlags, tabCount, tabSize, '"' + ToString(obj.IBStripCutValue, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "PrimitiveTopologyType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.PrimitiveTopologyType, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "IBStripCutValue", toStringFlags, tabCount, tabSize, Quote(ToString(obj.IBStripCutValue)));
+            FieldToString(strStrm, false, "PrimitiveTopologyType", toStringFlags, tabCount, tabSize, Quote(ToString(obj.PrimitiveTopologyType)));
             FieldToString(strStrm, false, "NumRenderTargets", toStringFlags, tabCount, tabSize, ToString(obj.NumRenderTargets, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "RTVFormats", toStringFlags, tabCount, tabSize, EnumArrayToString(8, obj.RTVFormats, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "DSVFormat", toStringFlags, tabCount, tabSize, '"' + ToString(obj.DSVFormat, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "DSVFormat", toStringFlags, tabCount, tabSize, Quote(ToString(obj.DSVFormat)));
             FieldToString(strStrm, false, "SampleDesc", toStringFlags, tabCount, tabSize, ToString(obj.SampleDesc, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "NodeMask", toStringFlags, tabCount, tabSize, ToString(obj.NodeMask, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "CachedPSO", toStringFlags, tabCount, tabSize, ToString(obj.CachedPSO, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -843,7 +843,7 @@ std::string ToString(const D3D12_COMPUTE_PIPELINE_STATE_DESC& obj, ToStringFlags
             FieldToString(strStrm, false, "CS", toStringFlags, tabCount, tabSize, ToString(obj.CS, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "NodeMask", toStringFlags, tabCount, tabSize, ToString(obj.NodeMask, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "CachedPSO", toStringFlags, tabCount, tabSize, ToString(obj.CachedPSO, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -866,19 +866,19 @@ std::string ToString(const D3D12_FEATURE_DATA_D3D12_OPTIONS& obj, ToStringFlags 
         {
             FieldToString(strStrm, true, "DoublePrecisionFloatShaderOps", toStringFlags, tabCount, tabSize, ToString(obj.DoublePrecisionFloatShaderOps, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "OutputMergerLogicOp", toStringFlags, tabCount, tabSize, ToString(obj.OutputMergerLogicOp, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "MinPrecisionSupport", toStringFlags, tabCount, tabSize, '"' + ToString(obj.MinPrecisionSupport, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "TiledResourcesTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.TiledResourcesTier, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "ResourceBindingTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ResourceBindingTier, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "MinPrecisionSupport", toStringFlags, tabCount, tabSize, Quote(ToString(obj.MinPrecisionSupport)));
+            FieldToString(strStrm, false, "TiledResourcesTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.TiledResourcesTier)));
+            FieldToString(strStrm, false, "ResourceBindingTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ResourceBindingTier)));
             FieldToString(strStrm, false, "PSSpecifiedStencilRefSupported", toStringFlags, tabCount, tabSize, ToString(obj.PSSpecifiedStencilRefSupported, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "TypedUAVLoadAdditionalFormats", toStringFlags, tabCount, tabSize, ToString(obj.TypedUAVLoadAdditionalFormats, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "ROVsSupported", toStringFlags, tabCount, tabSize, ToString(obj.ROVsSupported, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "ConservativeRasterizationTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ConservativeRasterizationTier, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "ConservativeRasterizationTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ConservativeRasterizationTier)));
             FieldToString(strStrm, false, "MaxGPUVirtualAddressBitsPerResource", toStringFlags, tabCount, tabSize, ToString(obj.MaxGPUVirtualAddressBitsPerResource, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "StandardSwizzle64KBSupported", toStringFlags, tabCount, tabSize, ToString(obj.StandardSwizzle64KBSupported, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "CrossNodeSharingTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.CrossNodeSharingTier, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "CrossNodeSharingTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.CrossNodeSharingTier)));
             FieldToString(strStrm, false, "CrossAdapterRowMajorTextureSupported", toStringFlags, tabCount, tabSize, ToString(obj.CrossAdapterRowMajorTextureSupported, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "VPAndRTArrayIndexFromAnyShaderFeedingRasterizerSupportedWithoutGSEmulation", toStringFlags, tabCount, tabSize, ToString(obj.VPAndRTArrayIndexFromAnyShaderFeedingRasterizerSupportedWithoutGSEmulation, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "ResourceHeapTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ResourceHeapTier, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "ResourceHeapTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ResourceHeapTier)));
         }
     );
 }
@@ -904,7 +904,7 @@ std::string ToString(const D3D12_FEATURE_DATA_D3D12_OPTIONS2& obj, ToStringFlags
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "DepthBoundsTestSupported", toStringFlags, tabCount, tabSize, ToString(obj.DepthBoundsTestSupported, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "ProgrammableSamplePositionsTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ProgrammableSamplePositionsTier, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "ProgrammableSamplePositionsTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ProgrammableSamplePositionsTier)));
         }
     );
 }
@@ -914,7 +914,7 @@ std::string ToString(const D3D12_FEATURE_DATA_ROOT_SIGNATURE& obj, ToStringFlags
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "HighestVersion", toStringFlags, tabCount, tabSize, '"' + ToString(obj.HighestVersion, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "HighestVersion", toStringFlags, tabCount, tabSize, Quote(ToString(obj.HighestVersion)));
         }
     );
 }
@@ -953,7 +953,7 @@ std::string ToString(const D3D12_FEATURE_DATA_FEATURE_LEVELS& obj, ToStringFlags
         {
             FieldToString(strStrm, true, "NumFeatureLevels", toStringFlags, tabCount, tabSize, ToString(obj.NumFeatureLevels, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "pFeatureLevelsRequested", toStringFlags, tabCount, tabSize, EnumArrayToString(obj.NumFeatureLevels, obj.pFeatureLevelsRequested, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "MaxSupportedFeatureLevel", toStringFlags, tabCount, tabSize, '"' + ToString(obj.MaxSupportedFeatureLevel, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "MaxSupportedFeatureLevel", toStringFlags, tabCount, tabSize, Quote(ToString(obj.MaxSupportedFeatureLevel)));
         }
     );
 }
@@ -963,7 +963,7 @@ std::string ToString(const D3D12_FEATURE_DATA_SHADER_MODEL& obj, ToStringFlags t
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "HighestShaderModel", toStringFlags, tabCount, tabSize, '"' + ToString(obj.HighestShaderModel, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "HighestShaderModel", toStringFlags, tabCount, tabSize, Quote(ToString(obj.HighestShaderModel)));
         }
     );
 }
@@ -973,9 +973,9 @@ std::string ToString(const D3D12_FEATURE_DATA_FORMAT_SUPPORT& obj, ToStringFlags
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Format, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "Support1", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Support1, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "Support2", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Support2, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Format", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Format)));
+            FieldToString(strStrm, false, "Support1", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Support1)));
+            FieldToString(strStrm, false, "Support2", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Support2)));
         }
     );
 }
@@ -985,9 +985,9 @@ std::string ToString(const D3D12_FEATURE_DATA_MULTISAMPLE_QUALITY_LEVELS& obj, T
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Format, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Format", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Format)));
             FieldToString(strStrm, false, "SampleCount", toStringFlags, tabCount, tabSize, ToString(obj.SampleCount, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
             FieldToString(strStrm, false, "NumQualityLevels", toStringFlags, tabCount, tabSize, ToString(obj.NumQualityLevels, toStringFlags, tabCount, tabSize));
         }
     );
@@ -998,7 +998,7 @@ std::string ToString(const D3D12_FEATURE_DATA_FORMAT_INFO& obj, ToStringFlags to
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Format, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Format", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Format)));
             FieldToString(strStrm, false, "PlaneCount", toStringFlags, tabCount, tabSize, ToString(obj.PlaneCount, toStringFlags, tabCount, tabSize));
         }
     );
@@ -1020,7 +1020,7 @@ std::string ToString(const D3D12_FEATURE_DATA_SHADER_CACHE& obj, ToStringFlags t
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "SupportFlags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SupportFlags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "SupportFlags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SupportFlags)));
         }
     );
 }
@@ -1030,7 +1030,7 @@ std::string ToString(const D3D12_FEATURE_DATA_COMMAND_QUEUE_PRIORITY& obj, ToStr
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "CommandListType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.CommandListType, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "CommandListType", toStringFlags, tabCount, tabSize, Quote(ToString(obj.CommandListType)));
             FieldToString(strStrm, false, "Priority", toStringFlags, tabCount, tabSize, ToString(obj.Priority, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "PriorityForTypeIsSupported", toStringFlags, tabCount, tabSize, ToString(obj.PriorityForTypeIsSupported, toStringFlags, tabCount, tabSize));
         }
@@ -1044,8 +1044,8 @@ std::string ToString(const D3D12_FEATURE_DATA_D3D12_OPTIONS3& obj, ToStringFlags
         {
             FieldToString(strStrm, true, "CopyQueueTimestampQueriesSupported", toStringFlags, tabCount, tabSize, ToString(obj.CopyQueueTimestampQueriesSupported, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "CastingFullyTypedFormatSupported", toStringFlags, tabCount, tabSize, ToString(obj.CastingFullyTypedFormatSupported, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "WriteBufferImmediateSupportFlags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.WriteBufferImmediateSupportFlags, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "ViewInstancingTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ViewInstancingTier, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "WriteBufferImmediateSupportFlags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.WriteBufferImmediateSupportFlags)));
+            FieldToString(strStrm, false, "ViewInstancingTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ViewInstancingTier)));
             FieldToString(strStrm, false, "BarycentricsSupported", toStringFlags, tabCount, tabSize, ToString(obj.BarycentricsSupported, toStringFlags, tabCount, tabSize));
         }
     );
@@ -1067,7 +1067,7 @@ std::string ToString(const D3D12_FEATURE_DATA_DISPLAYABLE& obj, ToStringFlags to
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "DisplayableTexture", toStringFlags, tabCount, tabSize, ToString(obj.DisplayableTexture, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "SharedResourceCompatibilityTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SharedResourceCompatibilityTier, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "SharedResourceCompatibilityTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SharedResourceCompatibilityTier)));
         }
     );
 }
@@ -1078,7 +1078,7 @@ std::string ToString(const D3D12_FEATURE_DATA_D3D12_OPTIONS4& obj, ToStringFlags
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "MSAA64KBAlignedTextureSupported", toStringFlags, tabCount, tabSize, ToString(obj.MSAA64KBAlignedTextureSupported, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "SharedResourceCompatibilityTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SharedResourceCompatibilityTier, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "SharedResourceCompatibilityTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SharedResourceCompatibilityTier)));
             FieldToString(strStrm, false, "Native16BitShaderOpsSupported", toStringFlags, tabCount, tabSize, ToString(obj.Native16BitShaderOpsSupported, toStringFlags, tabCount, tabSize));
         }
     );
@@ -1090,7 +1090,7 @@ std::string ToString(const D3D12_FEATURE_DATA_SERIALIZATION& obj, ToStringFlags 
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "NodeIndex", toStringFlags, tabCount, tabSize, ToString(obj.NodeIndex, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "HeapSerializationTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.HeapSerializationTier, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "HeapSerializationTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.HeapSerializationTier)));
         }
     );
 }
@@ -1100,7 +1100,7 @@ std::string ToString(const D3D12_FEATURE_DATA_CROSS_NODE& obj, ToStringFlags toS
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "SharingTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SharingTier, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "SharingTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SharingTier)));
             FieldToString(strStrm, false, "AtomicShaderInstructions", toStringFlags, tabCount, tabSize, ToString(obj.AtomicShaderInstructions, toStringFlags, tabCount, tabSize));
         }
     );
@@ -1112,8 +1112,8 @@ std::string ToString(const D3D12_FEATURE_DATA_D3D12_OPTIONS5& obj, ToStringFlags
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "SRVOnlyTiledResourceTier3", toStringFlags, tabCount, tabSize, ToString(obj.SRVOnlyTiledResourceTier3, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "RenderPassesTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.RenderPassesTier, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "RaytracingTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.RaytracingTier, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "RenderPassesTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.RenderPassesTier)));
+            FieldToString(strStrm, false, "RaytracingTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.RaytracingTier)));
         }
     );
 }
@@ -1125,7 +1125,7 @@ std::string ToString(const D3D12_FEATURE_DATA_D3D12_OPTIONS6& obj, ToStringFlags
         {
             FieldToString(strStrm, true, "AdditionalShadingRatesSupported", toStringFlags, tabCount, tabSize, ToString(obj.AdditionalShadingRatesSupported, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "PerPrimitiveShadingRateSupportedWithViewportIndexing", toStringFlags, tabCount, tabSize, ToString(obj.PerPrimitiveShadingRateSupportedWithViewportIndexing, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "VariableShadingRateTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.VariableShadingRateTier, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "VariableShadingRateTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.VariableShadingRateTier)));
             FieldToString(strStrm, false, "ShadingRateImageTileSize", toStringFlags, tabCount, tabSize, ToString(obj.ShadingRateImageTileSize, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "BackgroundProcessingSupported", toStringFlags, tabCount, tabSize, ToString(obj.BackgroundProcessingSupported, toStringFlags, tabCount, tabSize));
         }
@@ -1137,8 +1137,8 @@ std::string ToString(const D3D12_FEATURE_DATA_D3D12_OPTIONS7& obj, ToStringFlags
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "MeshShaderTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.MeshShaderTier, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "SamplerFeedbackTier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SamplerFeedbackTier, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "MeshShaderTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.MeshShaderTier)));
+            FieldToString(strStrm, false, "SamplerFeedbackTier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SamplerFeedbackTier)));
         }
     );
 }
@@ -1178,7 +1178,7 @@ std::string ToString(const D3D12_FEATURE_DATA_D3D12_OPTIONS9& obj, ToStringFlags
             FieldToString(strStrm, false, "AtomicInt64OnTypedResourceSupported", toStringFlags, tabCount, tabSize, ToString(obj.AtomicInt64OnTypedResourceSupported, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "AtomicInt64OnGroupSharedSupported", toStringFlags, tabCount, tabSize, ToString(obj.AtomicInt64OnGroupSharedSupported, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "DerivativesInMeshAndAmplificationShadersSupported", toStringFlags, tabCount, tabSize, ToString(obj.DerivativesInMeshAndAmplificationShadersSupported, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "WaveMMATier", toStringFlags, tabCount, tabSize, '"' + ToString(obj.WaveMMATier, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "WaveMMATier", toStringFlags, tabCount, tabSize, Quote(ToString(obj.WaveMMATier)));
         }
     );
 }
@@ -1209,7 +1209,7 @@ std::string ToString(const D3D12_FEATURE_DATA_D3D12_OPTIONS12& obj, ToStringFlag
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "MSPrimitivesPipelineStatisticIncludesCulledPrimitives", toStringFlags, tabCount, tabSize, '"' + ToString(obj.MSPrimitivesPipelineStatisticIncludesCulledPrimitives, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "MSPrimitivesPipelineStatisticIncludesCulledPrimitives", toStringFlags, tabCount, tabSize, Quote(ToString(obj.MSPrimitivesPipelineStatisticIncludesCulledPrimitives)));
             FieldToString(strStrm, false, "EnhancedBarriersSupported", toStringFlags, tabCount, tabSize, ToString(obj.EnhancedBarriersSupported, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "RelaxedFormatCastingSupported", toStringFlags, tabCount, tabSize, ToString(obj.RelaxedFormatCastingSupported, toStringFlags, tabCount, tabSize));
         }
@@ -1282,9 +1282,9 @@ std::string ToString(const D3D12_HEAP_PROPERTIES& obj, ToStringFlags toStringFla
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Type, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "CPUPageProperty", toStringFlags, tabCount, tabSize, '"' + ToString(obj.CPUPageProperty, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "MemoryPoolPreference", toStringFlags, tabCount, tabSize, '"' + ToString(obj.MemoryPoolPreference, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Type", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Type)));
+            FieldToString(strStrm, false, "CPUPageProperty", toStringFlags, tabCount, tabSize, Quote(ToString(obj.CPUPageProperty)));
+            FieldToString(strStrm, false, "MemoryPoolPreference", toStringFlags, tabCount, tabSize, Quote(ToString(obj.MemoryPoolPreference)));
             FieldToString(strStrm, false, "CreationNodeMask", toStringFlags, tabCount, tabSize, ToString(obj.CreationNodeMask, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "VisibleNodeMask", toStringFlags, tabCount, tabSize, ToString(obj.VisibleNodeMask, toStringFlags, tabCount, tabSize));
         }
@@ -1299,7 +1299,7 @@ std::string ToString(const D3D12_HEAP_DESC& obj, ToStringFlags toStringFlags, ui
             FieldToString(strStrm, true, "SizeInBytes", toStringFlags, tabCount, tabSize, ToString(obj.SizeInBytes, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Properties", toStringFlags, tabCount, tabSize, ToString(obj.Properties, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Alignment", toStringFlags, tabCount, tabSize, ToString(obj.Alignment, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -1321,16 +1321,16 @@ std::string ToString(const D3D12_RESOURCE_DESC& obj, ToStringFlags toStringFlags
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Dimension", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Dimension, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Dimension", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Dimension)));
             FieldToString(strStrm, false, "Alignment", toStringFlags, tabCount, tabSize, ToString(obj.Alignment, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Width", toStringFlags, tabCount, tabSize, ToString(obj.Width, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Height", toStringFlags, tabCount, tabSize, ToString(obj.Height, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "DepthOrArraySize", toStringFlags, tabCount, tabSize, ToString(obj.DepthOrArraySize, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "MipLevels", toStringFlags, tabCount, tabSize, ToString(obj.MipLevels, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Format, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Format)));
             FieldToString(strStrm, false, "SampleDesc", toStringFlags, tabCount, tabSize, ToString(obj.SampleDesc, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Layout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Layout, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Layout", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Layout)));
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -1340,16 +1340,16 @@ std::string ToString(const D3D12_RESOURCE_DESC1& obj, ToStringFlags toStringFlag
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Dimension", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Dimension, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Dimension", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Dimension)));
             FieldToString(strStrm, false, "Alignment", toStringFlags, tabCount, tabSize, ToString(obj.Alignment, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Width", toStringFlags, tabCount, tabSize, ToString(obj.Width, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Height", toStringFlags, tabCount, tabSize, ToString(obj.Height, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "DepthOrArraySize", toStringFlags, tabCount, tabSize, ToString(obj.DepthOrArraySize, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "MipLevels", toStringFlags, tabCount, tabSize, ToString(obj.MipLevels, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Format, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Format)));
             FieldToString(strStrm, false, "SampleDesc", toStringFlags, tabCount, tabSize, ToString(obj.SampleDesc, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Layout", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Layout, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Layout", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Layout)));
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
             FieldToString(strStrm, false, "SamplerFeedbackMipRegion", toStringFlags, tabCount, tabSize, ToString(obj.SamplerFeedbackMipRegion, toStringFlags, tabCount, tabSize));
         }
     );
@@ -1483,8 +1483,8 @@ std::string ToString(const D3D12_RESOURCE_TRANSITION_BARRIER& obj, ToStringFlags
         {
             FieldToString(strStrm, true, "pResource", toStringFlags, tabCount, tabSize, HandleIdToString(obj.pResource));
             FieldToString(strStrm, false, "Subresource", toStringFlags, tabCount, tabSize, ToString(obj.Subresource, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "StateBefore", toStringFlags, tabCount, tabSize, '"' + ToString(obj.StateBefore, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "StateAfter", toStringFlags, tabCount, tabSize, '"' + ToString(obj.StateAfter, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "StateBefore", toStringFlags, tabCount, tabSize, Quote(ToString(obj.StateBefore)));
+            FieldToString(strStrm, false, "StateAfter", toStringFlags, tabCount, tabSize, Quote(ToString(obj.StateAfter)));
         }
     );
 }
@@ -1515,7 +1515,7 @@ std::string ToString(const D3D12_SUBRESOURCE_FOOTPRINT& obj, ToStringFlags toStr
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Format, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Format", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Format)));
             FieldToString(strStrm, false, "Width", toStringFlags, tabCount, tabSize, ToString(obj.Width, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Height", toStringFlags, tabCount, tabSize, ToString(obj.Height, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Depth", toStringFlags, tabCount, tabSize, ToString(obj.Depth, toStringFlags, tabCount, tabSize));
@@ -1564,7 +1564,7 @@ std::string ToString(const D3D12_VIEW_INSTANCING_DESC& obj, ToStringFlags toStri
         {
             FieldToString(strStrm, true, "ViewInstanceCount", toStringFlags, tabCount, tabSize, ToString(obj.ViewInstanceCount, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "pViewInstanceLocations", toStringFlags, tabCount, tabSize, ArrayToString(obj.ViewInstanceCount, obj.pViewInstanceLocations, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -1577,7 +1577,7 @@ std::string ToString(const D3D12_BUFFER_SRV& obj, ToStringFlags toStringFlags, u
             FieldToString(strStrm, true, "FirstElement", toStringFlags, tabCount, tabSize, ToString(obj.FirstElement, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "NumElements", toStringFlags, tabCount, tabSize, ToString(obj.NumElements, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "StructureByteStride", toStringFlags, tabCount, tabSize, ToString(obj.StructureByteStride, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -1721,13 +1721,13 @@ std::string ToString(const D3D12_SAMPLER_DESC& obj, ToStringFlags toStringFlags,
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Filter", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Filter, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "AddressU", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AddressU, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "AddressV", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AddressV, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "AddressW", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AddressW, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Filter", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Filter)));
+            FieldToString(strStrm, false, "AddressU", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AddressU)));
+            FieldToString(strStrm, false, "AddressV", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AddressV)));
+            FieldToString(strStrm, false, "AddressW", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AddressW)));
             FieldToString(strStrm, false, "MipLODBias", toStringFlags, tabCount, tabSize, ToString(obj.MipLODBias, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "MaxAnisotropy", toStringFlags, tabCount, tabSize, ToString(obj.MaxAnisotropy, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "ComparisonFunc", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ComparisonFunc, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "ComparisonFunc", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ComparisonFunc)));
             FieldToString(strStrm, false, "BorderColor", toStringFlags, tabCount, tabSize, ArrayToString(4, obj.BorderColor, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "MinLOD", toStringFlags, tabCount, tabSize, ToString(obj.MinLOD, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "MaxLOD", toStringFlags, tabCount, tabSize, ToString(obj.MaxLOD, toStringFlags, tabCount, tabSize));
@@ -1744,7 +1744,7 @@ std::string ToString(const D3D12_BUFFER_UAV& obj, ToStringFlags toStringFlags, u
             FieldToString(strStrm, false, "NumElements", toStringFlags, tabCount, tabSize, ToString(obj.NumElements, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "StructureByteStride", toStringFlags, tabCount, tabSize, ToString(obj.StructureByteStride, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "CounterOffsetInBytes", toStringFlags, tabCount, tabSize, ToString(obj.CounterOffsetInBytes, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -1988,9 +1988,9 @@ std::string ToString(const D3D12_DESCRIPTOR_HEAP_DESC& obj, ToStringFlags toStri
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Type, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Type", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Type)));
             FieldToString(strStrm, false, "NumDescriptors", toStringFlags, tabCount, tabSize, ToString(obj.NumDescriptors, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
             FieldToString(strStrm, false, "NodeMask", toStringFlags, tabCount, tabSize, ToString(obj.NodeMask, toStringFlags, tabCount, tabSize));
         }
     );
@@ -2001,7 +2001,7 @@ std::string ToString(const D3D12_DESCRIPTOR_RANGE& obj, ToStringFlags toStringFl
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "RangeType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.RangeType, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "RangeType", toStringFlags, tabCount, tabSize, Quote(ToString(obj.RangeType)));
             FieldToString(strStrm, false, "NumDescriptors", toStringFlags, tabCount, tabSize, ToString(obj.NumDescriptors, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "BaseShaderRegister", toStringFlags, tabCount, tabSize, ToString(obj.BaseShaderRegister, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "RegisterSpace", toStringFlags, tabCount, tabSize, ToString(obj.RegisterSpace, toStringFlags, tabCount, tabSize));
@@ -2049,19 +2049,19 @@ std::string ToString(const D3D12_STATIC_SAMPLER_DESC& obj, ToStringFlags toStrin
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Filter", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Filter, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "AddressU", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AddressU, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "AddressV", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AddressV, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "AddressW", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AddressW, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Filter", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Filter)));
+            FieldToString(strStrm, false, "AddressU", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AddressU)));
+            FieldToString(strStrm, false, "AddressV", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AddressV)));
+            FieldToString(strStrm, false, "AddressW", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AddressW)));
             FieldToString(strStrm, false, "MipLODBias", toStringFlags, tabCount, tabSize, ToString(obj.MipLODBias, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "MaxAnisotropy", toStringFlags, tabCount, tabSize, ToString(obj.MaxAnisotropy, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "ComparisonFunc", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ComparisonFunc, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "BorderColor", toStringFlags, tabCount, tabSize, '"' + ToString(obj.BorderColor, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "ComparisonFunc", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ComparisonFunc)));
+            FieldToString(strStrm, false, "BorderColor", toStringFlags, tabCount, tabSize, Quote(ToString(obj.BorderColor)));
             FieldToString(strStrm, false, "MinLOD", toStringFlags, tabCount, tabSize, ToString(obj.MinLOD, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "MaxLOD", toStringFlags, tabCount, tabSize, ToString(obj.MaxLOD, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "ShaderRegister", toStringFlags, tabCount, tabSize, ToString(obj.ShaderRegister, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "RegisterSpace", toStringFlags, tabCount, tabSize, ToString(obj.RegisterSpace, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "ShaderVisibility", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ShaderVisibility, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "ShaderVisibility", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ShaderVisibility)));
         }
     );
 }
@@ -2075,7 +2075,7 @@ std::string ToString(const D3D12_ROOT_SIGNATURE_DESC& obj, ToStringFlags toStrin
             FieldToString(strStrm, false, "pParameters", toStringFlags, tabCount, tabSize, ArrayToString(obj.NumParameters, obj.pParameters, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "NumStaticSamplers", toStringFlags, tabCount, tabSize, ToString(obj.NumStaticSamplers, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "pStaticSamplers", toStringFlags, tabCount, tabSize, ArrayToString(obj.NumStaticSamplers, obj.pStaticSamplers, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -2085,11 +2085,11 @@ std::string ToString(const D3D12_DESCRIPTOR_RANGE1& obj, ToStringFlags toStringF
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "RangeType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.RangeType, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "RangeType", toStringFlags, tabCount, tabSize, Quote(ToString(obj.RangeType)));
             FieldToString(strStrm, false, "NumDescriptors", toStringFlags, tabCount, tabSize, ToString(obj.NumDescriptors, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "BaseShaderRegister", toStringFlags, tabCount, tabSize, ToString(obj.BaseShaderRegister, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "RegisterSpace", toStringFlags, tabCount, tabSize, ToString(obj.RegisterSpace, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
             FieldToString(strStrm, false, "OffsetInDescriptorsFromTableStart", toStringFlags, tabCount, tabSize, ToString(obj.OffsetInDescriptorsFromTableStart, toStringFlags, tabCount, tabSize));
         }
     );
@@ -2113,7 +2113,7 @@ std::string ToString(const D3D12_ROOT_DESCRIPTOR1& obj, ToStringFlags toStringFl
         {
             FieldToString(strStrm, true, "ShaderRegister", toStringFlags, tabCount, tabSize, ToString(obj.ShaderRegister, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "RegisterSpace", toStringFlags, tabCount, tabSize, ToString(obj.RegisterSpace, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -2127,7 +2127,7 @@ std::string ToString(const D3D12_ROOT_SIGNATURE_DESC1& obj, ToStringFlags toStri
             FieldToString(strStrm, false, "pParameters", toStringFlags, tabCount, tabSize, ArrayToString(obj.NumParameters, obj.pParameters, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "NumStaticSamplers", toStringFlags, tabCount, tabSize, ToString(obj.NumStaticSamplers, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "pStaticSamplers", toStringFlags, tabCount, tabSize, ArrayToString(obj.NumStaticSamplers, obj.pStaticSamplers, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -2150,7 +2150,7 @@ std::string ToString(const D3D12_QUERY_HEAP_DESC& obj, ToStringFlags toStringFla
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Type, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Type", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Type)));
             FieldToString(strStrm, false, "Count", toStringFlags, tabCount, tabSize, ToString(obj.Count, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "NodeMask", toStringFlags, tabCount, tabSize, ToString(obj.NodeMask, toStringFlags, tabCount, tabSize));
         }
@@ -2281,7 +2281,7 @@ std::string ToString(const D3D12_INDEX_BUFFER_VIEW& obj, ToStringFlags toStringF
         {
             FieldToString(strStrm, true, "BufferLocation", toStringFlags, tabCount, tabSize, ToString(obj.BufferLocation, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "SizeInBytes", toStringFlags, tabCount, tabSize, ToString(obj.SizeInBytes, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Format, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Format)));
         }
     );
 }
@@ -2316,7 +2316,7 @@ std::string ToString(const D3D12_FEATURE_DATA_PROTECTED_RESOURCE_SESSION_SUPPORT
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "NodeIndex", toStringFlags, tabCount, tabSize, ToString(obj.NodeIndex, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Support", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Support, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Support", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Support)));
         }
     );
 }
@@ -2327,7 +2327,7 @@ std::string ToString(const D3D12_PROTECTED_RESOURCE_SESSION_DESC& obj, ToStringF
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "NodeMask", toStringFlags, tabCount, tabSize, ToString(obj.NodeMask, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -2338,9 +2338,9 @@ std::string ToString(const D3D12_META_COMMAND_PARAMETER_DESC& obj, ToStringFlags
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "Name", toStringFlags, tabCount, tabSize, (obj.Name ? ToString(*obj.Name, toStringFlags, tabCount, tabSize) : "null"));
-            FieldToString(strStrm, false, "Type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Type, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "RequiredResourceState", toStringFlags, tabCount, tabSize, '"' + ToString(obj.RequiredResourceState, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Type", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Type)));
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
+            FieldToString(strStrm, false, "RequiredResourceState", toStringFlags, tabCount, tabSize, Quote(ToString(obj.RequiredResourceState)));
             FieldToString(strStrm, false, "StructureOffset", toStringFlags, tabCount, tabSize, ToString(obj.StructureOffset, toStringFlags, tabCount, tabSize));
         }
     );
@@ -2353,8 +2353,8 @@ std::string ToString(const D3D12_META_COMMAND_DESC& obj, ToStringFlags toStringF
         {
             FieldToString(strStrm, true, "Id", toStringFlags, tabCount, tabSize, ToString(obj.Id, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Name", toStringFlags, tabCount, tabSize, (obj.Name ? ToString(*obj.Name, toStringFlags, tabCount, tabSize) : "null"));
-            FieldToString(strStrm, false, "InitializationDirtyState", toStringFlags, tabCount, tabSize, '"' + ToString(obj.InitializationDirtyState, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "ExecutionDirtyState", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ExecutionDirtyState, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "InitializationDirtyState", toStringFlags, tabCount, tabSize, Quote(ToString(obj.InitializationDirtyState)));
+            FieldToString(strStrm, false, "ExecutionDirtyState", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ExecutionDirtyState)));
         }
     );
 }
@@ -2364,7 +2364,7 @@ std::string ToString(const D3D12_STATE_OBJECT_CONFIG& obj, ToStringFlags toStrin
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -2406,7 +2406,7 @@ std::string ToString(const D3D12_EXPORT_DESC& obj, ToStringFlags toStringFlags, 
         {
             FieldToString(strStrm, true, "Name", toStringFlags, tabCount, tabSize, (obj.Name ? ToString(*obj.Name, toStringFlags, tabCount, tabSize) : "null"));
             FieldToString(strStrm, false, "ExportToRename", toStringFlags, tabCount, tabSize, (obj.ExportToRename ? ToString(*obj.ExportToRename, toStringFlags, tabCount, tabSize) : "null"));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -2441,7 +2441,7 @@ std::string ToString(const D3D12_HIT_GROUP_DESC& obj, ToStringFlags toStringFlag
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "HitGroupExport", toStringFlags, tabCount, tabSize, (obj.HitGroupExport ? ToString(*obj.HitGroupExport, toStringFlags, tabCount, tabSize) : "null"));
-            FieldToString(strStrm, false, "Type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Type, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Type", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Type)));
             FieldToString(strStrm, false, "AnyHitShaderImport", toStringFlags, tabCount, tabSize, (obj.AnyHitShaderImport ? ToString(*obj.AnyHitShaderImport, toStringFlags, tabCount, tabSize) : "null"));
             FieldToString(strStrm, false, "ClosestHitShaderImport", toStringFlags, tabCount, tabSize, (obj.ClosestHitShaderImport ? ToString(*obj.ClosestHitShaderImport, toStringFlags, tabCount, tabSize) : "null"));
             FieldToString(strStrm, false, "IntersectionShaderImport", toStringFlags, tabCount, tabSize, (obj.IntersectionShaderImport ? ToString(*obj.IntersectionShaderImport, toStringFlags, tabCount, tabSize) : "null"));
@@ -2476,7 +2476,7 @@ std::string ToString(const D3D12_RAYTRACING_PIPELINE_CONFIG1& obj, ToStringFlags
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "MaxTraceRecursionDepth", toStringFlags, tabCount, tabSize, ToString(obj.MaxTraceRecursionDepth, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -2521,8 +2521,8 @@ std::string ToString(const D3D12_RAYTRACING_GEOMETRY_TRIANGLES_DESC& obj, ToStri
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "Transform3x4", toStringFlags, tabCount, tabSize, ToString(obj.Transform3x4, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "IndexFormat", toStringFlags, tabCount, tabSize, '"' + ToString(obj.IndexFormat, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "VertexFormat", toStringFlags, tabCount, tabSize, '"' + ToString(obj.VertexFormat, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "IndexFormat", toStringFlags, tabCount, tabSize, Quote(ToString(obj.IndexFormat)));
+            FieldToString(strStrm, false, "VertexFormat", toStringFlags, tabCount, tabSize, Quote(ToString(obj.VertexFormat)));
             FieldToString(strStrm, false, "IndexCount", toStringFlags, tabCount, tabSize, ToString(obj.IndexCount, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "VertexCount", toStringFlags, tabCount, tabSize, ToString(obj.VertexCount, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "IndexBuffer", toStringFlags, tabCount, tabSize, ToString(obj.IndexBuffer, toStringFlags, tabCount, tabSize));
@@ -2563,7 +2563,7 @@ std::string ToString(const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_POSTBUILD_INF
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "DestBuffer", toStringFlags, tabCount, tabSize, ToString(obj.DestBuffer, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "InfoType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.InfoType, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "InfoType", toStringFlags, tabCount, tabSize, Quote(ToString(obj.InfoType)));
         }
     );
 }
@@ -2593,7 +2593,7 @@ std::string ToString(const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_TOOLS_V
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Type", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Type, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Type", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Type)));
             FieldToString(strStrm, false, "NumDescs", toStringFlags, tabCount, tabSize, ToString(obj.NumDescs, toStringFlags, tabCount, tabSize));
         }
     );
@@ -2725,7 +2725,7 @@ std::string ToString(const D3D12_DEVICE_REMOVED_EXTENDED_DATA& obj, ToStringFlag
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
             FieldToString(strStrm, false, "pHeadAutoBreadcrumbNode", toStringFlags, tabCount, tabSize, (obj.pHeadAutoBreadcrumbNode ? ToString(*obj.pHeadAutoBreadcrumbNode, toStringFlags, tabCount, tabSize) : "null"));
         }
     );
@@ -2738,7 +2738,7 @@ std::string ToString(const D3D12_DRED_ALLOCATION_NODE& obj, ToStringFlags toStri
         {
             FieldToString(strStrm, true, "ObjectNameA", toStringFlags, tabCount, tabSize, (obj.ObjectNameA ? ToString(*obj.ObjectNameA, toStringFlags, tabCount, tabSize) : "null"));
             FieldToString(strStrm, false, "ObjectNameW", toStringFlags, tabCount, tabSize, (obj.ObjectNameW ? ToString(*obj.ObjectNameW, toStringFlags, tabCount, tabSize) : "null"));
-            FieldToString(strStrm, false, "AllocationType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AllocationType, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "AllocationType", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AllocationType)));
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, (obj.pNext ? ToString(*obj.pNext, toStringFlags, tabCount, tabSize) : "null"));
         }
     );
@@ -2751,7 +2751,7 @@ std::string ToString(const D3D12_DRED_ALLOCATION_NODE1& obj, ToStringFlags toStr
         {
             FieldToString(strStrm, true, "ObjectNameA", toStringFlags, tabCount, tabSize, (obj.ObjectNameA ? ToString(*obj.ObjectNameA, toStringFlags, tabCount, tabSize) : "null"));
             FieldToString(strStrm, false, "ObjectNameW", toStringFlags, tabCount, tabSize, (obj.ObjectNameW ? ToString(*obj.ObjectNameW, toStringFlags, tabCount, tabSize) : "null"));
-            FieldToString(strStrm, false, "AllocationType", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AllocationType, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "AllocationType", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AllocationType)));
             FieldToString(strStrm, false, "pNext", toStringFlags, tabCount, tabSize, (obj.pNext ? ToString(*obj.pNext, toStringFlags, tabCount, tabSize) : "null"));
             FieldToString(strStrm, false, "pObject", toStringFlags, tabCount, tabSize, HandleIdToString(obj.pObject));
         }
@@ -2810,7 +2810,7 @@ std::string ToString(const D3D12_DRED_PAGE_FAULT_OUTPUT2& obj, ToStringFlags toS
             FieldToString(strStrm, true, "PageFaultVA", toStringFlags, tabCount, tabSize, ToString(obj.PageFaultVA, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "pHeadExistingAllocationNode", toStringFlags, tabCount, tabSize, (obj.pHeadExistingAllocationNode ? ToString(*obj.pHeadExistingAllocationNode, toStringFlags, tabCount, tabSize) : "null"));
             FieldToString(strStrm, false, "pHeadRecentFreedAllocationNode", toStringFlags, tabCount, tabSize, (obj.pHeadRecentFreedAllocationNode ? ToString(*obj.pHeadRecentFreedAllocationNode, toStringFlags, tabCount, tabSize) : "null"));
-            FieldToString(strStrm, false, "PageFaultFlags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.PageFaultFlags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "PageFaultFlags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.PageFaultFlags)));
         }
     );
 }
@@ -2847,7 +2847,7 @@ std::string ToString(const D3D12_DEVICE_REMOVED_EXTENDED_DATA3& obj, ToStringFla
             FieldToString(strStrm, true, "DeviceRemovedReason", toStringFlags, tabCount, tabSize, ToString(obj.DeviceRemovedReason, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "AutoBreadcrumbsOutput", toStringFlags, tabCount, tabSize, ToString(obj.AutoBreadcrumbsOutput, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "PageFaultOutput", toStringFlags, tabCount, tabSize, ToString(obj.PageFaultOutput, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "DeviceState", toStringFlags, tabCount, tabSize, '"' + ToString(obj.DeviceState, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "DeviceState", toStringFlags, tabCount, tabSize, Quote(ToString(obj.DeviceState)));
         }
     );
 }
@@ -2881,7 +2881,7 @@ std::string ToString(const D3D12_PROTECTED_RESOURCE_SESSION_DESC1& obj, ToString
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "NodeMask", toStringFlags, tabCount, tabSize, ToString(obj.NodeMask, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
             FieldToString(strStrm, false, "ProtectionType", toStringFlags, tabCount, tabSize, ToString(obj.ProtectionType, toStringFlags, tabCount, tabSize));
         }
     );
@@ -2920,8 +2920,8 @@ std::string ToString(const D3D12_RENDER_PASS_ENDING_ACCESS_RESOLVE_PARAMETERS& o
             FieldToString(strStrm, false, "pDstResource", toStringFlags, tabCount, tabSize, HandleIdToString(obj.pDstResource));
             FieldToString(strStrm, false, "SubresourceCount", toStringFlags, tabCount, tabSize, ToString(obj.SubresourceCount, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "pSubresourceParameters", toStringFlags, tabCount, tabSize, ArrayToString(obj.SubresourceCount, obj.pSubresourceParameters, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Format, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "ResolveMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ResolveMode, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Format", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Format)));
+            FieldToString(strStrm, false, "ResolveMode", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ResolveMode)));
             FieldToString(strStrm, false, "PreserveResolveSource", toStringFlags, tabCount, tabSize, ToString(obj.PreserveResolveSource, toStringFlags, tabCount, tabSize));
         }
     );
@@ -2975,8 +2975,8 @@ std::string ToString(const D3D12_SHADER_CACHE_SESSION_DESC& obj, ToStringFlags t
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "Identifier", toStringFlags, tabCount, tabSize, ToString(obj.Identifier, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Mode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Mode, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Mode", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Mode)));
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
             FieldToString(strStrm, false, "MaximumInMemoryCacheSizeBytes", toStringFlags, tabCount, tabSize, ToString(obj.MaximumInMemoryCacheSizeBytes, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "MaximumInMemoryCacheEntries", toStringFlags, tabCount, tabSize, ToString(obj.MaximumInMemoryCacheEntries, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "MaximumValueFileSizeBytes", toStringFlags, tabCount, tabSize, ToString(obj.MaximumValueFileSizeBytes, toStringFlags, tabCount, tabSize));
@@ -3005,10 +3005,10 @@ std::string ToString(const D3D12_GLOBAL_BARRIER& obj, ToStringFlags toStringFlag
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "SyncBefore", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SyncBefore, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "SyncAfter", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SyncAfter, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "AccessBefore", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AccessBefore, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "AccessAfter", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AccessAfter, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "SyncBefore", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SyncBefore)));
+            FieldToString(strStrm, false, "SyncAfter", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SyncAfter)));
+            FieldToString(strStrm, false, "AccessBefore", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AccessBefore)));
+            FieldToString(strStrm, false, "AccessAfter", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AccessAfter)));
         }
     );
 }
@@ -3018,15 +3018,15 @@ std::string ToString(const D3D12_TEXTURE_BARRIER& obj, ToStringFlags toStringFla
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "SyncBefore", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SyncBefore, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "SyncAfter", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SyncAfter, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "AccessBefore", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AccessBefore, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "AccessAfter", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AccessAfter, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "LayoutBefore", toStringFlags, tabCount, tabSize, '"' + ToString(obj.LayoutBefore, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "LayoutAfter", toStringFlags, tabCount, tabSize, '"' + ToString(obj.LayoutAfter, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "SyncBefore", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SyncBefore)));
+            FieldToString(strStrm, false, "SyncAfter", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SyncAfter)));
+            FieldToString(strStrm, false, "AccessBefore", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AccessBefore)));
+            FieldToString(strStrm, false, "AccessAfter", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AccessAfter)));
+            FieldToString(strStrm, false, "LayoutBefore", toStringFlags, tabCount, tabSize, Quote(ToString(obj.LayoutBefore)));
+            FieldToString(strStrm, false, "LayoutAfter", toStringFlags, tabCount, tabSize, Quote(ToString(obj.LayoutAfter)));
             FieldToString(strStrm, false, "pResource", toStringFlags, tabCount, tabSize, HandleIdToString(obj.pResource));
             FieldToString(strStrm, false, "Subresources", toStringFlags, tabCount, tabSize, ToString(obj.Subresources, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
         }
     );
 }
@@ -3036,10 +3036,10 @@ std::string ToString(const D3D12_BUFFER_BARRIER& obj, ToStringFlags toStringFlag
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "SyncBefore", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SyncBefore, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "SyncAfter", toStringFlags, tabCount, tabSize, '"' + ToString(obj.SyncAfter, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "AccessBefore", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AccessBefore, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "AccessAfter", toStringFlags, tabCount, tabSize, '"' + ToString(obj.AccessAfter, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "SyncBefore", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SyncBefore)));
+            FieldToString(strStrm, false, "SyncAfter", toStringFlags, tabCount, tabSize, Quote(ToString(obj.SyncAfter)));
+            FieldToString(strStrm, false, "AccessBefore", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AccessBefore)));
+            FieldToString(strStrm, false, "AccessAfter", toStringFlags, tabCount, tabSize, Quote(ToString(obj.AccessAfter)));
             FieldToString(strStrm, false, "pResource", toStringFlags, tabCount, tabSize, HandleIdToString(obj.pResource));
             FieldToString(strStrm, false, "Offset", toStringFlags, tabCount, tabSize, ToString(obj.Offset, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "Size", toStringFlags, tabCount, tabSize, ToString(obj.Size, toStringFlags, tabCount, tabSize));
@@ -3076,7 +3076,7 @@ std::string ToString(const D3D12_DEVICE_CONFIGURATION_DESC& obj, ToStringFlags t
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Flags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Flags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Flags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Flags)));
             FieldToString(strStrm, false, "GpuBasedValidationFlags", toStringFlags, tabCount, tabSize, ToString(obj.GpuBasedValidationFlags, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "SDKVersion", toStringFlags, tabCount, tabSize, ToString(obj.SDKVersion, toStringFlags, tabCount, tabSize));
             FieldToString(strStrm, false, "NumEnabledExperimentalFeatures", toStringFlags, tabCount, tabSize, ToString(obj.NumEnabledExperimentalFeatures, toStringFlags, tabCount, tabSize));
@@ -3113,8 +3113,8 @@ std::string ToString(const D3D12_DEBUG_DEVICE_GPU_BASED_VALIDATION_SETTINGS& obj
         [&](std::stringstream& strStrm)
         {
             FieldToString(strStrm, true, "MaxMessagesPerCommandList", toStringFlags, tabCount, tabSize, ToString(obj.MaxMessagesPerCommandList, toStringFlags, tabCount, tabSize));
-            FieldToString(strStrm, false, "DefaultShaderPatchMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.DefaultShaderPatchMode, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "PipelineStateCreateFlags", toStringFlags, tabCount, tabSize, '"' + ToString(obj.PipelineStateCreateFlags, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, false, "DefaultShaderPatchMode", toStringFlags, tabCount, tabSize, Quote(ToString(obj.DefaultShaderPatchMode)));
+            FieldToString(strStrm, false, "PipelineStateCreateFlags", toStringFlags, tabCount, tabSize, Quote(ToString(obj.PipelineStateCreateFlags)));
         }
     );
 }
@@ -3134,7 +3134,7 @@ std::string ToString(const D3D12_DEBUG_COMMAND_LIST_GPU_BASED_VALIDATION_SETTING
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "ShaderPatchMode", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ShaderPatchMode, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "ShaderPatchMode", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ShaderPatchMode)));
         }
     );
 }
@@ -3144,9 +3144,9 @@ std::string ToString(const D3D12_MESSAGE& obj, ToStringFlags toStringFlags, uint
     return ObjectToString(toStringFlags, tabCount, tabSize,
         [&](std::stringstream& strStrm)
         {
-            FieldToString(strStrm, true, "Category", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Category, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "Severity", toStringFlags, tabCount, tabSize, '"' + ToString(obj.Severity, toStringFlags, tabCount, tabSize) + '"');
-            FieldToString(strStrm, false, "ID", toStringFlags, tabCount, tabSize, '"' + ToString(obj.ID, toStringFlags, tabCount, tabSize) + '"');
+            FieldToString(strStrm, true, "Category", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Category)));
+            FieldToString(strStrm, false, "Severity", toStringFlags, tabCount, tabSize, Quote(ToString(obj.Severity)));
+            FieldToString(strStrm, false, "ID", toStringFlags, tabCount, tabSize, Quote(ToString(obj.ID)));
             FieldToString(strStrm, false, "pDescription", toStringFlags, tabCount, tabSize, (obj.pDescription ? ToString(*obj.pDescription, toStringFlags, tabCount, tabSize) : "null"));
             FieldToString(strStrm, false, "DescriptionByteLength", toStringFlags, tabCount, tabSize, ToString(obj.DescriptionByteLength, toStringFlags, tabCount, tabSize));
         }

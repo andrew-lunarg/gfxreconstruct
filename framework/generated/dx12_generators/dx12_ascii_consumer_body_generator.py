@@ -195,7 +195,7 @@ class Dx12AsciiConsumerBodyGenerator(Dx12AsciiConsumerHeaderGenerator):
                     elif self.is_struct(value.base_type):
                         to_string = 'ToString(*{0}.decoded_value, to_string_flags_, tab_count, tab_size)'
                     elif self.is_enum(value.base_type):
-                        to_string = '\'"\' + ToString({0}, to_string_flags_, tab_count, tab_size) + \'"\''
+                        to_string = 'Quote(ToString({0}))'
                     else:
                         to_string = 'ToString({0}, to_string_flags_, tab_count, tab_size)'
 
