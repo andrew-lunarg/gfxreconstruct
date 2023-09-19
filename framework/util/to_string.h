@@ -52,6 +52,10 @@ typedef uint32_t ToStringFlags;
 
 /// @brief  A template ToString to take care of simple POD cases like the many
 /// types of integers.
+/// It contains the three parameters that are unused for unstructured types like
+/// scalars and strings so that calling code doesn't have to care whether it is
+/// dealing with a simple type or a multi-line struct or array which tabs itself
+/// out.
 template <typename T>
 inline std::string ToString(const T&      obj,
                             ToStringFlags toStringFlags = kToString_Default,

@@ -52,6 +52,8 @@ inline std::string DX12ReturnValueToString(const DX12ReturnType& return_value,
                                            uint32_t              tab_count,
                                            uint32_t              tab_size)
 {
+    static_assert(nullptr == "Implement a specialisation for whatever type is instantating this base template or call "
+                             "util::ToString(<ONE_ARG>) directly if not converting a struct.");
     return util::ToString(return_value, to_string_flags, tab_count, tab_size);
 }
 
