@@ -57,7 +57,7 @@ WriteFpsToConsole(const char* prefix, uint64_t start_frame, uint64_t end_frame, 
                            end_frame);
 }
 
-/// @brief Write a single space char to a file in truncate mode to clear its contents.
+/// @brief Open a file in truncate mode to clear its contents.
 static void ClearFile(const char* const file_name)
 {
     FILE*         stream = nullptr;
@@ -68,13 +68,6 @@ static void ClearFile(const char* const file_name)
     }
     else
     {
-        const size_t size_written = util::platform::FileWrite(" ", 1, 1, stream);
-        if (size_written != 1)
-        {
-            GFXRECON_LOG_ERROR("Failed to write to measurements file \"%s\" to clear it. Wrote %llu bytes.",
-                               file_name,
-                               static_cast<unsigned long long>(size_written));
-        }
         util::platform::FileClose(stream);
     }
 }
