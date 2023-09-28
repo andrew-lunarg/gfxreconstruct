@@ -57,6 +57,18 @@ WriteFpsToConsole(const char* prefix, uint64_t start_frame, uint64_t end_frame, 
                            end_frame);
 }
 
+/// @brief Write a single space char to a file in truncate mode to clear its contents.
+static void ClearFile(const char* const file_name)
+{
+    FILE*         stream = nullptr;
+    const int32_t result = util::platform::FileOpen(&stream, file_name, "w");
+    if (result == 0)
+    {
+        const size_t size_written = util::platform::FileWrite(" ", 1, 1, stream);
+        util::platform::FileClose(stream);
+    }
+}
+
 FpsInfo::FpsInfo(uint64_t               measurement_start_frame,
                  uint64_t               measurement_end_frame,
                  bool                   has_measurement_range,
@@ -72,9 +84,8 @@ FpsInfo::FpsInfo(uint64_t               measurement_start_frame,
     if (has_measurement_range_)
     {
         GFXRECON_ASSERT(!measurement_file_name_.empty());
-
         // To avoid thinking an ancient file is the result of this run
-        std::remove(measurement_file_name_.c_str());
+        ClearFile(measurement_file_name_.c_str());
     }
 }
 
@@ -146,10 +157,8 @@ void FpsInfo::EndFrame(uint64_t frame)
                 if (result == 0)
                 {
                     const std::string json_string = file_content.dump(util::kJsonIndentWidth);
-
-                    const size_t size_written =
+                    const size_t      size_written =
                         util::platform::FileWrite(json_string.data(), 1, json_string.size(), file_pointer);
-
                     util::platform::FileClose(file_pointer);
 
                     // It either writes a fully valid file, or it doesn't write anything !
@@ -157,8 +166,7 @@ void FpsInfo::EndFrame(uint64_t frame)
                     {
                         GFXRECON_LOG_ERROR("Failed to write to measurements file '%s'.",
                                            measurement_file_name_.c_str());
-
-                        std::remove(measurement_file_name_.c_str());
+                        ClearFile(measurement_file_name_.c_str());
                     }
                 }
                 else
