@@ -62,9 +62,19 @@ static void ClearFile(const char* const file_name)
 {
     FILE*         stream = nullptr;
     const int32_t result = util::platform::FileOpen(&stream, file_name, "w");
-    if (result == 0)
+    if (result != 0)
+    {
+        GFXRECON_LOG_ERROR("Failed to open measurements file \"%s\" to clear it (error %d).", file_name, result);
+    }
+    else
     {
         const size_t size_written = util::platform::FileWrite(" ", 1, 1, stream);
+        if (size_written != 1)
+        {
+            GFXRECON_LOG_ERROR("Failed to write to measurements file \"%s\" to clear it. Wrote %llu bytes.",
+                               file_name,
+                               static_cast<unsigned long long>(size_written));
+        }
         util::platform::FileClose(stream);
     }
 }
