@@ -26,7 +26,7 @@ from base_generator import write
 from dx12_base_generator import Dx12BaseGenerator
 
 class Dx12StructToJsonBodyGenerator(Dx12BaseGenerator):
-    """TODO : Generates C++ functions responsible for Convert to texts."""
+    """Generates C++ functions responsible for converting structs to JSON."""
 
     def __init__(
         self,
@@ -83,13 +83,27 @@ class Dx12StructToJsonBodyGenerator(Dx12BaseGenerator):
             for p in properties:
                 value = self.get_value_info(p)
 
-                # Start with a static_assert() so that if any values make it through the logic
-                #   below without being handled the generated code will fail to compile
-                to_string = '    ;\n'
-                # to_string = '    static_assert(false, "Unhandled value in `dx12_struct_to_string_body_generator.py`");'
-                # to_string = '    FieldToJson(jdata["{0}"], obj.{0}, options);\n'
-                to_string = to_string.format(value.name, value.array_length)
-                body += to_string
+                # @todo BOOL type?  FieldToJson(jdata["RectsCoalesced"], obj.RectsCoalesced ???
+                field_to_json = '    ; ///< @todo Generate for {0}[{1}]: ' + str(value.base_type) + '\n'
+                if value.is_pointer:
+                    if value.is_array:
+                        pass
+                else:
+                    if value.is_array:
+                        pass
+                    else:
+                        if self.is_handle(value.base_type):
+                            pass
+                        elif self.is_struct(value.base_type):
+                            pass
+                        elif self.is_enum(value.base_type):
+                            field_to_json = '    FieldToJson(jdata["{0}"], ToString(obj.{0}), options); // enum\n'
+                        else:
+                            field_to_json = '    FieldToJson(jdata["{0}"], obj.{0}, options); // base case\n'
+
+                # field_to_json = '    FieldToJson(jdata["{0}"], obj.{0}, options);\n'
+                field_to_json = field_to_json.format(value.name, value.array_length)
+                body += field_to_json
         return body
     # yapf: enable
 
