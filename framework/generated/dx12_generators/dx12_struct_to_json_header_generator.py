@@ -21,7 +21,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-import sys
+import sys, inspect
 from base_generator import write
 from dx12_base_generator import Dx12BaseGenerator
 
@@ -54,6 +54,12 @@ class Dx12StructToJsonHeaderGenerator(Dx12BaseGenerator):
         Dx12BaseGenerator.beginFile(self, gen_opts)
 
         code = ''
+        code += inspect.cleandoc('''
+            /// @file Functions to convert raw structs to JSON. Note, during decode time,
+            /// for replay or convert, you want to call the Decoded_StructX versions as
+            /// they have the pointer tree linking the structs set-up.
+
+        ''') + "\n\n"
         header_dict = self.source_dict['header_dict']
         # @todo trim this header list down to only what we actually need.
         for k, v in header_dict.items():
