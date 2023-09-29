@@ -28,6 +28,10 @@
 #ifndef  GFXRECON_GENERATED_DX12_STRUCT_TO_JSON_H
 #define  GFXRECON_GENERATED_DX12_STRUCT_TO_JSON_H
 
+/// @file Functions to convert raw structs to JSON. Note, during decode time,
+/// for replay or convert, you want to call the Decoded_StructX versions as
+/// they have the pointer tree linking the structs set-up.
+
 #include <dxgi.h>
 #include <dxgi1_2.h>
 #include <dxgi1_3.h>
