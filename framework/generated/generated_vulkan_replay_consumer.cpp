@@ -8719,6 +8719,84 @@ void VulkanReplayConsumer::Process_vkGetDynamicRenderingTilePropertiesQCOM(
     CheckResult("vkGetDynamicRenderingTilePropertiesQCOM", returnValue, replay_result, call_info);
 }
 
+void VulkanReplayConsumer::Process_vkSetLatencySleepModeNV(
+    const ApiCallInfo&                          call_info,
+    VkResult                                    returnValue,
+    format::HandleId                            device,
+    format::HandleId                            swapchain,
+    StructPointerDecoder<Decoded_VkLatencySleepModeInfoNV>* pSleepModeInfo)
+{
+    VkDevice in_device = MapHandle<DeviceInfo>(device, &VulkanObjectInfoTable::GetDeviceInfo);
+    VkSwapchainKHR in_swapchain = MapHandle<SwapchainKHRInfo>(swapchain, &VulkanObjectInfoTable::GetSwapchainKHRInfo);
+    if (GetObjectInfoTable().GetSurfaceKHRInfo(GetObjectInfoTable().GetSwapchainKHRInfo(swapchain)->surface_id) == nullptr || GetObjectInfoTable().GetSurfaceKHRInfo(GetObjectInfoTable().GetSwapchainKHRInfo(swapchain)->surface_id)->surface_creation_skipped) { return; }
+    VkLatencySleepModeInfoNV* out_pSleepModeInfo = pSleepModeInfo->IsNull() ? nullptr : pSleepModeInfo->AllocateOutputData(1, { VK_STRUCTURE_TYPE_LATENCY_SLEEP_MODE_INFO_NV, nullptr });
+    InitializeOutputStructPNext(pSleepModeInfo);
+
+    VkResult replay_result = GetDeviceTable(in_device)->SetLatencySleepModeNV(in_device, in_swapchain, out_pSleepModeInfo);
+    CheckResult("vkSetLatencySleepModeNV", returnValue, replay_result, call_info);
+}
+
+void VulkanReplayConsumer::Process_vkLatencySleepNV(
+    const ApiCallInfo&                          call_info,
+    VkResult                                    returnValue,
+    format::HandleId                            device,
+    format::HandleId                            swapchain,
+    StructPointerDecoder<Decoded_VkLatencySleepInfoNV>* pSleepInfo)
+{
+    VkDevice in_device = MapHandle<DeviceInfo>(device, &VulkanObjectInfoTable::GetDeviceInfo);
+    VkSwapchainKHR in_swapchain = MapHandle<SwapchainKHRInfo>(swapchain, &VulkanObjectInfoTable::GetSwapchainKHRInfo);
+    if (GetObjectInfoTable().GetSurfaceKHRInfo(GetObjectInfoTable().GetSwapchainKHRInfo(swapchain)->surface_id) == nullptr || GetObjectInfoTable().GetSurfaceKHRInfo(GetObjectInfoTable().GetSwapchainKHRInfo(swapchain)->surface_id)->surface_creation_skipped) { return; }
+    VkLatencySleepInfoNV* out_pSleepInfo = pSleepInfo->IsNull() ? nullptr : pSleepInfo->AllocateOutputData(1, { VK_STRUCTURE_TYPE_LATENCY_SLEEP_INFO_NV, nullptr });
+    InitializeOutputStructPNext(pSleepInfo);
+
+    VkResult replay_result = GetDeviceTable(in_device)->LatencySleepNV(in_device, in_swapchain, out_pSleepInfo);
+    CheckResult("vkLatencySleepNV", returnValue, replay_result, call_info);
+
+    AddStructHandles<Decoded_VkLatencySleepInfoNV>(device, pSleepInfo->GetMetaStructPointer(), out_pSleepInfo, &GetObjectInfoTable());
+}
+
+void VulkanReplayConsumer::Process_vkSetLatencyMarkerNV(
+    const ApiCallInfo&                          call_info,
+    format::HandleId                            device,
+    format::HandleId                            swapchain,
+    StructPointerDecoder<Decoded_VkSetLatencyMarkerInfoNV>* pLatencyMarkerInfo)
+{
+    VkDevice in_device = MapHandle<DeviceInfo>(device, &VulkanObjectInfoTable::GetDeviceInfo);
+    VkSwapchainKHR in_swapchain = MapHandle<SwapchainKHRInfo>(swapchain, &VulkanObjectInfoTable::GetSwapchainKHRInfo);
+    if (GetObjectInfoTable().GetSurfaceKHRInfo(GetObjectInfoTable().GetSwapchainKHRInfo(swapchain)->surface_id) == nullptr || GetObjectInfoTable().GetSurfaceKHRInfo(GetObjectInfoTable().GetSwapchainKHRInfo(swapchain)->surface_id)->surface_creation_skipped) { return; }
+    VkSetLatencyMarkerInfoNV* out_pLatencyMarkerInfo = pLatencyMarkerInfo->IsNull() ? nullptr : pLatencyMarkerInfo->AllocateOutputData(1, { VK_STRUCTURE_TYPE_SET_LATENCY_MARKER_INFO_NV, nullptr });
+    InitializeOutputStructPNext(pLatencyMarkerInfo);
+
+    GetDeviceTable(in_device)->SetLatencyMarkerNV(in_device, in_swapchain, out_pLatencyMarkerInfo);
+}
+
+void VulkanReplayConsumer::Process_vkGetLatencyTimingsNV(
+    const ApiCallInfo&                          call_info,
+    format::HandleId                            device,
+    format::HandleId                            swapchain,
+    PointerDecoder<uint32_t>*                   pTimingCount,
+    StructPointerDecoder<Decoded_VkGetLatencyMarkerInfoNV>* pLatencyMarkerInfo)
+{
+    VkDevice in_device = MapHandle<DeviceInfo>(device, &VulkanObjectInfoTable::GetDeviceInfo);
+    VkSwapchainKHR in_swapchain = MapHandle<SwapchainKHRInfo>(swapchain, &VulkanObjectInfoTable::GetSwapchainKHRInfo);
+    if (GetObjectInfoTable().GetSurfaceKHRInfo(GetObjectInfoTable().GetSwapchainKHRInfo(swapchain)->surface_id) == nullptr || GetObjectInfoTable().GetSurfaceKHRInfo(GetObjectInfoTable().GetSwapchainKHRInfo(swapchain)->surface_id)->surface_creation_skipped) { return; }
+    uint32_t* out_pTimingCount = pTimingCount->IsNull() ? nullptr : pTimingCount->AllocateOutputData(1, static_cast<uint32_t>(0));
+    VkGetLatencyMarkerInfoNV* out_pLatencyMarkerInfo = pLatencyMarkerInfo->IsNull() ? nullptr : pLatencyMarkerInfo->AllocateOutputData(1, { VK_STRUCTURE_TYPE_GET_LATENCY_MARKER_INFO_NV, nullptr });
+    InitializeOutputStructPNext(pLatencyMarkerInfo);
+
+    GetDeviceTable(in_device)->GetLatencyTimingsNV(in_device, in_swapchain, out_pTimingCount, out_pLatencyMarkerInfo);
+}
+
+void VulkanReplayConsumer::Process_vkQueueNotifyOutOfBandNV(
+    const ApiCallInfo&                          call_info,
+    format::HandleId                            queue,
+    Decoded_VkOutOfBandQueueTypeInfoNV          pQueueTypeInfo)
+{
+    VkQueue in_queue = MapHandle<QueueInfo>(queue, &VulkanObjectInfoTable::GetQueueInfo);
+
+    GetDeviceTable(in_queue)->QueueNotifyOutOfBandNV(in_queue, pQueueTypeInfo);
+}
+
 void VulkanReplayConsumer::Process_vkCmdSetAttachmentFeedbackLoopEnableEXT(
     const ApiCallInfo&                          call_info,
     format::HandleId                            commandBuffer,
@@ -12711,6 +12789,21 @@ void InitializeOutputStructPNext(StructPointerDecoder<T> *decoder)
                     output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkPhysicalDevicePipelineProtectedAccessFeaturesEXT>());
                     break;
                 }
+                case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID:
+                {
+                    output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkPhysicalDeviceExternalFormatResolveFeaturesANDROID>());
+                    break;
+                }
+                case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID:
+                {
+                    output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkPhysicalDeviceExternalFormatResolvePropertiesANDROID>());
+                    break;
+                }
+                case VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID:
+                {
+                    output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkAndroidHardwareBufferFormatResolvePropertiesANDROID>());
+                    break;
+                }
                 case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_OBJECT_FEATURES_EXT:
                 {
                     output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkPhysicalDeviceShaderObjectFeaturesEXT>());
@@ -12779,6 +12872,51 @@ void InitializeOutputStructPNext(StructPointerDecoder<T> *decoder)
                 case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT:
                 {
                     output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT>());
+                    break;
+                }
+                case VK_STRUCTURE_TYPE_LATENCY_SLEEP_MODE_INFO_NV:
+                {
+                    output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkLatencySleepModeInfoNV>());
+                    break;
+                }
+                case VK_STRUCTURE_TYPE_LATENCY_SLEEP_INFO_NV:
+                {
+                    output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkLatencySleepInfoNV>());
+                    break;
+                }
+                case VK_STRUCTURE_TYPE_SET_LATENCY_MARKER_INFO_NV:
+                {
+                    output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkSetLatencyMarkerInfoNV>());
+                    break;
+                }
+                case VK_STRUCTURE_TYPE_LATENCY_TIMINGS_FRAME_REPORT_NV:
+                {
+                    output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkLatencyTimingsFrameReportNV>());
+                    break;
+                }
+                case VK_STRUCTURE_TYPE_GET_LATENCY_MARKER_INFO_NV:
+                {
+                    output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkGetLatencyMarkerInfoNV>());
+                    break;
+                }
+                case VK_STRUCTURE_TYPE_LATENCY_SUBMISSION_PRESENT_ID_NV:
+                {
+                    output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkLatencySubmissionPresentIdNV>());
+                    break;
+                }
+                case VK_STRUCTURE_TYPE_SWAPCHAIN_LATENCY_CREATE_INFO_NV:
+                {
+                    output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkSwapchainLatencyCreateInfoNV>());
+                    break;
+                }
+                case VK_STRUCTURE_TYPE_OUT_OF_BAND_QUEUE_TYPE_INFO_NV:
+                {
+                    output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkOutOfBandQueueTypeInfoNV>());
+                    break;
+                }
+                case VK_STRUCTURE_TYPE_LATENCY_SURFACE_CAPABILITIES_NV:
+                {
+                    output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkLatencySurfaceCapabilitiesNV>());
                     break;
                 }
                 case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_RENDER_AREAS_FEATURES_QCOM:

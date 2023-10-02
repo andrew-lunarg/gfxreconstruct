@@ -2845,6 +2845,9 @@ void FieldToJson(nlohmann::ordered_json& jdata, const VkDriverId& value, const J
         case VK_DRIVER_ID_IMAGINATION_OPEN_SOURCE_MESA:
             jdata = "VK_DRIVER_ID_IMAGINATION_OPEN_SOURCE_MESA";
             break;
+        case VK_DRIVER_ID_MESA_AGXV:
+            jdata = "VK_DRIVER_ID_MESA_AGXV";
+            break;
         default:
             jdata = to_hex_fixed_width(value);
             break;
@@ -5134,6 +5137,51 @@ void FieldToJson(nlohmann::ordered_json& jdata, const VkInternalAllocationType& 
     }
 }
 
+void FieldToJson(nlohmann::ordered_json& jdata, const VkLatencyMarkerNV& value, const JsonOptions& options)
+{
+    switch (value) {
+        case VK_LATENCY_MARKER_SIMULATION_START_NV:
+            jdata = "VK_LATENCY_MARKER_SIMULATION_START_NV";
+            break;
+        case VK_LATENCY_MARKER_SIMULATION_END_NV:
+            jdata = "VK_LATENCY_MARKER_SIMULATION_END_NV";
+            break;
+        case VK_LATENCY_MARKER_RENDERSUBMIT_START_NV:
+            jdata = "VK_LATENCY_MARKER_RENDERSUBMIT_START_NV";
+            break;
+        case VK_LATENCY_MARKER_RENDERSUBMIT_END_NV:
+            jdata = "VK_LATENCY_MARKER_RENDERSUBMIT_END_NV";
+            break;
+        case VK_LATENCY_MARKER_PRESENT_START_NV:
+            jdata = "VK_LATENCY_MARKER_PRESENT_START_NV";
+            break;
+        case VK_LATENCY_MARKER_PRESENT_END_NV:
+            jdata = "VK_LATENCY_MARKER_PRESENT_END_NV";
+            break;
+        case VK_LATENCY_MARKER_INPUT_SAMPLE_NV:
+            jdata = "VK_LATENCY_MARKER_INPUT_SAMPLE_NV";
+            break;
+        case VK_LATENCY_MARKER_TRIGGER_FLASH_NV:
+            jdata = "VK_LATENCY_MARKER_TRIGGER_FLASH_NV";
+            break;
+        case VK_LATENCY_MARKER_OUT_OF_BAND_RENDERSUBMIT_START_NV:
+            jdata = "VK_LATENCY_MARKER_OUT_OF_BAND_RENDERSUBMIT_START_NV";
+            break;
+        case VK_LATENCY_MARKER_OUT_OF_BAND_RENDERSUBMIT_END_NV:
+            jdata = "VK_LATENCY_MARKER_OUT_OF_BAND_RENDERSUBMIT_END_NV";
+            break;
+        case VK_LATENCY_MARKER_OUT_OF_BAND_PRESENT_START_NV:
+            jdata = "VK_LATENCY_MARKER_OUT_OF_BAND_PRESENT_START_NV";
+            break;
+        case VK_LATENCY_MARKER_OUT_OF_BAND_PRESENT_END_NV:
+            jdata = "VK_LATENCY_MARKER_OUT_OF_BAND_PRESENT_END_NV";
+            break;
+        default:
+            jdata = to_hex_fixed_width(value);
+            break;
+    }
+}
+
 void FieldToJson(nlohmann::ordered_json& jdata, const VkLayeredDriverUnderlyingApiMSFT& value, const JsonOptions& options)
 {
     switch (value) {
@@ -5670,6 +5718,21 @@ void FieldToJson(nlohmann::ordered_json& jdata, const VkOpticalFlowUsageFlagBits
             break;
         case VK_OPTICAL_FLOW_USAGE_GLOBAL_FLOW_BIT_NV:
             jdata = "VK_OPTICAL_FLOW_USAGE_GLOBAL_FLOW_BIT_NV";
+            break;
+        default:
+            jdata = to_hex_fixed_width(value);
+            break;
+    }
+}
+
+void FieldToJson(nlohmann::ordered_json& jdata, const VkOutOfBandQueueTypeNV& value, const JsonOptions& options)
+{
+    switch (value) {
+        case VK_OUT_OF_BAND_QUEUE_TYPE_RENDER_NV:
+            jdata = "VK_OUT_OF_BAND_QUEUE_TYPE_RENDER_NV";
+            break;
+        case VK_OUT_OF_BAND_QUEUE_TYPE_PRESENT_NV:
+            jdata = "VK_OUT_OF_BAND_QUEUE_TYPE_PRESENT_NV";
             break;
         default:
             jdata = to_hex_fixed_width(value);
@@ -6995,6 +7058,9 @@ void FieldToJson(nlohmann::ordered_json& jdata, const VkResolveModeFlagBits& val
             break;
         case VK_RESOLVE_MODE_MAX_BIT:
             jdata = "VK_RESOLVE_MODE_MAX_BIT";
+            break;
+        case VK_RESOLVE_MODE_EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID:
+            jdata = "VK_RESOLVE_MODE_EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID";
             break;
         default:
             jdata = to_hex_fixed_width(value);
@@ -10028,6 +10094,15 @@ void FieldToJson(nlohmann::ordered_json& jdata, const VkStructureType& value, co
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_PROTECTED_ACCESS_FEATURES_EXT:
             jdata = "VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_PROTECTED_ACCESS_FEATURES_EXT";
             break;
+        case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID:
+            jdata = "VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID";
+            break;
+        case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID:
+            jdata = "VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID";
+            break;
+        case VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID:
+            jdata = "VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID";
+            break;
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_5_FEATURES_KHR:
             jdata = "VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_5_FEATURES_KHR";
             break;
@@ -10102,6 +10177,33 @@ void FieldToJson(nlohmann::ordered_json& jdata, const VkStructureType& value, co
             break;
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT:
             jdata = "VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT";
+            break;
+        case VK_STRUCTURE_TYPE_LATENCY_SLEEP_MODE_INFO_NV:
+            jdata = "VK_STRUCTURE_TYPE_LATENCY_SLEEP_MODE_INFO_NV";
+            break;
+        case VK_STRUCTURE_TYPE_LATENCY_SLEEP_INFO_NV:
+            jdata = "VK_STRUCTURE_TYPE_LATENCY_SLEEP_INFO_NV";
+            break;
+        case VK_STRUCTURE_TYPE_SET_LATENCY_MARKER_INFO_NV:
+            jdata = "VK_STRUCTURE_TYPE_SET_LATENCY_MARKER_INFO_NV";
+            break;
+        case VK_STRUCTURE_TYPE_GET_LATENCY_MARKER_INFO_NV:
+            jdata = "VK_STRUCTURE_TYPE_GET_LATENCY_MARKER_INFO_NV";
+            break;
+        case VK_STRUCTURE_TYPE_LATENCY_TIMINGS_FRAME_REPORT_NV:
+            jdata = "VK_STRUCTURE_TYPE_LATENCY_TIMINGS_FRAME_REPORT_NV";
+            break;
+        case VK_STRUCTURE_TYPE_LATENCY_SUBMISSION_PRESENT_ID_NV:
+            jdata = "VK_STRUCTURE_TYPE_LATENCY_SUBMISSION_PRESENT_ID_NV";
+            break;
+        case VK_STRUCTURE_TYPE_OUT_OF_BAND_QUEUE_TYPE_INFO_NV:
+            jdata = "VK_STRUCTURE_TYPE_OUT_OF_BAND_QUEUE_TYPE_INFO_NV";
+            break;
+        case VK_STRUCTURE_TYPE_SWAPCHAIN_LATENCY_CREATE_INFO_NV:
+            jdata = "VK_STRUCTURE_TYPE_SWAPCHAIN_LATENCY_CREATE_INFO_NV";
+            break;
+        case VK_STRUCTURE_TYPE_LATENCY_SURFACE_CAPABILITIES_NV:
+            jdata = "VK_STRUCTURE_TYPE_LATENCY_SURFACE_CAPABILITIES_NV";
             break;
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_KHR:
             jdata = "VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_KHR";
@@ -14130,6 +14232,8 @@ void FieldToJson(VkResolveModeFlags_t, nlohmann::ordered_json& jdata, const VkFl
                 return std::string("VK_RESOLVE_MODE_MIN_BIT");
             case VK_RESOLVE_MODE_MAX_BIT:
                 return std::string("VK_RESOLVE_MODE_MAX_BIT");
+            case VK_RESOLVE_MODE_EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID:
+                return std::string("VK_RESOLVE_MODE_EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID");
         }
         return to_hex_fixed_width(flags);
     });

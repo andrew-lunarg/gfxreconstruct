@@ -1694,6 +1694,16 @@ void MapStructHandles(Decoded_VkShaderCreateInfoEXT* wrapper, const VulkanObject
     }
 }
 
+void MapStructHandles(Decoded_VkLatencySleepInfoNV* wrapper, const VulkanObjectInfoTable& object_info_table)
+{
+    if ((wrapper != nullptr) && (wrapper->decoded_value != nullptr))
+    {
+        VkLatencySleepInfoNV* value = wrapper->decoded_value;
+
+        value->signalSemaphore = handle_mapping::MapHandle<SemaphoreInfo>(wrapper->signalSemaphore, object_info_table, &VulkanObjectInfoTable::GetSemaphoreInfo);
+    }
+}
+
 void MapStructHandles(Decoded_VkAccelerationStructureGeometryTrianglesDataKHR* wrapper, const VulkanObjectInfoTable& object_info_table)
 {
     if (wrapper != nullptr)
@@ -1926,6 +1936,14 @@ void AddStructHandles(format::HandleId parent_id, const Decoded_VkDisplayModePro
     if (id_wrapper != nullptr)
     {
         AddStructHandles(parent_id, id_wrapper->displayModeProperties, &handle_struct->displayModeProperties, object_info_table);
+    }
+}
+
+void AddStructHandles(format::HandleId parent_id, const Decoded_VkLatencySleepInfoNV* id_wrapper, const VkLatencySleepInfoNV* handle_struct, VulkanObjectInfoTable* object_info_table)
+{
+    if (id_wrapper != nullptr)
+    {
+        handle_mapping::AddHandle<SemaphoreInfo>(parent_id, id_wrapper->signalSemaphore, handle_struct->signalSemaphore, object_info_table, &VulkanObjectInfoTable::AddSemaphoreInfo);
     }
 }
 
