@@ -84,6 +84,10 @@ _supported_subsets = [
     "vulkan"
 ]
 
+# The set of pointed-to function argument types which are not const.
+_non_const_input_types = set()
+_non_const_input_types.add('VkLatencySleepInfoNV')
+
 # Turn lists of names/patterns into matching regular expressions.
 # From Khronos genvk.py
 _add_extensions_pat = _make_re_string(_extensions)
@@ -773,6 +777,8 @@ class BaseGenerator(OutputGenerator):
         elif value.platform_base_type and value.base_type == 'void' and value.pointer_count == 1:
             # For some extensions, platform specific handles are mapped to the 'void*' type without a const qualifier,
             # but need to be treated as an input (eg. if HANDLE is mapped to void*, it should not be treated as an output).
+            return True
+        elif value.base_type in _non_const_input_types and value.pointer_count == 1:
             return True
         return False
 
