@@ -699,6 +699,11 @@ enum ApiCallId : uint32_t
     ApiCall_vkGetRenderingAreaGranularityKHR                                                      = MakeApiCallId(ApiFamily_Vulkan, 0x12d9),
     ApiCall_vkGetDeviceImageSubresourceLayoutKHR                                                  = MakeApiCallId(ApiFamily_Vulkan, 0x12da),
     ApiCall_vkGetImageSubresourceLayout2KHR                                                       = MakeApiCallId(ApiFamily_Vulkan, 0x12db),
+    ApiCall_vkSetLatencySleepModeNV                                                               = MakeApiCallId(ApiFamily_Vulkan, 0x12dc),
+    ApiCall_vkLatencySleepNV                                                                      = MakeApiCallId(ApiFamily_Vulkan, 0x12dd),
+    ApiCall_vkSetLatencyMarkerNV                                                                  = MakeApiCallId(ApiFamily_Vulkan, 0x12de),
+    ApiCall_vkGetLatencyTimingsNV                                                                 = MakeApiCallId(ApiFamily_Vulkan, 0x12df),
+    ApiCall_vkQueueNotifyOutOfBandNV                                                              = MakeApiCallId(ApiFamily_Vulkan, 0x12e0),
 
     ApiCall_VulkanLast,
 
