@@ -1153,6 +1153,10 @@ void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceLegacyDitheri
 
 void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDevicePipelineProtectedAccessFeaturesEXT& value);
 
+void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceExternalFormatResolveFeaturesANDROID& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceExternalFormatResolvePropertiesANDROID& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkAndroidHardwareBufferFormatResolvePropertiesANDROID& value);
+
 void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceShaderObjectFeaturesEXT& value);
 void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceShaderObjectPropertiesEXT& value);
 void EncodeStruct(ParameterEncoder* encoder, const VkShaderCreateInfoEXT& value);
@@ -1174,6 +1178,16 @@ void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceShaderCoreBui
 void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT& value);
 
 void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT& value);
+
+void EncodeStruct(ParameterEncoder* encoder, const VkLatencySleepModeInfoNV& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkLatencySleepInfoNV& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkSetLatencyMarkerInfoNV& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkLatencyTimingsFrameReportNV& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkGetLatencyMarkerInfoNV& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkLatencySubmissionPresentIdNV& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkSwapchainLatencyCreateInfoNV& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkOutOfBandQueueTypeInfoNV& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkLatencySurfaceCapabilitiesNV& value);
 
 void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM& value);
 void EncodeStruct(ParameterEncoder* encoder, const VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM& value);
