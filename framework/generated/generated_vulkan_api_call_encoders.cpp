@@ -19029,6 +19029,255 @@ VKAPI_ATTR void VKAPI_CALL GetPrivateDataEXT(
     CustomEncoderPostCall<format::ApiCallId::ApiCall_vkGetPrivateDataEXT>::Dispatch(VulkanCaptureManager::Get(), device, objectType, objectHandle, privateDataSlot, pData);
 }
 
+VKAPI_ATTR VkResult VKAPI_CALL CreateCudaModuleNV(
+    VkDevice                                    device,
+    const VkCudaModuleCreateInfoNV*             pCreateInfo,
+    const VkAllocationCallbacks*                pAllocator,
+    VkCudaModuleNV*                             pModule)
+{
+    auto force_command_serialization = VulkanCaptureManager::Get()->GetForceCommandSerialization();
+    std::shared_lock<CaptureManager::ApiCallMutexT> shared_api_call_lock;
+    std::unique_lock<CaptureManager::ApiCallMutexT> exclusive_api_call_lock;
+    if (force_command_serialization)
+    {
+        exclusive_api_call_lock = VulkanCaptureManager::AcquireExclusiveApiCallLock();
+    }
+    else
+    {
+        shared_api_call_lock = VulkanCaptureManager::AcquireSharedApiCallLock();
+    }
+
+    bool omit_output_data = false;
+
+    CustomEncoderPreCall<format::ApiCallId::ApiCall_vkCreateCudaModuleNV>::Dispatch(VulkanCaptureManager::Get(), device, pCreateInfo, pAllocator, pModule);
+
+    VkResult result = GetDeviceTable(device)->CreateCudaModuleNV(device, pCreateInfo, pAllocator, pModule);
+
+    if (result >= 0)
+    {
+        CreateWrappedHandle<DeviceWrapper, NoParentWrapper, CudaModuleNVWrapper>(device, NoParentWrapper::kHandleValue, pModule, VulkanCaptureManager::GetUniqueId);
+    }
+    else
+    {
+        omit_output_data = true;
+    }
+
+    auto encoder = VulkanCaptureManager::Get()->BeginTrackedApiCallCapture(format::ApiCallId::ApiCall_vkCreateCudaModuleNV);
+    if (encoder)
+    {
+        encoder->EncodeHandleValue<DeviceWrapper>(device);
+        EncodeStructPtr(encoder, pCreateInfo);
+        EncodeStructPtr(encoder, pAllocator);
+        encoder->EncodeHandlePtr<CudaModuleNVWrapper>(pModule, omit_output_data);
+        encoder->EncodeEnumValue(result);
+        VulkanCaptureManager::Get()->EndCreateApiCallCapture<VkDevice, CudaModuleNVWrapper, VkCudaModuleCreateInfoNV>(result, device, pModule, pCreateInfo);
+    }
+
+    CustomEncoderPostCall<format::ApiCallId::ApiCall_vkCreateCudaModuleNV>::Dispatch(VulkanCaptureManager::Get(), result, device, pCreateInfo, pAllocator, pModule);
+
+    return result;
+}
+
+VKAPI_ATTR VkResult VKAPI_CALL GetCudaModuleCacheNV(
+    VkDevice                                    device,
+    VkCudaModuleNV                              module,
+    size_t*                                     pCacheSize,
+    void*                                       pCacheData)
+{
+    auto force_command_serialization = VulkanCaptureManager::Get()->GetForceCommandSerialization();
+    std::shared_lock<CaptureManager::ApiCallMutexT> shared_api_call_lock;
+    std::unique_lock<CaptureManager::ApiCallMutexT> exclusive_api_call_lock;
+    if (force_command_serialization)
+    {
+        exclusive_api_call_lock = VulkanCaptureManager::AcquireExclusiveApiCallLock();
+    }
+    else
+    {
+        shared_api_call_lock = VulkanCaptureManager::AcquireSharedApiCallLock();
+    }
+
+    bool omit_output_data = false;
+
+    CustomEncoderPreCall<format::ApiCallId::ApiCall_vkGetCudaModuleCacheNV>::Dispatch(VulkanCaptureManager::Get(), device, module, pCacheSize, pCacheData);
+
+    VkResult result = GetDeviceTable(device)->GetCudaModuleCacheNV(device, module, pCacheSize, pCacheData);
+    if (result < 0)
+    {
+        omit_output_data = true;
+    }
+
+    auto encoder = VulkanCaptureManager::Get()->BeginApiCallCapture(format::ApiCallId::ApiCall_vkGetCudaModuleCacheNV);
+    if (encoder)
+    {
+        encoder->EncodeHandleValue<DeviceWrapper>(device);
+        encoder->EncodeHandleValue<CudaModuleNVWrapper>(module);
+        encoder->EncodeSizeTPtr(pCacheSize, omit_output_data);
+        encoder->EncodeVoidArray(pCacheData, (pCacheSize != nullptr) ? (*pCacheSize) : 0, omit_output_data);
+        encoder->EncodeEnumValue(result);
+        VulkanCaptureManager::Get()->EndApiCallCapture();
+    }
+
+    CustomEncoderPostCall<format::ApiCallId::ApiCall_vkGetCudaModuleCacheNV>::Dispatch(VulkanCaptureManager::Get(), result, device, module, pCacheSize, pCacheData);
+
+    return result;
+}
+
+VKAPI_ATTR VkResult VKAPI_CALL CreateCudaFunctionNV(
+    VkDevice                                    device,
+    const VkCudaFunctionCreateInfoNV*           pCreateInfo,
+    const VkAllocationCallbacks*                pAllocator,
+    VkCudaFunctionNV*                           pFunction)
+{
+    auto force_command_serialization = VulkanCaptureManager::Get()->GetForceCommandSerialization();
+    std::shared_lock<CaptureManager::ApiCallMutexT> shared_api_call_lock;
+    std::unique_lock<CaptureManager::ApiCallMutexT> exclusive_api_call_lock;
+    if (force_command_serialization)
+    {
+        exclusive_api_call_lock = VulkanCaptureManager::AcquireExclusiveApiCallLock();
+    }
+    else
+    {
+        shared_api_call_lock = VulkanCaptureManager::AcquireSharedApiCallLock();
+    }
+
+    bool omit_output_data = false;
+
+    CustomEncoderPreCall<format::ApiCallId::ApiCall_vkCreateCudaFunctionNV>::Dispatch(VulkanCaptureManager::Get(), device, pCreateInfo, pAllocator, pFunction);
+
+    auto handle_unwrap_memory = VulkanCaptureManager::Get()->GetHandleUnwrapMemory();
+    const VkCudaFunctionCreateInfoNV* pCreateInfo_unwrapped = UnwrapStructPtrHandles(pCreateInfo, handle_unwrap_memory);
+
+    VkResult result = GetDeviceTable(device)->CreateCudaFunctionNV(device, pCreateInfo_unwrapped, pAllocator, pFunction);
+
+    if (result >= 0)
+    {
+        CreateWrappedHandle<DeviceWrapper, NoParentWrapper, CudaFunctionNVWrapper>(device, NoParentWrapper::kHandleValue, pFunction, VulkanCaptureManager::GetUniqueId);
+    }
+    else
+    {
+        omit_output_data = true;
+    }
+
+    auto encoder = VulkanCaptureManager::Get()->BeginTrackedApiCallCapture(format::ApiCallId::ApiCall_vkCreateCudaFunctionNV);
+    if (encoder)
+    {
+        encoder->EncodeHandleValue<DeviceWrapper>(device);
+        EncodeStructPtr(encoder, pCreateInfo);
+        EncodeStructPtr(encoder, pAllocator);
+        encoder->EncodeHandlePtr<CudaFunctionNVWrapper>(pFunction, omit_output_data);
+        encoder->EncodeEnumValue(result);
+        VulkanCaptureManager::Get()->EndCreateApiCallCapture<VkDevice, CudaFunctionNVWrapper, VkCudaFunctionCreateInfoNV>(result, device, pFunction, pCreateInfo);
+    }
+
+    CustomEncoderPostCall<format::ApiCallId::ApiCall_vkCreateCudaFunctionNV>::Dispatch(VulkanCaptureManager::Get(), result, device, pCreateInfo, pAllocator, pFunction);
+
+    return result;
+}
+
+VKAPI_ATTR void VKAPI_CALL DestroyCudaModuleNV(
+    VkDevice                                    device,
+    VkCudaModuleNV                              module,
+    const VkAllocationCallbacks*                pAllocator)
+{
+    auto force_command_serialization = VulkanCaptureManager::Get()->GetForceCommandSerialization();
+    std::shared_lock<CaptureManager::ApiCallMutexT> shared_api_call_lock;
+    std::unique_lock<CaptureManager::ApiCallMutexT> exclusive_api_call_lock;
+    if (force_command_serialization)
+    {
+        exclusive_api_call_lock = VulkanCaptureManager::AcquireExclusiveApiCallLock();
+    }
+    else
+    {
+        shared_api_call_lock = VulkanCaptureManager::AcquireSharedApiCallLock();
+    }
+
+    CustomEncoderPreCall<format::ApiCallId::ApiCall_vkDestroyCudaModuleNV>::Dispatch(VulkanCaptureManager::Get(), device, module, pAllocator);
+
+    auto encoder = VulkanCaptureManager::Get()->BeginTrackedApiCallCapture(format::ApiCallId::ApiCall_vkDestroyCudaModuleNV);
+    if (encoder)
+    {
+        encoder->EncodeHandleValue<DeviceWrapper>(device);
+        encoder->EncodeHandleValue<CudaModuleNVWrapper>(module);
+        EncodeStructPtr(encoder, pAllocator);
+        VulkanCaptureManager::Get()->EndDestroyApiCallCapture<CudaModuleNVWrapper>(module);
+    }
+
+    GetDeviceTable(device)->DestroyCudaModuleNV(device, module, pAllocator);
+
+    CustomEncoderPostCall<format::ApiCallId::ApiCall_vkDestroyCudaModuleNV>::Dispatch(VulkanCaptureManager::Get(), device, module, pAllocator);
+
+    DestroyWrappedHandle<CudaModuleNVWrapper>(module);
+}
+
+VKAPI_ATTR void VKAPI_CALL DestroyCudaFunctionNV(
+    VkDevice                                    device,
+    VkCudaFunctionNV                            function,
+    const VkAllocationCallbacks*                pAllocator)
+{
+    auto force_command_serialization = VulkanCaptureManager::Get()->GetForceCommandSerialization();
+    std::shared_lock<CaptureManager::ApiCallMutexT> shared_api_call_lock;
+    std::unique_lock<CaptureManager::ApiCallMutexT> exclusive_api_call_lock;
+    if (force_command_serialization)
+    {
+        exclusive_api_call_lock = VulkanCaptureManager::AcquireExclusiveApiCallLock();
+    }
+    else
+    {
+        shared_api_call_lock = VulkanCaptureManager::AcquireSharedApiCallLock();
+    }
+
+    CustomEncoderPreCall<format::ApiCallId::ApiCall_vkDestroyCudaFunctionNV>::Dispatch(VulkanCaptureManager::Get(), device, function, pAllocator);
+
+    auto encoder = VulkanCaptureManager::Get()->BeginTrackedApiCallCapture(format::ApiCallId::ApiCall_vkDestroyCudaFunctionNV);
+    if (encoder)
+    {
+        encoder->EncodeHandleValue<DeviceWrapper>(device);
+        encoder->EncodeHandleValue<CudaFunctionNVWrapper>(function);
+        EncodeStructPtr(encoder, pAllocator);
+        VulkanCaptureManager::Get()->EndDestroyApiCallCapture<CudaFunctionNVWrapper>(function);
+    }
+
+    GetDeviceTable(device)->DestroyCudaFunctionNV(device, function, pAllocator);
+
+    CustomEncoderPostCall<format::ApiCallId::ApiCall_vkDestroyCudaFunctionNV>::Dispatch(VulkanCaptureManager::Get(), device, function, pAllocator);
+
+    DestroyWrappedHandle<CudaFunctionNVWrapper>(function);
+}
+
+VKAPI_ATTR void VKAPI_CALL CmdCudaLaunchKernelNV(
+    VkCommandBuffer                             commandBuffer,
+    const VkCudaLaunchInfoNV*                   pLaunchInfo)
+{
+    auto force_command_serialization = VulkanCaptureManager::Get()->GetForceCommandSerialization();
+    std::shared_lock<CaptureManager::ApiCallMutexT> shared_api_call_lock;
+    std::unique_lock<CaptureManager::ApiCallMutexT> exclusive_api_call_lock;
+    if (force_command_serialization)
+    {
+        exclusive_api_call_lock = VulkanCaptureManager::AcquireExclusiveApiCallLock();
+    }
+    else
+    {
+        shared_api_call_lock = VulkanCaptureManager::AcquireSharedApiCallLock();
+    }
+
+    CustomEncoderPreCall<format::ApiCallId::ApiCall_vkCmdCudaLaunchKernelNV>::Dispatch(VulkanCaptureManager::Get(), commandBuffer, pLaunchInfo);
+
+    auto encoder = VulkanCaptureManager::Get()->BeginTrackedApiCallCapture(format::ApiCallId::ApiCall_vkCmdCudaLaunchKernelNV);
+    if (encoder)
+    {
+        encoder->EncodeHandleValue<CommandBufferWrapper>(commandBuffer);
+        EncodeStructPtr(encoder, pLaunchInfo);
+        VulkanCaptureManager::Get()->EndCommandApiCallCapture(commandBuffer, TrackCmdCudaLaunchKernelNVHandles, pLaunchInfo);
+    }
+
+    auto handle_unwrap_memory = VulkanCaptureManager::Get()->GetHandleUnwrapMemory();
+    const VkCudaLaunchInfoNV* pLaunchInfo_unwrapped = UnwrapStructPtrHandles(pLaunchInfo, handle_unwrap_memory);
+
+    GetDeviceTable(commandBuffer)->CmdCudaLaunchKernelNV(commandBuffer, pLaunchInfo_unwrapped);
+
+    CustomEncoderPostCall<format::ApiCallId::ApiCall_vkCmdCudaLaunchKernelNV>::Dispatch(VulkanCaptureManager::Get(), commandBuffer, pLaunchInfo);
+}
+
 VKAPI_ATTR void VKAPI_CALL CmdSetFragmentShadingRateEnumNV(
     VkCommandBuffer                             commandBuffer,
     VkFragmentShadingRateNV                     shadingRate,

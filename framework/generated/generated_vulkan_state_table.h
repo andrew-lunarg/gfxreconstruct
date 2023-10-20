@@ -47,6 +47,8 @@ class VulkanStateTable : VulkanStateTableBase
     bool InsertWrapper(format::HandleId id, BufferViewWrapper* wrapper) { return InsertEntry(id, wrapper, bufferView_map_); }
     bool InsertWrapper(format::HandleId id, CommandBufferWrapper* wrapper) { return InsertEntry(id, wrapper, commandBuffer_map_); }
     bool InsertWrapper(format::HandleId id, CommandPoolWrapper* wrapper) { return InsertEntry(id, wrapper, commandPool_map_); }
+    bool InsertWrapper(format::HandleId id, CudaFunctionNVWrapper* wrapper) { return InsertEntry(id, wrapper, cudaFunctionNV_map_); }
+    bool InsertWrapper(format::HandleId id, CudaModuleNVWrapper* wrapper) { return InsertEntry(id, wrapper, cudaModuleNV_map_); }
     bool InsertWrapper(format::HandleId id, DebugReportCallbackEXTWrapper* wrapper) { return InsertEntry(id, wrapper, debugReportCallbackEXT_map_); }
     bool InsertWrapper(format::HandleId id, DebugUtilsMessengerEXTWrapper* wrapper) { return InsertEntry(id, wrapper, debugUtilsMessengerEXT_map_); }
     bool InsertWrapper(format::HandleId id, DeferredOperationKHRWrapper* wrapper) { return InsertEntry(id, wrapper, deferredOperationKHR_map_); }
@@ -93,6 +95,8 @@ class VulkanStateTable : VulkanStateTableBase
     bool RemoveWrapper(const BufferViewWrapper* wrapper) { return RemoveEntry(wrapper, bufferView_map_); }
     bool RemoveWrapper(const CommandBufferWrapper* wrapper) { return RemoveEntry(wrapper, commandBuffer_map_); }
     bool RemoveWrapper(const CommandPoolWrapper* wrapper) { return RemoveEntry(wrapper, commandPool_map_); }
+    bool RemoveWrapper(const CudaFunctionNVWrapper* wrapper) { return RemoveEntry(wrapper, cudaFunctionNV_map_); }
+    bool RemoveWrapper(const CudaModuleNVWrapper* wrapper) { return RemoveEntry(wrapper, cudaModuleNV_map_); }
     bool RemoveWrapper(const DebugReportCallbackEXTWrapper* wrapper) { return RemoveEntry(wrapper, debugReportCallbackEXT_map_); }
     bool RemoveWrapper(const DebugUtilsMessengerEXTWrapper* wrapper) { return RemoveEntry(wrapper, debugUtilsMessengerEXT_map_); }
     bool RemoveWrapper(const DeferredOperationKHRWrapper* wrapper) { return RemoveEntry(wrapper, deferredOperationKHR_map_); }
@@ -139,6 +143,8 @@ class VulkanStateTable : VulkanStateTableBase
     const BufferViewWrapper* GetBufferViewWrapper(format::HandleId id) const { return GetWrapper<BufferViewWrapper>(id, bufferView_map_); }
     const CommandBufferWrapper* GetCommandBufferWrapper(format::HandleId id) const { return GetWrapper<CommandBufferWrapper>(id, commandBuffer_map_); }
     const CommandPoolWrapper* GetCommandPoolWrapper(format::HandleId id) const { return GetWrapper<CommandPoolWrapper>(id, commandPool_map_); }
+    const CudaFunctionNVWrapper* GetCudaFunctionNVWrapper(format::HandleId id) const { return GetWrapper<CudaFunctionNVWrapper>(id, cudaFunctionNV_map_); }
+    const CudaModuleNVWrapper* GetCudaModuleNVWrapper(format::HandleId id) const { return GetWrapper<CudaModuleNVWrapper>(id, cudaModuleNV_map_); }
     const DebugReportCallbackEXTWrapper* GetDebugReportCallbackEXTWrapper(format::HandleId id) const { return GetWrapper<DebugReportCallbackEXTWrapper>(id, debugReportCallbackEXT_map_); }
     const DebugUtilsMessengerEXTWrapper* GetDebugUtilsMessengerEXTWrapper(format::HandleId id) const { return GetWrapper<DebugUtilsMessengerEXTWrapper>(id, debugUtilsMessengerEXT_map_); }
     const DeferredOperationKHRWrapper* GetDeferredOperationKHRWrapper(format::HandleId id) const { return GetWrapper<DeferredOperationKHRWrapper>(id, deferredOperationKHR_map_); }
@@ -185,6 +191,8 @@ class VulkanStateTable : VulkanStateTableBase
     BufferViewWrapper* GetBufferViewWrapper(format::HandleId id) { return GetWrapper<BufferViewWrapper>(id, bufferView_map_); }
     CommandBufferWrapper* GetCommandBufferWrapper(format::HandleId id) { return GetWrapper<CommandBufferWrapper>(id, commandBuffer_map_); }
     CommandPoolWrapper* GetCommandPoolWrapper(format::HandleId id) { return GetWrapper<CommandPoolWrapper>(id, commandPool_map_); }
+    CudaFunctionNVWrapper* GetCudaFunctionNVWrapper(format::HandleId id) { return GetWrapper<CudaFunctionNVWrapper>(id, cudaFunctionNV_map_); }
+    CudaModuleNVWrapper* GetCudaModuleNVWrapper(format::HandleId id) { return GetWrapper<CudaModuleNVWrapper>(id, cudaModuleNV_map_); }
     DebugReportCallbackEXTWrapper* GetDebugReportCallbackEXTWrapper(format::HandleId id) { return GetWrapper<DebugReportCallbackEXTWrapper>(id, debugReportCallbackEXT_map_); }
     DebugUtilsMessengerEXTWrapper* GetDebugUtilsMessengerEXTWrapper(format::HandleId id) { return GetWrapper<DebugUtilsMessengerEXTWrapper>(id, debugUtilsMessengerEXT_map_); }
     DeferredOperationKHRWrapper* GetDeferredOperationKHRWrapper(format::HandleId id) { return GetWrapper<DeferredOperationKHRWrapper>(id, deferredOperationKHR_map_); }
@@ -231,6 +239,8 @@ class VulkanStateTable : VulkanStateTableBase
     void VisitWrappers(std::function<void(BufferViewWrapper*)> visitor) const { for (auto entry : bufferView_map_) { visitor(entry.second); } }
     void VisitWrappers(std::function<void(CommandBufferWrapper*)> visitor) const { for (auto entry : commandBuffer_map_) { visitor(entry.second); } }
     void VisitWrappers(std::function<void(CommandPoolWrapper*)> visitor) const { for (auto entry : commandPool_map_) { visitor(entry.second); } }
+    void VisitWrappers(std::function<void(CudaFunctionNVWrapper*)> visitor) const { for (auto entry : cudaFunctionNV_map_) { visitor(entry.second); } }
+    void VisitWrappers(std::function<void(CudaModuleNVWrapper*)> visitor) const { for (auto entry : cudaModuleNV_map_) { visitor(entry.second); } }
     void VisitWrappers(std::function<void(DebugReportCallbackEXTWrapper*)> visitor) const { for (auto entry : debugReportCallbackEXT_map_) { visitor(entry.second); } }
     void VisitWrappers(std::function<void(DebugUtilsMessengerEXTWrapper*)> visitor) const { for (auto entry : debugUtilsMessengerEXT_map_) { visitor(entry.second); } }
     void VisitWrappers(std::function<void(DeferredOperationKHRWrapper*)> visitor) const { for (auto entry : deferredOperationKHR_map_) { visitor(entry.second); } }
@@ -278,6 +288,8 @@ class VulkanStateTable : VulkanStateTableBase
     std::map<format::HandleId, BufferViewWrapper*> bufferView_map_;
     std::map<format::HandleId, CommandBufferWrapper*> commandBuffer_map_;
     std::map<format::HandleId, CommandPoolWrapper*> commandPool_map_;
+    std::map<format::HandleId, CudaFunctionNVWrapper*> cudaFunctionNV_map_;
+    std::map<format::HandleId, CudaModuleNVWrapper*> cudaModuleNV_map_;
     std::map<format::HandleId, DebugReportCallbackEXTWrapper*> debugReportCallbackEXT_map_;
     std::map<format::HandleId, DebugUtilsMessengerEXTWrapper*> debugUtilsMessengerEXT_map_;
     std::map<format::HandleId, DeferredOperationKHRWrapper*> deferredOperationKHR_map_;
@@ -331,6 +343,8 @@ class VulkanStateHandleTable : VulkanStateTableBase
     bool InsertWrapper(BufferViewWrapper* wrapper) { return InsertEntry(wrapper->handle, wrapper, bufferView_map_); }
     bool InsertWrapper(CommandBufferWrapper* wrapper) { return InsertEntry(wrapper->handle, wrapper, commandBuffer_map_); }
     bool InsertWrapper(CommandPoolWrapper* wrapper) { return InsertEntry(wrapper->handle, wrapper, commandPool_map_); }
+    bool InsertWrapper(CudaFunctionNVWrapper* wrapper) { return InsertEntry(wrapper->handle, wrapper, cudaFunctionNV_map_); }
+    bool InsertWrapper(CudaModuleNVWrapper* wrapper) { return InsertEntry(wrapper->handle, wrapper, cudaModuleNV_map_); }
     bool InsertWrapper(DebugReportCallbackEXTWrapper* wrapper) { return InsertEntry(wrapper->handle, wrapper, debugReportCallbackEXT_map_); }
     bool InsertWrapper(DebugUtilsMessengerEXTWrapper* wrapper) { return InsertEntry(wrapper->handle, wrapper, debugUtilsMessengerEXT_map_); }
     bool InsertWrapper(DeferredOperationKHRWrapper* wrapper) { return InsertEntry(wrapper->handle, wrapper, deferredOperationKHR_map_); }
@@ -394,6 +408,14 @@ class VulkanStateHandleTable : VulkanStateTableBase
     bool RemoveWrapper(const CommandPoolWrapper* wrapper) {
          if (wrapper == nullptr) return false;
          return RemoveEntry(wrapper->handle, commandPool_map_);
+    }
+    bool RemoveWrapper(const CudaFunctionNVWrapper* wrapper) {
+         if (wrapper == nullptr) return false;
+         return RemoveEntry(wrapper->handle, cudaFunctionNV_map_);
+    }
+    bool RemoveWrapper(const CudaModuleNVWrapper* wrapper) {
+         if (wrapper == nullptr) return false;
+         return RemoveEntry(wrapper->handle, cudaModuleNV_map_);
     }
     bool RemoveWrapper(const DebugReportCallbackEXTWrapper* wrapper) {
          if (wrapper == nullptr) return false;
@@ -563,6 +585,8 @@ class VulkanStateHandleTable : VulkanStateTableBase
     std::unordered_map<VkBufferView, BufferViewWrapper*> bufferView_map_;
     std::unordered_map<VkCommandBuffer, CommandBufferWrapper*> commandBuffer_map_;
     std::unordered_map<VkCommandPool, CommandPoolWrapper*> commandPool_map_;
+    std::unordered_map<VkCudaFunctionNV, CudaFunctionNVWrapper*> cudaFunctionNV_map_;
+    std::unordered_map<VkCudaModuleNV, CudaModuleNVWrapper*> cudaModuleNV_map_;
     std::unordered_map<VkDebugReportCallbackEXT, DebugReportCallbackEXTWrapper*> debugReportCallbackEXT_map_;
     std::unordered_map<VkDebugUtilsMessengerEXT, DebugUtilsMessengerEXTWrapper*> debugUtilsMessengerEXT_map_;
     std::unordered_map<VkDeferredOperationKHR, DeferredOperationKHRWrapper*> deferredOperationKHR_map_;
@@ -610,6 +634,8 @@ template<> inline const BufferWrapper* VulkanStateHandleTable::GetWrapper<Buffer
 template<> inline const BufferViewWrapper* VulkanStateHandleTable::GetWrapper<BufferViewWrapper>(VkBufferView handle) const { return VulkanStateTableBase::GetWrapper(handle, bufferView_map_); }
 template<> inline const CommandBufferWrapper* VulkanStateHandleTable::GetWrapper<CommandBufferWrapper>(VkCommandBuffer handle) const { return VulkanStateTableBase::GetWrapper(handle, commandBuffer_map_); }
 template<> inline const CommandPoolWrapper* VulkanStateHandleTable::GetWrapper<CommandPoolWrapper>(VkCommandPool handle) const { return VulkanStateTableBase::GetWrapper(handle, commandPool_map_); }
+template<> inline const CudaFunctionNVWrapper* VulkanStateHandleTable::GetWrapper<CudaFunctionNVWrapper>(VkCudaFunctionNV handle) const { return VulkanStateTableBase::GetWrapper(handle, cudaFunctionNV_map_); }
+template<> inline const CudaModuleNVWrapper* VulkanStateHandleTable::GetWrapper<CudaModuleNVWrapper>(VkCudaModuleNV handle) const { return VulkanStateTableBase::GetWrapper(handle, cudaModuleNV_map_); }
 template<> inline const DebugReportCallbackEXTWrapper* VulkanStateHandleTable::GetWrapper<DebugReportCallbackEXTWrapper>(VkDebugReportCallbackEXT handle) const { return VulkanStateTableBase::GetWrapper(handle, debugReportCallbackEXT_map_); }
 template<> inline const DebugUtilsMessengerEXTWrapper* VulkanStateHandleTable::GetWrapper<DebugUtilsMessengerEXTWrapper>(VkDebugUtilsMessengerEXT handle) const { return VulkanStateTableBase::GetWrapper(handle, debugUtilsMessengerEXT_map_); }
 template<> inline const DeferredOperationKHRWrapper* VulkanStateHandleTable::GetWrapper<DeferredOperationKHRWrapper>(VkDeferredOperationKHR handle) const { return VulkanStateTableBase::GetWrapper(handle, deferredOperationKHR_map_); }
@@ -656,6 +682,8 @@ template<> inline BufferWrapper* VulkanStateHandleTable::GetWrapper<BufferWrappe
 template<> inline BufferViewWrapper* VulkanStateHandleTable::GetWrapper<BufferViewWrapper>(VkBufferView handle) { return VulkanStateTableBase::GetWrapper(handle, bufferView_map_); }
 template<> inline CommandBufferWrapper* VulkanStateHandleTable::GetWrapper<CommandBufferWrapper>(VkCommandBuffer handle) { return VulkanStateTableBase::GetWrapper(handle, commandBuffer_map_); }
 template<> inline CommandPoolWrapper* VulkanStateHandleTable::GetWrapper<CommandPoolWrapper>(VkCommandPool handle) { return VulkanStateTableBase::GetWrapper(handle, commandPool_map_); }
+template<> inline CudaFunctionNVWrapper* VulkanStateHandleTable::GetWrapper<CudaFunctionNVWrapper>(VkCudaFunctionNV handle) { return VulkanStateTableBase::GetWrapper(handle, cudaFunctionNV_map_); }
+template<> inline CudaModuleNVWrapper* VulkanStateHandleTable::GetWrapper<CudaModuleNVWrapper>(VkCudaModuleNV handle) { return VulkanStateTableBase::GetWrapper(handle, cudaModuleNV_map_); }
 template<> inline DebugReportCallbackEXTWrapper* VulkanStateHandleTable::GetWrapper<DebugReportCallbackEXTWrapper>(VkDebugReportCallbackEXT handle) { return VulkanStateTableBase::GetWrapper(handle, debugReportCallbackEXT_map_); }
 template<> inline DebugUtilsMessengerEXTWrapper* VulkanStateHandleTable::GetWrapper<DebugUtilsMessengerEXTWrapper>(VkDebugUtilsMessengerEXT handle) { return VulkanStateTableBase::GetWrapper(handle, debugUtilsMessengerEXT_map_); }
 template<> inline DeferredOperationKHRWrapper* VulkanStateHandleTable::GetWrapper<DeferredOperationKHRWrapper>(VkDeferredOperationKHR handle) { return VulkanStateTableBase::GetWrapper(handle, deferredOperationKHR_map_); }

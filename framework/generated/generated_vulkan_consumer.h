@@ -3481,6 +3481,47 @@ class VulkanConsumer : public VulkanConsumerBase
         format::HandleId                            privateDataSlot,
         PointerDecoder<uint64_t>*                   pData) {}
 
+    virtual void Process_vkCreateCudaModuleNV(
+        const ApiCallInfo&                          call_info,
+        VkResult                                    returnValue,
+        format::HandleId                            device,
+        StructPointerDecoder<Decoded_VkCudaModuleCreateInfoNV>* pCreateInfo,
+        StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator,
+        HandlePointerDecoder<VkCudaModuleNV>*       pModule) {}
+
+    virtual void Process_vkGetCudaModuleCacheNV(
+        const ApiCallInfo&                          call_info,
+        VkResult                                    returnValue,
+        format::HandleId                            device,
+        format::HandleId                            module,
+        PointerDecoder<size_t>*                     pCacheSize,
+        PointerDecoder<uint8_t>*                    pCacheData) {}
+
+    virtual void Process_vkCreateCudaFunctionNV(
+        const ApiCallInfo&                          call_info,
+        VkResult                                    returnValue,
+        format::HandleId                            device,
+        StructPointerDecoder<Decoded_VkCudaFunctionCreateInfoNV>* pCreateInfo,
+        StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator,
+        HandlePointerDecoder<VkCudaFunctionNV>*     pFunction) {}
+
+    virtual void Process_vkDestroyCudaModuleNV(
+        const ApiCallInfo&                          call_info,
+        format::HandleId                            device,
+        format::HandleId                            module,
+        StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator) {}
+
+    virtual void Process_vkDestroyCudaFunctionNV(
+        const ApiCallInfo&                          call_info,
+        format::HandleId                            device,
+        format::HandleId                            function,
+        StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator) {}
+
+    virtual void Process_vkCmdCudaLaunchKernelNV(
+        const ApiCallInfo&                          call_info,
+        format::HandleId                            commandBuffer,
+        StructPointerDecoder<Decoded_VkCudaLaunchInfoNV>* pLaunchInfo) {}
+
     virtual void Process_vkCmdSetFragmentShadingRateEnumNV(
         const ApiCallInfo&                          call_info,
         format::HandleId                            commandBuffer,

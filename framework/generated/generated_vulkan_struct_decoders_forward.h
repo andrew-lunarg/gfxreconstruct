@@ -1863,6 +1863,18 @@ struct Decoded_VkDeviceDiagnosticsConfigCreateInfoNV;
 size_t DecodeStruct(const uint8_t* parameter_buffer, size_t buffer_size, Decoded_VkPhysicalDeviceDiagnosticsConfigFeaturesNV* wrapper);
 size_t DecodeStruct(const uint8_t* parameter_buffer, size_t buffer_size, Decoded_VkDeviceDiagnosticsConfigCreateInfoNV* wrapper);
 
+struct Decoded_VkCudaModuleCreateInfoNV;
+struct Decoded_VkCudaFunctionCreateInfoNV;
+struct Decoded_VkCudaLaunchInfoNV;
+struct Decoded_VkPhysicalDeviceCudaKernelLaunchFeaturesNV;
+struct Decoded_VkPhysicalDeviceCudaKernelLaunchPropertiesNV;
+
+size_t DecodeStruct(const uint8_t* parameter_buffer, size_t buffer_size, Decoded_VkCudaModuleCreateInfoNV* wrapper);
+size_t DecodeStruct(const uint8_t* parameter_buffer, size_t buffer_size, Decoded_VkCudaFunctionCreateInfoNV* wrapper);
+size_t DecodeStruct(const uint8_t* parameter_buffer, size_t buffer_size, Decoded_VkCudaLaunchInfoNV* wrapper);
+size_t DecodeStruct(const uint8_t* parameter_buffer, size_t buffer_size, Decoded_VkPhysicalDeviceCudaKernelLaunchFeaturesNV* wrapper);
+size_t DecodeStruct(const uint8_t* parameter_buffer, size_t buffer_size, Decoded_VkPhysicalDeviceCudaKernelLaunchPropertiesNV* wrapper);
+
 struct Decoded_VkQueryLowLatencySupportNV;
 
 size_t DecodeStruct(const uint8_t* parameter_buffer, size_t buffer_size, Decoded_VkQueryLowLatencySupportNV* wrapper);
@@ -2128,6 +2140,14 @@ size_t DecodeStruct(const uint8_t* parameter_buffer, size_t buffer_size, Decoded
 struct Decoded_VkPhysicalDeviceShaderCorePropertiesARM;
 
 size_t DecodeStruct(const uint8_t* parameter_buffer, size_t buffer_size, Decoded_VkPhysicalDeviceShaderCorePropertiesARM* wrapper);
+
+struct Decoded_VkDeviceQueueShaderCoreControlCreateInfoARM;
+struct Decoded_VkPhysicalDeviceSchedulingControlsFeaturesARM;
+struct Decoded_VkPhysicalDeviceSchedulingControlsPropertiesARM;
+
+size_t DecodeStruct(const uint8_t* parameter_buffer, size_t buffer_size, Decoded_VkDeviceQueueShaderCoreControlCreateInfoARM* wrapper);
+size_t DecodeStruct(const uint8_t* parameter_buffer, size_t buffer_size, Decoded_VkPhysicalDeviceSchedulingControlsFeaturesARM* wrapper);
+size_t DecodeStruct(const uint8_t* parameter_buffer, size_t buffer_size, Decoded_VkPhysicalDeviceSchedulingControlsPropertiesARM* wrapper);
 
 struct Decoded_VkPhysicalDeviceImageSlicedViewOf3DFeaturesEXT;
 struct Decoded_VkImageViewSlicedCreateInfoEXT;

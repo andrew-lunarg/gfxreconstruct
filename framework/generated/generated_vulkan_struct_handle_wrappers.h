@@ -317,6 +317,10 @@ void UnwrapStructHandles(VkGeneratedCommandsInfoNV* value, HandleUnwrapMemory* u
 
 void UnwrapStructHandles(VkGeneratedCommandsMemoryRequirementsInfoNV* value, HandleUnwrapMemory* unwrap_memory);
 
+void UnwrapStructHandles(VkCudaFunctionCreateInfoNV* value, HandleUnwrapMemory* unwrap_memory);
+
+void UnwrapStructHandles(VkCudaLaunchInfoNV* value, HandleUnwrapMemory* unwrap_memory);
+
 void UnwrapStructHandles(VkMemoryGetZirconHandleInfoFUCHSIA* value, HandleUnwrapMemory* unwrap_memory);
 
 void UnwrapStructHandles(VkImportSemaphoreZirconHandleInfoFUCHSIA* value, HandleUnwrapMemory* unwrap_memory);

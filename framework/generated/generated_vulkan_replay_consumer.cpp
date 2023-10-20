@@ -7650,6 +7650,106 @@ void VulkanReplayConsumer::Process_vkGetPrivateDataEXT(
     GetDeviceTable(in_device)->GetPrivateDataEXT(in_device, objectType, in_objectHandle, in_privateDataSlot, out_pData);
 }
 
+void VulkanReplayConsumer::Process_vkCreateCudaModuleNV(
+    const ApiCallInfo&                          call_info,
+    VkResult                                    returnValue,
+    format::HandleId                            device,
+    StructPointerDecoder<Decoded_VkCudaModuleCreateInfoNV>* pCreateInfo,
+    StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator,
+    HandlePointerDecoder<VkCudaModuleNV>*       pModule)
+{
+    VkDevice in_device = MapHandle<DeviceInfo>(device, &VulkanObjectInfoTable::GetDeviceInfo);
+    const VkCudaModuleCreateInfoNV* in_pCreateInfo = pCreateInfo->GetPointer();
+    const VkAllocationCallbacks* in_pAllocator = GetAllocationCallbacks(pAllocator);
+    if (!pModule->IsNull()) { pModule->SetHandleLength(1); }
+    VkCudaModuleNV* out_pModule = pModule->GetHandlePointer();
+
+    VkResult replay_result = GetDeviceTable(in_device)->CreateCudaModuleNV(in_device, in_pCreateInfo, in_pAllocator, out_pModule);
+    CheckResult("vkCreateCudaModuleNV", returnValue, replay_result, call_info);
+
+    AddHandle<CudaModuleNVInfo>(device, pModule->GetPointer(), out_pModule, &VulkanObjectInfoTable::AddCudaModuleNVInfo);
+}
+
+void VulkanReplayConsumer::Process_vkGetCudaModuleCacheNV(
+    const ApiCallInfo&                          call_info,
+    VkResult                                    returnValue,
+    format::HandleId                            device,
+    format::HandleId                            module,
+    PointerDecoder<size_t>*                     pCacheSize,
+    PointerDecoder<uint8_t>*                    pCacheData)
+{
+    VkDevice in_device = MapHandle<DeviceInfo>(device, &VulkanObjectInfoTable::GetDeviceInfo);
+    VkCudaModuleNV in_module = MapHandle<CudaModuleNVInfo>(module, &VulkanObjectInfoTable::GetCudaModuleNVInfo);
+    size_t* out_pCacheSize = pCacheSize->IsNull() ? nullptr : pCacheSize->AllocateOutputData(1, GetOutputArrayCount<size_t, CudaModuleNVInfo>("vkGetCudaModuleCacheNV", returnValue, module, kCudaModuleNVArrayGetCudaModuleCacheNV, pCacheSize, pCacheData, &VulkanObjectInfoTable::GetCudaModuleNVInfo));
+    void* out_pCacheData = pCacheData->IsNull() ? nullptr : pCacheData->AllocateOutputData(*out_pCacheSize);
+
+    VkResult replay_result = GetDeviceTable(in_device)->GetCudaModuleCacheNV(in_device, in_module, out_pCacheSize, out_pCacheData);
+    CheckResult("vkGetCudaModuleCacheNV", returnValue, replay_result, call_info);
+
+    if (pCacheData->IsNull()) { SetOutputArrayCount<CudaModuleNVInfo>(module, kCudaModuleNVArrayGetCudaModuleCacheNV, *out_pCacheSize, &VulkanObjectInfoTable::GetCudaModuleNVInfo); }
+}
+
+void VulkanReplayConsumer::Process_vkCreateCudaFunctionNV(
+    const ApiCallInfo&                          call_info,
+    VkResult                                    returnValue,
+    format::HandleId                            device,
+    StructPointerDecoder<Decoded_VkCudaFunctionCreateInfoNV>* pCreateInfo,
+    StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator,
+    HandlePointerDecoder<VkCudaFunctionNV>*     pFunction)
+{
+    VkDevice in_device = MapHandle<DeviceInfo>(device, &VulkanObjectInfoTable::GetDeviceInfo);
+    const VkCudaFunctionCreateInfoNV* in_pCreateInfo = pCreateInfo->GetPointer();
+    MapStructHandles(pCreateInfo->GetMetaStructPointer(), GetObjectInfoTable());
+    const VkAllocationCallbacks* in_pAllocator = GetAllocationCallbacks(pAllocator);
+    if (!pFunction->IsNull()) { pFunction->SetHandleLength(1); }
+    VkCudaFunctionNV* out_pFunction = pFunction->GetHandlePointer();
+
+    VkResult replay_result = GetDeviceTable(in_device)->CreateCudaFunctionNV(in_device, in_pCreateInfo, in_pAllocator, out_pFunction);
+    CheckResult("vkCreateCudaFunctionNV", returnValue, replay_result, call_info);
+
+    AddHandle<CudaFunctionNVInfo>(device, pFunction->GetPointer(), out_pFunction, &VulkanObjectInfoTable::AddCudaFunctionNVInfo);
+}
+
+void VulkanReplayConsumer::Process_vkDestroyCudaModuleNV(
+    const ApiCallInfo&                          call_info,
+    format::HandleId                            device,
+    format::HandleId                            module,
+    StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator)
+{
+    VkDevice in_device = MapHandle<DeviceInfo>(device, &VulkanObjectInfoTable::GetDeviceInfo);
+    VkCudaModuleNV in_module = MapHandle<CudaModuleNVInfo>(module, &VulkanObjectInfoTable::GetCudaModuleNVInfo);
+    const VkAllocationCallbacks* in_pAllocator = GetAllocationCallbacks(pAllocator);
+
+    GetDeviceTable(in_device)->DestroyCudaModuleNV(in_device, in_module, in_pAllocator);
+    RemoveHandle(module, &VulkanObjectInfoTable::RemoveCudaModuleNVInfo);
+}
+
+void VulkanReplayConsumer::Process_vkDestroyCudaFunctionNV(
+    const ApiCallInfo&                          call_info,
+    format::HandleId                            device,
+    format::HandleId                            function,
+    StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator)
+{
+    VkDevice in_device = MapHandle<DeviceInfo>(device, &VulkanObjectInfoTable::GetDeviceInfo);
+    VkCudaFunctionNV in_function = MapHandle<CudaFunctionNVInfo>(function, &VulkanObjectInfoTable::GetCudaFunctionNVInfo);
+    const VkAllocationCallbacks* in_pAllocator = GetAllocationCallbacks(pAllocator);
+
+    GetDeviceTable(in_device)->DestroyCudaFunctionNV(in_device, in_function, in_pAllocator);
+    RemoveHandle(function, &VulkanObjectInfoTable::RemoveCudaFunctionNVInfo);
+}
+
+void VulkanReplayConsumer::Process_vkCmdCudaLaunchKernelNV(
+    const ApiCallInfo&                          call_info,
+    format::HandleId                            commandBuffer,
+    StructPointerDecoder<Decoded_VkCudaLaunchInfoNV>* pLaunchInfo)
+{
+    VkCommandBuffer in_commandBuffer = MapHandle<CommandBufferInfo>(commandBuffer, &VulkanObjectInfoTable::GetCommandBufferInfo);
+    const VkCudaLaunchInfoNV* in_pLaunchInfo = pLaunchInfo->GetPointer();
+    MapStructHandles(pLaunchInfo->GetMetaStructPointer(), GetObjectInfoTable());
+
+    GetDeviceTable(in_commandBuffer)->CmdCudaLaunchKernelNV(in_commandBuffer, in_pLaunchInfo);
+}
+
 void VulkanReplayConsumer::Process_vkCmdSetFragmentShadingRateEnumNV(
     const ApiCallInfo&                          call_info,
     format::HandleId                            commandBuffer,
@@ -12217,6 +12317,31 @@ static void InitializeOutputStructPNextImpl(const VkBaseInStructure* in_pnext, V
                 output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkDeviceDiagnosticsConfigCreateInfoNV>());
                 break;
             }
+            case VK_STRUCTURE_TYPE_CUDA_MODULE_CREATE_INFO_NV:
+            {
+                output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkCudaModuleCreateInfoNV>());
+                break;
+            }
+            case VK_STRUCTURE_TYPE_CUDA_FUNCTION_CREATE_INFO_NV:
+            {
+                output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkCudaFunctionCreateInfoNV>());
+                break;
+            }
+            case VK_STRUCTURE_TYPE_CUDA_LAUNCH_INFO_NV:
+            {
+                output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkCudaLaunchInfoNV>());
+                break;
+            }
+            case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV:
+            {
+                output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkPhysicalDeviceCudaKernelLaunchFeaturesNV>());
+                break;
+            }
+            case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV:
+            {
+                output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkPhysicalDeviceCudaKernelLaunchPropertiesNV>());
+                break;
+            }
             case VK_STRUCTURE_TYPE_QUERY_LOW_LATENCY_SUPPORT_NV:
             {
                 output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkQueryLowLatencySupportNV>());
@@ -12620,6 +12745,21 @@ static void InitializeOutputStructPNextImpl(const VkBaseInStructure* in_pnext, V
             case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM:
             {
                 output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkPhysicalDeviceShaderCorePropertiesARM>());
+                break;
+            }
+            case VK_STRUCTURE_TYPE_DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM:
+            {
+                output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkDeviceQueueShaderCoreControlCreateInfoARM>());
+                break;
+            }
+            case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM:
+            {
+                output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkPhysicalDeviceSchedulingControlsFeaturesARM>());
+                break;
+            }
+            case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM:
+            {
+                output_struct->pNext = reinterpret_cast<VkBaseOutStructure*>(DecodeAllocator::Allocate<VkPhysicalDeviceSchedulingControlsPropertiesARM>());
                 break;
             }
             case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT:

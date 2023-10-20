@@ -220,6 +220,8 @@ void TrackCmdExecuteGeneratedCommandsNVHandles(CommandBufferWrapper* wrapper, co
 
 void TrackCmdBindPipelineShaderGroupNVHandles(CommandBufferWrapper* wrapper, VkPipeline pipeline);
 
+void TrackCmdCudaLaunchKernelNVHandles(CommandBufferWrapper* wrapper, const VkCudaLaunchInfoNV* pLaunchInfo);
+
 void TrackCmdBindInvocationMaskHUAWEIHandles(CommandBufferWrapper* wrapper, VkImageView imageView);
 
 void TrackCmdBuildMicromapsEXTHandles(CommandBufferWrapper* wrapper, uint32_t infoCount, const VkMicromapBuildInfoEXT* pInfos);

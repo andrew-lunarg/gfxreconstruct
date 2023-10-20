@@ -133,6 +133,7 @@ struct VkOpticalFlowSessionCreateFlagsNV_t { };
 struct VkOpticalFlowUsageFlagsNV_t { };
 struct VkPeerMemoryFeatureFlags_t { };
 struct VkPerformanceCounterDescriptionFlagsKHR_t { };
+struct VkPhysicalDeviceSchedulingControlsFlagsARM_t { };
 struct VkPipelineCacheCreateFlags_t { };
 struct VkPipelineColorBlendStateCreateFlags_t { };
 struct VkPipelineCompilerControlFlagsAMD_t { };
@@ -394,6 +395,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const VkPerformanceCounterUnitKH
 void FieldToJson(nlohmann::ordered_json& jdata, const VkPerformanceOverrideTypeINTEL& value, const JsonOptions& options = JsonOptions());
 void FieldToJson(nlohmann::ordered_json& jdata, const VkPerformanceParameterTypeINTEL& value, const JsonOptions& options = JsonOptions());
 void FieldToJson(nlohmann::ordered_json& jdata, const VkPerformanceValueTypeINTEL& value, const JsonOptions& options = JsonOptions());
+void FieldToJson(nlohmann::ordered_json& jdata, const VkPhysicalDeviceSchedulingControlsFlagBitsARM& value, const JsonOptions& options = JsonOptions());
 void FieldToJson(nlohmann::ordered_json& jdata, const VkPhysicalDeviceType& value, const JsonOptions& options = JsonOptions());
 void FieldToJson(nlohmann::ordered_json& jdata, const VkPipelineBindPoint& value, const JsonOptions& options = JsonOptions());
 void FieldToJson(nlohmann::ordered_json& jdata, const VkPipelineCacheCreateFlagBits& value, const JsonOptions& options = JsonOptions());
@@ -590,6 +592,7 @@ void FieldToJson(VkOpticalFlowSessionCreateFlagsNV_t, nlohmann::ordered_json& jd
 void FieldToJson(VkOpticalFlowUsageFlagsNV_t, nlohmann::ordered_json& jdata, const VkFlags flags, const JsonOptions& options = JsonOptions());
 void FieldToJson(VkPeerMemoryFeatureFlags_t, nlohmann::ordered_json& jdata, const VkFlags flags, const JsonOptions& options = JsonOptions());
 void FieldToJson(VkPerformanceCounterDescriptionFlagsKHR_t, nlohmann::ordered_json& jdata, const VkFlags flags, const JsonOptions& options = JsonOptions());
+void FieldToJson(VkPhysicalDeviceSchedulingControlsFlagsARM_t, nlohmann::ordered_json& jdata, const VkFlags64 flags, const JsonOptions& options = JsonOptions());
 void FieldToJson(VkPipelineCacheCreateFlags_t, nlohmann::ordered_json& jdata, const VkFlags flags, const JsonOptions& options = JsonOptions());
 void FieldToJson(VkPipelineColorBlendStateCreateFlags_t, nlohmann::ordered_json& jdata, const VkFlags flags, const JsonOptions& options = JsonOptions());
 void FieldToJson(VkPipelineCompilerControlFlagsAMD_t, nlohmann::ordered_json& jdata, const VkFlags flags, const JsonOptions& options = JsonOptions());

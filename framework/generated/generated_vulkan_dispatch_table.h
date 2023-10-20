@@ -575,6 +575,12 @@ static VKAPI_ATTR VkResult VKAPI_CALL CreatePrivateDataSlotEXT(VkDevice, const V
 static VKAPI_ATTR void VKAPI_CALL DestroyPrivateDataSlotEXT(VkDevice, VkPrivateDataSlot, const VkAllocationCallbacks*) { GFXRECON_LOG_WARNING_ONCE("Unsupported function vkDestroyPrivateDataSlotEXT was called, resulting in no-op behavior."); }
 static VKAPI_ATTR VkResult VKAPI_CALL SetPrivateDataEXT(VkDevice, VkObjectType, uint64_t, VkPrivateDataSlot, uint64_t) { GFXRECON_LOG_WARNING_ONCE("Unsupported function vkSetPrivateDataEXT was called, resulting in no-op behavior."); return VK_SUCCESS; }
 static VKAPI_ATTR void VKAPI_CALL GetPrivateDataEXT(VkDevice, VkObjectType, uint64_t, VkPrivateDataSlot, uint64_t*) { GFXRECON_LOG_WARNING_ONCE("Unsupported function vkGetPrivateDataEXT was called, resulting in no-op behavior."); }
+static VKAPI_ATTR VkResult VKAPI_CALL CreateCudaModuleNV(VkDevice, const VkCudaModuleCreateInfoNV*, const VkAllocationCallbacks*, VkCudaModuleNV*) { GFXRECON_LOG_WARNING_ONCE("Unsupported function vkCreateCudaModuleNV was called, resulting in no-op behavior."); return VK_SUCCESS; }
+static VKAPI_ATTR VkResult VKAPI_CALL GetCudaModuleCacheNV(VkDevice, VkCudaModuleNV, size_t*, void*) { GFXRECON_LOG_WARNING_ONCE("Unsupported function vkGetCudaModuleCacheNV was called, resulting in no-op behavior."); return VK_SUCCESS; }
+static VKAPI_ATTR VkResult VKAPI_CALL CreateCudaFunctionNV(VkDevice, const VkCudaFunctionCreateInfoNV*, const VkAllocationCallbacks*, VkCudaFunctionNV*) { GFXRECON_LOG_WARNING_ONCE("Unsupported function vkCreateCudaFunctionNV was called, resulting in no-op behavior."); return VK_SUCCESS; }
+static VKAPI_ATTR void VKAPI_CALL DestroyCudaModuleNV(VkDevice, VkCudaModuleNV, const VkAllocationCallbacks*) { GFXRECON_LOG_WARNING_ONCE("Unsupported function vkDestroyCudaModuleNV was called, resulting in no-op behavior."); }
+static VKAPI_ATTR void VKAPI_CALL DestroyCudaFunctionNV(VkDevice, VkCudaFunctionNV, const VkAllocationCallbacks*) { GFXRECON_LOG_WARNING_ONCE("Unsupported function vkDestroyCudaFunctionNV was called, resulting in no-op behavior."); }
+static VKAPI_ATTR void VKAPI_CALL CmdCudaLaunchKernelNV(VkCommandBuffer, const VkCudaLaunchInfoNV*) { GFXRECON_LOG_WARNING_ONCE("Unsupported function vkCmdCudaLaunchKernelNV was called, resulting in no-op behavior."); }
 static VKAPI_ATTR void VKAPI_CALL CmdSetFragmentShadingRateEnumNV(VkCommandBuffer, VkFragmentShadingRateNV, const VkFragmentShadingRateCombinerOpKHR[2]) { GFXRECON_LOG_WARNING_ONCE("Unsupported function vkCmdSetFragmentShadingRateEnumNV was called, resulting in no-op behavior."); }
 static VKAPI_ATTR VkResult VKAPI_CALL GetDeviceFaultInfoEXT(VkDevice, VkDeviceFaultCountsEXT*, VkDeviceFaultInfoEXT*) { GFXRECON_LOG_WARNING_ONCE("Unsupported function vkGetDeviceFaultInfoEXT was called, resulting in no-op behavior."); return VK_SUCCESS; }
 static VKAPI_ATTR void VKAPI_CALL CmdSetVertexInputEXT(VkCommandBuffer, uint32_t, const VkVertexInputBindingDescription2EXT*, uint32_t, const VkVertexInputAttributeDescription2EXT*) { GFXRECON_LOG_WARNING_ONCE("Unsupported function vkCmdSetVertexInputEXT was called, resulting in no-op behavior."); }
@@ -1207,6 +1213,12 @@ struct DeviceTable
     PFN_vkDestroyPrivateDataSlotEXT DestroyPrivateDataSlotEXT{ noop::DestroyPrivateDataSlotEXT };
     PFN_vkSetPrivateDataEXT SetPrivateDataEXT{ noop::SetPrivateDataEXT };
     PFN_vkGetPrivateDataEXT GetPrivateDataEXT{ noop::GetPrivateDataEXT };
+    PFN_vkCreateCudaModuleNV CreateCudaModuleNV{ noop::CreateCudaModuleNV };
+    PFN_vkGetCudaModuleCacheNV GetCudaModuleCacheNV{ noop::GetCudaModuleCacheNV };
+    PFN_vkCreateCudaFunctionNV CreateCudaFunctionNV{ noop::CreateCudaFunctionNV };
+    PFN_vkDestroyCudaModuleNV DestroyCudaModuleNV{ noop::DestroyCudaModuleNV };
+    PFN_vkDestroyCudaFunctionNV DestroyCudaFunctionNV{ noop::DestroyCudaFunctionNV };
+    PFN_vkCmdCudaLaunchKernelNV CmdCudaLaunchKernelNV{ noop::CmdCudaLaunchKernelNV };
     PFN_vkCmdSetFragmentShadingRateEnumNV CmdSetFragmentShadingRateEnumNV{ noop::CmdSetFragmentShadingRateEnumNV };
     PFN_vkGetDeviceFaultInfoEXT GetDeviceFaultInfoEXT{ noop::GetDeviceFaultInfoEXT };
     PFN_vkCmdSetVertexInputEXT CmdSetVertexInputEXT{ noop::CmdSetVertexInputEXT };
@@ -1846,6 +1858,12 @@ static void LoadDeviceTable(PFN_vkGetDeviceProcAddr gpa, VkDevice device, Device
     LoadFunction(gpa, device, "vkDestroyPrivateDataSlotEXT", &table->DestroyPrivateDataSlotEXT);
     LoadFunction(gpa, device, "vkSetPrivateDataEXT", &table->SetPrivateDataEXT);
     LoadFunction(gpa, device, "vkGetPrivateDataEXT", &table->GetPrivateDataEXT);
+    LoadFunction(gpa, device, "vkCreateCudaModuleNV", &table->CreateCudaModuleNV);
+    LoadFunction(gpa, device, "vkGetCudaModuleCacheNV", &table->GetCudaModuleCacheNV);
+    LoadFunction(gpa, device, "vkCreateCudaFunctionNV", &table->CreateCudaFunctionNV);
+    LoadFunction(gpa, device, "vkDestroyCudaModuleNV", &table->DestroyCudaModuleNV);
+    LoadFunction(gpa, device, "vkDestroyCudaFunctionNV", &table->DestroyCudaFunctionNV);
+    LoadFunction(gpa, device, "vkCmdCudaLaunchKernelNV", &table->CmdCudaLaunchKernelNV);
     LoadFunction(gpa, device, "vkCmdSetFragmentShadingRateEnumNV", &table->CmdSetFragmentShadingRateEnumNV);
     LoadFunction(gpa, device, "vkGetDeviceFaultInfoEXT", &table->GetDeviceFaultInfoEXT);
     LoadFunction(gpa, device, "vkCmdSetVertexInputEXT", &table->CmdSetVertexInputEXT);

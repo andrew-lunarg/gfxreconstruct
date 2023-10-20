@@ -958,6 +958,12 @@ void EncodeStruct(ParameterEncoder* encoder, const VkSwapchainPresentBarrierCrea
 void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceDiagnosticsConfigFeaturesNV& value);
 void EncodeStruct(ParameterEncoder* encoder, const VkDeviceDiagnosticsConfigCreateInfoNV& value);
 
+void EncodeStruct(ParameterEncoder* encoder, const VkCudaModuleCreateInfoNV& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkCudaFunctionCreateInfoNV& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkCudaLaunchInfoNV& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceCudaKernelLaunchFeaturesNV& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceCudaKernelLaunchPropertiesNV& value);
+
 void EncodeStruct(ParameterEncoder* encoder, const VkQueryLowLatencySupportNV& value);
 
 void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceGraphicsPipelineLibraryFeaturesEXT& value);
@@ -1090,6 +1096,10 @@ void EncodeStruct(ParameterEncoder* encoder, const VkSamplerBorderColorComponent
 void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDevicePageableDeviceLocalMemoryFeaturesEXT& value);
 
 void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceShaderCorePropertiesARM& value);
+
+void EncodeStruct(ParameterEncoder* encoder, const VkDeviceQueueShaderCoreControlCreateInfoARM& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceSchedulingControlsFeaturesARM& value);
+void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceSchedulingControlsPropertiesARM& value);
 
 void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceImageSlicedViewOf3DFeaturesEXT& value);
 void EncodeStruct(ParameterEncoder* encoder, const VkImageViewSlicedCreateInfoEXT& value);

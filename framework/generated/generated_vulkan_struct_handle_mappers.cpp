@@ -1540,6 +1540,26 @@ void MapStructHandles(Decoded_VkGeneratedCommandsMemoryRequirementsInfoNV* wrapp
     }
 }
 
+void MapStructHandles(Decoded_VkCudaFunctionCreateInfoNV* wrapper, const VulkanObjectInfoTable& object_info_table)
+{
+    if ((wrapper != nullptr) && (wrapper->decoded_value != nullptr))
+    {
+        VkCudaFunctionCreateInfoNV* value = wrapper->decoded_value;
+
+        value->module = handle_mapping::MapHandle<CudaModuleNVInfo>(wrapper->module, object_info_table, &VulkanObjectInfoTable::GetCudaModuleNVInfo);
+    }
+}
+
+void MapStructHandles(Decoded_VkCudaLaunchInfoNV* wrapper, const VulkanObjectInfoTable& object_info_table)
+{
+    if ((wrapper != nullptr) && (wrapper->decoded_value != nullptr))
+    {
+        VkCudaLaunchInfoNV* value = wrapper->decoded_value;
+
+        value->function = handle_mapping::MapHandle<CudaFunctionNVInfo>(wrapper->function, object_info_table, &VulkanObjectInfoTable::GetCudaFunctionNVInfo);
+    }
+}
+
 void MapStructHandles(Decoded_VkMemoryGetZirconHandleInfoFUCHSIA* wrapper, const VulkanObjectInfoTable& object_info_table)
 {
     if ((wrapper != nullptr) && (wrapper->decoded_value != nullptr))

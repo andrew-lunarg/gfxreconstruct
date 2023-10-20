@@ -12050,6 +12050,85 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_VkDeviceDiagnostic
     }
 }
 
+void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_VkCudaModuleCreateInfoNV* data, const JsonOptions& options)
+{
+    if (data && data->decoded_value)
+    {
+        const VkCudaModuleCreateInfoNV& decoded_value = *data->decoded_value;
+        const Decoded_VkCudaModuleCreateInfoNV& meta_struct = *data;
+
+        FieldToJson(jdata["sType"], decoded_value.sType, options);
+        FieldToJson(jdata["dataSize"], decoded_value.dataSize, options);
+        FieldToJson(jdata["pData"], meta_struct.pData, options);
+        FieldToJson(jdata["pNext"], meta_struct.pNext, options);
+    }
+}
+
+void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_VkCudaFunctionCreateInfoNV* data, const JsonOptions& options)
+{
+    if (data && data->decoded_value)
+    {
+        const VkCudaFunctionCreateInfoNV& decoded_value = *data->decoded_value;
+        const Decoded_VkCudaFunctionCreateInfoNV& meta_struct = *data;
+
+        FieldToJson(jdata["sType"], decoded_value.sType, options);
+        HandleToJson(jdata["module"], meta_struct.module, options);
+        FieldToJson(jdata["pName"], &meta_struct.pName, options);
+        FieldToJson(jdata["pNext"], meta_struct.pNext, options);
+    }
+}
+
+void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_VkCudaLaunchInfoNV* data, const JsonOptions& options)
+{
+    if (data && data->decoded_value)
+    {
+        const VkCudaLaunchInfoNV& decoded_value = *data->decoded_value;
+        const Decoded_VkCudaLaunchInfoNV& meta_struct = *data;
+
+        FieldToJson(jdata["sType"], decoded_value.sType, options);
+        HandleToJson(jdata["function"], meta_struct.function, options);
+        FieldToJson(jdata["gridDimX"], decoded_value.gridDimX, options);
+        FieldToJson(jdata["gridDimY"], decoded_value.gridDimY, options);
+        FieldToJson(jdata["gridDimZ"], decoded_value.gridDimZ, options);
+        FieldToJson(jdata["blockDimX"], decoded_value.blockDimX, options);
+        FieldToJson(jdata["blockDimY"], decoded_value.blockDimY, options);
+        FieldToJson(jdata["blockDimZ"], decoded_value.blockDimZ, options);
+        FieldToJson(jdata["sharedMemBytes"], decoded_value.sharedMemBytes, options);
+        FieldToJson(jdata["paramCount"], decoded_value.paramCount, options);
+        FieldToJson(jdata["pParams"], meta_struct.pParams, options);
+        FieldToJson(jdata["extraCount"], decoded_value.extraCount, options);
+        FieldToJson(jdata["pExtras"], meta_struct.pExtras, options);
+        FieldToJson(jdata["pNext"], meta_struct.pNext, options);
+    }
+}
+
+void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_VkPhysicalDeviceCudaKernelLaunchFeaturesNV* data, const JsonOptions& options)
+{
+    if (data && data->decoded_value)
+    {
+        const VkPhysicalDeviceCudaKernelLaunchFeaturesNV& decoded_value = *data->decoded_value;
+        const Decoded_VkPhysicalDeviceCudaKernelLaunchFeaturesNV& meta_struct = *data;
+
+        FieldToJson(jdata["sType"], decoded_value.sType, options);
+        jdata["cudaKernelLaunchFeatures"] = static_cast<bool>(decoded_value.cudaKernelLaunchFeatures);
+        FieldToJson(jdata["pNext"], meta_struct.pNext, options);
+    }
+}
+
+void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_VkPhysicalDeviceCudaKernelLaunchPropertiesNV* data, const JsonOptions& options)
+{
+    if (data && data->decoded_value)
+    {
+        const VkPhysicalDeviceCudaKernelLaunchPropertiesNV& decoded_value = *data->decoded_value;
+        const Decoded_VkPhysicalDeviceCudaKernelLaunchPropertiesNV& meta_struct = *data;
+
+        FieldToJson(jdata["sType"], decoded_value.sType, options);
+        FieldToJson(jdata["computeCapabilityMinor"], decoded_value.computeCapabilityMinor, options);
+        FieldToJson(jdata["computeCapabilityMajor"], decoded_value.computeCapabilityMajor, options);
+        FieldToJson(jdata["pNext"], meta_struct.pNext, options);
+    }
+}
+
 void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_VkQueryLowLatencySupportNV* data, const JsonOptions& options)
 {
     if (data && data->decoded_value)
@@ -13393,6 +13472,45 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_VkPhysicalDeviceSh
         FieldToJson(jdata["pixelRate"], decoded_value.pixelRate, options);
         FieldToJson(jdata["texelRate"], decoded_value.texelRate, options);
         FieldToJson(jdata["fmaRate"], decoded_value.fmaRate, options);
+        FieldToJson(jdata["pNext"], meta_struct.pNext, options);
+    }
+}
+
+void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_VkDeviceQueueShaderCoreControlCreateInfoARM* data, const JsonOptions& options)
+{
+    if (data && data->decoded_value)
+    {
+        const VkDeviceQueueShaderCoreControlCreateInfoARM& decoded_value = *data->decoded_value;
+        const Decoded_VkDeviceQueueShaderCoreControlCreateInfoARM& meta_struct = *data;
+
+        FieldToJson(jdata["sType"], decoded_value.sType, options);
+        FieldToJson(jdata["shaderCoreCount"], decoded_value.shaderCoreCount, options);
+        FieldToJson(jdata["pNext"], meta_struct.pNext, options);
+    }
+}
+
+void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_VkPhysicalDeviceSchedulingControlsFeaturesARM* data, const JsonOptions& options)
+{
+    if (data && data->decoded_value)
+    {
+        const VkPhysicalDeviceSchedulingControlsFeaturesARM& decoded_value = *data->decoded_value;
+        const Decoded_VkPhysicalDeviceSchedulingControlsFeaturesARM& meta_struct = *data;
+
+        FieldToJson(jdata["sType"], decoded_value.sType, options);
+        jdata["schedulingControls"] = static_cast<bool>(decoded_value.schedulingControls);
+        FieldToJson(jdata["pNext"], meta_struct.pNext, options);
+    }
+}
+
+void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_VkPhysicalDeviceSchedulingControlsPropertiesARM* data, const JsonOptions& options)
+{
+    if (data && data->decoded_value)
+    {
+        const VkPhysicalDeviceSchedulingControlsPropertiesARM& decoded_value = *data->decoded_value;
+        const Decoded_VkPhysicalDeviceSchedulingControlsPropertiesARM& meta_struct = *data;
+
+        FieldToJson(jdata["sType"], decoded_value.sType, options);
+        FieldToJson(VkPhysicalDeviceSchedulingControlsFlagsARM_t(),jdata["schedulingControlsFlags"], decoded_value.schedulingControlsFlags, options);
         FieldToJson(jdata["pNext"], meta_struct.pNext, options);
     }
 }
@@ -17524,6 +17642,20 @@ void FieldToJson(nlohmann::ordered_json& jdata, const PNextNode* data, const Jso
                 break;
             }
 
+            case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV:
+            {
+                const auto* pnext = reinterpret_cast<const Decoded_VkPhysicalDeviceCudaKernelLaunchFeaturesNV*>(data->GetMetaStructPointer());
+                FieldToJson(jdata, pnext, options);
+                break;
+            }
+
+            case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV:
+            {
+                const auto* pnext = reinterpret_cast<const Decoded_VkPhysicalDeviceCudaKernelLaunchPropertiesNV*>(data->GetMetaStructPointer());
+                FieldToJson(jdata, pnext, options);
+                break;
+            }
+
             case VK_STRUCTURE_TYPE_QUERY_LOW_LATENCY_SUPPORT_NV:
             {
                 const auto* pnext = reinterpret_cast<const Decoded_VkQueryLowLatencySupportNV*>(data->GetMetaStructPointer());
@@ -17961,6 +18093,27 @@ void FieldToJson(nlohmann::ordered_json& jdata, const PNextNode* data, const Jso
             case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM:
             {
                 const auto* pnext = reinterpret_cast<const Decoded_VkPhysicalDeviceShaderCorePropertiesARM*>(data->GetMetaStructPointer());
+                FieldToJson(jdata, pnext, options);
+                break;
+            }
+
+            case VK_STRUCTURE_TYPE_DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM:
+            {
+                const auto* pnext = reinterpret_cast<const Decoded_VkDeviceQueueShaderCoreControlCreateInfoARM*>(data->GetMetaStructPointer());
+                FieldToJson(jdata, pnext, options);
+                break;
+            }
+
+            case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM:
+            {
+                const auto* pnext = reinterpret_cast<const Decoded_VkPhysicalDeviceSchedulingControlsFeaturesARM*>(data->GetMetaStructPointer());
+                FieldToJson(jdata, pnext, options);
+                break;
+            }
+
+            case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM:
+            {
+                const auto* pnext = reinterpret_cast<const Decoded_VkPhysicalDeviceSchedulingControlsPropertiesARM*>(data->GetMetaStructPointer());
                 FieldToJson(jdata, pnext, options);
                 break;
             }

@@ -7988,6 +7988,101 @@ void VulkanExportJsonConsumer::Process_vkGetPrivateDataEXT(
     WriteBlockEnd();
 }
 
+void VulkanExportJsonConsumer::Process_vkCreateCudaModuleNV(
+    const ApiCallInfo&                          call_info,
+    VkResult                                    returnValue,
+    format::HandleId                            device,
+    StructPointerDecoder<Decoded_VkCudaModuleCreateInfoNV>* pCreateInfo,
+    StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator,
+    HandlePointerDecoder<VkCudaModuleNV>*       pModule)
+{
+    nlohmann::ordered_json& jdata = WriteApiCallStart(call_info, "vkCreateCudaModuleNV");
+    FieldToJson(jdata[NameReturn()], returnValue, json_options_);
+    auto& args = jdata[NameArgs()];
+        HandleToJson(args["device"], device, json_options_);
+        FieldToJson(args["pCreateInfo"], pCreateInfo, json_options_);
+        FieldToJson(args["pAllocator"], pAllocator, json_options_);
+        HandleToJson(args["pModule"], pModule, json_options_);
+    WriteBlockEnd();
+}
+
+void VulkanExportJsonConsumer::Process_vkGetCudaModuleCacheNV(
+    const ApiCallInfo&                          call_info,
+    VkResult                                    returnValue,
+    format::HandleId                            device,
+    format::HandleId                            module,
+    PointerDecoder<size_t>*                     pCacheSize,
+    PointerDecoder<uint8_t>*                    pCacheData)
+{
+    nlohmann::ordered_json& jdata = WriteApiCallStart(call_info, "vkGetCudaModuleCacheNV");
+    FieldToJson(jdata[NameReturn()], returnValue, json_options_);
+    auto& args = jdata[NameArgs()];
+        HandleToJson(args["device"], device, json_options_);
+        HandleToJson(args["module"], module, json_options_);
+        FieldToJson(args["pCacheSize"], pCacheSize, json_options_);
+        FieldToJson(args["pCacheData"], pCacheData, json_options_);
+    WriteBlockEnd();
+}
+
+void VulkanExportJsonConsumer::Process_vkCreateCudaFunctionNV(
+    const ApiCallInfo&                          call_info,
+    VkResult                                    returnValue,
+    format::HandleId                            device,
+    StructPointerDecoder<Decoded_VkCudaFunctionCreateInfoNV>* pCreateInfo,
+    StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator,
+    HandlePointerDecoder<VkCudaFunctionNV>*     pFunction)
+{
+    nlohmann::ordered_json& jdata = WriteApiCallStart(call_info, "vkCreateCudaFunctionNV");
+    FieldToJson(jdata[NameReturn()], returnValue, json_options_);
+    auto& args = jdata[NameArgs()];
+        HandleToJson(args["device"], device, json_options_);
+        FieldToJson(args["pCreateInfo"], pCreateInfo, json_options_);
+        FieldToJson(args["pAllocator"], pAllocator, json_options_);
+        HandleToJson(args["pFunction"], pFunction, json_options_);
+    WriteBlockEnd();
+}
+
+void VulkanExportJsonConsumer::Process_vkDestroyCudaModuleNV(
+    const ApiCallInfo&                          call_info,
+    format::HandleId                            device,
+    format::HandleId                            module,
+    StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator)
+{
+    nlohmann::ordered_json& jdata = WriteApiCallStart(call_info, "vkDestroyCudaModuleNV");
+    auto& args = jdata[NameArgs()];
+        HandleToJson(args["device"], device, json_options_);
+        HandleToJson(args["module"], module, json_options_);
+        FieldToJson(args["pAllocator"], pAllocator, json_options_);
+    WriteBlockEnd();
+}
+
+void VulkanExportJsonConsumer::Process_vkDestroyCudaFunctionNV(
+    const ApiCallInfo&                          call_info,
+    format::HandleId                            device,
+    format::HandleId                            function,
+    StructPointerDecoder<Decoded_VkAllocationCallbacks>* pAllocator)
+{
+    nlohmann::ordered_json& jdata = WriteApiCallStart(call_info, "vkDestroyCudaFunctionNV");
+    auto& args = jdata[NameArgs()];
+        HandleToJson(args["device"], device, json_options_);
+        HandleToJson(args["function"], function, json_options_);
+        FieldToJson(args["pAllocator"], pAllocator, json_options_);
+    WriteBlockEnd();
+}
+
+void VulkanExportJsonConsumer::Process_vkCmdCudaLaunchKernelNV(
+    const ApiCallInfo&                          call_info,
+    format::HandleId                            commandBuffer,
+    StructPointerDecoder<Decoded_VkCudaLaunchInfoNV>* pLaunchInfo)
+{
+    nlohmann::ordered_json& jdata = WriteApiCallStart(call_info, "vkCmdCudaLaunchKernelNV");
+    FieldToJson(jdata[NameCommandIndex()], GetCommandBufferRecordIndex(commandBuffer), json_options_);
+    auto& args = jdata[NameArgs()];
+        HandleToJson(args["commandBuffer"], commandBuffer, json_options_);
+        FieldToJson(args["pLaunchInfo"], pLaunchInfo, json_options_);
+    WriteBlockEnd();
+}
+
 void VulkanExportJsonConsumer::Process_vkCmdSetFragmentShadingRateEnumNV(
     const ApiCallInfo&                          call_info,
     format::HandleId                            commandBuffer,

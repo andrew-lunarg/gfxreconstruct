@@ -2701,6 +2701,21 @@ void CheckUnsupportedFeatures(VkPhysicalDevice physicalDevice,
                 }
                 break;
             }
+            case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV:
+            {
+                const VkPhysicalDeviceCudaKernelLaunchFeaturesNV* currentNext = reinterpret_cast<const VkPhysicalDeviceCudaKernelLaunchFeaturesNV*>(next);
+                VkPhysicalDeviceCudaKernelLaunchFeaturesNV query = { VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV, nullptr };
+                physicalDeviceFeatures2.pNext = &query;
+                GetPhysicalDeviceFeatures2(physicalDevice, &physicalDeviceFeatures2);
+                if ((currentNext->cudaKernelLaunchFeatures == VK_TRUE) && (query.cudaKernelLaunchFeatures == VK_FALSE))
+                {
+                    GFXRECON_LOG_WARNING("Feature cudaKernelLaunchFeatures %s", warn_message);
+                    found_unsupported = true;
+                    const_cast<VkPhysicalDeviceCudaKernelLaunchFeaturesNV*>(currentNext)->cudaKernelLaunchFeatures =
+                        remove_unsupported ? VK_FALSE : VK_TRUE;
+                }
+                break;
+            }
             case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_FEATURES_EXT:
             {
                 const VkPhysicalDeviceGraphicsPipelineLibraryFeaturesEXT* currentNext = reinterpret_cast<const VkPhysicalDeviceGraphicsPipelineLibraryFeaturesEXT*>(next);
@@ -3325,6 +3340,21 @@ void CheckUnsupportedFeatures(VkPhysicalDevice physicalDevice,
                     GFXRECON_LOG_WARNING("Feature pageableDeviceLocalMemory %s", warn_message);
                     found_unsupported = true;
                     const_cast<VkPhysicalDevicePageableDeviceLocalMemoryFeaturesEXT*>(currentNext)->pageableDeviceLocalMemory =
+                        remove_unsupported ? VK_FALSE : VK_TRUE;
+                }
+                break;
+            }
+            case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM:
+            {
+                const VkPhysicalDeviceSchedulingControlsFeaturesARM* currentNext = reinterpret_cast<const VkPhysicalDeviceSchedulingControlsFeaturesARM*>(next);
+                VkPhysicalDeviceSchedulingControlsFeaturesARM query = { VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM, nullptr };
+                physicalDeviceFeatures2.pNext = &query;
+                GetPhysicalDeviceFeatures2(physicalDevice, &physicalDeviceFeatures2);
+                if ((currentNext->schedulingControls == VK_TRUE) && (query.schedulingControls == VK_FALSE))
+                {
+                    GFXRECON_LOG_WARNING("Feature schedulingControls %s", warn_message);
+                    found_unsupported = true;
+                    const_cast<VkPhysicalDeviceSchedulingControlsFeaturesARM*>(currentNext)->schedulingControls =
                         remove_unsupported ? VK_FALSE : VK_TRUE;
                 }
                 break;

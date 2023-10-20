@@ -2272,6 +2272,12 @@ void FieldToJson(nlohmann::ordered_json& jdata, const VkDebugReportObjectTypeEXT
         case VK_DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_NV_EXT:
             jdata = "VK_DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_NV_EXT";
             break;
+        case VK_DEBUG_REPORT_OBJECT_TYPE_CUDA_MODULE_NV:
+            jdata = "VK_DEBUG_REPORT_OBJECT_TYPE_CUDA_MODULE_NV";
+            break;
+        case VK_DEBUG_REPORT_OBJECT_TYPE_CUDA_FUNCTION_NV:
+            jdata = "VK_DEBUG_REPORT_OBJECT_TYPE_CUDA_FUNCTION_NV";
+            break;
         case VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA_EXT:
             jdata = "VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA_EXT";
             break;
@@ -5482,6 +5488,12 @@ void FieldToJson(nlohmann::ordered_json& jdata, const VkObjectType& value, const
         case VK_OBJECT_TYPE_INDIRECT_COMMANDS_LAYOUT_NV:
             jdata = "VK_OBJECT_TYPE_INDIRECT_COMMANDS_LAYOUT_NV";
             break;
+        case VK_OBJECT_TYPE_CUDA_MODULE_NV:
+            jdata = "VK_OBJECT_TYPE_CUDA_MODULE_NV";
+            break;
+        case VK_OBJECT_TYPE_CUDA_FUNCTION_NV:
+            jdata = "VK_OBJECT_TYPE_CUDA_FUNCTION_NV";
+            break;
         case VK_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA:
             jdata = "VK_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA";
             break;
@@ -5862,6 +5874,18 @@ void FieldToJson(nlohmann::ordered_json& jdata, const VkPerformanceValueTypeINTE
             break;
         case VK_PERFORMANCE_VALUE_TYPE_STRING_INTEL:
             jdata = "VK_PERFORMANCE_VALUE_TYPE_STRING_INTEL";
+            break;
+        default:
+            jdata = to_hex_fixed_width(value);
+            break;
+    }
+}
+
+void FieldToJson(nlohmann::ordered_json& jdata, const VkPhysicalDeviceSchedulingControlsFlagBitsARM& value, const JsonOptions& options)
+{
+    switch (value) {
+        case VK_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_SHADER_CORE_COUNT_ARM:
+            jdata = "VK_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_SHADER_CORE_COUNT_ARM";
             break;
         default:
             jdata = to_hex_fixed_width(value);
@@ -9521,6 +9545,21 @@ void FieldToJson(nlohmann::ordered_json& jdata, const VkStructureType& value, co
         case VK_STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV:
             jdata = "VK_STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV";
             break;
+        case VK_STRUCTURE_TYPE_CUDA_MODULE_CREATE_INFO_NV:
+            jdata = "VK_STRUCTURE_TYPE_CUDA_MODULE_CREATE_INFO_NV";
+            break;
+        case VK_STRUCTURE_TYPE_CUDA_FUNCTION_CREATE_INFO_NV:
+            jdata = "VK_STRUCTURE_TYPE_CUDA_FUNCTION_CREATE_INFO_NV";
+            break;
+        case VK_STRUCTURE_TYPE_CUDA_LAUNCH_INFO_NV:
+            jdata = "VK_STRUCTURE_TYPE_CUDA_LAUNCH_INFO_NV";
+            break;
+        case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV:
+            jdata = "VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV";
+            break;
+        case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV:
+            jdata = "VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV";
+            break;
         case VK_STRUCTURE_TYPE_QUERY_LOW_LATENCY_SUPPORT_NV:
             jdata = "VK_STRUCTURE_TYPE_QUERY_LOW_LATENCY_SUPPORT_NV";
             break;
@@ -9901,6 +9940,15 @@ void FieldToJson(nlohmann::ordered_json& jdata, const VkStructureType& value, co
             break;
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM:
             jdata = "VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM";
+            break;
+        case VK_STRUCTURE_TYPE_DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM:
+            jdata = "VK_STRUCTURE_TYPE_DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM";
+            break;
+        case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM:
+            jdata = "VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM";
+            break;
+        case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM:
+            jdata = "VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM";
             break;
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT:
             jdata = "VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT";
@@ -13426,6 +13474,24 @@ void FieldToJson(VkPerformanceCounterDescriptionFlagsKHR_t, nlohmann::ordered_js
                 return std::string("VK_PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR");
             case VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR:
                 return std::string("VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR");
+        }
+        return to_hex_fixed_width(flags);
+    });
+}
+
+void FieldToJson(VkPhysicalDeviceSchedulingControlsFlagsARM_t, nlohmann::ordered_json& jdata, const VkFlags64 flags, const JsonOptions& options)
+{
+    if (!options.expand_flags)
+    {
+        jdata = to_hex_fixed_width(flags);
+        return;
+    }
+    jdata = ExpandFlags(flags, [](VkFlags64 flags)
+    {
+        switch (flags)
+        {
+            case VK_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_SHADER_CORE_COUNT_ARM:
+                return std::string("VK_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_SHADER_CORE_COUNT_ARM");
         }
         return to_hex_fixed_width(flags);
     });

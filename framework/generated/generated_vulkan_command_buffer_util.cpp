@@ -1215,6 +1215,16 @@ void TrackCmdBindPipelineShaderGroupNVHandles(CommandBufferWrapper* wrapper, VkP
     if(pipeline != VK_NULL_HANDLE) wrapper->command_handles[CommandHandleType::PipelineHandle].insert(GetWrappedId<PipelineWrapper>(pipeline));
 }
 
+void TrackCmdCudaLaunchKernelNVHandles(CommandBufferWrapper* wrapper, const VkCudaLaunchInfoNV* pLaunchInfo)
+{
+    assert(wrapper != nullptr);
+
+    if (pLaunchInfo != nullptr)
+    {
+        if(pLaunchInfo->function != VK_NULL_HANDLE) wrapper->command_handles[CommandHandleType::CudaFunctionNVHandle].insert(GetWrappedId<CudaFunctionNVWrapper>(pLaunchInfo->function));
+    }
+}
+
 void TrackCmdBindInvocationMaskHUAWEIHandles(CommandBufferWrapper* wrapper, VkImageView imageView)
 {
     assert(wrapper != nullptr);

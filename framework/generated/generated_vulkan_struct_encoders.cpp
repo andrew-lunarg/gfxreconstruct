@@ -7542,6 +7542,55 @@ void EncodeStruct(ParameterEncoder* encoder, const VkDeviceDiagnosticsConfigCrea
     encoder->EncodeFlagsValue(value.flags);
 }
 
+void EncodeStruct(ParameterEncoder* encoder, const VkCudaModuleCreateInfoNV& value)
+{
+    encoder->EncodeEnumValue(value.sType);
+    EncodePNextStruct(encoder, value.pNext);
+    encoder->EncodeSizeTValue(value.dataSize);
+    encoder->EncodeVoidArray(value.pData, value.dataSize);
+}
+
+void EncodeStruct(ParameterEncoder* encoder, const VkCudaFunctionCreateInfoNV& value)
+{
+    encoder->EncodeEnumValue(value.sType);
+    EncodePNextStruct(encoder, value.pNext);
+    encoder->EncodeHandleValue<CudaModuleNVWrapper>(value.module);
+    encoder->EncodeString(value.pName);
+}
+
+void EncodeStruct(ParameterEncoder* encoder, const VkCudaLaunchInfoNV& value)
+{
+    encoder->EncodeEnumValue(value.sType);
+    EncodePNextStruct(encoder, value.pNext);
+    encoder->EncodeHandleValue<CudaFunctionNVWrapper>(value.function);
+    encoder->EncodeUInt32Value(value.gridDimX);
+    encoder->EncodeUInt32Value(value.gridDimY);
+    encoder->EncodeUInt32Value(value.gridDimZ);
+    encoder->EncodeUInt32Value(value.blockDimX);
+    encoder->EncodeUInt32Value(value.blockDimY);
+    encoder->EncodeUInt32Value(value.blockDimZ);
+    encoder->EncodeUInt32Value(value.sharedMemBytes);
+    encoder->EncodeSizeTValue(value.paramCount);
+    encoder->EncodeVoidArray2D(value.pParams, ArraySize2D<VkStructureType, const void*, VkCudaFunctionNV, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, size_t, const void* const *, size_t, const void* const *>(sType, pNext, function, gridDimX, gridDimY, gridDimZ, blockDimX, blockDimY, blockDimZ, sharedMemBytes, paramCount, pParams, extraCount, pExtras));
+    encoder->EncodeSizeTValue(value.extraCount);
+    encoder->EncodeVoidArray2D(value.pExtras, ArraySize2D<VkStructureType, const void*, VkCudaFunctionNV, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, size_t, const void* const *, size_t, const void* const *>(sType, pNext, function, gridDimX, gridDimY, gridDimZ, blockDimX, blockDimY, blockDimZ, sharedMemBytes, paramCount, pParams, extraCount, pExtras));
+}
+
+void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceCudaKernelLaunchFeaturesNV& value)
+{
+    encoder->EncodeEnumValue(value.sType);
+    EncodePNextStruct(encoder, value.pNext);
+    encoder->EncodeVkBool32Value(value.cudaKernelLaunchFeatures);
+}
+
+void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceCudaKernelLaunchPropertiesNV& value)
+{
+    encoder->EncodeEnumValue(value.sType);
+    EncodePNextStruct(encoder, value.pNext);
+    encoder->EncodeUInt32Value(value.computeCapabilityMinor);
+    encoder->EncodeUInt32Value(value.computeCapabilityMajor);
+}
+
 void EncodeStruct(ParameterEncoder* encoder, const VkQueryLowLatencySupportNV& value)
 {
     encoder->EncodeEnumValue(value.sType);
@@ -8335,6 +8384,27 @@ void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceShaderCorePro
     encoder->EncodeUInt32Value(value.pixelRate);
     encoder->EncodeUInt32Value(value.texelRate);
     encoder->EncodeUInt32Value(value.fmaRate);
+}
+
+void EncodeStruct(ParameterEncoder* encoder, const VkDeviceQueueShaderCoreControlCreateInfoARM& value)
+{
+    encoder->EncodeEnumValue(value.sType);
+    EncodePNextStruct(encoder, value.pNext);
+    encoder->EncodeUInt32Value(value.shaderCoreCount);
+}
+
+void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceSchedulingControlsFeaturesARM& value)
+{
+    encoder->EncodeEnumValue(value.sType);
+    EncodePNextStruct(encoder, value.pNext);
+    encoder->EncodeVkBool32Value(value.schedulingControls);
+}
+
+void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceSchedulingControlsPropertiesARM& value)
+{
+    encoder->EncodeEnumValue(value.sType);
+    EncodePNextStruct(encoder, value.pNext);
+    encoder->EncodeFlags64Value(value.schedulingControlsFlags);
 }
 
 void EncodeStruct(ParameterEncoder* encoder, const VkPhysicalDeviceImageSlicedViewOf3DFeaturesEXT& value)

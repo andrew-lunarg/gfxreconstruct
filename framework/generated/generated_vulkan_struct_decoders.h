@@ -7766,6 +7766,57 @@ struct Decoded_VkDeviceDiagnosticsConfigCreateInfoNV
     PNextNode* pNext{ nullptr };
 };
 
+struct Decoded_VkCudaModuleCreateInfoNV
+{
+    using struct_type = VkCudaModuleCreateInfoNV;
+
+    VkCudaModuleCreateInfoNV* decoded_value{ nullptr };
+
+    PNextNode* pNext{ nullptr };
+    PointerDecoder<uint8_t> pData;
+};
+
+struct Decoded_VkCudaFunctionCreateInfoNV
+{
+    using struct_type = VkCudaFunctionCreateInfoNV;
+
+    VkCudaFunctionCreateInfoNV* decoded_value{ nullptr };
+
+    PNextNode* pNext{ nullptr };
+    format::HandleId module{ format::kNullHandleId };
+    StringDecoder pName;
+};
+
+struct Decoded_VkCudaLaunchInfoNV
+{
+    using struct_type = VkCudaLaunchInfoNV;
+
+    VkCudaLaunchInfoNV* decoded_value{ nullptr };
+
+    PNextNode* pNext{ nullptr };
+    format::HandleId function{ format::kNullHandleId };
+    PointerDecoder<uint8_t> pParams;
+    PointerDecoder<uint8_t> pExtras;
+};
+
+struct Decoded_VkPhysicalDeviceCudaKernelLaunchFeaturesNV
+{
+    using struct_type = VkPhysicalDeviceCudaKernelLaunchFeaturesNV;
+
+    VkPhysicalDeviceCudaKernelLaunchFeaturesNV* decoded_value{ nullptr };
+
+    PNextNode* pNext{ nullptr };
+};
+
+struct Decoded_VkPhysicalDeviceCudaKernelLaunchPropertiesNV
+{
+    using struct_type = VkPhysicalDeviceCudaKernelLaunchPropertiesNV;
+
+    VkPhysicalDeviceCudaKernelLaunchPropertiesNV* decoded_value{ nullptr };
+
+    PNextNode* pNext{ nullptr };
+};
+
 struct Decoded_VkQueryLowLatencySupportNV
 {
     using struct_type = VkQueryLowLatencySupportNV;
@@ -8643,6 +8694,33 @@ struct Decoded_VkPhysicalDeviceShaderCorePropertiesARM
     using struct_type = VkPhysicalDeviceShaderCorePropertiesARM;
 
     VkPhysicalDeviceShaderCorePropertiesARM* decoded_value{ nullptr };
+
+    PNextNode* pNext{ nullptr };
+};
+
+struct Decoded_VkDeviceQueueShaderCoreControlCreateInfoARM
+{
+    using struct_type = VkDeviceQueueShaderCoreControlCreateInfoARM;
+
+    VkDeviceQueueShaderCoreControlCreateInfoARM* decoded_value{ nullptr };
+
+    PNextNode* pNext{ nullptr };
+};
+
+struct Decoded_VkPhysicalDeviceSchedulingControlsFeaturesARM
+{
+    using struct_type = VkPhysicalDeviceSchedulingControlsFeaturesARM;
+
+    VkPhysicalDeviceSchedulingControlsFeaturesARM* decoded_value{ nullptr };
+
+    PNextNode* pNext{ nullptr };
+};
+
+struct Decoded_VkPhysicalDeviceSchedulingControlsPropertiesARM
+{
+    using struct_type = VkPhysicalDeviceSchedulingControlsPropertiesARM;
+
+    VkPhysicalDeviceSchedulingControlsPropertiesARM* decoded_value{ nullptr };
 
     PNextNode* pNext{ nullptr };
 };
