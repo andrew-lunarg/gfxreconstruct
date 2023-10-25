@@ -93,22 +93,64 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12BaseGenerator):
                 body += '\n'
                 write(body, file=self.outFile)
 
+    # Helper for structs with anonymous unions as members.
+    # Instead of making the whole struct's FieldToJson custom, this helper can
+    # provide a custom FieldToJson for the anon union to be injected into an
+    # otherwise generated FieldtoJson implementation.
+    def makeUnionFieldToJson(self, properties, struct_name, union_index):
+        message = "ALERT: Union member {0} of {1} needs special handling.".format(union_index, struct_name)
+        field_to_json = '        ; ///< @todo ' + message
+
+        match struct_name:
+            case "D3D12_ROOT_PARAMETER":
+                field_to_json = '''
+                switch(decoded_value.ParameterType)
+                {{
+                    case D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE:
+                    {{
+                        FieldToJson(jdata["DescriptorTable"], meta_struct.DescriptorTable, options);
+                        break;
+                    }}
+                    case D3D12_ROOT_PARAMETER_TYPE_32BIT_CONSTANTS:
+                    {{
+                        FieldToJson(jdata["Constants"], meta_struct.Constants, options);
+                        break;
+                    }}
+                    case D3D12_ROOT_PARAMETER_TYPE_CBV:
+                    case D3D12_ROOT_PARAMETER_TYPE_SRV:
+                    case D3D12_ROOT_PARAMETER_TYPE_UAV:
+                    {{
+                        FieldToJson(jdata["Descriptor"], meta_struct.Descriptor, options);
+                        break;
+                    }}
+                }}
+                '''
+            case _:
+                print(message)
+        return format_cpp_code(field_to_json, 2)
+
     # yapf: disable
     def makeStructBody(self, name, values):
         body = ''
-        for property_type, properties in values['properties'].items():
+        union_index = 0
+        # Iterate over private, protected, public properties (only public non-empty):
+        for property_visibility, properties in values['properties'].items():
             for p in properties:
+                # @todo BOOL type?  FieldToJson(jdata["RectsCoalesced"], obj.RectsCoalesced ???
                 value = self.get_value_info(p)
                 type = p['type']
-                # @todo BOOL type?  FieldToJson(jdata["RectsCoalesced"], obj.RectsCoalesced ???
+
+                # Default to a todo comment:
                 field_to_json = '        ; ///< @todo Generate for {0}[{1}]: ' + str(value.base_type)
+
                 if "anon-union" in type:
-                    message = "ALERT: Union member of {0} with type {1} needs special handling.".format(name, type)
-                    print(message)
-                    field_to_json = '        ; ///< @todo ' + message
+                    field_to_json = self.makeUnionFieldToJson(properties, name, union_index)
+                    union_index += 1
                 elif not (value.is_pointer or value.is_array or self.is_handle(value.base_type) or self.is_struct(value.base_type)):
                     field_to_json = '        FieldToJson(jdata["{0}"], decoded_value.{0}, options); //'
 
+                # Append some type info to the generated comment to help working back from
+                # generated to code to change required here:
                 if value.is_pointer:
                     field_to_json += " [is_pointer]"
                 if value.is_array:
@@ -119,6 +161,7 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12BaseGenerator):
                     field_to_json += " [is_struct]"
                 elif self.is_enum(value.base_type):
                     field_to_json += " [is_enum]"
+
                 field_to_json = field_to_json.format(value.name, value.array_length)
                 body += field_to_json + '\n'
         return body
