@@ -1965,7 +1965,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_SHADER_RESOU
         FieldToJson(jdata["Format"], decoded_value.Format, options); // [is_enum]
         FieldToJson(jdata["ViewDimension"], decoded_value.ViewDimension, options); // [is_enum]
         FieldToJson(jdata["Shader4ComponentMapping"], decoded_value.Shader4ComponentMapping, options); //
-        ; ///< @todo ALERT: Union member of D3D12_SHADER_RESOURCE_VIEW_DESC with type <anon-union-4> needs special handling.
+        ; ///< @todo ALERT: Union member 0 of D3D12_SHADER_RESOURCE_VIEW_DESC needs special handling.
     }
 }
 
@@ -2015,7 +2015,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_SAMPLER_DESC
         FieldToJson(jdata["MipLODBias"], decoded_value.MipLODBias, options); //
         FieldToJson(jdata["MaxAnisotropy"], decoded_value.MaxAnisotropy, options); //
         FieldToJson(jdata["ComparisonFunc"], decoded_value.ComparisonFunc, options); // [is_enum]
-        ; ///< @todo ALERT: Union member of D3D12_SAMPLER_DESC2 with type <anon-union-5> needs special handling.
+        ; ///< @todo ALERT: Union member 0 of D3D12_SAMPLER_DESC2 needs special handling.
         FieldToJson(jdata["MinLOD"], decoded_value.MinLOD, options); //
         FieldToJson(jdata["MaxLOD"], decoded_value.MaxLOD, options); //
         FieldToJson(jdata["Flags"], decoded_value.Flags, options); // [is_enum]
@@ -2132,7 +2132,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_UNORDERED_AC
         const Decoded_D3D12_UNORDERED_ACCESS_VIEW_DESC& meta_struct = *data;
         FieldToJson(jdata["Format"], decoded_value.Format, options); // [is_enum]
         FieldToJson(jdata["ViewDimension"], decoded_value.ViewDimension, options); // [is_enum]
-        ; ///< @todo ALERT: Union member of D3D12_UNORDERED_ACCESS_VIEW_DESC with type <anon-union-6> needs special handling.
+        ; ///< @todo ALERT: Union member 0 of D3D12_UNORDERED_ACCESS_VIEW_DESC needs special handling.
     }
 }
 
@@ -2243,7 +2243,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_RENDER_TARGE
         const Decoded_D3D12_RENDER_TARGET_VIEW_DESC& meta_struct = *data;
         FieldToJson(jdata["Format"], decoded_value.Format, options); // [is_enum]
         FieldToJson(jdata["ViewDimension"], decoded_value.ViewDimension, options); // [is_enum]
-        ; ///< @todo ALERT: Union member of D3D12_RENDER_TARGET_VIEW_DESC with type <anon-union-7> needs special handling.
+        ; ///< @todo ALERT: Union member 0 of D3D12_RENDER_TARGET_VIEW_DESC needs special handling.
     }
 }
 
@@ -2328,7 +2328,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_DEPTH_STENCI
         FieldToJson(jdata["Format"], decoded_value.Format, options); // [is_enum]
         FieldToJson(jdata["ViewDimension"], decoded_value.ViewDimension, options); // [is_enum]
         FieldToJson(jdata["Flags"], decoded_value.Flags, options); // [is_enum]
-        ; ///< @todo ALERT: Union member of D3D12_DEPTH_STENCIL_VIEW_DESC with type <anon-union-8> needs special handling.
+        ; ///< @todo ALERT: Union member 0 of D3D12_DEPTH_STENCIL_VIEW_DESC needs special handling.
     }
 }
 
@@ -2406,7 +2406,26 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_ROOT_PARAMET
         const D3D12_ROOT_PARAMETER& decoded_value = *data->decoded_value;
         const Decoded_D3D12_ROOT_PARAMETER& meta_struct = *data;
         FieldToJson(jdata["ParameterType"], decoded_value.ParameterType, options); // [is_enum]
-        ; ///< @todo ALERT: Union member of D3D12_ROOT_PARAMETER with type <anon-union-9> needs special handling.
+        switch(decoded_value.ParameterType)
+        {
+            case D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE:
+            {
+                FieldToJson(jdata["DescriptorTable"], meta_struct.DescriptorTable, options);
+                break;
+            }
+            case D3D12_ROOT_PARAMETER_TYPE_32BIT_CONSTANTS:
+            {
+                FieldToJson(jdata["Constants"], meta_struct.Constants, options);
+                break;
+            }
+            case D3D12_ROOT_PARAMETER_TYPE_CBV:
+            case D3D12_ROOT_PARAMETER_TYPE_SRV:
+            case D3D12_ROOT_PARAMETER_TYPE_UAV:
+            {
+                FieldToJson(jdata["Descriptor"], meta_struct.Descriptor, options);
+                break;
+            }
+        }
         FieldToJson(jdata["ShaderVisibility"], decoded_value.ShaderVisibility, options); // [is_enum]
     }
 }
@@ -2522,7 +2541,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_ROOT_PARAMET
         const D3D12_ROOT_PARAMETER1& decoded_value = *data->decoded_value;
         const Decoded_D3D12_ROOT_PARAMETER1& meta_struct = *data;
         FieldToJson(jdata["ParameterType"], decoded_value.ParameterType, options); // [is_enum]
-        ; ///< @todo ALERT: Union member of D3D12_ROOT_PARAMETER1 with type <anon-union-10> needs special handling.
+        ; ///< @todo ALERT: Union member 0 of D3D12_ROOT_PARAMETER1 needs special handling.
         FieldToJson(jdata["ShaderVisibility"], decoded_value.ShaderVisibility, options); // [is_enum]
     }
 }
@@ -2565,7 +2584,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_VERSIONED_RO
         const D3D12_VERSIONED_ROOT_SIGNATURE_DESC& decoded_value = *data->decoded_value;
         const Decoded_D3D12_VERSIONED_ROOT_SIGNATURE_DESC& meta_struct = *data;
         FieldToJson(jdata["Version"], decoded_value.Version, options); // [is_enum]
-        ; ///< @todo ALERT: Union member of D3D12_VERSIONED_ROOT_SIGNATURE_DESC with type <anon-union-11> needs special handling.
+        ; ///< @todo ALERT: Union member 0 of D3D12_VERSIONED_ROOT_SIGNATURE_DESC needs special handling.
     }
 }
 
@@ -2764,7 +2783,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_INDIRECT_ARG
         const D3D12_INDIRECT_ARGUMENT_DESC& decoded_value = *data->decoded_value;
         const Decoded_D3D12_INDIRECT_ARGUMENT_DESC& meta_struct = *data;
         FieldToJson(jdata["Type"], decoded_value.Type, options); // [is_enum]
-        ; ///< @todo ALERT: Union member of D3D12_INDIRECT_ARGUMENT_DESC with type <anon-union-12> needs special handling.
+        ; ///< @todo ALERT: Union member 0 of D3D12_INDIRECT_ARGUMENT_DESC needs special handling.
     }
 }
 
@@ -3233,7 +3252,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_RAYTRACING_G
         const Decoded_D3D12_RAYTRACING_GEOMETRY_DESC& meta_struct = *data;
         FieldToJson(jdata["Type"], decoded_value.Type, options); // [is_enum]
         FieldToJson(jdata["Flags"], decoded_value.Flags, options); // [is_enum]
-        ; ///< @todo ALERT: Union member of D3D12_RAYTRACING_GEOMETRY_DESC with type <anon-union-13> needs special handling.
+        ; ///< @todo ALERT: Union member 0 of D3D12_RAYTRACING_GEOMETRY_DESC needs special handling.
     }
 }
 
@@ -3248,7 +3267,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_BUILD_RAYTRA
         FieldToJson(jdata["Flags"], decoded_value.Flags, options); // [is_enum]
         FieldToJson(jdata["NumDescs"], decoded_value.NumDescs, options); //
         FieldToJson(jdata["DescsLayout"], decoded_value.DescsLayout, options); // [is_enum]
-        ; ///< @todo ALERT: Union member of D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS with type <anon-union-14> needs special handling.
+        ; ///< @todo ALERT: Union member 0 of D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS needs special handling.
     }
 }
 
@@ -3484,7 +3503,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_VERSIONED_DE
         const D3D12_VERSIONED_DEVICE_REMOVED_EXTENDED_DATA& decoded_value = *data->decoded_value;
         const Decoded_D3D12_VERSIONED_DEVICE_REMOVED_EXTENDED_DATA& meta_struct = *data;
         FieldToJson(jdata["Version"], decoded_value.Version, options); // [is_enum]
-        ; ///< @todo ALERT: Union member of D3D12_VERSIONED_DEVICE_REMOVED_EXTENDED_DATA with type <anon-union-15> needs special handling.
+        ; ///< @todo ALERT: Union member 0 of D3D12_VERSIONED_DEVICE_REMOVED_EXTENDED_DATA needs special handling.
     }
 }
 
@@ -3557,7 +3576,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_RENDER_PASS_
         const D3D12_RENDER_PASS_BEGINNING_ACCESS& decoded_value = *data->decoded_value;
         const Decoded_D3D12_RENDER_PASS_BEGINNING_ACCESS& meta_struct = *data;
         FieldToJson(jdata["Type"], decoded_value.Type, options); // [is_enum]
-        ; ///< @todo ALERT: Union member of D3D12_RENDER_PASS_BEGINNING_ACCESS with type <anon-union-16> needs special handling.
+        ; ///< @todo ALERT: Union member 0 of D3D12_RENDER_PASS_BEGINNING_ACCESS needs special handling.
     }
 }
 
@@ -3613,7 +3632,7 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_RENDER_PASS_
         const D3D12_RENDER_PASS_ENDING_ACCESS& decoded_value = *data->decoded_value;
         const Decoded_D3D12_RENDER_PASS_ENDING_ACCESS& meta_struct = *data;
         FieldToJson(jdata["Type"], decoded_value.Type, options); // [is_enum]
-        ; ///< @todo ALERT: Union member of D3D12_RENDER_PASS_ENDING_ACCESS with type <anon-union-17> needs special handling.
+        ; ///< @todo ALERT: Union member 0 of D3D12_RENDER_PASS_ENDING_ACCESS needs special handling.
     }
 }
 
