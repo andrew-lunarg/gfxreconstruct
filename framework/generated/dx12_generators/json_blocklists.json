@@ -2,13 +2,11 @@
   "description": "Block codegen of features for DX12 to JSON conversion. These are things like structs with unions which need special handling. (this is just a comment on the current file for human eyes)",
   "functions-all": [],
   "functions-encoder": [],
-  "functions-decoder": [
-    "D3D12GetDebugInterface"
-  ],
+  "functions-decoder": [],
+  "todo1": "Try enabling these functions for json output",
   "classmethods": {
     "ID3D12Device": [
-      "CheckFeatureSupport",
-      "CreateCommandQueue"
+      "CheckFeatureSupport"
     ],
     "IDXGIFactory5": [
       "CheckFeatureSupport"
@@ -17,6 +15,7 @@
       "WriteToSubresource"
     ]
   },
+  "todo2": "Remove the ones below which can be handled with anon union support.",
   "structures": [
     "D3D12_BARRIER_GROUP",
     "D3D12_CLEAR_VALUE",
