@@ -2060,7 +2060,14 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_SAMPLER_DESC
         FieldToJson(jdata["MipLODBias"], decoded_value.MipLODBias, options); // Basic data plumbs to raw struct
         FieldToJson(jdata["MaxAnisotropy"], decoded_value.MaxAnisotropy, options); // Basic data plumbs to raw struct
         FieldToJson(jdata["ComparisonFunc"], decoded_value.ComparisonFunc, options); // Basic data plumbs to raw struct [is_enum]
-        ; ///< @todo ALERT: Union member 0 of D3D12_SAMPLER_DESC2 needs special handling.
+        if(decoded_value.Flags & D3D12_SAMPLER_FLAG_UINT_BORDER_COLOR)
+        {
+            FieldToJson(jdata["UintBorderColor"], decoded_value.UintBorderColor, options);
+        }
+        else
+        {
+            FieldToJson(jdata["FloatBorderColor"], decoded_value.FloatBorderColor, options);
+        }
         FieldToJson(jdata["MinLOD"], decoded_value.MinLOD, options); // Basic data plumbs to raw struct
         FieldToJson(jdata["MaxLOD"], decoded_value.MaxLOD, options); // Basic data plumbs to raw struct
         FieldToJson(jdata["Flags"], decoded_value.Flags, options); // Basic data plumbs to raw struct [is_enum]

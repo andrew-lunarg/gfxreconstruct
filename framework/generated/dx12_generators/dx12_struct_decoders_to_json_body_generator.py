@@ -187,6 +187,17 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12BaseGenerator):
                     }}
                 }}
                 '''
+            case "D3D12_SAMPLER_DESC2":
+                field_to_json = '''
+                    if(decoded_value.Flags & D3D12_SAMPLER_FLAG_UINT_BORDER_COLOR)
+                    {{
+                        FieldToJson(jdata["UintBorderColor"], decoded_value.UintBorderColor, options);
+                    }}
+                    else
+                    {{
+                        FieldToJson(jdata["FloatBorderColor"], decoded_value.FloatBorderColor, options);
+                    }}
+                '''
             case _:
                 print(message)
         return format_cpp_code(field_to_json, 2)
