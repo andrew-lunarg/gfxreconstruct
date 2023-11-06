@@ -254,6 +254,63 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12BaseGenerator):
                         }}
                     }}
                 '''
+            case "D3D12_RENDER_TARGET_VIEW_DESC":
+                field_to_json = '''
+                    switch(decoded_value.ViewDimension)
+                    {{
+                        case D3D12_RTV_DIMENSION_UNKNOWN:
+                        {{
+                            FieldToJson(jdata["Warning"], "Zero D3D12_RTV_DIMENSION in D3D12_RENDER_TARGET_VIEW_DESC. Uninitialised struct?", options);
+                            break;
+                        }}
+                        case D3D12_RTV_DIMENSION_BUFFER:
+                        {{
+                            FieldToJson(jdata["Buffer"], meta_struct.Buffer, options);
+                            break;
+                        }}
+                        case D3D12_RTV_DIMENSION_TEXTURE1D:
+                        {{
+                            FieldToJson(jdata["Texture1D"], meta_struct.Texture1D, options);
+                            break;
+                        }}
+                        case D3D12_RTV_DIMENSION_TEXTURE1DARRAY:
+                        {{
+                            FieldToJson(jdata["Texture1DArray"], meta_struct.Texture1DArray, options);
+                            break;
+                        }}
+                        case D3D12_RTV_DIMENSION_TEXTURE2D:
+                        {{
+                            FieldToJson(jdata["Texture2D"], meta_struct.Texture2D, options);
+                            break;
+                        }}
+                        case D3D12_RTV_DIMENSION_TEXTURE2DARRAY:
+                        {{
+                            FieldToJson(jdata["Texture2DArray"], meta_struct.Texture2DArray, options);
+                            break;
+                        }}
+                        case D3D12_RTV_DIMENSION_TEXTURE2DMS:
+                        {{
+                            FieldToJson(jdata["Texture2DMS"], meta_struct.Texture2DMS, options);
+                            break;
+                        }}
+                        case D3D12_RTV_DIMENSION_TEXTURE2DMSARRAY:
+                        {{
+                            FieldToJson(jdata["Texture2DMSArray"], meta_struct.Texture2DMSArray, options);
+                            break;
+                        }}
+                        case D3D12_RTV_DIMENSION_TEXTURE3D:
+                        {{
+                            FieldToJson(jdata["Texture3D"], meta_struct.Texture3D, options);
+                            break;
+                        }}
+                        default:
+                        {{
+                            FieldToJson(jdata["Warning"], "Unknown D3D12_RTV_DIMENSION in D3D12_RENDER_TARGET_VIEW_DESC. Corrupt struct?", options);
+                            FieldToJson(jdata["Unknown value"], uint32_t(decoded_value.ViewDimension), options);
+                            break;
+                        }}
+                    }}
+                '''
             case _:
                 print(message)
         return format_cpp_code(field_to_json, 2)
