@@ -2184,7 +2184,59 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_UNORDERED_AC
         const Decoded_D3D12_UNORDERED_ACCESS_VIEW_DESC& meta_struct = *data;
         FieldToJson(jdata["Format"], decoded_value.Format, options); // Basic data plumbs to raw struct [is_enum]
         FieldToJson(jdata["ViewDimension"], decoded_value.ViewDimension, options); // Basic data plumbs to raw struct [is_enum]
-        ; ///< @todo ALERT: Union member 0 of D3D12_UNORDERED_ACCESS_VIEW_DESC needs special handling.
+        switch(decoded_value.ViewDimension){
+            case D3D12_UAV_DIMENSION_UNKNOWN:
+            {
+                FieldToJson(jdata["Warning"], "Zero-valued ViewDimension is meaningless. Is struct corrupted?", options);
+                break;
+            }
+            case D3D12_UAV_DIMENSION_BUFFER:
+            {
+                FieldToJson(jdata["Buffer"], meta_struct.Buffer, options);
+                break;
+            }
+            case D3D12_UAV_DIMENSION_TEXTURE1D:
+            {
+                FieldToJson(jdata["Texture1D"], meta_struct.Texture1D, options);
+                break;
+            }
+            case D3D12_UAV_DIMENSION_TEXTURE1DARRAY:
+            {
+                FieldToJson(jdata["Texture1DArray"], meta_struct.Texture1DArray, options);
+                break;
+            }
+            case D3D12_UAV_DIMENSION_TEXTURE2D:
+            {
+                FieldToJson(jdata["Texture2D"], meta_struct.Texture2D, options);
+                break;
+            }
+            case D3D12_UAV_DIMENSION_TEXTURE2DARRAY:
+            {
+                FieldToJson(jdata["Texture2DArray"], meta_struct.Texture2DArray, options);
+                break;
+            }
+            case D3D12_UAV_DIMENSION_TEXTURE2DMS:
+            {
+                FieldToJson(jdata["Texture2DMS"], "Field missing from Decoded_D3D12_UNORDERED_ACCESS_VIEW_DESC.", options);
+                break;
+            }
+            case D3D12_UAV_DIMENSION_TEXTURE2DMSARRAY:
+            {
+                FieldToJson(jdata["Texture2DMSArray"], "Field missing from Decoded_D3D12_UNORDERED_ACCESS_VIEW_DESC.", options);
+                break;
+            }
+            case D3D12_UAV_DIMENSION_TEXTURE3D:
+            {
+                FieldToJson(jdata["Texture3D"], meta_struct.Texture3D, options);
+                break;
+            }
+            default:
+            {
+                FieldToJson(jdata["Warning"], "ViewDimension with unknown value. Is struct corrupted?", options);
+                FieldToJson(jdata["Unknown value"], uint32_t(decoded_value.ViewDimension), options);
+                break;
+            }
+        }
     }
 }
 
