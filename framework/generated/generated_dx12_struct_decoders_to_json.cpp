@@ -2184,7 +2184,8 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_UNORDERED_AC
         const Decoded_D3D12_UNORDERED_ACCESS_VIEW_DESC& meta_struct = *data;
         FieldToJson(jdata["Format"], decoded_value.Format, options); // Basic data plumbs to raw struct [is_enum]
         FieldToJson(jdata["ViewDimension"], decoded_value.ViewDimension, options); // Basic data plumbs to raw struct [is_enum]
-        switch(decoded_value.ViewDimension){
+        switch(decoded_value.ViewDimension)
+        {
             case D3D12_UAV_DIMENSION_UNKNOWN:
             {
                 FieldToJson(jdata["Warning"], "Zero-valued ViewDimension is meaningless. Is struct corrupted?", options);
@@ -2741,7 +2742,32 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_ROOT_PARAMET
         const D3D12_ROOT_PARAMETER1& decoded_value = *data->decoded_value;
         const Decoded_D3D12_ROOT_PARAMETER1& meta_struct = *data;
         FieldToJson(jdata["ParameterType"], decoded_value.ParameterType, options); // Basic data plumbs to raw struct [is_enum]
-        ; ///< @todo ALERT: Union member 0 of D3D12_ROOT_PARAMETER1 needs special handling.
+        switch (decoded_value.ParameterType)
+        {
+            case D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE:
+            {
+                FieldToJson(jdata["DescriptorTable"], meta_struct.DescriptorTable, options);
+                break;
+            }
+            case D3D12_ROOT_PARAMETER_TYPE_32BIT_CONSTANTS:
+            {
+                FieldToJson(jdata["Constants"], meta_struct.Constants, options);
+                break;
+            }
+            case D3D12_ROOT_PARAMETER_TYPE_CBV:
+            case D3D12_ROOT_PARAMETER_TYPE_SRV:
+            case D3D12_ROOT_PARAMETER_TYPE_UAV:
+            {
+                FieldToJson(jdata["Descriptor"], meta_struct.Descriptor, options);
+                break;
+            }
+            default:
+            {
+                FieldToJson(jdata["Warning"], "Unknown D3D12_ROOT_PARAMETER_TYPE in D3D12_ROOT_PARAMETER1. Uninitialised or corrupt struct?", options);
+                FieldToJson(jdata["Unknown value"], uint32_t(decoded_value.ParameterType), options);
+                break;
+            }
+        }
         FieldToJson(jdata["ShaderVisibility"], decoded_value.ShaderVisibility, options); // Basic data plumbs to raw struct [is_enum]
     }
 }
