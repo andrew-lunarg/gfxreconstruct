@@ -415,6 +415,68 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12BaseGenerator):
                     }}
                 }}
             '''
+            case "D3D12_INDIRECT_ARGUMENT_DESC":
+                field_to_json = '''
+                switch (decoded_value.Type)
+                {{
+                    case D3D12_INDIRECT_ARGUMENT_TYPE_DRAW:
+                    case D3D12_INDIRECT_ARGUMENT_TYPE_DRAW_INDEXED:
+                    case D3D12_INDIRECT_ARGUMENT_TYPE_DISPATCH:
+                    {{
+                        // No data to output for draws and dispatches, they are parameterless tags.
+                        break;
+                    }}
+                    case D3D12_INDIRECT_ARGUMENT_TYPE_VERTEX_BUFFER_VIEW:
+                    {{
+                        auto& vb = jdata["VertexBuffer"];
+                        FieldToJson(vb["Slot"], decoded_value.VertexBuffer.Slot, options);
+                        break;
+                    }}
+                    case D3D12_INDIRECT_ARGUMENT_TYPE_INDEX_BUFFER_VIEW:
+                    {{
+                        // No parameters to output.
+                        FieldToJson(jdata["comment"], "There must be a D3D12_INDIRECT_ARGUMENT_TYPE_DRAW_INDEXED in the same sequence.", options);
+                        break;
+                    }}
+                    case D3D12_INDIRECT_ARGUMENT_TYPE_CONSTANT:
+                    {{
+                        auto& c = jdata["Constant"];
+                        FieldToJson(c["RootParameterIndex"], decoded_value.Constant.RootParameterIndex, options);
+                        FieldToJson(c["DestOffsetIn32BitValues"], decoded_value.Constant.DestOffsetIn32BitValues, options);
+                        FieldToJson(c["Num32BitValuesToSet"], decoded_value.Constant.Num32BitValuesToSet, options);
+                        break;
+                    }}
+                    case D3D12_INDIRECT_ARGUMENT_TYPE_CONSTANT_BUFFER_VIEW:
+                    {{
+                        auto& cbv = jdata["ConstantBufferView"];
+                        FieldToJson(cbv["RootParameterIndex"], decoded_value.ConstantBufferView.RootParameterIndex, options);
+                        break;
+                    }}
+                    case D3D12_INDIRECT_ARGUMENT_TYPE_SHADER_RESOURCE_VIEW:
+                    {{
+                        auto& srv = jdata["ShaderResourceView"];
+                        FieldToJson(srv["RootParameterIndex"], decoded_value.ShaderResourceView.RootParameterIndex, options);
+                        break;
+                    }}
+                    case D3D12_INDIRECT_ARGUMENT_TYPE_UNORDERED_ACCESS_VIEW:
+                    {{
+                        auto& uav = jdata["UnorderedAccessView"];
+                        FieldToJson(uav["RootParameterIndex"], decoded_value.UnorderedAccessView.RootParameterIndex, options);
+                        break;
+                    }}
+                    case D3D12_INDIRECT_ARGUMENT_TYPE_DISPATCH_RAYS:
+                    case D3D12_INDIRECT_ARGUMENT_TYPE_DISPATCH_MESH:
+                    {{
+                        // No data to output for draws and dispatches, they are parameterless tags.
+                        break;
+                    }}
+                    default:
+                    {{
+                        FieldToJson(jdata["Warning"], "Unknown D3D12_INDIRECT_ARGUMENT_TYPE in D3D12_INDIRECT_ARGUMENT_DESC. Uninitialised or corrupt struct?", options);
+                        break;
+                    }}
+                }}
+                '''
             case _:
                 print(message)
         return format_cpp_code(field_to_json, 2)
