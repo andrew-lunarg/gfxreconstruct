@@ -388,6 +388,33 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12BaseGenerator):
                     }}
                 }}
             '''
+            case "D3D12_VERSIONED_ROOT_SIGNATURE_DESC":
+                field_to_json = '''
+                switch (decoded_value.Version)
+                {{
+                    case D3D_ROOT_SIGNATURE_VERSION_1_0:
+                    {{
+                        FieldToJson(jdata["Desc_1_0"], meta_struct.Desc_1_0, options);
+                        break;
+                    }}
+                    case D3D_ROOT_SIGNATURE_VERSION_1_1:
+                    {{
+                        FieldToJson(jdata["Desc_1_1"], meta_struct.Desc_1_1, options);
+                        break;
+                    }}
+                    case D3D_ROOT_SIGNATURE_VERSION_1_2:
+                    {{
+                        /// @todo Uncomment this once the union member is added to the decoded struct: FieldToJson(jdata["Desc_1_2"], meta_struct.Desc_1_2, options);
+                        GFXRECON_LOG_ERROR("Unknown D3D_ROOT_SIGNATURE_VERSION_1_2 in D3D12_VERSIONED_ROOT_SIGNATURE_DESC.");
+                        break;
+                    }}
+                    default:
+                    {{
+                        FieldToJson(jdata["Warning"], "Unknown D3D_ROOT_SIGNATURE_VERSION in D3D12_VERSIONED_ROOT_SIGNATURE_DESC. Uninitialised or corrupt struct?", options);
+                        break;
+                    }}
+                }}
+            '''
             case _:
                 print(message)
         return format_cpp_code(field_to_json, 2)
