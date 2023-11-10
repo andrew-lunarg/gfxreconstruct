@@ -364,7 +364,7 @@ void Dx12JsonConsumer::Process_IDXGISurface1_GetDC(
     FieldToJson(method[format::kNameReturn], return_value, options);
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
-        FieldToJson(args["Discard"], Discard, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["Discard"], Discard, options); // [non-pointer, non-array, non-handle]
         FieldToJson(args["phdc"], phdc, options); // [pointer to single value]
     }
     writer_->WriteBlockEnd();
@@ -538,7 +538,7 @@ void Dx12JsonConsumer::Process_IDXGIOutput_TakeOwnership(
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
         FieldToJson(args["pDevice"], pDevice, options); // [pointer to single value]
-        FieldToJson(args["Exclusive"], Exclusive, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["Exclusive"], Exclusive, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
@@ -719,7 +719,7 @@ void Dx12JsonConsumer::Process_IDXGISwapChain_SetFullscreenState(
     FieldToJson(method[format::kNameReturn], return_value, options);
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
-        FieldToJson(args["Fullscreen"], Fullscreen, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["Fullscreen"], Fullscreen, options); // [non-pointer, non-array, non-handle]
         FieldToJson(args["pTarget"], pTarget, options); // [pointer to single value]
     }
     writer_->WriteBlockEnd();
@@ -739,7 +739,7 @@ void Dx12JsonConsumer::Process_IDXGISwapChain_GetFullscreenState(
     FieldToJson(method[format::kNameReturn], return_value, options);
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
-        FieldToJson(args["pFullscreen"], pFullscreen, options); // [pointer to single value]
+        Bool32ToJson(args["pFullscreen"], pFullscreen, options); // [pointer to single value]
         FieldToJson(args["ppTarget"], ppTarget, options); // [pointer to single value]
     }
     writer_->WriteBlockEnd();
@@ -1179,7 +1179,7 @@ void Dx12JsonConsumer::Process_IDXGIDisplayControl_SetStereoEnabled(
     // Nothing returned from method.
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
-        FieldToJson(args["enabled"], enabled, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["enabled"], enabled, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
@@ -1440,7 +1440,7 @@ void Dx12JsonConsumer::Process_IDXGIDevice2_ReclaimResources(
     {
         FieldToJson(args["NumResources"], NumResources, options); // [non-pointer, non-array, non-handle]
         FieldToJson(args["ppResources"], ppResources, options); // [pointer to array]
-        FieldToJson(args["pDiscarded"], pDiscarded, options); // [pointer to array]
+        Bool32ToJson(args["pDiscarded"], pDiscarded, options); // [pointer to array]
     }
     writer_->WriteBlockEnd();
 }
@@ -4379,7 +4379,7 @@ void Dx12JsonConsumer::Process_ID3D12GraphicsCommandList_OMSetRenderTargets(
     {
         FieldToJson(args["NumRenderTargetDescriptors"], NumRenderTargetDescriptors, options); // [non-pointer, non-array, non-handle]
         FieldToJson(args["pRenderTargetDescriptors"], pRenderTargetDescriptors, options); // [pointer to array]
-        FieldToJson(args["RTsSingleHandleToDescriptorRange"], RTsSingleHandleToDescriptorRange, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["RTsSingleHandleToDescriptorRange"], RTsSingleHandleToDescriptorRange, options); // [non-pointer, non-array, non-handle]
         FieldToJson(args["pDepthStencilDescriptor"], pDepthStencilDescriptor, options); // [pointer to single value]
     }
     writer_->WriteBlockEnd();
@@ -5808,7 +5808,7 @@ void Dx12JsonConsumer::Process_ID3D12Device_SetStablePowerState(
     FieldToJson(method[format::kNameReturn], return_value, options);
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
-        FieldToJson(args["Enable"], Enable, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["Enable"], Enable, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
@@ -6790,7 +6790,7 @@ void Dx12JsonConsumer::Process_ID3D12DeviceRemovedExtendedDataSettings2_UseMarke
     // Nothing returned from method.
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
-        FieldToJson(args["MarkersOnly"], MarkersOnly, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["MarkersOnly"], MarkersOnly, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
@@ -6917,7 +6917,7 @@ void Dx12JsonConsumer::Process_ID3D12Device6_SetBackgroundProcessingMode(
         FieldToJson(args["Mode"], Mode, options); // [non-pointer, non-array, non-handle]
         FieldToJson(args["MeasurementsAction"], MeasurementsAction, options); // [non-pointer, non-array, non-handle]
         FieldToJson(args["hEventToSignalUponCompletion"], hEventToSignalUponCompletion, options); // [pointer to single value]
-        FieldToJson(args["pbFurtherMeasurementsDesired"], pbFurtherMeasurementsDesired, options); // [pointer to single value]
+        Bool32ToJson(args["pbFurtherMeasurementsDesired"], pbFurtherMeasurementsDesired, options); // [pointer to single value]
     }
     writer_->WriteBlockEnd();
 }
@@ -7725,7 +7725,7 @@ void Dx12JsonConsumer::Process_ID3D12Tools_EnableShaderInstrumentation(
     // Nothing returned from method.
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
-        FieldToJson(args["bEnable"], bEnable, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["bEnable"], bEnable, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
@@ -8272,7 +8272,7 @@ void Dx12JsonConsumer::Process_ID3D12Debug1_SetEnableGPUBasedValidation(
     // Nothing returned from method.
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
-        FieldToJson(args["Enable"], Enable, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["Enable"], Enable, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
@@ -8289,7 +8289,7 @@ void Dx12JsonConsumer::Process_ID3D12Debug1_SetEnableSynchronizedCommandQueueVal
     // Nothing returned from method.
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
-        FieldToJson(args["Enable"], Enable, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["Enable"], Enable, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
@@ -8323,7 +8323,7 @@ void Dx12JsonConsumer::Process_ID3D12Debug3_SetEnableGPUBasedValidation(
     // Nothing returned from method.
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
-        FieldToJson(args["Enable"], Enable, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["Enable"], Enable, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
@@ -8340,7 +8340,7 @@ void Dx12JsonConsumer::Process_ID3D12Debug3_SetEnableSynchronizedCommandQueueVal
     // Nothing returned from method.
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
-        FieldToJson(args["Enable"], Enable, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["Enable"], Enable, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
@@ -8386,7 +8386,7 @@ void Dx12JsonConsumer::Process_ID3D12Debug5_SetEnableAutoName(
     // Nothing returned from method.
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
-        FieldToJson(args["Enable"], Enable, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["Enable"], Enable, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
@@ -8403,7 +8403,7 @@ void Dx12JsonConsumer::Process_ID3D12Debug6_SetForceLegacyBarrierValidation(
     // Nothing returned from method.
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
-        FieldToJson(args["Enable"], Enable, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["Enable"], Enable, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
@@ -9352,7 +9352,7 @@ void Dx12JsonConsumer::Process_ID3D12InfoQueue_SetBreakOnCategory(
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
         FieldToJson(args["Category"], Category, options); // [non-pointer, non-array, non-handle]
-        FieldToJson(args["bEnable"], bEnable, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["bEnable"], bEnable, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
@@ -9372,7 +9372,7 @@ void Dx12JsonConsumer::Process_ID3D12InfoQueue_SetBreakOnSeverity(
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
         FieldToJson(args["Severity"], Severity, options); // [non-pointer, non-array, non-handle]
-        FieldToJson(args["bEnable"], bEnable, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["bEnable"], bEnable, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
@@ -9392,7 +9392,7 @@ void Dx12JsonConsumer::Process_ID3D12InfoQueue_SetBreakOnID(
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
         FieldToJson(args["ID"], ID, options); // [non-pointer, non-array, non-handle]
-        FieldToJson(args["bEnable"], bEnable, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["bEnable"], bEnable, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
@@ -9463,7 +9463,7 @@ void Dx12JsonConsumer::Process_ID3D12InfoQueue_SetMuteDebugOutput(
     // Nothing returned from method.
     nlohmann::ordered_json& args = method[format::kNameArgs];
     {
-        FieldToJson(args["bMute"], bMute, options); // [non-pointer, non-array, non-handle]
+        Bool32ToJson(args["bMute"], bMute, options); // [non-pointer, non-array, non-handle]
     }
     writer_->WriteBlockEnd();
 }
