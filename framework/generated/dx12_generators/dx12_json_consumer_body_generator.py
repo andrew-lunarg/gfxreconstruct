@@ -154,11 +154,17 @@ class Dx12JsonConsumerBodyGenerator(Dx12JsonConsumerHeaderGenerator):
             nlohmann::ordered_json& method = writer_->WriteApiCallStart(call_info, "{0}", object_id, "{1}");
             const JsonOptions& options = writer_->GetOptions();
         '''
-        if not "void" in return_type:
-            #if method_info.returns_pointer:
-            #    code += "FieldToJson(method[format::kNameReturn], return_value, options);"
-            #else:
-            code += "FieldToJson(method[format::kNameReturn], return_value, options);\n"
+        default = "FieldToJson(method[format::kNameReturn], return_value, options);\n"
+        if "BOOL" in return_type:
+            code += "Bool32ToJson(method[format::kNameReturn], return_value, options);\n"
+        elif "HRESULT" in return_type:
+            code += "/// @todo Need a human-readable conversion for HRESULTs.\n"
+            code += default
+        elif not "void" in return_type:
+            msg = "An unknown return type was seen in generation. Defaulting to the base converter signature."
+            print("ALERT: " + msg + " (" + return_type + ")")
+            code += "// " + msg + "\n"
+            code += default
         else:
             code += "// Nothing returned from method.\n"
         if len(method_info['parameters']) > 0:
