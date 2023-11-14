@@ -3578,7 +3578,36 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_BUILD_RAYTRA
         FieldToJson(jdata["Flags"], decoded_value.Flags, options); // Basic data plumbs to raw struct [is_enum]
         FieldToJson(jdata["NumDescs"], decoded_value.NumDescs, options); // Basic data plumbs to raw struct
         FieldToJson(jdata["DescsLayout"], decoded_value.DescsLayout, options); // Basic data plumbs to raw struct [is_enum]
-        ; ///< @todo ALERT: Union member 0 of D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS needs special handling.
+        switch(decoded_value.Type)
+        {
+            case D3D12_RAYTRACING_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL:
+            {
+                FieldToJsonAsHex(jdata["InstanceDescs"], decoded_value.InstanceDescs, options);
+                break;
+            }
+            case D3D12_RAYTRACING_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL:
+            {
+                switch(decoded_value.DescsLayout)
+                {
+                    case D3D12_ELEMENTS_LAYOUT_ARRAY:
+                    {
+                        FieldToJson(jdata["pGeometryDescs"], meta_struct.pGeometryDescs, options);
+                        break;
+                    }
+                    case D3D12_ELEMENTS_LAYOUT_ARRAY_OF_POINTERS:
+                    {
+                        FieldToJson(jdata["ppGeometryDescs"], meta_struct.ppGeometryDescs, options);
+                        break;
+                    }
+                }
+                break;
+            }
+            default:
+            {
+                FieldToJson(jdata["Warning"], "Unknown D3D12_RAYTRACING_ACCELERATION_STRUCTURE_TYPE in D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS. Uninitialised or corrupt struct?", options);
+                break;
+            }
+        }
     }
 }
 
