@@ -498,6 +498,39 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12BaseGenerator):
                     }}
                 }}
                 '''
+            case "D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS":
+                field_to_json = '''
+                switch(decoded_value.Type)
+                {{
+                    case D3D12_RAYTRACING_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL:
+                    {{
+                        FieldToJsonAsHex(jdata["InstanceDescs"], decoded_value.InstanceDescs, options);
+                        break;
+                    }}
+                    case D3D12_RAYTRACING_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL:
+                    {{
+                        switch(decoded_value.DescsLayout)
+                        {{
+                            case D3D12_ELEMENTS_LAYOUT_ARRAY:
+                            {{
+                                FieldToJson(jdata["pGeometryDescs"], meta_struct.pGeometryDescs, options);
+                                break;
+                            }}
+                            case D3D12_ELEMENTS_LAYOUT_ARRAY_OF_POINTERS:
+                            {{
+                                FieldToJson(jdata["ppGeometryDescs"], meta_struct.ppGeometryDescs, options);
+                                break;
+                            }}
+                        }}
+                        break;
+                    }}
+                    default:
+                    {{
+                        FieldToJson(jdata["Warning"], "Unknown D3D12_RAYTRACING_ACCELERATION_STRUCTURE_TYPE in D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS. Uninitialised or corrupt struct?", options);
+                        break;
+                    }}
+                }}
+                '''
             case _:
                 print(message)
         return format_cpp_code(field_to_json, 2)
