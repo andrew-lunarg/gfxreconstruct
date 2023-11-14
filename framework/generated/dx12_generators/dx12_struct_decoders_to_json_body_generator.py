@@ -477,6 +477,27 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12BaseGenerator):
                     }}
                 }}
                 '''
+            case "D3D12_RAYTRACING_GEOMETRY_DESC":
+                field_to_json = '''
+                switch(decoded_value.Type)
+                {{
+                    case D3D12_RAYTRACING_GEOMETRY_TYPE_TRIANGLES:
+                    {{
+                        FieldToJson(jdata["Triangles"], meta_struct.Triangles, options);
+                        break;
+                    }}
+                    case D3D12_RAYTRACING_GEOMETRY_TYPE_PROCEDURAL_PRIMITIVE_AABBS:
+                    {{
+                        FieldToJson(jdata["AABBs"], meta_struct.AABBs, options);
+                        break;
+                    }}
+                    default:
+                    {{
+                        FieldToJson(jdata["Warning"], "Unknown D3D12_RAYTRACING_GEOMETRY_TYPE in D3D12_RAYTRACING_GEOMETRY_DESC. Uninitialised or corrupt struct?", options);
+                        break;
+                    }}
+                }}
+                '''
             case _:
                 print(message)
         return format_cpp_code(field_to_json, 2)

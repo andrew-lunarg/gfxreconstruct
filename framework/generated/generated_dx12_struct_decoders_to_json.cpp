@@ -3546,7 +3546,24 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_RAYTRACING_G
         const Decoded_D3D12_RAYTRACING_GEOMETRY_DESC& meta_struct = *data;
         FieldToJson(jdata["Type"], decoded_value.Type, options); // Basic data plumbs to raw struct [is_enum]
         FieldToJson(jdata["Flags"], decoded_value.Flags, options); // Basic data plumbs to raw struct [is_enum]
-        ; ///< @todo ALERT: Union member 0 of D3D12_RAYTRACING_GEOMETRY_DESC needs special handling.
+        switch(decoded_value.Type)
+        {
+            case D3D12_RAYTRACING_GEOMETRY_TYPE_TRIANGLES:
+            {
+                FieldToJson(jdata["Triangles"], meta_struct.Triangles, options);
+                break;
+            }
+            case D3D12_RAYTRACING_GEOMETRY_TYPE_PROCEDURAL_PRIMITIVE_AABBS:
+            {
+                FieldToJson(jdata["AABBs"], meta_struct.AABBs, options);
+                break;
+            }
+            default:
+            {
+                FieldToJson(jdata["Warning"], "Unknown D3D12_RAYTRACING_GEOMETRY_TYPE in D3D12_RAYTRACING_GEOMETRY_DESC. Uninitialised or corrupt struct?", options);
+                break;
+            }
+        }
     }
 }
 
