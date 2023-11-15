@@ -47,6 +47,13 @@ static void FieldToJson(nlohmann::ordered_json& jdata, const D3D12_RENDER_PASS_B
     FieldToJson(jdata["AdditionalWidth"],  data.AdditionalWidth,  options);
     FieldToJson(jdata["AdditionalHeight"], data.AdditionalHeight, options);
 }
+
+static void FieldToJson(nlohmann::ordered_json& jdata, const D3D12_RENDER_PASS_ENDING_ACCESS_PRESERVE_LOCAL_PARAMETERS& data, const JsonOptions& options)
+{
+    using namespace util;
+    FieldToJson(jdata["AdditionalWidth"], data.AdditionalWidth, options);
+    FieldToJson(jdata["AdditionalHeight"], data.AdditionalHeight, options);
+}
 /** @} */
 
 void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_DXGI_FRAME_STATISTICS* data, const JsonOptions& options)
@@ -4044,7 +4051,33 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_RENDER_PASS_
         const D3D12_RENDER_PASS_ENDING_ACCESS& decoded_value = *data->decoded_value;
         const Decoded_D3D12_RENDER_PASS_ENDING_ACCESS& meta_struct = *data;
         FieldToJson(jdata["Type"], decoded_value.Type, options); // Basic data plumbs to raw struct [is_enum]
-        ; ///< @todo ALERT: Union member 0 of D3D12_RENDER_PASS_ENDING_ACCESS needs special handling.
+        switch(decoded_value.Type)
+        {
+            case D3D12_RENDER_PASS_ENDING_ACCESS_TYPE_DISCARD:
+            case D3D12_RENDER_PASS_ENDING_ACCESS_TYPE_PRESERVE:
+            case D3D12_RENDER_PASS_ENDING_ACCESS_TYPE_NO_ACCESS:
+            // No parameters to these cases.
+            break;
+
+            case D3D12_RENDER_PASS_ENDING_ACCESS_TYPE_RESOLVE:
+            {
+                FieldToJson(jdata["Resolve"], meta_struct.Resolve, options);
+                break;
+            }
+            case D3D12_RENDER_PASS_ENDING_ACCESS_TYPE_PRESERVE_LOCAL_RENDER:
+            case D3D12_RENDER_PASS_ENDING_ACCESS_TYPE_PRESERVE_LOCAL_SRV:
+            case D3D12_RENDER_PASS_ENDING_ACCESS_TYPE_PRESERVE_LOCAL_UAV:
+            {
+                FieldToJson(jdata["PreserveLocal"], decoded_value.PreserveLocal, options);
+                break;
+            }
+
+            default:
+            {
+                FieldToJson(jdata["Warning"], "Unknown D3D12_RENDER_PASS_ENDING_ACCESS_TYPE in D3D12_RENDER_PASS_ENDING_ACCESS. Uninitialised or corrupt struct?", options);
+                break;
+            }
+        }
     }
 }
 
