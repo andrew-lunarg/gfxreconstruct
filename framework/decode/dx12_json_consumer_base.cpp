@@ -56,7 +56,8 @@ void Dx12JsonConsumerBase::ProcessCreateHeapAllocationCommand(uint64_t allocatio
 {
     const util::JsonOptions& json_options = writer_->GetOptions();
     auto&                    jdata        = writer_->WriteMetaCommandStart("CreateHeapAllocationCommand");
-    FieldToJson(jdata[format::kNameWarning], "Need to implement " __FUNCTION__, json_options);
+    FieldToJson(jdata["allocation_id"], allocation_id, json_options);
+    FieldToJson(jdata["allocation_size"], allocation_size, json_options);
     writer_->WriteBlockEnd();
 }
 
