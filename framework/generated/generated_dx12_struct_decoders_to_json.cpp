@@ -32,10 +32,22 @@
 #include "graphics/dx12_util.h"
 #include "util/json_util.h"
 
+/// @file Implementations of functions for converting decoded D3D12 structs to JSON.
+
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(decode)
 
 using util::JsonOptions;
+
+/// @defgroup ManualD3D12StructFieldToJsons Manual functions to convert structs.
+/** @{ */
+static void FieldToJson(nlohmann::ordered_json& jdata, const D3D12_RENDER_PASS_BEGINNING_ACCESS_PRESERVE_LOCAL_PARAMETERS& data, const JsonOptions& options)
+{
+    using namespace util;
+    FieldToJson(jdata["AdditionalWidth"],  data.AdditionalWidth,  options);
+    FieldToJson(jdata["AdditionalHeight"], data.AdditionalHeight, options);
+}
+/** @} */
 
 void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_DXGI_FRAME_STATISTICS* data, const JsonOptions& options)
 {
@@ -3947,7 +3959,36 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_RENDER_PASS_
         const D3D12_RENDER_PASS_BEGINNING_ACCESS& decoded_value = *data->decoded_value;
         const Decoded_D3D12_RENDER_PASS_BEGINNING_ACCESS& meta_struct = *data;
         FieldToJson(jdata["Type"], decoded_value.Type, options); // Basic data plumbs to raw struct [is_enum]
-        ; ///< @todo ALERT: Union member 0 of D3D12_RENDER_PASS_BEGINNING_ACCESS needs special handling.
+        switch(decoded_value.Type)
+        {
+            case D3D12_RENDER_PASS_BEGINNING_ACCESS_TYPE_CLEAR:
+            {
+                FieldToJson(jdata["Clear"], meta_struct.Clear, options);
+                break;
+            }
+            case D3D12_RENDER_PASS_BEGINNING_ACCESS_TYPE_PRESERVE_LOCAL_RENDER:
+            if(decoded_value.PreserveLocal.AdditionalWidth != 0U || decoded_value.PreserveLocal.AdditionalHeight != 0U)
+            {
+                FieldToJson(jdata["Warning"], "Additional width and height should be zero (see DirectX Specs).", options);
+            }
+            case D3D12_RENDER_PASS_BEGINNING_ACCESS_TYPE_PRESERVE_LOCAL_SRV:
+            case D3D12_RENDER_PASS_BEGINNING_ACCESS_TYPE_PRESERVE_LOCAL_UAV:
+            {
+                FieldToJson(jdata["PreserveLocal"], decoded_value.PreserveLocal, options);
+                break;
+            }
+            case D3D12_RENDER_PASS_BEGINNING_ACCESS_TYPE_DISCARD:
+            case D3D12_RENDER_PASS_BEGINNING_ACCESS_TYPE_PRESERVE:
+            case D3D12_RENDER_PASS_BEGINNING_ACCESS_TYPE_NO_ACCESS:
+            // No parameters to these cases.
+            break;
+
+            default:
+            {
+                FieldToJson(jdata["Warning"], "Unknown D3D12_RENDER_PASS_BEGINNING_ACCESS_TYPE in D3D12_RENDER_PASS_BEGINNING_ACCESS. Uninitialised or corrupt struct?", options);
+                break;
+            }
+        }
     }
 }
 
