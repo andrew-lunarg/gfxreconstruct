@@ -29,9 +29,7 @@
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(decode)
 
-Dx12JsonConsumerBase::Dx12JsonConsumerBase()
-{
-}
+Dx12JsonConsumerBase::Dx12JsonConsumerBase() {}
 
 Dx12JsonConsumerBase::~Dx12JsonConsumerBase()
 {
@@ -49,8 +47,70 @@ void Dx12JsonConsumerBase::Destroy()
     writer_ = nullptr;
 }
 
-bool Dx12JsonConsumerBase::IsValid() const {
+bool Dx12JsonConsumerBase::IsValid() const
+{
     return writer_ && writer_->IsValid();
+}
+
+void Dx12JsonConsumerBase::ProcessCreateHeapAllocationCommand(uint64_t allocation_id, uint64_t allocation_size)
+{
+    const util::JsonOptions& json_options = writer_->GetOptions();
+    auto&                    jdata        = writer_->WriteMetaCommandStart("CreateHeapAllocationCommand");
+    FieldToJson(jdata[format::kNameWarning], "Need to implement " __FUNCTION__, json_options);
+    writer_->WriteBlockEnd();
+}
+
+void Dx12JsonConsumerBase::ProcessInitSubresourceCommand(const format::InitSubresourceCommandHeader& command_header,
+                                                         const uint8_t*                              data)
+{
+    const util::JsonOptions& json_options = writer_->GetOptions();
+    auto&                    jdata        = writer_->WriteMetaCommandStart("InitSubresourceCommand");
+    FieldToJson(jdata[format::kNameWarning], "Need to implement " __FUNCTION__, json_options);
+    writer_->WriteBlockEnd();
+}
+
+void Dx12JsonConsumerBase::ProcessInitDx12AccelerationStructureCommand(
+    const format::InitDx12AccelerationStructureCommandHeader&       command_header,
+    std::vector<format::InitDx12AccelerationStructureGeometryDesc>& geometry_descs,
+    const uint8_t*                                                  build_inputs_data)
+{
+    const util::JsonOptions& json_options = writer_->GetOptions();
+    auto&                    jdata        = writer_->WriteMetaCommandStart("InitDx12AccelerationStructureCommand");
+    FieldToJson(jdata[format::kNameWarning], "Need to implement " __FUNCTION__, json_options);
+    writer_->WriteBlockEnd();
+}
+
+void Dx12JsonConsumerBase::ProcessFillMemoryResourceValueCommand(
+    const format::FillMemoryResourceValueCommandHeader& command_header, const uint8_t* data)
+{
+    const util::JsonOptions& json_options = writer_->GetOptions();
+    auto&                    jdata        = writer_->WriteMetaCommandStart("FillMemoryResourceValueCommand");
+    FieldToJson(jdata[format::kNameWarning], "Need to implement " __FUNCTION__, json_options);
+    writer_->WriteBlockEnd();
+}
+
+void Dx12JsonConsumerBase::ProcessDxgiAdapterInfo(const format::DxgiAdapterInfoCommandHeader& adapter_info_header)
+{
+    const util::JsonOptions& json_options = writer_->GetOptions();
+    auto&                    jdata        = writer_->WriteMetaCommandStart("DxgiAdapterInfo");
+    FieldToJson(jdata[format::kNameWarning], "Need to implement " __FUNCTION__, json_options);
+    writer_->WriteBlockEnd();
+}
+
+void Dx12JsonConsumerBase::Process_DriverInfo(const char* info_record)
+{
+    const util::JsonOptions& json_options = writer_->GetOptions();
+    auto&                    jdata        = writer_->WriteMetaCommandStart("DriverInfo");
+    FieldToJson(jdata[format::kNameWarning], "Need to implement " __FUNCTION__, json_options);
+    writer_->WriteBlockEnd();
+}
+
+void Dx12JsonConsumerBase::ProcessDx12RuntimeInfo(const format::Dx12RuntimeInfoCommandHeader& runtime_info_header)
+{
+    const util::JsonOptions& json_options = writer_->GetOptions();
+    auto&                    jdata        = writer_->WriteMetaCommandStart("Dx12RuntimeInfoCommandHeader");
+    FieldToJson(jdata[format::kNameWarning], "Need to implement " __FUNCTION__, json_options);
+    writer_->WriteBlockEnd();
 }
 
 GFXRECON_END_NAMESPACE(decode)
