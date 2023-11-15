@@ -78,6 +78,13 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12BaseGenerator):
                 FieldToJson(jdata["AdditionalWidth"],  data.AdditionalWidth,  options);
                 FieldToJson(jdata["AdditionalHeight"], data.AdditionalHeight, options);
             }
+
+            static void FieldToJson(nlohmann::ordered_json& jdata, const D3D12_RENDER_PASS_ENDING_ACCESS_PRESERVE_LOCAL_PARAMETERS& data, const JsonOptions& options)
+            {
+                using namespace util;
+                FieldToJson(jdata["AdditionalWidth"], data.AdditionalWidth, options);
+                FieldToJson(jdata["AdditionalHeight"], data.AdditionalHeight, options);
+            }
             /** @} */
         ''')
         write(code, file=self.outFile)
@@ -606,6 +613,36 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12BaseGenerator):
                     default:
                     {{
                         FieldToJson(jdata["Warning"], "Unknown D3D12_RENDER_PASS_BEGINNING_ACCESS_TYPE in D3D12_RENDER_PASS_BEGINNING_ACCESS. Uninitialised or corrupt struct?", options);
+                        break;
+                    }}
+                }}
+                '''
+            case "D3D12_RENDER_PASS_ENDING_ACCESS":
+                field_to_json = '''
+                switch(decoded_value.Type)
+                {{
+                    case D3D12_RENDER_PASS_ENDING_ACCESS_TYPE_DISCARD:
+                    case D3D12_RENDER_PASS_ENDING_ACCESS_TYPE_PRESERVE:
+                    case D3D12_RENDER_PASS_ENDING_ACCESS_TYPE_NO_ACCESS:
+                    // No parameters to these cases.
+                    break;
+
+                    case D3D12_RENDER_PASS_ENDING_ACCESS_TYPE_RESOLVE:
+                    {{
+                        FieldToJson(jdata["Resolve"], meta_struct.Resolve, options);
+                        break;
+                    }}
+                    case D3D12_RENDER_PASS_ENDING_ACCESS_TYPE_PRESERVE_LOCAL_RENDER:
+                    case D3D12_RENDER_PASS_ENDING_ACCESS_TYPE_PRESERVE_LOCAL_SRV:
+                    case D3D12_RENDER_PASS_ENDING_ACCESS_TYPE_PRESERVE_LOCAL_UAV:
+                    {{
+                        FieldToJson(jdata["PreserveLocal"], decoded_value.PreserveLocal, options);
+                        break;
+                    }}
+
+                    default:
+                    {{
+                        FieldToJson(jdata["Warning"], "Unknown D3D12_RENDER_PASS_ENDING_ACCESS_TYPE in D3D12_RENDER_PASS_ENDING_ACCESS. Uninitialised or corrupt struct?", options);
                         break;
                     }}
                 }}
