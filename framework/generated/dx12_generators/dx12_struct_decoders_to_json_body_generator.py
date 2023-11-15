@@ -531,6 +531,41 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12BaseGenerator):
                     }}
                 }}
                 '''
+            case "D3D12_VERSIONED_DEVICE_REMOVED_EXTENDED_DATA":
+                field_to_json = '''
+                switch(decoded_value.Version)
+                {{
+                    case D3D12_DRED_VERSION_1_0:
+                    {{
+                        FieldToJson(jdata["Dred_1_0"], meta_struct.Dred_1_0, options);
+                        break;
+                    }}
+                    case D3D12_DRED_VERSION_1_1:
+                    {{
+                        FieldToJson(jdata["Dred_1_1"], meta_struct.Dred_1_1, options);
+                        break;
+                    }}
+                    case D3D12_DRED_VERSION_1_2:
+                    {{
+                        FieldToJson(jdata["Dred_1_2"], meta_struct.Dred_1_2, options);
+                        break;
+                    }}
+                    case D3D12_DRED_VERSION_1_3:
+                    {{
+                        // This field was missing in the custom struct at time of writing.
+                        // See issue and revise this codegen by uncommenting line below when the issue
+                        // is fixed <https://github.com/LunarG/gfxreconstruct/issues/1351>
+                        // FieldToJson(jdata["Dred_1_3"], meta_struct.Dred_1_3, options);
+                        FieldToJson(jdata["Warning"], "Dred_1_3 is not supported by GFXR at this time. Please file an issue quoting this text if this is a blocker for you.", options);
+                        break;
+                    }}
+                    default:
+                    {{
+                        FieldToJson(jdata["Warning"], "Unknown D3D12_DRED_VERSION in D3D12_VERSIONED_DEVICE_REMOVED_EXTENDED_DATA. Uninitialised or corrupt struct?", options);
+                        break;
+                    }}
+                }}
+                '''
             case _:
                 print(message)
         return format_cpp_code(field_to_json, 2)
