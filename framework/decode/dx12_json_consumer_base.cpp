@@ -30,9 +30,9 @@
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(util)
 
-void FieldToJson(nlohmann::ordered_json&                                  jdata,
-                 const format::InitDx12AccelerationStructureGeometryDesc& data,
-                 const util::JsonOptions&                                 options)
+static void FieldToJson(nlohmann::ordered_json&                                  jdata,
+                        const format::InitDx12AccelerationStructureGeometryDesc& data,
+                        const util::JsonOptions&                                 options)
 {
     FieldToJson(jdata["geometry_type"], data.geometry_type, options);
     FieldToJson(jdata["geometry_flags"], data.geometry_flags, options);
@@ -44,6 +44,23 @@ void FieldToJson(nlohmann::ordered_json&                                  jdata,
     FieldToJson(jdata["triangles_index_count"], data.triangles_index_count, options);
     FieldToJson(jdata["triangles_vertex_count"], data.triangles_vertex_count, options);
     FieldToJson(jdata["triangles_vertex_stride"], data.triangles_vertex_stride, options);
+}
+
+static void
+FieldToJson(nlohmann::ordered_json& jdata, const format::DxgiAdapterDesc& data, const util::JsonOptions& options)
+{
+    FieldToJson(jdata["Description"], std::wstring_view(data.Description), options);
+    FieldToJson(jdata["VendorId"], data.VendorId, options);
+    FieldToJson(jdata["DeviceId"], data.DeviceId, options);
+    FieldToJson(jdata["SubSysId"], data.SubSysId, options);
+    FieldToJson(jdata["Revision"], data.Revision, options);
+    FieldToJson(jdata["DedicatedVideoMemory"], data.DedicatedVideoMemory, options);
+    FieldToJson(jdata["DedicatedSystemMemory"], data.DedicatedSystemMemory, options);
+    FieldToJson(jdata["SharedSystemMemory"], data.SharedSystemMemory, options);
+    FieldToJson(jdata["LuidLowPart"], data.LuidLowPart, options);
+    FieldToJson(jdata["LuidHighPar"], data.LuidHighPart, options);
+    // Should we break out the packed data? (2 bits (LSB) to store Type and 30 bits for object ID)
+    FieldToJson(jdata["extra_info"], data.extra_info, options);
 }
 
 GFXRECON_END_NAMESPACE(util)
@@ -156,7 +173,8 @@ void Dx12JsonConsumerBase::ProcessDxgiAdapterInfo(const format::DxgiAdapterInfoC
 {
     const util::JsonOptions& json_options = writer_->GetOptions();
     auto&                    jdata        = writer_->WriteMetaCommandStart("DxgiAdapterInfo");
-    FieldToJson(jdata[format::kNameWarning], "@todo Need to implement " __FUNCTION__, json_options);
+    FieldToJson(jdata["thread_id"], adapter_info_header.thread_id, json_options);
+    FieldToJson(jdata["adapter_desc"], adapter_info_header.adapter_desc, json_options);
     writer_->WriteBlockEnd();
 }
 
