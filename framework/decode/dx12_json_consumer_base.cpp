@@ -66,7 +66,18 @@ void Dx12JsonConsumerBase::ProcessInitSubresourceCommand(const format::InitSubre
 {
     const util::JsonOptions& json_options = writer_->GetOptions();
     auto&                    jdata        = writer_->WriteMetaCommandStart("InitSubresourceCommand");
-    FieldToJson(jdata[format::kNameWarning], "Need to implement " __FUNCTION__, json_options);
+
+    FieldToJson(jdata["thread_id"], command_header.thread_id, json_options);
+    FieldToJson(jdata["device_id"], command_header.device_id, json_options);
+    FieldToJson(jdata["resource_id"], command_header.resource_id, json_options);
+    FieldToJson(jdata["subresource"], command_header.subresource, json_options);
+    FieldToJson(jdata["initial_state"], command_header.initial_state, json_options);
+    FieldToJson(jdata["resource_state"], command_header.resource_state, json_options);
+    FieldToJson(jdata["barrier_flags"], command_header.barrier_flags, json_options);
+    FieldToJson(jdata["data_size"], command_header.data_size, json_options);
+    RepresentBinaryFile(
+        *(this->writer_), jdata[format::kNameData], "initsubresourcecommand.bin", command_header.data_size, data);
+
     writer_->WriteBlockEnd();
 }
 
@@ -77,7 +88,7 @@ void Dx12JsonConsumerBase::ProcessInitDx12AccelerationStructureCommand(
 {
     const util::JsonOptions& json_options = writer_->GetOptions();
     auto&                    jdata        = writer_->WriteMetaCommandStart("InitDx12AccelerationStructureCommand");
-    FieldToJson(jdata[format::kNameWarning], "Need to implement " __FUNCTION__, json_options);
+    FieldToJson(jdata[format::kNameWarning], "@todo Need to implement " __FUNCTION__, json_options);
     writer_->WriteBlockEnd();
 }
 
@@ -86,7 +97,7 @@ void Dx12JsonConsumerBase::ProcessFillMemoryResourceValueCommand(
 {
     const util::JsonOptions& json_options = writer_->GetOptions();
     auto&                    jdata        = writer_->WriteMetaCommandStart("FillMemoryResourceValueCommand");
-    FieldToJson(jdata[format::kNameWarning], "Need to implement " __FUNCTION__, json_options);
+    FieldToJson(jdata[format::kNameWarning], "@todo Need to implement " __FUNCTION__, json_options);
     writer_->WriteBlockEnd();
 }
 
@@ -94,7 +105,7 @@ void Dx12JsonConsumerBase::ProcessDxgiAdapterInfo(const format::DxgiAdapterInfoC
 {
     const util::JsonOptions& json_options = writer_->GetOptions();
     auto&                    jdata        = writer_->WriteMetaCommandStart("DxgiAdapterInfo");
-    FieldToJson(jdata[format::kNameWarning], "Need to implement " __FUNCTION__, json_options);
+    FieldToJson(jdata[format::kNameWarning], "@todo Need to implement " __FUNCTION__, json_options);
     writer_->WriteBlockEnd();
 }
 
@@ -102,7 +113,7 @@ void Dx12JsonConsumerBase::Process_DriverInfo(const char* info_record)
 {
     const util::JsonOptions& json_options = writer_->GetOptions();
     auto&                    jdata        = writer_->WriteMetaCommandStart("DriverInfo");
-    FieldToJson(jdata[format::kNameWarning], "Need to implement " __FUNCTION__, json_options);
+    FieldToJson(jdata[format::kNameWarning], "@todo Need to implement " __FUNCTION__, json_options);
     writer_->WriteBlockEnd();
 }
 
@@ -110,7 +121,7 @@ void Dx12JsonConsumerBase::ProcessDx12RuntimeInfo(const format::Dx12RuntimeInfoC
 {
     const util::JsonOptions& json_options = writer_->GetOptions();
     auto&                    jdata        = writer_->WriteMetaCommandStart("Dx12RuntimeInfoCommandHeader");
-    FieldToJson(jdata[format::kNameWarning], "Need to implement " __FUNCTION__, json_options);
+    FieldToJson(jdata[format::kNameWarning], "@todo Need to implement " __FUNCTION__, json_options);
     writer_->WriteBlockEnd();
 }
 
