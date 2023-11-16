@@ -63,6 +63,18 @@ FieldToJson(nlohmann::ordered_json& jdata, const format::DxgiAdapterDesc& data, 
     FieldToJson(jdata["extra_info"], data.extra_info, options);
 }
 
+static void
+FieldToJson(nlohmann::ordered_json& jdata, const format::Dx12RuntimeInfo& data, const util::JsonOptions& options)
+{
+    FieldToJson(jdata["version"], data.version, util::filepath::kFileVersionSize, options);
+    // Copy the src string so we can put a defensive null at end of the char array:
+    char src[util::filepath::kMaxFilePropertySize + 1];
+    util::platform::StringCopy(
+        src, util::filepath::kMaxFilePropertySize, data.src, util::filepath::kMaxFilePropertySize);
+    src[util::filepath::kMaxFilePropertySize] = 0;
+    FieldToJson(jdata["src"], std::string_view(src), options);
+}
+
 GFXRECON_END_NAMESPACE(util)
 GFXRECON_BEGIN_NAMESPACE(decode)
 
@@ -200,7 +212,10 @@ void Dx12JsonConsumerBase::ProcessDx12RuntimeInfo(const format::Dx12RuntimeInfoC
 {
     const util::JsonOptions& json_options = writer_->GetOptions();
     auto&                    jdata        = writer_->WriteMetaCommandStart("Dx12RuntimeInfoCommandHeader");
-    FieldToJson(jdata[format::kNameWarning], "@todo Need to implement " __FUNCTION__, json_options);
+
+    FieldToJson(jdata["thread_id"], runtime_info_header.thread_id, json_options);
+    FieldToJson(jdata["runtime_info"], runtime_info_header.runtime_info, json_options);
+
     writer_->WriteBlockEnd();
 }
 
