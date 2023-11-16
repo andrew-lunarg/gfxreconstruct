@@ -137,7 +137,18 @@ void Dx12JsonConsumerBase::ProcessFillMemoryResourceValueCommand(
 {
     const util::JsonOptions& json_options = writer_->GetOptions();
     auto&                    jdata        = writer_->WriteMetaCommandStart("FillMemoryResourceValueCommand");
-    FieldToJson(jdata[format::kNameWarning], "@todo Need to implement " __FUNCTION__, json_options);
+    FieldToJson(jdata["thread_id"], command_header.thread_id, json_options);
+    FieldToJson(jdata["resource_value_count"], command_header.resource_value_count, json_options);
+    // There are two blocks of values in data so we need to add together their sizes to know how big the blob to dump
+    // is:
+    const auto types_bytes   = command_header.resource_value_count * sizeof(format::ResourceValueType);
+    const auto offsets_bytes = command_header.resource_value_count * sizeof(uint64_t);
+    RepresentBinaryFile(*(this->writer_),
+                        jdata[format::kNameData],
+                        "fillmemoryresourcevaluecommand.bin",
+                        types_bytes + offsets_bytes,
+                        data);
+
     writer_->WriteBlockEnd();
 }
 
