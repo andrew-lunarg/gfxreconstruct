@@ -25,8 +25,28 @@
 
 #include "decode/dx12_json_consumer_base.h"
 #include "decode/json_writer.h"
+#include "decode/decode_json_util.h"
 
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
+GFXRECON_BEGIN_NAMESPACE(util)
+
+void FieldToJson(nlohmann::ordered_json&                                  jdata,
+                 const format::InitDx12AccelerationStructureGeometryDesc& data,
+                 const util::JsonOptions&                                 options)
+{
+    FieldToJson(jdata["geometry_type"], data.geometry_type, options);
+    FieldToJson(jdata["geometry_flags"], data.geometry_flags, options);
+    FieldToJson(jdata["aabbs_count"], data.aabbs_count, options);
+    FieldToJson(jdata["aabbs_stride"], data.aabbs_stride, options);
+    Bool32ToJson(jdata["triangles_has_transform"], data.triangles_has_transform, options);
+    FieldToJson(jdata["triangles_index_format"], data.triangles_index_format, options);
+    FieldToJson(jdata["triangles_vertex_format"], data.triangles_vertex_format, options);
+    FieldToJson(jdata["triangles_index_count"], data.triangles_index_count, options);
+    FieldToJson(jdata["triangles_vertex_count"], data.triangles_vertex_count, options);
+    FieldToJson(jdata["triangles_vertex_stride"], data.triangles_vertex_stride, options);
+}
+
+GFXRECON_END_NAMESPACE(util)
 GFXRECON_BEGIN_NAMESPACE(decode)
 
 Dx12JsonConsumerBase::Dx12JsonConsumerBase() {}
@@ -88,7 +108,27 @@ void Dx12JsonConsumerBase::ProcessInitDx12AccelerationStructureCommand(
 {
     const util::JsonOptions& json_options = writer_->GetOptions();
     auto&                    jdata        = writer_->WriteMetaCommandStart("InitDx12AccelerationStructureCommand");
-    FieldToJson(jdata[format::kNameWarning], "@todo Need to implement " __FUNCTION__, json_options);
+    FieldToJson(jdata["thread_id"], command_header.thread_id, json_options);
+    FieldToJson(
+        jdata["dest_acceleration_structure_data"], command_header.dest_acceleration_structure_data, json_options);
+    FieldToJson(jdata["copy_source_gpu_va"], command_header.copy_source_gpu_va, json_options);
+    FieldToJson(jdata["copy_mode"], command_header.copy_mode, json_options);
+    FieldToJson(
+        jdata["inputs_type"], command_header.inputs_type, json_options); /// @todo does this correspond to a D3D12 enum?
+    FieldToJson(
+        jdata["inputs_flags"], command_header.inputs_flags, json_options); /// @todo Flags as pretty form or hex?
+    FieldToJson(jdata["inputs_num_instance_descs"], command_header.inputs_num_instance_descs, json_options);
+    FieldToJson(jdata["inputs_num_geometry_descs"], command_header.inputs_num_geometry_descs, json_options);
+    /// @todo Do we want to dump the geometry_descs, the input data, or both?
+    /// The data is useful to be closer to the binary capture and to round-trip to it one day, but the constructed descs
+    /// are good for eyeballing.
+    FieldToJson(jdata["inputs_data_size"], command_header.inputs_data_size, json_options);
+    RepresentBinaryFile(*(this->writer_),
+                        jdata[format::kNameData],
+                        "initdx12accelerationstructurecommand.bin",
+                        command_header.inputs_data_size,
+                        build_inputs_data);
+    FieldToJson(jdata["geometry_descs"], geometry_descs.data(), geometry_descs.size(), json_options);
     writer_->WriteBlockEnd();
 }
 
