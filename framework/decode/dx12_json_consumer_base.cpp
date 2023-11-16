@@ -178,11 +178,21 @@ void Dx12JsonConsumerBase::ProcessDxgiAdapterInfo(const format::DxgiAdapterInfoC
     writer_->WriteBlockEnd();
 }
 
+/// @see DriverInfoBlock in format.h
 void Dx12JsonConsumerBase::Process_DriverInfo(const char* info_record)
 {
     const util::JsonOptions& json_options = writer_->GetOptions();
     auto&                    jdata        = writer_->WriteMetaCommandStart("DriverInfo");
-    FieldToJson(jdata[format::kNameWarning], "@todo Need to implement " __FUNCTION__, json_options);
+    char                     driver_record[gfxrecon::util::filepath::kMaxDriverInfoSize + 1];
+
+    FieldToJson(jdata[format::kNameDebug], "thread_id field not exposed.", json_options);
+    // Copy the buffer and make sure there is a null on the end of it defensively:
+    util::platform::StringCopy(driver_record,
+                               gfxrecon::util::filepath::kMaxDriverInfoSize,
+                               info_record,
+                               gfxrecon::util::filepath::kMaxDriverInfoSize);
+    driver_record[gfxrecon::util::filepath::kMaxDriverInfoSize] = 0;
+    FieldToJson(jdata["driver_record"], std::string_view(driver_record), json_options);
     writer_->WriteBlockEnd();
 }
 
