@@ -30,6 +30,12 @@
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(util)
 
+static std::string_view ViewOfCharArray(const char* array, const size_t capacity)
+{
+    const char* zero_end = std::find(array, array + capacity, 0);
+    return std::string_view(array, zero_end - array);
+}
+
 static void FieldToJson(nlohmann::ordered_json&                                  jdata,
                         const format::InitDx12AccelerationStructureGeometryDesc& data,
                         const util::JsonOptions&                                 options)
@@ -73,6 +79,22 @@ FieldToJson(nlohmann::ordered_json& jdata, const format::Dx12RuntimeInfo& data, 
         src, util::filepath::kMaxFilePropertySize, data.src, util::filepath::kMaxFilePropertySize);
     src[util::filepath::kMaxFilePropertySize] = 0;
     FieldToJson(jdata["src"], std::string_view(src), options);
+}
+
+static void
+FieldToJson(nlohmann::ordered_json& jdata, const util::filepath::FileInfo& data, const util::JsonOptions& options)
+{
+    FieldToJson(jdata["ProductVersion"], ViewOfCharArray(data.ProductVersion, filepath::kMaxFilePropertySize), options);
+    FieldToJson(jdata["FileVersion"], ViewOfCharArray(data.FileVersion, filepath::kMaxFilePropertySize), options);
+    FieldToJson(jdata["AppVersion"], data.AppVersion, filepath::kMaxFilePropertySize, options);
+    FieldToJson(jdata["AppName"], ViewOfCharArray(data.AppName, filepath::kMaxFilePropertySize), options);
+    FieldToJson(jdata["CompanyName"], ViewOfCharArray(data.CompanyName, filepath::kMaxFilePropertySize), options);
+    FieldToJson(
+        jdata["FileDescription"], ViewOfCharArray(data.FileDescription, filepath::kMaxFilePropertySize), options);
+    FieldToJson(jdata["InternalName"], ViewOfCharArray(data.InternalName, filepath::kMaxFilePropertySize), options);
+    FieldToJson(
+        jdata["OriginalFilename"], ViewOfCharArray(data.OriginalFilename, filepath::kMaxFilePropertySize), options);
+    FieldToJson(jdata["ProductName"], ViewOfCharArray(data.ProductName, filepath::kMaxFilePropertySize), options);
 }
 
 GFXRECON_END_NAMESPACE(util)
@@ -217,6 +239,14 @@ void Dx12JsonConsumerBase::ProcessDx12RuntimeInfo(const format::Dx12RuntimeInfoC
     FieldToJson(jdata["runtime_info"], runtime_info_header.runtime_info, json_options);
 
     writer_->WriteBlockEnd();
+}
+
+void Dx12JsonConsumerBase::Process_ExeFileInfo(const util::filepath::FileInfo& info_record)
+{
+    const util::JsonOptions& json_options = writer_->GetOptions();
+    auto&                    jdata        = writer_->WriteMetaCommandStart("Dx12RuntimeInfoCommandHeader");
+    /// @todo Plumb through the thread ID so it can be output here.
+    FieldToJson(jdata["info_record"], info_record, json_options);
 }
 
 GFXRECON_END_NAMESPACE(decode)
