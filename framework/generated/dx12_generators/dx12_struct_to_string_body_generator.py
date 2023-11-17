@@ -51,7 +51,6 @@ class Dx12StructToStringBodyGenerator(Dx12BaseGenerator):
         Dx12BaseGenerator.beginFile(self, gen_opts)
 
         code = '#include "generated_dx12_struct_to_string.h"\n'
-        code += '#include "decode/custom_dx12_ascii_consumer.h"\n'
         code += '#include "decode/custom_dx12_to_string.h"\n'
         code += '#include "generated_dx12_enum_to_string.h"\n'
         write(code, file=self.outFile)

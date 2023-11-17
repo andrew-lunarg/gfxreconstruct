@@ -26,7 +26,6 @@
 */
 
 #include "generated_dx12_struct_to_string.h"
-#include "decode/custom_dx12_ascii_consumer.h"
 #include "decode/custom_dx12_to_string.h"
 #include "generated_dx12_enum_to_string.h"
 
