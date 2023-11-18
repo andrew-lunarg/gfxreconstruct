@@ -96,8 +96,6 @@ target_sources(gfxrecon_util
                     ${CMAKE_CURRENT_LIST_DIR}/to_string.cpp
                     ${CMAKE_CURRENT_LIST_DIR}/options.h
                     ${CMAKE_CURRENT_LIST_DIR}/options.cpp
-                    ${CMAKE_CURRENT_LIST_DIR}/custom_common_to_string.h
-                    ${CMAKE_CURRENT_LIST_DIR}/custom_common_to_string.cpp
                     ${CMAKE_SOURCE_DIR}/framework/generated/generated_vulkan_enum_to_string.h
                     ${CMAKE_SOURCE_DIR}/framework/generated/generated_vulkan_enum_to_string.cpp
                     $<$<BOOL:${XCB_FOUND}>:${CMAKE_CURRENT_LIST_DIR}/xcb_loader.h>

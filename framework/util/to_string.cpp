@@ -36,23 +36,5 @@ std::string uuid_to_string(uint32_t size, const uint8_t* uuid)
     return stream.str();
 }
 
-void FieldToString(std::ostringstream& strStrm,
-                   bool                firstField,
-                   const char*         fieldName,
-                   ToStringFlags       toStringFlags,
-                   uint32_t            tabCount,
-                   uint32_t            tabSize,
-                   const std::string&  fieldString)
-{
-    if (!firstField)
-    {
-        strStrm << ',' << GetNewlineString(toStringFlags);
-    }
-    strStrm << GetTabString(toStringFlags, tabCount, tabSize);
-    strStrm << "\"" << fieldName << "\":";
-    strStrm << GetWhitespaceString(toStringFlags);
-    strStrm << fieldString;
-}
-
 GFXRECON_END_NAMESPACE(util)
 GFXRECON_END_NAMESPACE(gfxrecon)

@@ -33,7 +33,6 @@
 #include <sstream>
 #include <string>
 #include <utility>
-#include <cmath>
 
 GFXRECON_BEGIN_NAMESPACE(gfxrecon)
 GFXRECON_BEGIN_NAMESPACE(util)
@@ -97,7 +96,7 @@ inline std::string ToString(const T&      obj,
 /// function specializations since a caller has to explicitly spell out a type
 /// to call one of them and there is no function resolution based on argument
 /// types going on.
-/// @todo This may not be necessary: try deleting it.
+/// @todo This may not be necessary: try deleting it after #1321 lands.
 template <typename T>
 inline std::string ToString(uint32_t      apiFlags,
                             ToStringFlags toStringFlags = kToString_Default,
@@ -110,27 +109,6 @@ inline std::string ToString(uint32_t      apiFlags,
     GFXRECON_UNREFERENCED_PARAMETER(tabSize);
 
     return "0";
-}
-
-template <typename HandleIdType>
-inline std::string HandleIdToString(HandleIdType handleId)
-{
-    std::ostringstream strStrm;
-    if (handleId)
-    {
-        strStrm << "\"0x" << reinterpret_cast<const void*>(handleId) << "\"";
-    }
-    else
-    {
-        strStrm << "\"NULL\"";
-    }
-    return strStrm.str();
-}
-
-template <>
-inline std::string HandleIdToString(format::HandleId handleId)
-{
-    return std::to_string(handleId);
 }
 
 #if defined(WIN32)
@@ -160,6 +138,7 @@ inline std::string WCharArrayToString(const wchar_t* pStr)
 }
 #endif
 
+/// Widely used in Vulkan and DX12 enum to string functions.
 template <typename BitmaskType, typename FlagsType>
 inline std::string BitmaskToString(FlagsType flags)
 {
@@ -185,141 +164,14 @@ inline std::string BitmaskToString(FlagsType flags)
     return str;
 }
 
-template <typename PtrType>
-inline std::string PtrToString(PtrType* ptr)
-{
-    return to_hex_variable_width(reinterpret_cast<uintptr_t>(ptr));
-}
-
-template <typename PtrType>
-inline std::string PtrToString(PtrType ptr)
-{
-    return to_hex_variable_width(ptr);
-}
-
-inline std::string GetNewlineString(ToStringFlags toStringFlags)
-{
-    return (toStringFlags & kToString_Formatted) ? std::string("\n") : std::string();
-}
-
-inline std::string GetWhitespaceString(ToStringFlags toStringFlags, uint32_t count = 1)
-{
-    return (toStringFlags & kToString_Formatted) ? std::string((size_t)count, ' ') : std::string();
-}
-
-inline std::string
-GetTabString(ToStringFlags toStringFlags, uint32_t tabCount, uint32_t tabSize = kToStringDefaultTabSize)
-{
-    return GetWhitespaceString(toStringFlags, tabCount * tabSize);
-}
-
 /// @brief Make a copy of the input string with double quotes at start and end.
+/// @note Dead code only used in its unit test. Keep _just in case_?
 inline std::string Quote(const std::string& str)
 {
     std::string quoted{ '"' };
     quoted += str;
     quoted += '"';
     return quoted;
-}
-
-/// @brief Create the opening and closing braces of a JSON object: calling a function
-/// to fill out the internal fields of the object.
-/// By convention the functions which convert structs will be called ToString and
-/// will call FieldToString() to format each field and another ToString,
-/// ArrayToString(), etc. to form the nested structure or the immediate value of
-/// the field.
-/// @deprecated Use the nlohmann JSON library instead.
-template <typename ToStringFunctionType>
-inline std::string
-ObjectToString(ToStringFlags toStringFlags, uint32_t& tabCount, uint32_t tabSize, ToStringFunctionType toStringFunction)
-{
-    std::ostringstream strStrm;
-    const auto         nl = GetNewlineString(toStringFlags);
-    strStrm << '{';
-    strStrm << nl;
-    ++tabCount;
-    toStringFunction(strStrm);
-    --tabCount;
-    strStrm << nl;
-    strStrm << GetTabString(toStringFlags, tabCount, tabSize);
-    strStrm << '}';
-    return strStrm.str();
-}
-
-/// Part of a system for formatting fields of structs and arguments of functions
-/// as JSON text strings.
-/// @deprecated Use the nlohmann JSON library instead.
-void FieldToString(std::ostringstream& strStrm,
-                   bool                firstField,
-                   const char*         fieldName,
-                   ToStringFlags       toStringFlags,
-                   uint32_t            tabCount,
-                   uint32_t            tabSize,
-                   const std::string&  fieldString);
-
-template <typename ObjectType, typename ValidateArrayFunctionType, typename ToStringFunctionType>
-inline std::string ArrayToString(size_t                    count,
-                                 const ObjectType*         pObjs,
-                                 ToStringFlags             toStringFlags,
-                                 uint32_t                  tabCount,
-                                 uint32_t                  tabSize,
-                                 ValidateArrayFunctionType validateArrayFunction,
-                                 ToStringFunctionType      toStringFunction)
-{
-    if (!(count && validateArrayFunction()))
-    {
-        return "null";
-    }
-
-    std::ostringstream strStrm;
-    strStrm << '[';
-    strStrm << GetNewlineString(toStringFlags);
-    for (uint32_t i = 0; i < count; ++i)
-    {
-        if (i)
-        {
-            strStrm << ',' << GetNewlineString(toStringFlags);
-        }
-        strStrm << GetTabString(toStringFlags, tabCount + 1, tabSize) << toStringFunction(i);
-    }
-    strStrm << GetNewlineString(toStringFlags) << GetTabString(toStringFlags, tabCount, tabSize);
-    strStrm << ']';
-    return strStrm.str();
-}
-
-template <typename T>
-inline std::string ArrayToString(size_t        count,
-                                 const T*      pObjs,
-                                 ToStringFlags toStringFlags = kToString_Default,
-                                 uint32_t      tabCount      = kToStringDefaultTabCount,
-                                 uint32_t      tabSize       = kToStringDefaultTabSize)
-{
-    return ArrayToString(
-        count,
-        pObjs,
-        toStringFlags,
-        tabCount,
-        tabSize,
-        [&]() { return pObjs != nullptr; },
-        [&](size_t i) { return ToString(pObjs[i], toStringFlags, tabCount + 1, tabSize); });
-}
-
-template <typename EnumType>
-inline std::string EnumArrayToString(size_t              count,
-                                     const EnumType*     pObjs,
-                                     util::ToStringFlags toStringFlags = util::kToString_Default,
-                                     uint32_t            tabCount      = kToStringDefaultTabCount,
-                                     uint32_t            tabSize       = kToStringDefaultTabSize)
-{
-    using namespace util;
-    return ArrayToString(
-        count,
-        pObjs,
-        toStringFlags,
-        tabCount,
-        tabSize,
-        [&]() { return pObjs != nullptr; },
-        [&](size_t i) { return Quote(ToString(pObjs[i])); });
 }
 
 GFXRECON_END_NAMESPACE(util)
