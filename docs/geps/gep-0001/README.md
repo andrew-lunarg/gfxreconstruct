@@ -32,6 +32,14 @@ class JsonBuilder
     void Add(std::string_view name, double value);
     void Add(std::string_view name, bool value);
     void Add(std::string_view name, nullptr_t value);
+    /// Either write the binary data to a file, and put the filename in the tree or
+    /// put the tag format::kValBinary in the tree to indicate it has been omitted,
+    /// or include the data in the tree as a base64 string depending on internal
+    /// JsonOptions state.
+    void RepresentBinaryFile(std::string_view       name,
+                             const std::string_view filename_base,
+                             const uint64_t         data_size,
+                             const uint8_t* const   data);
   void EndObject();
 
   void BeginArray();
