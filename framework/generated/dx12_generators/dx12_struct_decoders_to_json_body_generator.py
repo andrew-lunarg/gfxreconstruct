@@ -657,6 +657,32 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12JsonCommonGenerator):
                     }
                 }
                 '''
+            case "D3D12_BARRIER_GROUP":
+                field_to_json = '''
+                switch(decoded_value.Type)
+                {
+                    case D3D12_BARRIER_TYPE_GLOBAL:
+                    {
+                        FieldToJson(jdata["pGlobalBarriers"], meta_struct.global_barriers, options);
+                        break;
+                    }
+                    case D3D12_BARRIER_TYPE_TEXTURE:
+                    {
+                        FieldToJson(jdata["pTextureBarriers"], meta_struct.texture_barriers, options);
+                        break;
+                    }
+                    case D3D12_BARRIER_TYPE_BUFFER:
+                    {
+                        FieldToJson(jdata["pBufferBarriers"], meta_struct.buffer_barriers, options);
+                        break;
+                    }
+                    default:
+                    {
+                        FieldToJson(jdata[format::kNameWarning], "Unknown D3D12_BARRIER_TYPE in D3D12_BARRIER_GROUP. Uninitialised or corrupt struct?", options);
+                        break;
+                    }
+                }
+                '''
             case _:
                 print(message)
         return format_cpp_code(field_to_json, 2)
@@ -753,22 +779,8 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12JsonCommonGenerator):
             }
 
 
-
             //  ============================================================================================================================
             /// @todo Pull out the structs below which only fail due to having a union member and use the union injection mechanism instead.
-
-            void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_BARRIER_GROUP* data, const JsonOptions& options)
-            {
-                using namespace util;
-                if (data && data->decoded_value)
-                {
-                    const D3D12_BARRIER_GROUP& decoded_value = *data->decoded_value;
-                    const Decoded_D3D12_BARRIER_GROUP& meta_struct = *data;
-                    FieldToJson(jdata["Type"], decoded_value.Type, options); // [is_enum]
-                    FieldToJson(jdata["NumBarriers"], decoded_value.NumBarriers, options); //
-                    /// @todo Implement this union: FieldToJson(jdata[""], decoded_value., options); //
-                }
-            }
 
             /// Manual raw struct functon to be used for Decoded_D3D12_CLEAR_VALUE conversion.
             void FieldToJson(nlohmann::ordered_json& jdata, const D3D12_DEPTH_STENCIL_VALUE& obj, const JsonOptions& options)
