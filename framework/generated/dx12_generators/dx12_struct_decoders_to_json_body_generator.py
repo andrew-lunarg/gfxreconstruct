@@ -86,6 +86,13 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12JsonCommonGenerator):
                 FieldToJson(jdata["AdditionalWidth"], data.AdditionalWidth, options);
                 FieldToJson(jdata["AdditionalHeight"], data.AdditionalHeight, options);
             }
+
+            /// Manual raw struct functon to be used for Decoded_D3D12_CLEAR_VALUE conversion.
+            void FieldToJson(nlohmann::ordered_json& jdata, const D3D12_DEPTH_STENCIL_VALUE& obj, const JsonOptions& options)
+            {
+                FieldToJson(jdata["Depth"], obj.Depth, options);
+                FieldToJson(jdata["Stencil"], obj.Stencil, options);
+            }
             /** @} */
 
             inline bool RepresentBinaryFile(const util::JsonOptions&       json_options,
@@ -683,6 +690,17 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12JsonCommonGenerator):
                     }
                 }
                 '''
+            case "D3D12_CLEAR_VALUE":
+                field_to_json = '''
+                if(graphics::dx12::IsDepthStencilFormat(decoded_value.Format))
+                {
+                    FieldToJson(jdata["DepthStencil"], decoded_value.DepthStencil, options);
+                }
+                else
+                {
+                    FieldToJson(jdata["Color"], decoded_value.Color, options);
+                }
+                '''
             case _:
                 print(message)
         return format_cpp_code(field_to_json, 2)
@@ -781,34 +799,6 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12JsonCommonGenerator):
 
             //  ============================================================================================================================
             /// @todo Pull out the structs below which only fail due to having a union member and use the union injection mechanism instead.
-
-            /// Manual raw struct functon to be used for Decoded_D3D12_CLEAR_VALUE conversion.
-            void FieldToJson(nlohmann::ordered_json& jdata, const D3D12_DEPTH_STENCIL_VALUE& obj, const JsonOptions& options)
-            {
-                FieldToJson(jdata["Depth"], obj.Depth, options);
-                FieldToJson(jdata["Stencil"], obj.Stencil, options);
-            }
-
-            // D3D12_CLEAR_VALUE contains a union so we need to output depending on the format.
-            void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_CLEAR_VALUE* data, const JsonOptions& options)
-            {
-                using namespace util;
-
-                if (data && data->decoded_value)
-                {
-                    const D3D12_CLEAR_VALUE& decoded_value = *data->decoded_value;
-                    const Decoded_D3D12_CLEAR_VALUE& meta_struct = *data;
-                    FieldToJson(jdata["Format"], decoded_value.Format, options);
-                    if(graphics::dx12::IsDepthStencilFormat(decoded_value.Format))
-                    {
-                        FieldToJson(jdata["DepthStencil"], decoded_value.DepthStencil, options);
-                    }
-                    else
-                    {
-                        FieldToJson(jdata["Color"], decoded_value.Color, options);
-                    }
-                }
-            }
 
             void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_RESOURCE_BARRIER* data, const JsonOptions& options)
             {
