@@ -42,7 +42,7 @@ class Dx12StructDecodersToJsonHeaderGenerator(Dx12BaseGenerator):
         )
 
     def beginFile(self, gen_opts):
-        """Methond override."""
+        """Method override."""
         Dx12BaseGenerator.beginFile(self, gen_opts)
 
         code = inspect.cleandoc('''
