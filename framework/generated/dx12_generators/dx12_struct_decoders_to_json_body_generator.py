@@ -727,6 +727,27 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12JsonCommonGenerator):
                     }
                 }
                 '''
+            case "D3D12_TEXTURE_COPY_LOCATION":
+                field_to_json = '''
+                switch(decoded_value.Type)
+                {
+                    case D3D12_TEXTURE_COPY_TYPE_SUBRESOURCE_INDEX:
+                    {
+                        FieldToJson(jdata["SubresourceIndex"], decoded_value.SubresourceIndex, options);
+                        break;
+                    }
+                    case D3D12_TEXTURE_COPY_TYPE_PLACED_FOOTPRINT:
+                    {
+                        FieldToJson(jdata["PlacedFootprint"], meta_struct.PlacedFootprint, options);
+                        break;
+                    }
+                    default:
+                    {
+                        FieldToJson(jdata[format::kNameWarning], "Unknown D3D12_TEXTURE_COPY_TYPE in D3D12_TEXTURE_COPY_LOCATION. Uninitialised or corrupt struct?", options);
+                        break;
+                    }
+                }
+                '''
             case _:
                 print(message)
         return format_cpp_code(field_to_json, 2)
@@ -819,23 +840,6 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12JsonCommonGenerator):
                     FieldToJson(jdata["Type"], decoded_value.Type, options); // Basic data plumbs to raw struct [is_enum]
                     /// @todo This needs custom handling:
                     FieldToJson(jdata["pDesc"], "ToDo: custom handler required.", options); // Any pointer or thing with a pointer or a handle plumbs to the Decoded type [is_pointer]
-                }
-            }
-
-
-            //  ============================================================================================================================
-            /// @todo Pull out the structs below which only fail due to having a union member and use the union injection mechanism instead.
-
-            void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_TEXTURE_COPY_LOCATION* data, const JsonOptions& options)
-            {
-                using namespace util;
-                if (data && data->decoded_value)
-                {
-                    const D3D12_TEXTURE_COPY_LOCATION& decoded_value = *data->decoded_value;
-                    const Decoded_D3D12_TEXTURE_COPY_LOCATION& meta_struct = *data;
-                    ; ///< @todo Generate for pResource[None]: ID3D12Resource [is_pointer]
-                    FieldToJson(jdata["Type"], decoded_value.Type, options); // [is_enum]
-                    /// @todo Implement this union: FieldToJson(jdata[""], decoded_value., options); //
                 }
             }
 
