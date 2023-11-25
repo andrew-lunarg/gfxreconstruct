@@ -19,7 +19,6 @@
   "structures": [
     "GUID Comment - We can generate the header for the decoded struct but the body needs a manual implementation.",
     "GUID",
-    "D3D12_RESOURCE_BARRIER",
     "D3D12_TEXTURE_COPY_LOCATION",
 
     "XX definitely need custom json conversion below",

@@ -1789,6 +1789,41 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_RESOURCE_UAV
     }
 }
 
+void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_RESOURCE_BARRIER* data, const JsonOptions& options)
+{
+    using namespace util;
+    if (data && data->decoded_value)
+    {
+        const D3D12_RESOURCE_BARRIER& decoded_value = *data->decoded_value;
+        const Decoded_D3D12_RESOURCE_BARRIER& meta_struct = *data;
+        FieldToJson(jdata["Type"], decoded_value.Type, options);
+        FieldToJson_D3D12_RESOURCE_BARRIER_FLAGS(jdata["Flags"], decoded_value.Flags, options);
+        switch(decoded_value.Type)
+        {
+            case D3D12_RESOURCE_BARRIER_TYPE_TRANSITION:
+            {
+                FieldToJson(jdata["Transition"], meta_struct.Transition, options);
+                break;
+            }
+            case D3D12_RESOURCE_BARRIER_TYPE_ALIASING:
+            {
+                FieldToJson(jdata["Aliasing"], meta_struct.Aliasing, options);
+                break;
+            }
+            case D3D12_RESOURCE_BARRIER_TYPE_UAV:
+            {
+                FieldToJson(jdata["UAV"], meta_struct.UAV, options);
+                break;
+            }
+            default:
+            {
+                FieldToJson(jdata[format::kNameWarning], "Unknown D3D12_RESOURCE_BARRIER_TYPE in D3D12_RESOURCE_BARRIER. Uninitialised or corrupt struct?", options);
+                break;
+            }
+        }
+    }
+}
+
 void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_SUBRESOURCE_FOOTPRINT* data, const JsonOptions& options)
 {
     using namespace util;
@@ -4523,19 +4558,6 @@ void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_STATE_SUBOBJ
 
 //  ============================================================================================================================
 /// @todo Pull out the structs below which only fail due to having a union member and use the union injection mechanism instead.
-
-void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_RESOURCE_BARRIER* data, const JsonOptions& options)
-{
-    using namespace util;
-    if (data && data->decoded_value)
-    {
-        const D3D12_RESOURCE_BARRIER& decoded_value = *data->decoded_value;
-        const Decoded_D3D12_RESOURCE_BARRIER& meta_struct = *data;
-        FieldToJson(jdata["Type"], decoded_value.Type, options); // [is_enum]
-        FieldToJson(jdata["Flags"], decoded_value.Flags, options); // [is_enum]
-        /// @todo Implement this union: FieldToJson(jdata[""], decoded_value., options);
-    }
-}
 
 void FieldToJson(nlohmann::ordered_json& jdata, const Decoded_D3D12_TEXTURE_COPY_LOCATION* data, const JsonOptions& options)
 {
