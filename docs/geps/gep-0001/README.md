@@ -1,6 +1,8 @@
 # GEP 1 - Builder Pattern For JSON Generation
 
-Instead of recursive free functions passing around references to nlohmann JSON tree nodes and a `JsonOptions` object, the functions should take a single parameter other than the item that they are converting: a new `JsonBuilder` class.
+**DRAFT**
+
+Instead of recursive free functions passing around references to nlohmann JSON tree nodes and a `JsonOptions` object, the functions should take a unified parameter representing the json tree being built and the state applied to building and serializing it: a new `JsonBuilder` class.
 It can hide the building of an intermediate `nlohmann` tree before serializing it or do direct writes to a file stream, and would encompass the current `JsonOptions` class and the `JsonWriter` currently used to commit an in-memory JSON tree to storage.
 
 This would take the call made per struct member or argument list element from the following example to the rewrite below it:
@@ -10,13 +12,13 @@ This would take the call made per struct member or argument list element from th
 FieldToJson(jdata["DepthBias"], decoded_value.DepthBias, options);
 
 // Equivalent with the builder:
-json_builder.add("DepthBias", decoded_value.DepthBias);
-
+Convert(json_builder, "DepthBias", decoded_value.DepthBias); 
 ```
+We still need to generate Convert functions for Structs to do the recursive tree walk across sub-objects and pointers to linked objects.
+We can also define them for base types and generate them  Enums, Flags and so on so that codegen for the consumer and struct Converts is as simple and regular as possible apart from for special cases like bools in `uint32_t`s, `HRESULT`s etc. 
 
+Sketch of JsonBuilder Interface:
 ```cpp
-// Sketch of JsonBuilder Interface:
-
 class JsonBuilder
 {
   public:
@@ -78,3 +80,18 @@ without affecting callers.
 
 The JSON Builder class would also own both the writer which dumps binaries and the options state which controls whether they should be dumped and so can transparently dump them or inline them or drop them according to that state while the caller can just send the data in and not worry about where it goes.
 This is a large improvement over the current situation in which function parameters are easily dumped but struct members are not because the `FieldToJson` functions which convert them have no access to the JSON writer in use.
+
+## Issues
+
+### Need to Generate two Versions of Every Convert?
+* One to add a named field to an object.
+* One to append to the end of an array.
+#### Solution 1
+Don't have separate `Add` functions without names for array appending.
+The named `Add`s can ignore the names if an array is top of the JSON stack and use the names if an object is
+(they can debug assert the name is empty if an array is).
+
+Put the name last so it can be defaulted:
+```cpp
+void Convert(JsonBuilder& builder, ValeType value, std::string_view name = ""); 
+```
