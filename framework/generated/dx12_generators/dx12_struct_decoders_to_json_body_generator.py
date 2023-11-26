@@ -790,7 +790,7 @@ class Dx12StructDecodersToJsonBodyGenerator(Dx12JsonCommonGenerator):
         custom_impls = format_cpp_code('''
             /// @defgroup custom_dx12_struct_decoders_to_json_bodies Custom implementations for
             /// troublesome structs.
-            /// We put the custom implementations in the generator Python here rather than
+            /// We put the custom implementations in the generator Python rather than
             /// creating a whole new compilation unit for them.
             /** @{*/
 
