@@ -81,6 +81,26 @@ without affecting callers.
 The JSON Builder class would also own both the writer which dumps binaries and the options state which controls whether they should be dumped and so can transparently dump them or inline them or drop them according to that state while the caller can just send the data in and not worry about where it goes.
 This is a large improvement over the current situation in which function parameters are easily dumped but struct members are not because the `FieldToJson` functions which convert them have no access to the JSON writer in use.
 
+The `Convert` functions are internally analogous to the current `FieldToJson` ones except they bang on the `JsonBuilder` interface instead of a nlohmann tree directly. The ones for decoded structs are generated and walk the tree of pointers recursively but the simple version are trivial: 
+
+```cpp
+// Adding to an object:
+// Base versions can be templates and inlined trivially for int, bool, etc.
+template<typename T>
+void Convert(JsonBuilder& builder, std::string_view name, const T& value)
+{
+    builder.Add(name, value);
+}
+
+// Appending to an array:
+// Base versions can be templates and inlined trivially for int, bool, etc.
+template<typename T>
+void Convert(JsonBuilder& builder, const T& value)
+{
+    builder.Add(name, value);
+}
+```
+
 ## Issues
 
 ### Need to Generate two Versions of Every Convert?
