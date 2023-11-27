@@ -21,6 +21,36 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
+## @file Generation of functions to convert decoded D3D12 structs to JSON.
+## As well as the wholey generated functions, there are two levels of custom
+## function support embedded inside this file.
+## 1. Embedding manual code for a union member of a struct into an otherwise
+##    generated function via makeUnionFieldToJson().
+## 2. Wholey custom functions for more complicated struct such as those with
+##    custom decoded struct classes to deal with mechanisms of type erasure
+##    in the API such as void pointers pointing into opaque memory blocks
+##    tagged with a type enum. These custom functions are embedded here and
+##    output by endFile() to be included in the generated file for simplicity
+##    and to avoid compiling a whole separate .cpp file draggig in the same
+##    headers just for a few functions.
+## If the generated ouput for a struct is ever observed to be incorrect, the
+## procedure for generating a custom function is as follows:
+## 1. Add cases to makeUnionFieldToJson() if it is only union members
+##    that are causing the issue. 
+## If the issue is not just union members with determining type fields in the
+## same struct:
+## 2. Copy the generated function into the custom function section below.
+## 3. Add the struct name to json_blocklists.json (the prototype in the
+##    header will still be generated).
+## 4. Edit the custom function to fix the issue.
+##
+## @todo Add a mechanism to generate the boilerplate for custom functions
+##       for structs with custom bodies to avoid the copy-paste. It should be
+##       possible to generate up to and including the line
+##       `const Decoded_D3D12_CPU_DESCRIPTOR_HANDLE& meta_struct = *data;`
+##       and then have a custom function body for just the FieldToJson calls.
+##
+
 import sys
 from base_generator import write
 from dx12_base_generator import Dx12BaseGenerator
