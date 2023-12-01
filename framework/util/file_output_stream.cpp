@@ -59,11 +59,33 @@ FileOutputStream::~FileOutputStream()
     }
 }
 
-void FileOutputStream::Reset(FILE* file)
+void FileOutputStream::Reset()
 {
     if ((file_ != nullptr) && own_file_)
     {
         platform::FileClose(file_);
+    }
+
+    file_ = nullptr;
+}
+
+void FileOutputStream::Reset(FILE* file)
+{
+    // If we own the current file, close it before switching to the new one.
+    // Note that a FILE* which was closed and reopened externally can be the same
+    // as the current file (not theoretical: observed on Windows), so we just
+    // assign the new file pointer without checking anything in that case.
+    if (own_file_)
+    {
+        GFXRECON_ASSERT(file != file_ && file != nullptr);
+        if (file == file_ && file != nullptr)
+        {
+            GFXRECON_LOG_DEBUG("Attempt to reset owned current file to itself: %p.", file);
+        }
+        if ((file_ != nullptr) && (file != file_))
+        {
+            platform::FileClose(file_);
+        }
     }
 
     file_ = file;
